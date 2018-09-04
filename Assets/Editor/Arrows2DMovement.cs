@@ -24,7 +24,6 @@ public class Arrows2DMovement {
             Vector3 movement = Vector3.zero;
             float xStep = EditorPrefs.GetFloat("MoveSnapX");
             float yStep = EditorPrefs.GetFloat("MoveSnapY");
-            Debug.Log("MOVE STEP: " + xStep);
 
             switch (currentEvent.keyCode) {
                 case KeyCode.RightArrow:

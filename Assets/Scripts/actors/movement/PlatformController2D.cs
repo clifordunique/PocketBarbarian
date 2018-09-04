@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlatformController : RaycastController {
+public class PlatformController2D : RaycastController2D {
 
 	public LayerMask passengerMask;
 
-	public Vector3[] localWaypoints;
+	public Transform[] localWaypoints;
 	Vector3[] globalWaypoints;
 
 	public float speed;
@@ -20,14 +20,14 @@ public class PlatformController : RaycastController {
 	float nextMoveTime;
 
 	List<PassengerMovement> passengerMovement;
-	Dictionary<Transform,Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
+	Dictionary<Transform,MoveController2D> passengerDictionary = new Dictionary<Transform, MoveController2D>();
 	
 	public override void Start () {
 		base.Start ();
 
 		globalWaypoints = new Vector3[localWaypoints.Length];
 		for (int i =0; i < localWaypoints.Length; i++) {
-			globalWaypoints[i] = localWaypoints[i] + transform.position;
+			globalWaypoints[i] = localWaypoints[i].position;
 		}
 	}
 
@@ -83,7 +83,7 @@ public class PlatformController : RaycastController {
 	void MovePassengers(bool beforeMovePlatform) {
 		foreach (PassengerMovement passenger in passengerMovement) {
 			if (!passengerDictionary.ContainsKey(passenger.transform)) {
-				passengerDictionary.Add(passenger.transform,passenger.transform.GetComponent<Controller2D>());
+				passengerDictionary.Add(passenger.transform,passenger.transform.GetComponent<MoveController2D>());
 			}
 
 			if (passenger.moveBeforePlatform == beforeMovePlatform) {
@@ -182,7 +182,7 @@ public class PlatformController : RaycastController {
 			float size = .3f;
 
 			for (int i =0; i < localWaypoints.Length; i ++) {
-				Vector3 globalWaypointPos = (Application.isPlaying)?globalWaypoints[i] : localWaypoints[i] + transform.position;
+				Vector3 globalWaypointPos = (Application.isPlaying)?globalWaypoints[i] : localWaypoints[i].position;
 				Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
 				Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
 			}

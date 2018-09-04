@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	public Controller2D target;
+	public MoveController2D target;
 	public float verticalOffset;
     public float horizontalOffset;
     public float lookAheadDstX;

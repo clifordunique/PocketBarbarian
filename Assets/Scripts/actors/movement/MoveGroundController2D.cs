@@ -2,21 +2,34 @@
 using System.Collections;
 
 
-public class CharacterController2D : Controller2D {
+public class MoveGroundController2D: MoveController2D {
 
-	public float maxJumpHeight = 4;
-	public float minJumpHeight = 1;
-    public float timeToJumpApex = .4f;
+    [Header("In Air Settings")]
+    public bool jumpingAllowed = false;
+    [ConditionalHide("jumpingAllowed", true)]
+    public float maxJumpHeight = 0;
+    [ConditionalHide("jumpingAllowed", true)]
+    public float minJumpHeight = 0;
+    [ConditionalHide("jumpingAllowed", true)]
+    public float timeToJumpApex = 0;
+    [ConditionalHide("jumpingAllowed", true)]
     public bool doubleJumpAllowed = false;
+    [ConditionalHide("jumpingAllowed", true)]
+    public float accelerationTimeAirborne = 0F;//.2f;
+
     public float comicFallFactor = 1.08f;
     public float stampingFallFactor = 2f;
-    
-    public float moveSpeed = 6;
-    public float moveSpeedDash = 12;
-    public float dashDuration = 0.5F;
 
-    public float accelerationTimeAirborne = 0F;//.2f;
+    [Header("On Ground Settings")]
+    public float moveSpeed = 6;
     public float accelerationTimeGrounded = 0F;//.05f;
+
+    public bool dashAllowed = false;
+    [ConditionalHide("dashAllowed", true)]
+    public float moveSpeedDash = 12;
+    [ConditionalHide("dashAllowed", true)]
+    public float dashDuration = 0.5F;   
+    
 
     float gravity;
 	float maxJumpVelocity;
