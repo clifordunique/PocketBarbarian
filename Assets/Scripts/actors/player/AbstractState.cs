@@ -4,20 +4,20 @@ using UnityEngine;
 
 public abstract class AbstractState {
 
-    public StateMachineGameActor playerController;
+    public EnemyStateMachine playerController;
 
     public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, ACTION, HIT, DEATH };
     public ACTION currentAction = ACTION.NA;
     public Vector3 target = Vector3.zero;
 
 
-    public AbstractState(ACTION currentAction, StateMachineGameActor playerController) {
+    public AbstractState(ACTION currentAction, EnemyStateMachine playerController) {
         this.currentAction = currentAction;
         this.playerController = playerController;
         this.target = Vector3.zero;
     }
 
-    public AbstractState(ACTION currentAction, StateMachineGameActor playerController, Vector3 target) {
+    public AbstractState(ACTION currentAction, EnemyStateMachine playerController, Vector3 target) {
         this.currentAction = currentAction;
         this.playerController = playerController;
         this.target = target;

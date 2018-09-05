@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveState : AbstractState {
+public class EnemyMoveState : AbstractEnemyState {
 
     private EnemyMoveGroundController2D moveController;
 
-    public EnemyMoveState(ACTION currentAction, StateMachineGameActor playerController, Vector3 target) : base(currentAction, playerController, target) {
+    public EnemyMoveState(EnemyStateMachine stateMachine) : base(stateMachine) {
         Debug.Log("Move Constructor");
     }
 
     public override void OnEnter() {
-        Debug.Log("Move OnEnter");
-        if (playerController.moveController is EnemyMoveGroundController2D) {
-            moveController = (EnemyMoveGroundController2D)playerController.moveController;
+        if (stateMachine.moveController is EnemyMoveGroundController2D) {
+            moveController = (EnemyMoveGroundController2D)stateMachine.moveController;
         } else {
             Debug.Log("MovingState but no MoveController found!");
         }
-        // test
-        target = GameObject.FindObjectOfType<PlayerInput>().transform.position;
-        Debug.Log("TARGET:" + target);
     }
 
-    public override AbstractState UpdateState() {
-        
-        if (currentAction == ACTION.IDLE) {
-            return new EnemyIdleState(ACTION.IDLE, playerController);
-        }
-        
+    public override AbstractEnemyState UpdateState() {
 
-        float directionX = moveController.MoveTo(target);
-        if (directionX == 0) {
-
-            return new EnemyIdleState(ACTION.IDLE, playerController);
+        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.MOVE) {
+            // Interrupt current Action
+            return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
-       
+
+        if (stateMachine.currentAction.HasMoveTarget()) {
+
+            float directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
+            if (directionX == 0) { // angekommen                
+                Debug.Log("move timed out. Next action");
+                stateMachine.RequestNextAction();
+                return GetEnemyState(stateMachine.currentAction.actionEvent);
+            }
+        } else {
+            // kein MoveTarget, also nächste Action holen
+            stateMachine.RequestNextAction();
+            return GetEnemyState(stateMachine.currentAction.actionEvent);
+        }
         return null;
     }
 

@@ -28,16 +28,18 @@ public class MoveGroundController2D: MoveController2D {
     [ConditionalHide("dashAllowed", true)]
     public float moveSpeedDash = 12;
     [ConditionalHide("dashAllowed", true)]
-    public float dashDuration = 0.5F;   
-    
+    public float dashDuration = 0.5F;
+
+    [HideInInspector]
+    public Vector3 velocity;
+    [HideInInspector]
+    public float targetVelocityX;
 
     float gravity;
 	float maxJumpVelocity;
-	float minJumpVelocity;
-	Vector3 velocity;
-    float targetVelocityX;
+	float minJumpVelocity;	
+    
     float velocityXSmoothing;
-
     bool isStamping = false;
     bool isPushed = false;
     float endTimePush;
@@ -52,7 +54,7 @@ public class MoveGroundController2D: MoveController2D {
 		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
 	}
 
-	void Update() {
+	public virtual void Update() {
 		CalculateVelocity ();
 
 		Move (velocity * Time.deltaTime);
@@ -65,8 +67,9 @@ public class MoveGroundController2D: MoveController2D {
         
         if (isPushed && endTimePush < Time.time) {
             isPushed = false;
+            targetVelocityX = 0;
         }
-	}
+    }
 
 	public void OnMove (float moveDirectionX, float moveDirectionY) {		
         if (!isPushed) {
@@ -107,9 +110,9 @@ public class MoveGroundController2D: MoveController2D {
     public void OnPush(float pushDirectionX, float pushDirectionY, float pushForce, float pushDuration) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
-        if (pushDirectionY > 0) {
+        //if (pushDirectionY > 0) {
             velocity.y = minJumpVelocity;
-        }
+        //}
         endTimePush = Time.time + pushDuration;
     }
 
@@ -117,6 +120,9 @@ public class MoveGroundController2D: MoveController2D {
         return (!collisions.below && velocity.y <= 0);
     }
 
+    public bool IsGrounded() {
+        return (collisions.below && velocity.y <= 0);
+    }
 
     void CalculateVelocity() {
         

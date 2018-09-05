@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyMoveGroundController2D : MoveGroundController2D {
 
+    public override void Update() {
+        base.Update();
+    }
+
     public bool TargetReached(Vector3 target) {
-        Debug.Log(transform.position.x);
         if (Mathf.Abs(transform.position.x - target.x) <= Constants.WorldUnitsPerPixel()) {
             return true;
         } else {
@@ -26,16 +29,14 @@ public class EnemyMoveGroundController2D : MoveGroundController2D {
 
         // check if target is reached
         if (TargetReached(target)) {
-            stopMoving = true;
-            OnJumpInputDown();
+            stopMoving = true;            
         }
 
         if (!stopMoving && target != Vector3.positiveInfinity) {
             if (transform.position.x > target.x) directionX = -1;
             if (transform.position.x < target.x) directionX = 1;
         }
-        //OnMove(directionX, 0F);
-        OnMove(1F, 0F);
+        OnMove(directionX, 0F);        
         return directionX;
     }
 

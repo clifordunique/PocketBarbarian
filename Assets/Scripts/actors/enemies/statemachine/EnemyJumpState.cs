@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState : AbstractEnemyState {
+public class EnemyJumpState : AbstractEnemyState {
+    
 
-    private float startTime;
-
-    public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyJumpState(EnemyStateMachine stateMachine) : base(stateMachine) {
     }
 
     public override void OnEnter() {
-        startTime = Time.time;
+        stateMachine.moveController.OnJumpInputDown();
     }
 
     public override AbstractEnemyState UpdateState() {
 
-        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
+        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.JUMP) {
             // Interrupt current Action
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
 
-        if ((Time.time - startTime) > stateMachine.currentAction.duration) {
-            Debug.Log("Idle timed out. Next action");
+        if (stateMachine.moveController.IsGrounded()) {
+            Debug.Log("Jump finished. Next action");
             stateMachine.RequestNextAction();
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }

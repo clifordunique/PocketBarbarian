@@ -2,13 +2,13 @@
 using System.Collections;
 
 [RequireComponent(typeof(MoveGroundController2D))]
-public class PlayerInput: StateMachineGameActor {
+public class PlayerInput: MonoBehaviour
+    {
 
     MoveGroundController2D player;
     
 
-    public override void Start() {
-        base.Start();
+    public void Start() {
         player = GetComponent<MoveGroundController2D>();
     }
 
