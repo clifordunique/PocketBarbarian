@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyJumpState : AbstractEnemyState {
     
-
     public EnemyJumpState(EnemyStateMachine stateMachine) : base(stateMachine) {
     }
 
@@ -19,8 +18,14 @@ public class EnemyJumpState : AbstractEnemyState {
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
 
+        if (stateMachine.currentAction.HasMoveTarget()) {
+            moveController.MoveTo(stateMachine.currentAction.moveTarget);
+        }
+
         if (stateMachine.moveController.IsGrounded()) {
             Debug.Log("Jump finished. Next action");
+            // stop if we moved while jumping
+            moveController.StopMoving();
             stateMachine.RequestNextAction();
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }

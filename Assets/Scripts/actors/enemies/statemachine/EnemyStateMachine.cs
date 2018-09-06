@@ -11,12 +11,12 @@ public class EnemyStateMachine : MonoBehaviour {
     public EnemyAction currentAction;
     private bool isInterruptAction;
     [HideInInspector]
-    public MoveGroundController2D moveController;
+    public IEnemyMoveController2D moveController;
     [HideInInspector]
     public AiBehaviour aiBehaviour;
 
     public void Start() {
-        moveController = GetComponent<MoveGroundController2D>();
+        moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
 
         if (aiBehaviour) {

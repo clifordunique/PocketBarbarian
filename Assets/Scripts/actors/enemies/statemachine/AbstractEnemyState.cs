@@ -5,10 +5,13 @@ using UnityEngine;
 public abstract class AbstractEnemyState {
 
     public EnemyStateMachine stateMachine;
-    
+    public IEnemyMoveController2D moveController;
 
     public AbstractEnemyState(EnemyStateMachine stateMachine) {
         this.stateMachine = stateMachine;
+        if (stateMachine.moveController is IEnemyMoveController2D) {
+            moveController = (IEnemyMoveController2D)stateMachine.moveController;
+        } 
     }
 
     public abstract void OnEnter();

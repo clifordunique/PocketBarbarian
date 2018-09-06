@@ -5,15 +5,11 @@ using UnityEngine;
 public class EnemyHitState : AbstractEnemyState {
 
     private float startTime;
-    private EnemyMoveGroundController2D moveController;
 
     public EnemyHitState(EnemyStateMachine stateMachine) : base(stateMachine) {
     }
 
     public override void OnEnter() {
-        if (stateMachine.moveController is EnemyMoveGroundController2D) {
-            moveController = (EnemyMoveGroundController2D)stateMachine.moveController;
-        }
         startTime = Time.time;
 
         if (stateMachine.currentAction.HasHitTarget()) {

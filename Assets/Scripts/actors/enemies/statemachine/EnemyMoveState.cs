@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoveState : AbstractEnemyState {
-
-    private EnemyMoveGroundController2D moveController;
+    
 
     public EnemyMoveState(EnemyStateMachine stateMachine) : base(stateMachine) {
         Debug.Log("Move Constructor");
     }
 
     public override void OnEnter() {
-        if (stateMachine.moveController is EnemyMoveGroundController2D) {
-            moveController = (EnemyMoveGroundController2D)stateMachine.moveController;
-        } else {
-            Debug.Log("MovingState but no MoveController found!");
-        }
     }
 
     public override AbstractEnemyState UpdateState() {

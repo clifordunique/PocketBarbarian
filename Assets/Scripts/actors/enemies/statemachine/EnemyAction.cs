@@ -11,7 +11,7 @@ public class EnemyAction {
     public float duration = 0; // duration to stay in state --> only for Idle, Move and Hit
     public Vector3 hitTarget = Vector3.positiveInfinity; // target to shoot at, or got hit from
 
-    
+    [HideInInspector]
     public Vector3 moveTarget = Vector3.positiveInfinity; // target to move to, specified by waypoints
     
 
