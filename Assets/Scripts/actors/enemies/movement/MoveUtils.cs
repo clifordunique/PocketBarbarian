@@ -12,10 +12,11 @@ public class MoveUtils {
         }
     }
 
-    public static bool TargetReachedXY(Transform transform, Vector3 target) {
+    public static bool TargetReachedXY(Transform transform, Vector3 target, float speed, float smoothTime) {
         float distanceX = Mathf.Abs(transform.position.x - target.x);
         float distanceY = Mathf.Abs(transform.position.y - target.y);
-        if (distanceX <= Constants.WorldUnitsPerPixel() && distanceY <= Constants.WorldUnitsPerPixel()) {
+        float multiplier = 1 + (smoothTime > 0 ? speed * smoothTime : 0);
+        if (distanceX <= Constants.WorldUnitsPerPixel() * multiplier && distanceY <= Constants.WorldUnitsPerPixel() * multiplier) {
             return true;
         } else {
             return false;

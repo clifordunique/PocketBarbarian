@@ -9,7 +9,7 @@ public interface IEnemyMoveController2D {
 
     void OnJumpInputDown();
 
-    void OnPush(float pushDirectionX, float pushDirectionY, float pushForce, float pushDuration);
+    void OnPush(float pushDirectionX, float pushDirectionY);
 
     float MoveTo(Vector3 target, RectangleBound rectangleBound = null);
 

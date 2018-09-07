@@ -6,10 +6,10 @@ public class EnemyMoveState : AbstractEnemyState {
     
 
     public EnemyMoveState(EnemyStateMachine stateMachine) : base(stateMachine) {
-        Debug.Log("Move Constructor");
     }
 
     public override void OnEnter() {
+        Debug.Log("In Move");
     }
 
     public override AbstractEnemyState UpdateState() {
@@ -22,8 +22,7 @@ public class EnemyMoveState : AbstractEnemyState {
         if (stateMachine.currentAction.HasMoveTarget()) {
 
             float directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
-            if (directionX == 0) { // angekommen                
-                Debug.Log("move timed out. Next action");
+            if (directionX == 0) { // angekommen              
                 stateMachine.RequestNextAction();
                 return GetEnemyState(stateMachine.currentAction.actionEvent);
             }

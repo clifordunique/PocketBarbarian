@@ -21,9 +21,11 @@ public class EnemyIdleState : AbstractEnemyState {
         }
 
         if ((Time.time - startTime) > stateMachine.currentAction.duration) {
-            Debug.Log("Idle timed out. Next action");
             stateMachine.RequestNextAction();
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
+                // only change when not idle
+                return GetEnemyState(stateMachine.currentAction.actionEvent);
+            }
         }
         return null;
     }

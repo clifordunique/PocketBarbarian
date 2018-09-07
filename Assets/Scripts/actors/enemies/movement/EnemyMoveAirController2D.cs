@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
-
+    
     public bool moveSinus = false;
+    [ConditionalHideAttribute("moveSinus", true)]
     public float frequency = 20.0f;  // Speed of sine movement
+    [ConditionalHideAttribute("moveSinus", true)]
     public float magnitude = 0.5f;   // Size of sine movement
 
     public float speed = 4f;
+    public float smoothTime = 0.1f;
+    public float pushForce = 15F;
+    public float pushDuration = 0.2F;
+
 
     private bool isPushed = false;
     private float timePushed;
 
     private Vector3 targetPosition;
-    private Vector3 velocity;    
+    private Vector3 velocity = Vector3.zero;    
 
     float velocityXSmoothing;
     float velocityYSmoothing;
@@ -25,29 +31,29 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
     }
 
 	
-	void Update () {        
-        
+	void Update () {
+
         if (isPushed) {
             if (timePushed < Time.time) {
                 targetPosition = transform.position;
                 isPushed = false;
-            } else {
-
-                velocity.x = Mathf.SmoothDamp(velocity.x, targetPosition.x, ref velocityXSmoothing, 0.1F);
-                velocity.y = Mathf.SmoothDamp(velocity.y, targetPosition.y, ref velocityYSmoothing, 0.1F);
-                transform.position += velocity * Time.deltaTime;
+                velocity = Vector3.zero;
+                return;
             }
-        } else {
+        }
 
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetPosition.x, ref velocityXSmoothing, 0.1F);
-            velocity.y = Mathf.SmoothDamp(velocity.y, targetPosition.y, ref velocityYSmoothing, 0.1F);
-            transform.position += velocity * Time.deltaTime; 
+        if (targetPosition != transform.position) {
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetPosition.x, ref velocityXSmoothing, smoothTime);
+            velocity.y = Mathf.SmoothDamp(velocity.y, targetPosition.y, ref velocityYSmoothing, smoothTime);
+            transform.position += velocity * Time.deltaTime;
         }
     }
 
-    public void OnPush(float pushDirectionX, float pushDirectionY, float pushForce, float pushDuration) {
+    public void OnPush(float pushDirectionX, float pushDirectionY) {
         isPushed = true;
         timePushed = Time.time + pushDuration;
+        Debug.Log("Push Direction: " + pushDirectionY);
+        velocity = Vector3.zero;
         targetPosition = new Vector3(pushDirectionX * pushForce, pushDirectionY * pushForce * 0.5F, transform.position.z);
     }
 
@@ -59,9 +65,8 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
 
         float directionX = 0;
         bool stopMoving = false;
-
-        float distance = Vector3.Distance(transform.position, target);
-        if ( MoveUtils.TargetReachedXY(transform, target)) { //(moveSinus && distance < magnitude)
+        
+        if ( MoveUtils.TargetReachedXY(transform, target, speed, smoothTime)) { 
             // Target already reached
             stopMoving = true;
         }
@@ -91,6 +96,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
     public void StopMoving() {
         if (!isPushed) {
             targetPosition = transform.position;
+            velocity = Vector3.zero;
         }
     }
 

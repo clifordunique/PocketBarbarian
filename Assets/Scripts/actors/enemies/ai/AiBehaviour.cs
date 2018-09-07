@@ -24,7 +24,6 @@ public class AiBehaviour : MonoBehaviour {
             foreach (AiWaypoint waypoint in waypoints) {
                 actionQueue[i++] = waypoint.action;
             }
-            Debug.Log("ActionQueue: " + actionQueue.Length);
         }
     }
 
@@ -45,7 +44,6 @@ public class AiBehaviour : MonoBehaviour {
             }
             currentQueuePosition = 0;
         }
-        Debug.Log(">>>>>>>>>>> GET NEXT ACTION" + GetCurrentAction().actionEvent);
         return GetCurrentAction();
     }
 
@@ -56,7 +54,7 @@ public class AiBehaviour : MonoBehaviour {
             float size = .3f;
 
             for (int i = 0; i < waypointsGz.Length; i++) {
-                Vector3 globalWaypointPos = waypointsGz[i].transform.position;// (Application.isPlaying) ? waypointsWorldSpace[i] : wayPointList[i].position;
+                Vector3 globalWaypointPos = (Application.isPlaying) ? actionQueue[i].moveTarget : waypointsGz[i].transform.position;
                 Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
                 Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
             }

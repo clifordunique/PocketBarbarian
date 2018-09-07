@@ -39,7 +39,7 @@ public abstract class AbstractEnemyState {
             return new EnemyMoveState(stateMachine);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.SHOOT) {
-            return null;
+            return new EnemyShootState(stateMachine);
         }
         return null;
     }

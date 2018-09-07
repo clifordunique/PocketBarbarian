@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour {
 
-    public EnemyAction.ACTION_EVENT defaultState;
+    public bool isShooter = false;
+    [ConditionalHideAttribute("isShooter", true)]
+    public bool moveWhileShooting = false;
+    [ConditionalHideAttribute("isShooter", true)]
+    public GameObject projectile;
+    [ConditionalHideAttribute("isShooter", true)]
+    public bool targetIsVector = false;
 
     private AbstractEnemyState currentState;
     [HideInInspector]
@@ -15,6 +21,8 @@ public class EnemyStateMachine : MonoBehaviour {
     [HideInInspector]
     public AiBehaviour aiBehaviour;
 
+    private BoxCollider2D boxCollider;
+
     public void Start() {
         moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
@@ -22,6 +30,8 @@ public class EnemyStateMachine : MonoBehaviour {
         if (aiBehaviour) {
             currentAction = aiBehaviour.GetCurrentAction();
         }
+
+        boxCollider = GetComponent<BoxCollider2D>();
 
         // init ENEMY state
         currentState = new EnemyIdleState(this);
@@ -57,5 +67,11 @@ public class EnemyStateMachine : MonoBehaviour {
             currentState = newState;
             currentState.OnEnter();
         }
+    }
+
+    public void ShootProjectile(Vector3 target) {
+        Vector3 spawnPosition = Utils.GetSpawnPositionProjectile(target, transform, boxCollider);
+        GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectParent.GetInstance().transform);
+        projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
     }
 }
