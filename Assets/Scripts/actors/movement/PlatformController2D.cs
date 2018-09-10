@@ -6,6 +6,7 @@ public class PlatformController2D : RaycastController2D {
 
 	public LayerMask passengerMask;
 
+    public AnimationTriggerKettenMechanik kettenMechanik;
 	public Transform[] localWaypoints;
 	Vector3[] globalWaypoints;
 
@@ -55,6 +56,7 @@ public class PlatformController2D : RaycastController2D {
 			return Vector3.zero;
 		}
 
+        if (kettenMechanik) kettenMechanik.StartTrigger();
 		fromWaypointIndex %= globalWaypoints.Length;
 		int toWaypointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
 		float distanceBetweenWaypoints = Vector3.Distance (globalWaypoints [fromWaypointIndex], globalWaypoints [toWaypointIndex]);
@@ -75,7 +77,8 @@ public class PlatformController2D : RaycastController2D {
 				}
 			}
 			nextMoveTime = Time.time + waitTime;
-		}
+            if (kettenMechanik) kettenMechanik.StopTrigger();
+        }
 
 		return newPos - transform.position;
 	}

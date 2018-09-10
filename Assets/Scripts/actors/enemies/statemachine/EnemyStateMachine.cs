@@ -13,7 +13,7 @@ public class EnemyStateMachine : MonoBehaviour {
     public bool targetIsVector = false;
 
     private AbstractEnemyState currentState;
-    [HideInInspector]
+    
     public EnemyAction currentAction;
     private bool isInterruptAction;
     [HideInInspector]

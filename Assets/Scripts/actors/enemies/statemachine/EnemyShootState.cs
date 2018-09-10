@@ -22,12 +22,12 @@ public class EnemyShootState : AbstractEnemyState {
             // Interrupt current Action
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
-
+        float directionX = -1000;
         if (stateMachine.moveWhileShooting && stateMachine.currentAction.HasMoveTarget()) {
-            moveController.MoveTo(stateMachine.currentAction.moveTarget);
+            directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
         }
 
-        if (startTime + stateMachine.currentAction.duration < Time.time) {
+        if (directionX == 0 || startTime + stateMachine.currentAction.duration < Time.time) {
             // stop if we moved while shooting
             moveController.StopMoving();
             stateMachine.RequestNextAction();

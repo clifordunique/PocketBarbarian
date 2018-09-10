@@ -10,7 +10,7 @@ public class AiBehaviour : MonoBehaviour {
     private EnemyAction[] actionQueue = null;
     private int currentQueuePosition = 0;
 
-    public void Start() {
+    public virtual void Start() {
         initActionQueue();
     }
 
@@ -27,7 +27,7 @@ public class AiBehaviour : MonoBehaviour {
         }
     }
 
-    public EnemyAction GetCurrentAction() {
+    public virtual EnemyAction GetCurrentAction() {
         initActionQueue();
         if (currentQueuePosition >= 0 && currentQueuePosition < actionQueue.Length) {
             return actionQueue[currentQueuePosition];
@@ -35,7 +35,7 @@ public class AiBehaviour : MonoBehaviour {
         return null;
     }
 
-    public EnemyAction GetNextAction() {
+    public virtual EnemyAction GetNextAction() {
         
         currentQueuePosition++;
         if (currentQueuePosition >= actionQueue.Length) {

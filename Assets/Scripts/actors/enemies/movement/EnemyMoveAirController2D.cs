@@ -52,7 +52,6 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
     public void OnPush(float pushDirectionX, float pushDirectionY) {
         isPushed = true;
         timePushed = Time.time + pushDuration;
-        Debug.Log("Push Direction: " + pushDirectionY);
         velocity = Vector3.zero;
         targetPosition = new Vector3(pushDirectionX * pushForce, pushDirectionY * pushForce * 0.5F, transform.position.z);
     }
@@ -73,6 +72,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
 
         // Check if actor ist still in bounds
         if (!stopMoving && rectangleBound != null && !rectangleBound.IsInBoundX(transform.position)) {
+            Debug.Log("RectangleBound exceeded!");
             stopMoving = true;
         }
 
@@ -82,6 +82,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
             if (transform.position.x > target.x) directionX = -1;
             if (transform.position.x < target.x) directionX = 1;
         }
+
 
         // perform moving action
         //targetPosition = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

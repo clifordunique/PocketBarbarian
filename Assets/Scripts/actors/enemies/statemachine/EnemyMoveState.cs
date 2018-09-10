@@ -9,7 +9,6 @@ public class EnemyMoveState : AbstractEnemyState {
     }
 
     public override void OnEnter() {
-        Debug.Log("In Move");
     }
 
     public override AbstractEnemyState UpdateState() {
@@ -23,11 +22,13 @@ public class EnemyMoveState : AbstractEnemyState {
 
             float directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
             if (directionX == 0) { // angekommen              
+                moveController.StopMoving();
                 stateMachine.RequestNextAction();
                 return GetEnemyState(stateMachine.currentAction.actionEvent);
             }
         } else {
             // kein MoveTarget, also nächste Action holen
+            moveController.StopMoving();
             stateMachine.RequestNextAction();
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
