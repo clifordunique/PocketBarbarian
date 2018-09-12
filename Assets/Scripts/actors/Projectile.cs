@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
     [ConditionalHideAttribute("moveInArc", true)]
     public float arcHeight;
 
-    private Vector3 target;
+    public Vector3 target;
     private Rigidbody2D rigidb;
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -21,19 +21,20 @@ public class Projectile : MonoBehaviour {
     }
 
     public void InitProjectile(Vector3 target, bool vector = false) {
-        this.target = target;        
+        this.target = target;
+        Debug.Log("Target:" + target);
         this.startPosition = transform.position;
         this.vector = vector;
         if (target.x < transform.position.x) {
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
-        if (vector) {
+        //if (vector) {
             // move constantly only in that direction
-            if (target.x == 0) target.x = transform.position.x;
-            if (target.y == 0) target.y = transform.position.y;
-            targetPosition = (target - transform.position).normalized;
-        }
+            //if (target.x == 0) target.x = transform.position.x;
+            //if (target.y == 0) target.y = transform.position.y;
+            targetPosition = target;// (target - transform.position).normalized;
+        //}
     }
 
 
@@ -69,9 +70,9 @@ public class Projectile : MonoBehaviour {
                 targetPosition = new Vector3(nextX, baseY + arc, transform.position.z);
                 rigidb.MovePosition(targetPosition);
             } else {
-                targetPosition = target - transform.position;
-                targetPosition = (targetPosition / targetPosition.magnitude * speed);
-                rigidb.MovePosition(transform.position + (targetPosition * Time.deltaTime));
+                Vector3 newPos = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                
+                rigidb.MovePosition(newPos);
             }
         }
     }

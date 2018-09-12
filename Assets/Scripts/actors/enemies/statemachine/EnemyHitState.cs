@@ -23,7 +23,7 @@ public class EnemyHitState : AbstractEnemyState {
 
         // can not be interrupted
 
-        if ((Time.time - startTime) > stateMachine.currentAction.duration) {
+        if ((Time.time - startTime) > stateMachine.currentAction.amount) {
             moveController.StopMoving();
             stateMachine.RequestNextAction();
             return GetEnemyState(stateMachine.currentAction.actionEvent);

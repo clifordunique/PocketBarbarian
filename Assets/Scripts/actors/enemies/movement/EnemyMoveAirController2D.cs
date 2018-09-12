@@ -72,7 +72,6 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
 
         // Check if actor ist still in bounds
         if (!stopMoving && rectangleBound != null && !rectangleBound.IsInBoundX(transform.position)) {
-            Debug.Log("RectangleBound exceeded!");
             stopMoving = true;
         }
 

@@ -43,7 +43,7 @@ public class AiDetector : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (Time.frameCount % 5 == 0) {
+		if (Time.frameCount % 10 == 0) {
             UpdateRaycastOrigins();
             Transform hitTransform = null;
 
@@ -99,7 +99,7 @@ public class AiDetector : MonoBehaviour {
     public void UpdateRaycastOrigins() {
         Bounds bounds = myCollider.bounds;
 
-        rayOriginBottom = new Vector2(bounds.center.x, bounds.min.y);
+        rayOriginBottom = new Vector2(bounds.center.x, bounds.min.y + 0.1F);
         rayOriginleft = new Vector2(bounds.min.x, bounds.center.y);
     }
 

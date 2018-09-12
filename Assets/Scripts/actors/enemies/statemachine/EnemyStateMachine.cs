@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour {
 
+    public EnemyAction defaultAction;
+
     public bool isShooter = false;
-    [ConditionalHideAttribute("isShooter", true)]
-    public bool moveWhileShooting = false;
     [ConditionalHideAttribute("isShooter", true)]
     public GameObject projectile;
     [ConditionalHideAttribute("isShooter", true)]
-    public bool targetIsVector = false;
+    public float interval = 0.5F;
+    private float lastShot;
 
-    private AbstractEnemyState currentState;
-    
+    private AbstractEnemyState currentState;    
+
+    [HideInInspector]
     public EnemyAction currentAction;
     private bool isInterruptAction;
     [HideInInspector]
@@ -24,11 +26,14 @@ public class EnemyStateMachine : MonoBehaviour {
     private BoxCollider2D boxCollider;
 
     public void Start() {
+        defaultAction.moveTarget = Vector3.positiveInfinity;
         moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
 
         if (aiBehaviour) {
             currentAction = aiBehaviour.GetCurrentAction();
+        } else {
+            currentAction = defaultAction;
         }
 
         boxCollider = GetComponent<BoxCollider2D>();
@@ -51,6 +56,8 @@ public class EnemyStateMachine : MonoBehaviour {
             } else {
                 currentAction = aiBehaviour.GetNextAction();
             }
+        } else {
+            currentAction = defaultAction;
         }
     }
 
@@ -69,9 +76,19 @@ public class EnemyStateMachine : MonoBehaviour {
         }
     }
 
-    public void ShootProjectile(Vector3 target) {
-        Vector3 spawnPosition = Utils.GetSpawnPositionProjectile(target, transform, boxCollider);
-        GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectParent.GetInstance().transform);
-        projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
+    public void ShootProjectile(Vector3 target, bool targetIsVector) {
+        if (Time.time - lastShot > interval) {
+            Vector3 spawnPosition;
+            if (targetIsVector) {
+                spawnPosition = Utils.GetSpawnPositionProjectileVector(target, transform, boxCollider);
+            } else {
+                spawnPosition = Utils.GetSpawnPositionProjectileStaticTarget(target, transform, boxCollider);
+            }
+
+            GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectParent.GetInstance().transform);
+            projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
+            lastShot = Time.time;
+        }
+
     }
 }

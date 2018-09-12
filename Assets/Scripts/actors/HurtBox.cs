@@ -36,7 +36,7 @@ public class HurtBox : MonoBehaviour {
         if (stateMachine) {
             // interrupt stateMachine with hit
             EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
-            hitAction.duration = hitDuration;
+            hitAction.amount = hitDuration;
             if (pushedOnHit) {
                 hitAction.hitTarget = collision.transform.position;
             } else {

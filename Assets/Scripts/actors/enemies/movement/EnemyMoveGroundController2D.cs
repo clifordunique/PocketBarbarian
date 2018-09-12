@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMoveGroundController2D : MoveGroundController2D, IEnemyMoveController2D {
 
-    public float pushForce = 15F;
-    public float pushDuration = 0.2F;
+    public float pushForce = 25F;
+    public float pushDuration = 0.15F;
 
     public override void Update() {
         base.Update();

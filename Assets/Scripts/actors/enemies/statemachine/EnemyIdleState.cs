@@ -20,7 +20,7 @@ public class EnemyIdleState : AbstractEnemyState {
             return GetEnemyState(stateMachine.currentAction.actionEvent);
         }
 
-        if ((Time.time - startTime) > stateMachine.currentAction.duration) {
+        if ((Time.time - startTime) > stateMachine.currentAction.amount) {
             stateMachine.RequestNextAction();
             if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
                 // only change when not idle

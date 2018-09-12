@@ -56,8 +56,7 @@ public class MoveGroundController2D: MoveController2D {
 
 	public virtual void Update() {
 		CalculateVelocity ();
-
-		Move (velocity * Time.deltaTime);
+        Move (velocity * Time.deltaTime);
 
 		if (collisions.above || collisions.below) {			
 			velocity.y = 0;
