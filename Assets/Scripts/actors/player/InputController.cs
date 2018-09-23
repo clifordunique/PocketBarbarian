@@ -20,6 +20,10 @@ public class InputController : MonoBehaviour {
         return _instance;
     }
 
+    public bool IsDashing() {
+        return isDashing;
+    }
+
     public bool IsJumpKeyDown() {
         return (Input.GetKeyDown(KeyCode.Space));
     }
@@ -44,9 +48,9 @@ public class InputController : MonoBehaviour {
                 isDashing = true;
                 return;
             }
+            timeLastDirectionX = Time.time;
         }
-        isDashing = false;
-        timeLastDirectionX = Time.time;
+        isDashing = false;        
         if (GetDirectionX() != 0) {
             lastDirectionX = GetDirectionX();
             timeLastDirectionX = Time.time;

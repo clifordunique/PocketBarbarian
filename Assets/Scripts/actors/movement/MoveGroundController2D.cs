@@ -42,6 +42,7 @@ public class MoveGroundController2D: MoveController2D {
     float velocityXSmoothing;
     bool isStamping = false;
     bool isPushed = false;
+    bool isDashing = false;
     float endTimePush;
     int jumpCounter = 0;
 
@@ -65,7 +66,8 @@ public class MoveGroundController2D: MoveController2D {
         }
         
         if (isPushed && endTimePush < Time.time) {
-            isPushed = false;            
+            isPushed = false;
+            isDashing = false;
         }
     }
 
@@ -100,6 +102,7 @@ public class MoveGroundController2D: MoveController2D {
     public void OnDash() {
         if (collisions.below) {
             isPushed = true;
+            isDashing = true;
             targetVelocityX = moveDirectionX * moveSpeedDash;
             endTimePush = Time.time + dashDuration;
         }
@@ -108,10 +111,12 @@ public class MoveGroundController2D: MoveController2D {
     public void OnPush(float pushDirectionX, float pushDirectionY, float pushForce, float pushDuration) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
-        //if (pushDirectionY > 0) {
-            velocity.y = minJumpVelocity;
-        //}
+        velocity.y = minJumpVelocity;
         endTimePush = Time.time + pushDuration;
+    }
+
+    public bool IsDashing() {
+        return isDashing;
     }
 
     public bool IsFalling () {

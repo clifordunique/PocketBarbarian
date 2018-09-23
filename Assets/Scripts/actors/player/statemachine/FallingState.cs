@@ -21,6 +21,7 @@ public class FallingState : AbstractState {
         base.UpdateState();
 
         if (playerController.moveController.IsGrounded()) {
+            playerController.InstantiateEffect(playerController.prefabEffectLanding);
             if (input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
             } else {

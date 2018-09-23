@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public GameObject prefabEffectStep;
+    public GameObject prefabEffectJump;
+    public GameObject prefabEffectLanding;
+
     private AbstractState currentState;
     [HideInInspector]
     public MoveGroundController2D moveController;
@@ -27,6 +31,19 @@ public class PlayerController : MonoBehaviour {
             this.dirX = dirX;
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }            
+    }
+
+    public void HandleAnimEvent(string parameter) {
+        currentState.HandleAnimEvent(parameter);
+    }
+
+    public void InstantiateEffect(GameObject effectToInstanciate) {
+        GameObject dustGo = (GameObject)Instantiate(effectToInstanciate);
+        SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
+        effectSpriteRenderer.flipX = (dirX < 0);
+        dustGo.transform.parent = EffectParent.GetInstance().transform;
+        dustGo.transform.position = transform.position;
+
     }
 
     // Update is called once per frame

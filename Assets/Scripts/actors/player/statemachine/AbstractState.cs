@@ -9,8 +9,9 @@ public abstract class AbstractState {
     public string IDLE_PARAM = "IDLE";
     public string RUNNING_PARAM = "RUNNING";
     public string JUMPING_PARAM = "JUMPING";
+    public string DASHING_PARAM = "DASHING";
 
-    public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, ACTION, HIT, DEATH };
+    public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, DASH, ACTION, HIT, DEATH };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
     public InputController input;

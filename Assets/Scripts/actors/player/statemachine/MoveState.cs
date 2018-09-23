@@ -30,8 +30,17 @@ public class MoveState : AbstractState {
         if (playerController.moveController.IsFalling()) {
             return new FallingState(playerController);
         }
+        if (input.IsDashing()) {
+            Debug.Log("startDashing");
+            return new DashingState(playerController);
+        }
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;
+    }
+
+    public override void HandleAnimEvent(string parameter) {
+        // Instanciate step effect
+        playerController.InstantiateEffect(playerController.prefabEffectStep);
     }
 
 
