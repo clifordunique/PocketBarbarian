@@ -65,8 +65,7 @@ public class MoveGroundController2D: MoveController2D {
         }
         
         if (isPushed && endTimePush < Time.time) {
-            isPushed = false;
-            targetVelocityX = 0;
+            isPushed = false;            
         }
     }
 
@@ -124,8 +123,15 @@ public class MoveGroundController2D: MoveController2D {
     }
 
     void CalculateVelocity() {
+
         
-        velocity.y += gravity * Time.deltaTime;
+        if (IsFalling()) {
+            // is falling, comic Fall Factor
+            velocity.y += gravity * Time.deltaTime * comicFallFactor;
+        } else {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        
 
         if (isStamping && IsFalling() && !isPushed) {
             // if stamping, no movement!
@@ -134,10 +140,7 @@ public class MoveGroundController2D: MoveController2D {
         } else {
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
-            if (IsFalling()) {
-                // is falling, comic Fall Factor
-                velocity.y *= comicFallFactor;
-            }
+
         }
 	}
 }

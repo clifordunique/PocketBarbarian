@@ -29,12 +29,7 @@ public class Projectile : MonoBehaviour {
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 
-        //if (vector) {
-            // move constantly only in that direction
-            //if (target.x == 0) target.x = transform.position.x;
-            //if (target.y == 0) target.y = transform.position.y;
-            targetPosition = target;// (target - transform.position).normalized;
-        //}
+        targetPosition = target;
     }
 
 
@@ -72,7 +67,7 @@ public class Projectile : MonoBehaviour {
             } else {
                 Vector3 newPos = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
                 
-                rigidb.MovePosition(newPos);
+                rigidb.MovePosition(Utils.MakePixelPerfect(newPos));
             }
         }
     }

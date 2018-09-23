@@ -65,9 +65,10 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate() {
 		focusArea.Update (target.myCollider.bounds);
 
-		Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
+        Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
+        
 
-		if (focusArea.velocity.x != 0) {
+        if (focusArea.velocity.x != 0) {
 			lookAheadDirX = Mathf.Sign (focusArea.velocity.x);
 			if (Mathf.Sign(target.moveDirectionX) == Mathf.Sign(focusArea.velocity.x) && target.moveDirectionY != 0) {
 				lookAheadStopped = false;
@@ -97,12 +98,17 @@ public class CameraFollow : MonoBehaviour {
                 } else {
                     modifierUp = Random.Range(-shakeIntensityY, shakeIntensityY);
                 }
-                transform.position = (Vector3)focusPosition + Vector3.forward * (-10) + Vector3.up * modifierUp + Vector3.right * modifierRight;
+                Vector3 shakePosition = (Vector3)focusPosition + Vector3.forward * (-10) + Vector3.up * modifierUp + Vector3.right * modifierRight;
+                transform.position = Utils.MakePixelPerfect(shakePosition);
             } else {
                 shake = false;
             }
         } else {
-            transform.position = (Vector3)focusPosition + Vector3.forward * (-10);
+            // Round to pixelPerfect
+            
+            Vector2 pixelPerfectFocus = Utils.MakePixelPerfect(focusPosition);
+            transform.position = (Vector3)pixelPerfectFocus + Vector3.forward * (-10);
+            
         }        
     }
 

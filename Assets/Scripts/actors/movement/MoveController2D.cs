@@ -32,9 +32,11 @@ public class MoveController2D : RaycastController2D {
 			VerticalCollisions (ref moveAmount);
 		}
 
-		transform.Translate (moveAmount);
+        Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(moveAmount);
 
-		if (standingOnPlatform) {
+        transform.Translate(pixelPerfectMoveAmount);
+
+        if (standingOnPlatform) {
 			collisions.below = true;
 		}
 	}

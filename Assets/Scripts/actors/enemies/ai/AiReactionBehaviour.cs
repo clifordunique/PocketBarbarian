@@ -21,8 +21,8 @@ public class AiReactionBehaviour: AiBehaviour {
     private float startIgnore = -1;
 
 
-    public override void Start() {
-        base.Start();
+    public override void Awake() {
+        base.Awake();
         detector = GetComponent<AiDetector>();
         startPosition = transform.position;
     }

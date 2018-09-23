@@ -38,10 +38,12 @@ public class PlatformController2D : RaycastController2D {
 
 		Vector3 velocity = CalculatePlatformMovement();
 
-		CalculatePassengerMovement(velocity);
+        Vector2 pixelPerfectVelocity = Utils.MakePixelPerfect(velocity);        
+
+        CalculatePassengerMovement(pixelPerfectVelocity);
 
 		MovePassengers (true);
-		transform.Translate (velocity);
+		transform.Translate (pixelPerfectVelocity);
 		MovePassengers (false);
 	}
 

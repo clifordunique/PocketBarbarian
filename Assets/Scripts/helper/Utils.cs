@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Utils {
 
+    public static Vector2 MakePixelPerfect(Vector2 v) {
+        Vector2 result;
+        result.x = (Mathf.Round(v.x * Constants.PPU) / Constants.PPU);
+        result.y = (Mathf.Round(v.y * Constants.PPU) / Constants.PPU);
+        return result;
+    }
 
     public static Vector3 GetHitDirection(Vector3 attacker, Transform transform) {
         Vector3 v = new Vector3(transform.position.x - attacker.x, transform.position.y - attacker.y, 1).normalized;

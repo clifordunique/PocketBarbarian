@@ -10,7 +10,7 @@ public class AiBehaviour : MonoBehaviour {
     private EnemyAction[] actionQueue = null;
     private int currentQueuePosition = 0;
 
-    public virtual void Start() {
+    public virtual void Awake() {
         initActionQueue();
     }
 
