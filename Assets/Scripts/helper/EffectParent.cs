@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class EffectParent : MonoBehaviour {
 
-    // Static instance
-    static GameObject _instance;
-
-
-    public static GameObject GetInstance() {
-        if (!_instance) {
-            _instance = new GameObject("EffectParent");
+    void Update() {
+        if (Time.frameCount % 10 == 0) {
+            if (transform.childCount == 0) {
+                Destroy(gameObject);
+            }
         }
-        return _instance;
     }
 }

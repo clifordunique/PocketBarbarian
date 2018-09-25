@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMoveState : AbstractEnemyState {
     
 
-    public EnemyMoveState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyMoveState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
@@ -13,24 +13,24 @@ public class EnemyMoveState : AbstractEnemyState {
 
     public override AbstractEnemyState UpdateState() {
 
-        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.MOVE) {
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.MOVE) {
             // Interrupt current Action
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if (stateMachine.currentAction.HasMoveTarget()) {
+        if (enemyController.currentAction.HasMoveTarget()) {
 
-            float directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
+            float directionX = moveController.MoveTo(enemyController.currentAction.moveTarget);
             if (directionX == 0) { // angekommen              
                 moveController.StopMoving();
-                stateMachine.RequestNextAction();
-                return GetEnemyState(stateMachine.currentAction.actionEvent);
+                enemyController.RequestNextAction();
+                return GetEnemyState(enemyController.currentAction.actionEvent);
             }
         } else {
             // kein MoveTarget, also nächste Action holen
             moveController.StopMoving();
-            stateMachine.RequestNextAction();
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            enemyController.RequestNextAction();
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
         return null;
     }

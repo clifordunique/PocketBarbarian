@@ -6,14 +6,18 @@ public class EnemyHitState : AbstractEnemyState {
 
     private float startTime;
 
-    public EnemyHitState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyHitState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
         startTime = Time.time;
 
-        if (stateMachine.currentAction.HasHitTarget()) {
-            Vector3 hitDirection = Utils.GetHitDirection(stateMachine.currentAction.hitTarget, stateMachine.transform);
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("HIT", true);
+        }
+
+        if (enemyController.currentAction.HasHitTarget()) {
+            Vector3 hitDirection = Utils.GetHitDirection(enemyController.currentAction.hitTarget, enemyController.transform);
             moveController.OnPush(hitDirection.x, hitDirection.y);
         }
         
@@ -23,16 +27,18 @@ public class EnemyHitState : AbstractEnemyState {
 
         // can not be interrupted
 
-        if ((Time.time - startTime) > stateMachine.currentAction.amount) {
+        if ((Time.time - startTime) > moveController.GetPushDuration()) {
             moveController.StopMoving();
-            stateMachine.RequestNextAction();
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            enemyController.RequestNextAction();
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
         return null;
     }
 
     public override void OnExit() {
-        // nothing to do
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("HIT", false);
+        }
     }
 
 

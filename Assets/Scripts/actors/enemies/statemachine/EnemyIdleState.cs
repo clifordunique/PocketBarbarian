@@ -6,32 +6,37 @@ public class EnemyIdleState : AbstractEnemyState {
 
     private float startTime;
 
-    public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyIdleState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
         startTime = Time.time;
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("IDLE", true);
+        }
     }
 
     public override AbstractEnemyState UpdateState() {
 
-        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
             // Interrupt current Action
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if ((Time.time - startTime) > stateMachine.currentAction.amount) {
-            stateMachine.RequestNextAction();
-            if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
+        if ((Time.time - startTime) > enemyController.currentAction.amount) {
+            enemyController.RequestNextAction();
+            if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
                 // only change when not idle
-                return GetEnemyState(stateMachine.currentAction.actionEvent);
+                return GetEnemyState(enemyController.currentAction.actionEvent);
             }
         }
         return null;
     }
 
     public override void OnExit() {
-        // nothing to do
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("IDLE", false);
+        }
     }
 
 }

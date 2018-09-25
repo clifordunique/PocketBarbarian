@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class EnemyJumpState : AbstractEnemyState {
     
-    public EnemyJumpState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyJumpState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
-        stateMachine.moveController.OnJumpInputDown();
+        enemyController.moveController.OnJumpInputDown();
     }
 
     public override AbstractEnemyState UpdateState() {
 
-        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.JUMP) {
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.JUMP) {
             // Interrupt current Action
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if (stateMachine.currentAction.HasMoveTarget()) {
-            moveController.MoveTo(stateMachine.currentAction.moveTarget);
+        if (enemyController.currentAction.HasMoveTarget()) {
+            moveController.MoveTo(enemyController.currentAction.moveTarget);
         }
 
-        if (stateMachine.moveController.IsGrounded()) {
+        if (enemyController.moveController.IsGrounded()) {
             // stop if we moved while jumping
             moveController.StopMoving();
-            stateMachine.RequestNextAction();
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            enemyController.RequestNextAction();
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
         return null;
     }

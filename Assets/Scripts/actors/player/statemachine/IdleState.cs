@@ -18,19 +18,20 @@ public class IdleState : AbstractState {
     public override AbstractState UpdateState() {
         base.UpdateState();
 
+        if (playerController.moveController.IsFalling()) {
+            return new FallingState(playerController);
+        }
+
         if (input.IsJumpKeyDown()) {
             return new JumpState(playerController);
         }
         if (input.GetDirectionX() != 0) {
             return new MoveState(playerController);
         }
-        if (input.GetDirectionY() == -1) {
-            // try to move down
-            Move(0, input.GetDirectionY());
+        if (input.IsAttack1KeyDown()) {
+            return new Attack1State(playerController);
         }
-        if (playerController.moveController.IsFalling()) {
-            return new FallingState(playerController);
-        }
+        Move(0, input.GetDirectionY());
         return null;
     }
 

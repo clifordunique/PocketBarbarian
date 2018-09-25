@@ -16,8 +16,9 @@ public class MoveGroundController2D: MoveController2D {
     public bool doubleJumpAllowed = false;
     [ConditionalHide("jumpingAllowed", true)]
     public float accelerationTimeAirborne = 0F;//.2f;
-
+    [ConditionalHide("jumpingAllowed", true)]
     public float comicFallFactor = 1.08f;
+    [ConditionalHide("jumpingAllowed", true)]
     public float stampingFallFactor = 2f;
 
     [Header("On Ground Settings")]
@@ -29,6 +30,10 @@ public class MoveGroundController2D: MoveController2D {
     public float moveSpeedDash = 12;
     [ConditionalHide("dashAllowed", true)]
     public float dashDuration = 0.5F;
+    [ConditionalHide("dashAllowed", true)]
+    public float dashPushbackForce = 10;
+    [ConditionalHide("dashAllowed", true)]
+    public float dashPushbackDuration = 0.1F;
 
     [HideInInspector]
     public Vector3 velocity;
@@ -42,7 +47,6 @@ public class MoveGroundController2D: MoveController2D {
     float velocityXSmoothing;
     bool isStamping = false;
     bool isPushed = false;
-    bool isDashing = false;
     float endTimePush;
     int jumpCounter = 0;
 
@@ -66,16 +70,22 @@ public class MoveGroundController2D: MoveController2D {
         }
         
         if (isPushed && endTimePush < Time.time) {
-            isPushed = false;
-            isDashing = false;
+            isPushed = false;            
+            targetVelocityX = 0;
         }
     }
 
-	public void OnMove (float moveDirectionX, float moveDirectionY) {		
+	public void OnMove (float moveDirectionX, float moveDirectionY, bool dashMove = false) {		
         if (!isPushed) {
             this.moveDirectionX = moveDirectionX;
             this.moveDirectionY = moveDirectionY;
-            targetVelocityX = moveDirectionX * moveSpeed;
+            if (dashMove) {
+                targetVelocityX = moveDirectionX * moveSpeedDash;
+            } else {
+                targetVelocityX = moveDirectionX * moveSpeed;
+            }
+        } else {
+            Debug.Log("Not Stopping, still pushed!");
         }
     }
 
@@ -99,24 +109,11 @@ public class MoveGroundController2D: MoveController2D {
         }
     }
 
-    public void OnDash() {
-        if (collisions.below) {
-            isPushed = true;
-            isDashing = true;
-            targetVelocityX = moveDirectionX * moveSpeedDash;
-            endTimePush = Time.time + dashDuration;
-        }
-    }
-
-    public void OnPush(float pushDirectionX, float pushDirectionY, float pushForce, float pushDuration) {
+    public void OnPush(float pushDirectionX, float pushForce, float pushDuration) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
         velocity.y = minJumpVelocity;
         endTimePush = Time.time + pushDuration;
-    }
-
-    public bool IsDashing() {
-        return isDashing;
     }
 
     public bool IsFalling () {

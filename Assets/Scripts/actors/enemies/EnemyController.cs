@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
 
     public EnemyAction defaultAction;
 
@@ -24,11 +24,15 @@ public class EnemyStateMachine : MonoBehaviour {
     public AiBehaviour aiBehaviour;
 
     private BoxCollider2D boxCollider;
+    private SpriteRenderer spriteRenderer;
+    [HideInInspector]
+    public Animator animator;
 
     public void Start() {
         defaultAction.moveTarget = Vector3.positiveInfinity;
         moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
+        animator = GetComponent<Animator>();
 
         if (aiBehaviour) {
             currentAction = aiBehaviour.GetCurrentAction();
@@ -37,14 +41,29 @@ public class EnemyStateMachine : MonoBehaviour {
         }
 
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // init ENEMY state
         currentState = new EnemyIdleState(this);
     }
 
-    public void InterruptAction(EnemyAction interruptAction) {
-        currentAction = interruptAction;
-        isInterruptAction = true;
+    public void FlashSprite(float time) {
+        SpriteFlashingEffect effect = new SpriteFlashingEffect();
+        StartCoroutine(effect.DamageFlashing(spriteRenderer, time));
+    }
+
+
+    public void Hurt(bool dead, bool push, Vector3 hitSource) {
+
+        EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
+        if (push) {
+            hitAction.hitTarget = hitSource;
+        } else {
+            hitAction.hitTarget = Vector3.positiveInfinity;
+        }
+
+        currentAction = hitAction;
+        isInterruptAction = true;        
     }
 
     public void RequestNextAction() {
@@ -85,7 +104,7 @@ public class EnemyStateMachine : MonoBehaviour {
                 spawnPosition = Utils.GetSpawnPositionProjectileStaticTarget(target, transform, boxCollider);
             }
 
-            GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectParent.GetInstance().transform);
+            GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectCollection.GetInstance().transform);
             projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
             lastShot = Time.time;
         }

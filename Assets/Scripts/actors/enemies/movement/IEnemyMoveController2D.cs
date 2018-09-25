@@ -5,6 +5,8 @@ using UnityEngine;
 
 public interface IEnemyMoveController2D {
 
+    float GetPushDuration();
+
     bool IsGrounded();
 
     void OnJumpInputDown();

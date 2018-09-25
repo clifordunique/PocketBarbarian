@@ -10,8 +10,9 @@ public abstract class AbstractState {
     public string RUNNING_PARAM = "RUNNING";
     public string JUMPING_PARAM = "JUMPING";
     public string DASHING_PARAM = "DASHING";
+    public string ATTACK1_PARAM = "ATTACK1";
 
-    public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, DASH, ACTION, HIT, DEATH };
+    public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, DASH, ACTION, ATTACK1, HIT, DEATH };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
     public InputController input;
@@ -29,6 +30,9 @@ public abstract class AbstractState {
     public virtual AbstractState UpdateState() {
         if (interruptAction != ACTION.NA && interruptAction != myAction) {
             // react to interrupter actions
+            if (interruptAction == ACTION.IDLE) {
+                return new IdleState(playerController);
+            }
         }
         return null;
     }
@@ -41,8 +45,8 @@ public abstract class AbstractState {
         // do nothing
     }
 
-    public void Move(float dirX, float dirY) {
+    public void Move(float dirX, float dirY, bool dashMove = false) {
         playerController.updateSpriteDirection(dirX);
-        playerController.moveController.OnMove(dirX, dirY);
+        playerController.moveController.OnMove(dirX, dirY, dashMove);
     }
 }

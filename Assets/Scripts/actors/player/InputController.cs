@@ -27,7 +27,11 @@ public class InputController : MonoBehaviour {
     public bool IsJumpKeyDown() {
         return (Input.GetKeyDown(KeyCode.Space));
     }
-        
+
+    public bool IsAttack1KeyDown() {
+        return (Input.GetKeyDown(KeyCode.X));
+    }
+
     public bool IsJumpKeyUp() {
         return (Input.GetKeyUp(KeyCode.Space));
     }

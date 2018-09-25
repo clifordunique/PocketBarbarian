@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class AbstractEnemyState {
 
-    public EnemyStateMachine stateMachine;
+    public EnemyController enemyController;
     public IEnemyMoveController2D moveController;
 
-    public AbstractEnemyState(EnemyStateMachine stateMachine) {
-        this.stateMachine = stateMachine;
+    public AbstractEnemyState(EnemyController stateMachine) {
+        this.enemyController = stateMachine;
         if (stateMachine.moveController is IEnemyMoveController2D) {
             moveController = (IEnemyMoveController2D)stateMachine.moveController;
         } 
@@ -27,19 +27,19 @@ public abstract class AbstractEnemyState {
             return null;
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.HIT) {
-            return new EnemyHitState(stateMachine);
+            return new EnemyHitState(enemyController);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.IDLE) {
-            return new EnemyIdleState(stateMachine);
+            return new EnemyIdleState(enemyController);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.JUMP) {
-            return new EnemyJumpState(stateMachine);
+            return new EnemyJumpState(enemyController);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.MOVE) {
-            return new EnemyMoveState(stateMachine);
+            return new EnemyMoveState(enemyController);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.SHOOT) {
-            return new EnemyShootState(stateMachine);
+            return new EnemyShootState(enemyController);
         }
         return null;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShootState : AbstractEnemyState {
     
 
-    public EnemyShootState(EnemyStateMachine stateMachine) : base(stateMachine) {
+    public EnemyShootState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
@@ -13,21 +13,21 @@ public class EnemyShootState : AbstractEnemyState {
 
     public override AbstractEnemyState UpdateState() {
 
-        if (stateMachine.currentAction.actionEvent != EnemyAction.ACTION_EVENT.SHOOT) {
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.SHOOT) {
             // Interrupt current Action
-            return GetEnemyState(stateMachine.currentAction.actionEvent);
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if (stateMachine.isShooter) {
-            stateMachine.ShootProjectile(stateMachine.currentAction.hitTarget, stateMachine.currentAction.hitTargetIsVector);
+        if (enemyController.isShooter) {
+            enemyController.ShootProjectile(enemyController.currentAction.hitTarget, enemyController.currentAction.hitTargetIsVector);
         }
 
-        if (stateMachine.currentAction.HasMoveTarget()) {
-            float directionX = moveController.MoveTo(stateMachine.currentAction.moveTarget);
+        if (enemyController.currentAction.HasMoveTarget()) {
+            float directionX = moveController.MoveTo(enemyController.currentAction.moveTarget);
             if (directionX == 0) { // angekommen              
                 moveController.StopMoving();
-                stateMachine.RequestNextAction();
-                return GetEnemyState(stateMachine.currentAction.actionEvent);
+                enemyController.RequestNextAction();
+                return GetEnemyState(enemyController.currentAction.actionEvent);
             }
         }        
         return null;

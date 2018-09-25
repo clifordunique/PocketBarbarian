@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;
     public GameObject prefabEffectLanding;
+    public GameObject prefabEffectDashing;
 
     private AbstractState currentState;
     [HideInInspector]
@@ -15,6 +16,9 @@ public class PlayerController : MonoBehaviour {
     public SpriteRenderer spriteRenderer;
     [HideInInspector]
     public Animator animator;
+    
+    public GameObject hitBoxAttack1;
+    public GameObject hitBoxDash;
 
     private float dirX = 1;
 
@@ -37,13 +41,16 @@ public class PlayerController : MonoBehaviour {
         currentState.HandleAnimEvent(parameter);
     }
 
-    public void InstantiateEffect(GameObject effectToInstanciate) {
-        GameObject dustGo = (GameObject)Instantiate(effectToInstanciate);
-        SpriteRenderer effectSpriteRenderer = dustGo.GetComponent<SpriteRenderer>();
-        effectSpriteRenderer.flipX = (dirX < 0);
-        dustGo.transform.parent = EffectParent.GetInstance().transform;
-        dustGo.transform.position = transform.position;
+    public void InterruptEvent(string parameter) {
+        currentState.InterruptEvent(AbstractState.ACTION.IDLE);
+    }
 
+    public void InstantiateEffect(GameObject effectToInstanciate) {
+        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
+        SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
+        effectSpriteRenderer.flipX = (dirX < 0);
+        effect.transform.parent = EffectCollection.GetInstance().transform;
+        effect.transform.position = transform.position;
     }
 
     // Update is called once per frame

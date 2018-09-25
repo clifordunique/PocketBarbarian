@@ -107,4 +107,8 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
     public void OnJumpInputDown() {
         //no jump in flight
     }
+
+    public float GetPushDuration() {
+        return pushDuration;
+    }
 }

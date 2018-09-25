@@ -44,6 +44,10 @@ public class EnemyMoveGroundController2D : MoveGroundController2D, IEnemyMoveCon
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY) {
-        OnPush(pushDirectionX, pushDirectionY, pushForce, pushDuration);
+        OnPush(pushDirectionX, pushForce, pushDuration);
+    }
+
+    public float GetPushDuration() {
+        return pushDuration;
     }
 }
