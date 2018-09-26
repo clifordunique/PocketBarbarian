@@ -32,8 +32,12 @@ public class CameraFollow : MonoBehaviour {
 
     void Start() {
         _instance = this;
-		focusArea = new FocusArea (target.myCollider.bounds, focusAreaSize);
+        Init();
 	}
+
+    public void Init() {
+        focusArea = new FocusArea(target.myCollider.bounds, focusAreaSize);
+    }
 
     public static CameraFollow GetInstance() {
         if (_instance) {

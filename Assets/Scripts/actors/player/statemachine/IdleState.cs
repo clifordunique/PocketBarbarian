@@ -34,6 +34,17 @@ public class IdleState : AbstractState {
         if (input.IsAttack1KeyDown()) {
             return new Attack1State(playerController);
         }
+
+        if (input.GetDirectionY() == 1 && playerController.interactableInRange) {
+            Debug.Log("DO something");
+            Door door = playerController.interactable.GetComponent<Door>();
+            if (door) {
+                // door detected!
+                door.OpenDoor();
+                door.EnterDoor();
+            }
+
+        }
         Move(0, input.GetDirectionY());
         return null;
     }

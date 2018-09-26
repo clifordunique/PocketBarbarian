@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMoveController2D))]
 public class PlayerController : MonoBehaviour, IActorController {
 
+    public LayerMask interactiveLayers;
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;
     public GameObject prefabEffectLanding;
@@ -27,6 +28,12 @@ public class PlayerController : MonoBehaviour, IActorController {
     public bool dead = false;
     [HideInInspector]
     public Vector3 lastHitSource;
+    [HideInInspector]
+    public bool interactableInRange = false;
+    [HideInInspector]
+    public GameObject interactable;
+
+    private static PlayerController _instance;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +41,14 @@ public class PlayerController : MonoBehaviour, IActorController {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         currentState = new IdleState(this);
+
+        _instance = this;
     }
+
+    public static PlayerController GetInstance() {
+        return _instance;
+    }
+
 
     public void updateSpriteDirection(float dirX) {
         if (this.dirX != dirX && dirX != 0) {
@@ -74,6 +88,29 @@ public class PlayerController : MonoBehaviour, IActorController {
             currentState.OnExit();
             currentState = newState;
             currentState.OnEnter();
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider) {
+        // react to trigger
+        if (interactiveLayers == (interactiveLayers | (1 << collider.gameObject.layer))) {
+            Debug.Log("Trigger enter detected!");
+            interactableInRange = true;
+            interactable = collider.gameObject;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collider) {
+        // react to trigger
+        if (interactiveLayers == (interactiveLayers | (1 << collider.gameObject.layer))) {
+            if (interactable != null && collider.gameObject == interactable) {
+                Debug.Log("Trigger exit detected!");
+                interactableInRange = false;
+                interactable = null;
+            } else {
+                Debug.Log("Different exit than last enter!");
+            }
+
         }
     }
 }
