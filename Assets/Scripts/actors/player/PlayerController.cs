@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+[RequireComponent(typeof(PlayerMoveController2D))]
+public class PlayerController : MonoBehaviour, IActorController {
 
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 
     private AbstractState currentState;
     [HideInInspector]
-    public MoveGroundController2D moveController;
+    public PlayerMoveController2D moveController;
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
     [HideInInspector]
@@ -21,10 +22,14 @@ public class PlayerController : MonoBehaviour {
     public GameObject hitBoxDash;
 
     private float dirX = 1;
+    [HideInInspector]
+    public bool dead = false;
+    [HideInInspector]
+    public Vector3 lastHitSource;
 
     // Use this for initialization
     void Start () {
-        moveController = GetComponent<MoveGroundController2D>();
+        moveController = GetComponent<PlayerMoveController2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         currentState = new IdleState(this);
@@ -41,7 +46,15 @@ public class PlayerController : MonoBehaviour {
         currentState.HandleAnimEvent(parameter);
     }
 
-    public void InterruptEvent(string parameter) {
+
+
+    public void ReactHurt(bool dead, bool push, Vector3 hitSource) {
+        this.dead = dead;
+        lastHitSource = hitSource;
+        currentState.InterruptEvent(AbstractState.ACTION.HIT);
+    }
+
+    public void ReactHit() {
         currentState.InterruptEvent(AbstractState.ACTION.IDLE);
     }
 

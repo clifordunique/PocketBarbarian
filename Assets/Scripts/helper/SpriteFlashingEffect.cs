@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpriteFlashingEffect {
 
-    float flashInterval = 0.05f;
+    float flashInterval = 0.08f;
     Shader shaderFlash;
     Shader shaderDefault;
 
@@ -43,7 +43,7 @@ public class SpriteFlashingEffect {
                 whiteSprite(spriteRenderer);
             }
             if (i % 2 == 1) {
-                invisibleSprite(spriteRenderer);
+                normalSprite(spriteRenderer);
             }
             yield return new WaitForSeconds(flashInterval);
         }

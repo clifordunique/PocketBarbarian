@@ -18,7 +18,10 @@ public class Attack1State : AbstractState {
     }
 
     public override AbstractState UpdateState() {
-        base.UpdateState();
+        AbstractState interrupt = base.UpdateState();
+        if (interrupt != null) {
+            return interrupt;
+        }
 
         if (attackFinished) {
             return new IdleState(playerController);

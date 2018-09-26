@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour, IActorController {
 
     public EnemyAction defaultAction;
 
@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour {
     public AiBehaviour aiBehaviour;
 
     private BoxCollider2D boxCollider;
-    private SpriteRenderer spriteRenderer;
     [HideInInspector]
     public Animator animator;
 
@@ -41,19 +40,13 @@ public class EnemyController : MonoBehaviour {
         }
 
         boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // init ENEMY state
         currentState = new EnemyIdleState(this);
     }
 
-    public void FlashSprite(float time) {
-        SpriteFlashingEffect effect = new SpriteFlashingEffect();
-        StartCoroutine(effect.DamageFlashing(spriteRenderer, time));
-    }
 
-
-    public void Hurt(bool dead, bool push, Vector3 hitSource) {
+    public void ReactHurt(bool dead, bool push, Vector3 hitSource) {
 
         EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
         if (push) {
@@ -64,6 +57,9 @@ public class EnemyController : MonoBehaviour {
 
         currentAction = hitAction;
         isInterruptAction = true;        
+    }
+
+    public void ReactHit() {
     }
 
     public void RequestNextAction() {

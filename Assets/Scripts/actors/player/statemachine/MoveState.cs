@@ -19,7 +19,10 @@ public class MoveState : AbstractState {
     }
 
     public override AbstractState UpdateState() {
-        base.UpdateState();
+        AbstractState interrupt = base.UpdateState();
+        if (interrupt != null) {
+            return interrupt;
+        }
 
         if (input.GetDirectionX() == 0) {
             return new IdleState(playerController);

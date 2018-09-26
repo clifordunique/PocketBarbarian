@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class HitBox : MonoBehaviour {
 
     [Header("Damage")]
@@ -11,19 +12,19 @@ public class HitBox : MonoBehaviour {
     public enum DAMAGE_TYPE { DEFAULT};
     public DAMAGE_TYPE damageType;
 
-    private PlayerController playerController;
+    private IActorController actorController;
 
     public void Start() {
-        playerController = GetComponent<PlayerController>();
-        if (!playerController) {
+        actorController = GetComponent<IActorController>();
+        if (actorController == null) {
             // search in parent
-            playerController = transform.parent.GetComponent<PlayerController>();
+            actorController = transform.parent.GetComponent<IActorController>();
         }
     }
 
-    public void HitEnemyEvent() {
-        if (playerController) {
-            playerController.InterruptEvent("HIT ENEMY");
+    public void ReactHit() {
+        if (actorController != null) {
+            actorController.ReactHit();
         }
     }
 }

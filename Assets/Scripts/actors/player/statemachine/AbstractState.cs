@@ -33,6 +33,9 @@ public abstract class AbstractState {
             if (interruptAction == ACTION.IDLE) {
                 return new IdleState(playerController);
             }
+            if (interruptAction == ACTION.HIT) {
+                return new HitState(playerController);
+            }
         }
         return null;
     }

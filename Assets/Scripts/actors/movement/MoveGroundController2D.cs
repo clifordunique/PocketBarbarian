@@ -13,27 +13,19 @@ public class MoveGroundController2D: MoveController2D {
     [ConditionalHide("jumpingAllowed", true)]
     public float timeToJumpApex = 0;
     [ConditionalHide("jumpingAllowed", true)]
-    public bool doubleJumpAllowed = false;
-    [ConditionalHide("jumpingAllowed", true)]
     public float accelerationTimeAirborne = 0F;//.2f;
     [ConditionalHide("jumpingAllowed", true)]
     public float comicFallFactor = 1.08f;
     [ConditionalHide("jumpingAllowed", true)]
-    public float stampingFallFactor = 2f;
+    public bool doubleJumpAllowed = false;
 
     [Header("On Ground Settings")]
     public float moveSpeed = 6;
     public float accelerationTimeGrounded = 0F;//.05f;
 
-    public bool dashAllowed = false;
-    [ConditionalHide("dashAllowed", true)]
-    public float moveSpeedDash = 12;
-    [ConditionalHide("dashAllowed", true)]
-    public float dashDuration = 0.5F;
-    [ConditionalHide("dashAllowed", true)]
-    public float dashPushbackForce = 10;
-    [ConditionalHide("dashAllowed", true)]
-    public float dashPushbackDuration = 0.1F;
+    [Header("Push Settings")]
+    public float pushForce = 25F;
+    public float pushDuration = 0.15F;
 
     [HideInInspector]
     public Vector3 velocity;
@@ -45,9 +37,12 @@ public class MoveGroundController2D: MoveController2D {
 	float minJumpVelocity;	
     
     float velocityXSmoothing;
-    bool isStamping = false;
-    bool isPushed = false;
-    float endTimePush;
+    
+    [HideInInspector]
+    public bool isPushed = false;
+    [HideInInspector]
+    public float endTimePush;
+
     int jumpCounter = 0;
 
 
@@ -65,7 +60,6 @@ public class MoveGroundController2D: MoveController2D {
 
 		if (collisions.above || collisions.below) {			
 			velocity.y = 0;
-            isStamping = false;
             jumpCounter = 0;
         }
         
@@ -75,15 +69,11 @@ public class MoveGroundController2D: MoveController2D {
         }
     }
 
-	public void OnMove (float moveDirectionX, float moveDirectionY, bool dashMove = false) {		
+	public void OnMove (float moveDirectionX, float moveDirectionY) {		
         if (!isPushed) {
             this.moveDirectionX = moveDirectionX;
             this.moveDirectionY = moveDirectionY;
-            if (dashMove) {
-                targetVelocityX = moveDirectionX * moveSpeedDash;
-            } else {
-                targetVelocityX = moveDirectionX * moveSpeed;
-            }
+            targetVelocityX = moveDirectionX * moveSpeed;
         } else {
             Debug.Log("Not Stopping, still pushed!");
         }
@@ -101,19 +91,20 @@ public class MoveGroundController2D: MoveController2D {
 			velocity.y = minJumpVelocity;
 		}
 	}
-
-    public void OnStamp() {
-        if (!collisions.below) {
-            isStamping = true;
-            velocity.y = 0;
-        }
-    }
-
+    
     public void OnPush(float pushDirectionX, float pushForce, float pushDuration) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
         velocity.y = minJumpVelocity;
         endTimePush = Time.time + pushDuration;
+    }
+
+    public void OnPush(float pushDirectionX, float pushDirectionY) {
+        OnPush(pushDirectionX, pushForce, pushDuration);
+    }
+
+    public float GetPushDuration() {
+        return pushDuration;
     }
 
     public bool IsFalling () {
@@ -124,25 +115,14 @@ public class MoveGroundController2D: MoveController2D {
         return (collisions.below && velocity.y <= 0);
     }
 
-    void CalculateVelocity() {
-
-        
+    public virtual void CalculateVelocity() {        
         if (IsFalling()) {
             // is falling, comic Fall Factor
             velocity.y += gravity * Time.deltaTime * comicFallFactor;
         } else {
             velocity.y += gravity * Time.deltaTime;
         }
-        
 
-        if (isStamping && IsFalling() && !isPushed) {
-            // if stamping, no movement!
-            velocity.x = 0;
-            velocity.y *= stampingFallFactor;
-        } else {
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
-
-        }
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 	}
 }

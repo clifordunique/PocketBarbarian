@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyMoveGroundController2D : MoveGroundController2D, IEnemyMoveController2D {
 
-    public float pushForce = 25F;
-    public float pushDuration = 0.15F;
-
     public override void Update() {
         base.Update();
     }
@@ -42,12 +39,5 @@ public class EnemyMoveGroundController2D : MoveGroundController2D, IEnemyMoveCon
     public void StopMoving() {
         OnMove(0F, 0F);
     }
-
-    public void OnPush(float pushDirectionX, float pushDirectionY) {
-        OnPush(pushDirectionX, pushForce, pushDuration);
-    }
-
-    public float GetPushDuration() {
-        return pushDuration;
-    }
+    
 }

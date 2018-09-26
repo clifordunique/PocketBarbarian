@@ -20,7 +20,10 @@ public class JumpState : AbstractState {
     }
 
     public override AbstractState UpdateState() {
-        base.UpdateState();
+        AbstractState interrupt = base.UpdateState();
+        if (interrupt != null) {
+            return interrupt;
+        }
 
         if (playerController.moveController.IsGrounded()) {
             playerController.InstantiateEffect(playerController.prefabEffectLanding);
