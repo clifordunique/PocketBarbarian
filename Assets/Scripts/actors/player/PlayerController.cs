@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour, IActorController {
     [HideInInspector]
     public Animator animator;
     
-    public GameObject hitBoxAttack1;
-    public GameObject hitBoxDash;
+    public HitBox hitBoxAttack1;
+    public HitBox hitBoxDash;
+    public PlayerHurtBox hurtBox;
 
     private float dirX = 1;
     [HideInInspector]
@@ -42,11 +43,9 @@ public class PlayerController : MonoBehaviour, IActorController {
         }            
     }
 
-    public void HandleAnimEvent(string parameter) {
-        currentState.HandleAnimEvent(parameter);
+    public void HandleEvent(string parameter) {
+        currentState.HandleEvent(parameter);
     }
-
-
 
     public void ReactHurt(bool dead, bool push, Vector3 hitSource) {
         this.dead = dead;
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     }
 
     public void ReactHit() {
-        currentState.InterruptEvent(AbstractState.ACTION.IDLE);
+        currentState.HandleEvent(AbstractState.EVENT_PARAM_HIT);
     }
 
     public void InstantiateEffect(GameObject effectToInstanciate) {

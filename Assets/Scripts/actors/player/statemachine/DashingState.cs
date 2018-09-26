@@ -3,41 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DashingState : AbstractState {
-
+    
     private float directionX;
     private float directionY;
     private float timeDash;
+    private bool hitSomething = false;
 
     public DashingState(PlayerController playerController) : base(ACTION.DASH, playerController) {
     }
 
     public override void OnEnter() {
-        playerController.hitBoxDash.SetActive(true);
+        playerController.hitBoxDash.gameObject.SetActive(true);
         playerController.animator.SetBool(DASHING_PARAM, true);
         playerController.InstantiateEffect(playerController.prefabEffectDashing);
         directionX = input.GetDirectionX();
         directionY = input.GetDirectionY();
         Move(directionX, directionY, true);
         timeDash = Time.time;
+
+        // Switch HurtBox Layers
+        playerController.hurtBox.SwitchToDashLayer();
     }
 
     public override void OnExit() {
-        playerController.hitBoxDash.SetActive(false);
+        playerController.hitBoxDash.gameObject.SetActive(false);
         playerController.animator.SetBool(DASHING_PARAM, false);
         Move(input.GetDirectionX(), input.GetDirectionY());
+
+        // Switch HurtBox Layers back
+        playerController.hurtBox.SwitchToOriginLayer();
     }
 
     public override AbstractState UpdateState() {
         AbstractState interrupt = base.UpdateState();
-        if (interrupt != null) {
-            // end dashing with interrupt
-            // small push back
-            playerController.moveController.OnPush(-1 * directionX, playerController.moveController.dashPushbackForce, playerController.moveController.dashPushbackDuration);
+        if (interrupt != null) {            
             return interrupt;
         }
 
         if (playerController.moveController.IsFalling()) {
             return new FallingState(playerController);
+        }
+
+        if (hitSomething) {
+            // hit something, small push back
+            playerController.moveController.OnPush(-1 * directionX, playerController.moveController.dashPushbackForce, playerController.moveController.dashPushbackDuration);
+            return new IdleState(playerController);
         }
 
         if (Time.time - timeDash >= playerController.moveController.dashDuration) {
@@ -47,6 +57,12 @@ public class DashingState : AbstractState {
         
         Move(directionX, directionY, true);
         return null;
+    }
+
+    public override void HandleEvent(string parameter) {
+        if (parameter == EVENT_PARAM_HIT) {
+            hitSomething = true;
+        }
     }
 
 }

@@ -41,7 +41,7 @@ public class MoveState : AbstractState {
         return null;
     }
 
-    public override void HandleAnimEvent(string parameter) {
+    public override void HandleEvent(string parameter) {
         // Instanciate step effect
         playerController.InstantiateEffect(playerController.prefabEffectStep);
     }

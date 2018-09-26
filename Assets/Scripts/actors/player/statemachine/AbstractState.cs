@@ -6,11 +6,15 @@ public abstract class AbstractState {
 
     public PlayerController playerController;
 
-    public string IDLE_PARAM = "IDLE";
-    public string RUNNING_PARAM = "RUNNING";
-    public string JUMPING_PARAM = "JUMPING";
-    public string DASHING_PARAM = "DASHING";
-    public string ATTACK1_PARAM = "ATTACK1";
+    public static string IDLE_PARAM = "IDLE";
+    public static string RUNNING_PARAM = "RUNNING";
+    public static string JUMPING_PARAM = "JUMPING";
+    public static string DASHING_PARAM = "DASHING";
+    public static string ATTACK1_PARAM = "ATTACK1";
+
+    public static string EVENT_PARAM_HIT = "HIT";
+    public static string EVENT_PARAM_ANIMATION_END = "animation_end";
+    
 
     public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, DASH, ACTION, ATTACK1, HIT, DEATH };
     public ACTION myAction = ACTION.NA;
@@ -44,7 +48,7 @@ public abstract class AbstractState {
         interruptAction = action;
     }
 
-    public virtual void HandleAnimEvent(string parameter) {
+    public virtual void HandleEvent(string parameter) {
         // do nothing
     }
 

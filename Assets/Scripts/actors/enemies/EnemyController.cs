@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour, IActorController {
     private BoxCollider2D boxCollider;
     [HideInInspector]
     public Animator animator;
+    [HideInInspector]
+    public HurtBox hurtBox;
 
     public void Start() {
         defaultAction.moveTarget = Vector3.positiveInfinity;
@@ -40,6 +42,12 @@ public class EnemyController : MonoBehaviour, IActorController {
         }
 
         boxCollider = GetComponent<BoxCollider2D>();
+
+        hurtBox = GetComponent<HurtBox>();
+        if (!hurtBox) {
+            // search in children
+            hurtBox = transform.GetComponentInChildren<HurtBox>();
+        }
 
         // init ENEMY state
         currentState = new EnemyIdleState(this);

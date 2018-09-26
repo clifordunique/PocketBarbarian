@@ -26,7 +26,7 @@ public class HitState : AbstractState {
     public override AbstractState UpdateState() {
         // can not be interrupted
 
-        if ((Time.time - startTime) > playerController.moveController.GetPushDuration()) {            
+        if ((Time.time - startTime) > playerController.hurtBox.hitTime) {            
             return new IdleState(playerController);
         }
         return null;

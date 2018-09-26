@@ -27,7 +27,7 @@ public class EnemyHitState : AbstractEnemyState {
 
         // can not be interrupted
 
-        if ((Time.time - startTime) > moveController.GetPushDuration()) {
+        if ((Time.time - startTime) > enemyController.hurtBox.hitTime) { 
             moveController.StopMoving();
             enemyController.RequestNextAction();
             return GetEnemyState(enemyController.currentAction.actionEvent);

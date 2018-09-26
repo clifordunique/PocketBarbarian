@@ -29,8 +29,10 @@ public class Attack1State : AbstractState {
         return null;
     }
 
-    public override void HandleAnimEvent(string parameter) {
-        attackFinished = true;
+    public override void HandleEvent(string parameter) {
+        if (parameter == EVENT_PARAM_ANIMATION_END) {
+            attackFinished = true;
+        }
     }
 
 }
