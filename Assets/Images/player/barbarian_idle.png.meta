@@ -10,6 +10,14 @@ TextureImporter:
     21300010: barbarian_idle_5
     21300012: barbarian_idle_6
     21300014: barbarian_idle_7
+    21300016: barbarian_idle_8
+    21300018: barbarian_idle_9
+    21300020: barbarian_idle_10
+    21300022: barbarian_idle_11
+    21300024: barbarian_idle_12
+    21300026: barbarian_idle_13
+    21300028: barbarian_idle_14
+    21300030: barbarian_idle_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,7 +147,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28ce1095cf61da7439be2ef33fe901e0
+      spriteID: b15cc932d53285244ba95fd5ada435e4
       vertices: []
       indices: 
       edges: []
@@ -159,7 +167,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a68e8e9c41b10754cafc1335eebeed63
+      spriteID: 0a48c48d13d411e4e86d460bb2e03bcd
       vertices: []
       indices: 
       edges: []
@@ -179,7 +187,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aae745d9c9114b4dbfa8768ae9061e3
+      spriteID: 171a2a47e295f014fa87271e83c7f670
       vertices: []
       indices: 
       edges: []
@@ -199,7 +207,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43290437a034ab64e8ab3b9c9d28f4cc
+      spriteID: 43a504c750dbd1b4cad764bfec973e59
       vertices: []
       indices: 
       edges: []
@@ -219,7 +227,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a12033ab2f34934f9fd0f7e4694243a
+      spriteID: cf9e8bb656bbe284ab98300269137987
       vertices: []
       indices: 
       edges: []
@@ -239,7 +247,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e08f77c623318f1479b7340f9c04c361
+      spriteID: 7116bb0c56c3e984d9e17d9068f2d071
       vertices: []
       indices: 
       edges: []
@@ -259,7 +267,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f276cb616d734b546b573b5dc0bdd2c6
+      spriteID: 804e0cee3acf6544fa144a12dd007dcc
       vertices: []
       indices: 
       edges: []
@@ -279,7 +287,167 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1a63628ff195ff4fbd79cff686baf33
+      spriteID: 0f39a6fd20ef86e43a44fdfaa4d8968f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_8
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 230c614e5cdd4e04fb5721023d8c6cd8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_9
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d059b84d2d879468d810f3ad7a4734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_10
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee21206f804cf54d9591b976ec2bb3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_11
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1558aadf90e5f444bb2d679c3aa96201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34d6879d9506564c9ece549b95e71d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_13
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b356501b812bbb4880559d000726352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315dccb86b7f8864d90f9a3d8ac67970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_idle_15
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7521e6837ff0963488c16f3dd9aceee6
       vertices: []
       indices: 
       edges: []

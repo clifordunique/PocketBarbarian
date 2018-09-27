@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: barbarian_dashing_0
     21300002: barbarian_dashing_1
+    21300004: barbarian_dashing_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a54bda903c4a804b8a3428512f60034
+      spriteID: 9ef0963088954bb409317533f0fc74ac
       vertices: []
       indices: 
       edges: []
@@ -153,7 +154,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 088a389a0abdb1842a0db99cecca969e
+      spriteID: e9d98a781962b9549b66d861211bcc6d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_dashing_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec0d79d4a55401419bb92e370ccb6e7
       vertices: []
       indices: 
       edges: []

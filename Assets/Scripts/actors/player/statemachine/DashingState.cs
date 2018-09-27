@@ -54,7 +54,11 @@ public class DashingState : AbstractState {
             // end dashing
             return new IdleState(playerController);
         }
-        
+
+        if (Time.frameCount % 4 == 0) { 
+            playerController.InstantiateEffect(playerController.prefabEffectDashingSilhouette);
+        }
+
         Move(directionX, directionY, true);
         return null;
     }

@@ -36,15 +36,9 @@ public class IdleState : AbstractState {
         }
 
         if (input.GetDirectionY() == 1 && playerController.interactableInRange) {
-            Debug.Log("DO something");
-            Door door = playerController.interactable.GetComponent<Door>();
-            if (door) {
-                // door detected!
-                door.OpenDoor();
-                door.EnterDoor();
-            }
-
+            return new ActionState(playerController);
         }
+
         Move(0, input.GetDirectionY());
         return null;
     }

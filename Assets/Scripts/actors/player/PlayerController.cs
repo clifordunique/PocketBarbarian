@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectJump;
     public GameObject prefabEffectLanding;
     public GameObject prefabEffectDashing;
+    public GameObject prefabEffectDashingSilhouette;
 
     private AbstractState currentState;
     [HideInInspector]
