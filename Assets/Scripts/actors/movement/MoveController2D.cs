@@ -116,6 +116,8 @@ public class MoveController2D : RaycastController2D {
 		public bool above, below;
 		public bool left, right;
 
+        public bool initialised;
+
 		public Vector2 moveAmountOld;
 		public int faceDir;
 		public bool fallingThroughPlatform;
@@ -123,7 +125,9 @@ public class MoveController2D : RaycastController2D {
 		public void Reset() {
 			above = below = false;
 			left = right = false;
-		}
+            initialised = true;
+
+        }
 	}
 
 }

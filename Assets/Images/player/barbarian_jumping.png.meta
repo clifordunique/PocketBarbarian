@@ -5,6 +5,8 @@ TextureImporter:
     21300000: barbarian_jumping_0
     21300002: barbarian_jumping_1
     21300004: barbarian_jumping_2
+    21300006: barbarian_jumping_3
+    21300008: barbarian_jumping_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -134,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c920ea055220de04b98229de58b1743e
+      spriteID: 872592898b9405a47b3cb6fc7d6211a5
       vertices: []
       indices: 
       edges: []
@@ -154,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172fa088fe493694fbe3d57fe399be7a
+      spriteID: 697d3766d88f4e54180bc3d9df10a24b
       vertices: []
       indices: 
       edges: []
@@ -174,7 +176,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76bb057b2974b9e4e8f3681c7570fb3f
+      spriteID: 9bd42bdf9f5c13f418561c60c8c5b990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_jumping_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90339f2faeddcbb4b8d9ced1b7db568f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_jumping_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c2d5e9330aa6b4887016e1ef3a0404
       vertices: []
       indices: 
       edges: []

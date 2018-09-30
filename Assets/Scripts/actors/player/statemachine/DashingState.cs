@@ -15,7 +15,7 @@ public class DashingState : AbstractState {
     public override void OnEnter() {
         playerController.hitBoxDash.gameObject.SetActive(true);
         playerController.animator.SetBool(DASHING_PARAM, true);
-        playerController.InstantiateEffect(playerController.prefabEffectDashing);
+        //playerController.InstantiateEffect(playerController.prefabEffectDashing);
         directionX = input.GetDirectionX();
         directionY = input.GetDirectionY();
         Move(directionX, directionY, true);
@@ -45,7 +45,10 @@ public class DashingState : AbstractState {
         }
 
         if (hitSomething) {
-            // hit something, small push back
+            // hit something
+            // Play effect
+            playerController.InstantiateEffect(playerController.prefabEffectDashingHit);
+            // small push back
             playerController.moveController.OnPush(-1 * directionX, playerController.moveController.dashPushbackForce, playerController.moveController.dashPushbackDuration);
             return new IdleState(playerController);
         }
@@ -55,8 +58,9 @@ public class DashingState : AbstractState {
             return new IdleState(playerController);
         }
 
-        if (Time.frameCount % 4 == 0) { 
+        if (Time.frameCount % 3 == 0) { 
             playerController.InstantiateEffect(playerController.prefabEffectDashingSilhouette);
+            playerController.InstantiateEffect(playerController.prefabEffectStep);
         }
 
         Move(directionX, directionY, true);

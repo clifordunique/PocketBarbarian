@@ -13,12 +13,13 @@ public abstract class AbstractState {
     public static string ATTACK1_PARAM = "ATTACK1";
     public static string ACTION_PARAM = "ACTION";
     public static string WALK_OUT_PARAM = "WALK_OUT";
+    public static string LANDING_PARAM = "LANDING";
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
     
 
-    public enum ACTION {NA, IDLE, MOVE, JUMP, SHOOT, DASH, ACTION, ATTACK1, HIT, DEATH };
+    public enum ACTION {NA, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, HIT, DEATH };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
     public InputController input;

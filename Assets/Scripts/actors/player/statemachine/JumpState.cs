@@ -8,6 +8,7 @@ public class JumpState : AbstractState {
     }
 
     public override void OnEnter() {
+        Debug.Log("IN JUMP STATE!");
         playerController.animator.SetBool(JUMPING_PARAM, true);
         playerController.InstantiateEffect(playerController.prefabEffectJump);
         playerController.moveController.OnJumpInputDown();
@@ -26,13 +27,9 @@ public class JumpState : AbstractState {
         }
 
         if (playerController.moveController.IsGrounded()) {
-            playerController.InstantiateEffect(playerController.prefabEffectLanding);
-            if (input.GetDirectionX() == 0) {
-                return new IdleState(playerController);
-            } else {
-                return new MoveState(playerController);
-            }
+            return new LandingState(playerController);
         }
+
         if (input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
         }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectLanding;
     public GameObject prefabEffectDashing;
     public GameObject prefabEffectDashingSilhouette;
+    public GameObject prefabEffectDashingHit;
 
     private AbstractState currentState;
     [HideInInspector]

@@ -10,7 +10,7 @@ public class EffectCollection : MonoBehaviour {
 
     public static GameObject GetInstance() {
         if (!_instance) {
-            _instance = new GameObject("EffectParent");
+            _instance = new GameObject("EffectCollection");
         }
         return _instance;
     }

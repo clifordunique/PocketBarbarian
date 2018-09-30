@@ -29,6 +29,7 @@ public class HitState : AbstractState {
         if ((Time.time - startTime) > playerController.hurtBox.hitTime) {            
             return new IdleState(playerController);
         }
+        Move(input.GetDirectionX(), input.GetDirectionY());
         return null;
     }
 

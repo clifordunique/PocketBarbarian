@@ -12,6 +12,7 @@ public class HurtBox : MonoBehaviour {
     
     public bool pushedOnHit;
     public bool flashOnHit;
+    public float flashTime;
     public bool destroyOnDeath = true;
     public bool destroyOnDeathImmediate = true;
 
@@ -82,17 +83,16 @@ public class HurtBox : MonoBehaviour {
 
         boxCollider.enabled = false;
         if (flashOnHit) {
-            FlashSprite(hitTime);
+            FlashSprite(flashTime);
+            if (currentHealth <= 0 && !destroyOnDeathImmediate) {
+                Invoke("DeathAction", flashTime);
+            }
         }
-        Invoke("EnableBoxCollider", hitTime);
+        Invoke("EnableBoxCollider", hitTime);        
     }
 
     private void EnableBoxCollider() {
         boxCollider.enabled = true;
-
-        if (currentHealth <= 0 && !destroyOnDeathImmediate) {
-            DeathAction();
-        }
     }
 
 

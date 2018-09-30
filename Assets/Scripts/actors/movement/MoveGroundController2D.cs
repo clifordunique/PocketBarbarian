@@ -108,7 +108,7 @@ public class MoveGroundController2D: MoveController2D {
     }
 
     public bool IsFalling () {
-        return (!collisions.below && velocity.y <= 0);
+        return (collisions.initialised && !collisions.below && velocity.y <= 0);
     }
 
     public bool IsGrounded() {
