@@ -34,6 +34,10 @@ public class JumpState : AbstractState {
             playerController.moveController.OnJumpInputUp();
         }
 
+        if (playerController.moveController.IsFalling() && input.GetDirectionY() == -1) {
+            return new StompingState(playerController);
+        }
+
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;
     }

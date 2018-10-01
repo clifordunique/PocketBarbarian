@@ -115,10 +115,14 @@ public class MoveGroundController2D: MoveController2D {
         return (collisions.below && velocity.y <= 0);
     }
 
+    public virtual float GetFallFactor() {
+        return comicFallFactor;
+    }
+
     public virtual void CalculateVelocity() {        
         if (IsFalling()) {
             // is falling, comic Fall Factor
-            velocity.y += gravity * Time.deltaTime * comicFallFactor;
+            velocity.y += gravity * Time.deltaTime * GetFallFactor();
         } else {
             velocity.y += gravity * Time.deltaTime;
         }

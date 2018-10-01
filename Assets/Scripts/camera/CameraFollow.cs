@@ -49,10 +49,10 @@ public class CameraFollow : MonoBehaviour {
     }
 
     public void ShakeStamp() {
-        ShakeCamera(0.15F, 0F, 0.2F, true);
+        ShakeCamera(0.15F, 0F, 0.35F, true);
     }
     public void ShakeSmall() {
-        ShakeCamera(0.1F, 0.1F, 0.1F);
+        ShakeCamera(0.2F, 0.1F, 0.1F);
     }
     public void ShakeBig() {
         ShakeCamera(0.2F, 0.3F, 0.3F);
@@ -89,7 +89,7 @@ public class CameraFollow : MonoBehaviour {
 
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
-		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
+		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, (shake ? 0.0F : verticalSmoothTime));
 		focusPosition += Vector2.right * currentLookAheadX;
 
         if (shake) {
@@ -102,18 +102,13 @@ public class CameraFollow : MonoBehaviour {
                 } else {
                     modifierUp = Random.Range(-shakeIntensityY, shakeIntensityY);
                 }
-                Vector3 shakePosition = (Vector3)focusPosition + Vector3.forward * (-10) + Vector3.up * modifierUp + Vector3.right * modifierRight;
-                transform.position = Utils.MakePixelPerfect(shakePosition);
+                focusPosition = (Vector3)focusPosition + Vector3.up * modifierUp + Vector3.right * modifierRight;
             } else {
                 shake = false;
             }
-        } else {
-            // Round to pixelPerfect
-            
-            Vector2 pixelPerfectFocus = Utils.MakePixelPerfect(focusPosition);
-            transform.position = (Vector3)pixelPerfectFocus + Vector3.forward * (-10);
-            
-        }        
+        }
+        Vector2 pixelPerfectFocus = Utils.MakePixelPerfect(focusPosition);
+        transform.position = (Vector3)pixelPerfectFocus + Vector3.forward * (-10);
     }
 
 	void OnDrawGizmos() {

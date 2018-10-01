@@ -36,7 +36,6 @@ public class PlayerMoveController2D : MoveGroundController2D {
         // Stamping Settings
         if (isStamping && IsFalling() && !isPushed) {
             velocity.x = 0;
-            velocity.y *= stampingFallFactor;
         }
     }
     
@@ -45,6 +44,14 @@ public class PlayerMoveController2D : MoveGroundController2D {
         if (stampingAllowed && !collisions.below) {
             isStamping = true;
             velocity.y = 0;
+        }
+    }
+
+    public override float GetFallFactor() {
+        if (IsFalling() && isStamping) {
+            return stampingFallFactor;
+        } else {
+            return comicFallFactor;
         }
     }
 

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectDashing;
     public GameObject prefabEffectDashingSilhouette;
     public GameObject prefabEffectDashingHit;
+    public GameObject prefabEffectStompingSilhouette;
+    public GameObject prefabEffectStompingGround;
 
     private AbstractState currentState;
     [HideInInspector]
@@ -76,7 +78,9 @@ public class PlayerController : MonoBehaviour, IActorController {
     public void InstantiateEffect(GameObject effectToInstanciate) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
-        effectSpriteRenderer.flipX = (dirX < 0);
+        if (effectSpriteRenderer) {
+            effectSpriteRenderer.flipX = (dirX < 0);
+        }
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = transform.position;
     }
