@@ -8,6 +8,9 @@ public class StompingState : AbstractState {
     }
 
     public override void OnEnter() {
+        // Switch HurtBox Layers
+        playerController.hurtBox.SwitchToDashLayer();
+
         playerController.animator.SetBool(STOMPING_PARAM, true);
         playerController.moveController.OnStamp();
     }

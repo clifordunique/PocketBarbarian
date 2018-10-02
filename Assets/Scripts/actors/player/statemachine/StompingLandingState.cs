@@ -12,7 +12,7 @@ public class StompingLandingState : AbstractState {
 
     public override void OnEnter() {        
         playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);
-        playerController.InstantiateEffect(playerController.prefabEffectStompingGround);
+        
         playerController.animator.SetBool(STOMPING_LANDING_PARAM, true);
         Move(0, input.GetDirectionY());
     }
@@ -20,6 +20,9 @@ public class StompingLandingState : AbstractState {
     public override void OnExit() {        
         playerController.animator.SetBool(STOMPING_LANDING_PARAM, false);
         Move(input.GetDirectionX(), input.GetDirectionY());
+
+        // Switch HurtBox Layers back
+        playerController.hurtBox.SwitchToOriginLayer();
     }
 
     public override AbstractState UpdateState() {
@@ -27,9 +30,11 @@ public class StompingLandingState : AbstractState {
         if (interrupt != null) {
             return interrupt;
         }
+        
 
-        if (shake) {
+        if (playerController.moveController.IsGrounded() && shake) {
             CameraFollow.GetInstance().ShakeStamp();
+            playerController.InstantiateEffect(playerController.prefabEffectStompingGround);
             shake = false;
         }
 

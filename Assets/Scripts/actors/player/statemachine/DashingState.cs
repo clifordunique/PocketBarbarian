@@ -50,6 +50,8 @@ public class DashingState : AbstractState {
             playerController.InstantiateEffect(playerController.prefabEffectDashingHit);
             // small push back
             playerController.moveController.OnPush(-1 * directionX, playerController.moveController.dashPushbackForce, playerController.moveController.dashPushbackDuration);
+            // small cam Shake
+            CameraFollow.GetInstance().ShakeMedium();
             return new IdleState(playerController);
         }
 

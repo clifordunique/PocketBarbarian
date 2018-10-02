@@ -80,10 +80,17 @@ public class MoveController2D : RaycastController2D {
 			Vector2 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
 			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            
 
-			Debug.DrawRay(rayOrigin, Vector2.up * directionY,Color.red);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY,Color.red);
 
 			if (hit) {
+                if (hit.transform.gameObject == this.gameObject) {
+                    // is the same gameobject
+                    Debug.Log("Is Same Gameobject: " + this.gameObject.name);
+                    continue;
+                }
 				if (hit.collider.tag == "Through") {
 					if (directionY == 1 || hit.distance == 0) {
 						continue;

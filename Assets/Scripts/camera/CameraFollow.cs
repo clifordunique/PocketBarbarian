@@ -21,7 +21,21 @@ public class CameraFollow : MonoBehaviour {
 
 	bool lookAheadStopped;
 
+
     // Cam shake properties
+    [Header("CamShake")]
+    public float stompTime = 0.2F;
+    public float stompIntensity = 0.5F;
+
+    public float shakeSmallTime = 0.2F;
+    public float shakeSmallIntensity = 0.3F;
+
+    public float shakeMediumTime = 0.3F;
+    public float shakeMediumIntensity = 0.5F;
+
+    public float shakeBigTime = 0.4F;
+    public float shakeBigIntensity = 1F;
+
     bool shake = false;
     float shakeTime;
     float shakeIntensityX;
@@ -49,13 +63,16 @@ public class CameraFollow : MonoBehaviour {
     }
 
     public void ShakeStamp() {
-        ShakeCamera(0.15F, 0F, 0.35F, true);
+        ShakeCamera(stompTime, 0F, stompIntensity, true);
     }
     public void ShakeSmall() {
-        ShakeCamera(0.2F, 0.1F, 0.1F);
+        ShakeCamera(shakeSmallTime, shakeSmallIntensity, shakeSmallIntensity);
+    }
+    public void ShakeMedium() {
+        ShakeCamera(shakeMediumTime, shakeMediumIntensity, shakeMediumIntensity);
     }
     public void ShakeBig() {
-        ShakeCamera(0.2F, 0.3F, 0.3F);
+        ShakeCamera(shakeBigTime, shakeBigIntensity, shakeBigIntensity);
     }
 
     public void ShakeCamera (float shakeTime, float shakeIntensityX, float shakeIntensityY, bool down = false) {
