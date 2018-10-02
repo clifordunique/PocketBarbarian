@@ -8,17 +8,24 @@ public class PlayerHurtBox : HurtBox {
     public float switchBackDelayTime = 0.1F;
 
     private LayerMask attackLayersOrigin;
+    private bool dashLayerActive = false;
 
     public void SwitchToDashLayer() {
-        attackLayersOrigin = attackLayers;
-        attackLayers = attackLayersUnDashable;
+        if (!dashLayerActive) {
+            attackLayersOrigin = attackLayers;
+            attackLayers = attackLayersUnDashable;
+            dashLayerActive = true;
+        }
     }
 
     public void SwitchToOriginLayer() {
         Invoke("SwitchBack", switchBackDelayTime);
     }
 
-    private void SwitchBack() {
-        attackLayers = attackLayersOrigin;
+    public void SwitchBack() {
+        if (dashLayerActive) {
+            attackLayers = attackLayersOrigin;
+            dashLayerActive = false;
+        }
     }
 }
