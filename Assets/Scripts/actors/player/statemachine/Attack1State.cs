@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack1State : AbstractState {
 
     private bool attackFinished = false;
+    private bool hitSomething = false;
 
     public Attack1State(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
@@ -23,6 +24,12 @@ public class Attack1State : AbstractState {
             return interrupt;
         }
 
+        if (hitSomething) {
+            // small cam Shake
+            CameraFollow.GetInstance().ShakeSmall();
+            hitSomething = false;
+        }
+
         if (attackFinished) {
             return new IdleState(playerController);
         }
@@ -33,6 +40,8 @@ public class Attack1State : AbstractState {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             attackFinished = true;
         }
+        if (parameter == EVENT_PARAM_HIT) {
+            hitSomething = true;
+        }
     }
-
 }

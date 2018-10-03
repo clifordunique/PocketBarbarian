@@ -13,6 +13,7 @@ public class HurtBox : MonoBehaviour {
     public bool pushedOnHit;
     public bool flashOnHit;
     public float flashTime;
+    public bool destroyParent = false;
     public bool destroyOnDeath = true;
     public bool destroyOnDeathImmediate = true;
 
@@ -34,12 +35,11 @@ public class HurtBox : MonoBehaviour {
         if (enemyController == null && transform.parent) {
             // search in parent
             enemyController = transform.parent.GetComponent<IActorController>();
-            if (enemyController != null) {
-                // actor is parent
-                actorGameObject = transform.parent.gameObject;
-            }
-        } else {
-            actorGameObject = gameObject;
+        } 
+
+        actorGameObject = gameObject;
+        if (destroyParent) {
+            actorGameObject = transform.parent.gameObject;
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -81,16 +81,18 @@ public class HurtBox : MonoBehaviour {
             enemyController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
         }
 
-        if (hitTime > 0) {
-            boxCollider.enabled = false;
-        }
+
         if (flashOnHit) {
             FlashSprite(flashTime);
-            if (currentHealth <= 0 && !destroyOnDeathImmediate) {
-                Invoke("DeathAction", flashTime);
-            }
         }
-        if (hitTime > 0) {
+        if (hitTime > 0 || currentHealth <= 0) {
+            boxCollider.enabled = false;
+        }
+        if (currentHealth <= 0 && !destroyOnDeathImmediate) {
+            Invoke("DeathAction", flashTime);
+        }
+        if (hitTime > 0 && currentHealth > 0) {
+            // enable box collider if still living
             Invoke("EnableBoxCollider", hitTime);
         }
     }
@@ -106,11 +108,7 @@ public class HurtBox : MonoBehaviour {
             InstantiateEffect(prefabDeathEffect);
         }
         if (destroyOnDeath) {
-            if (enemyController != null) {
-                Destroy(actorGameObject);
-            } else {
-                Destroy(gameObject);
-            }
+            Destroy(actorGameObject);
         }
     }
 

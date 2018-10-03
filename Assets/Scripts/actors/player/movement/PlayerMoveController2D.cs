@@ -41,14 +41,15 @@ public class PlayerMoveController2D : MoveGroundController2D {
     
 
     public void OnStamp() {
-        if (stampingAllowed && !collisions.below) {
+        if (stampingAllowed) { // && !collisions.below) {
             isStamping = true;
             velocity.y = 0;
         }
     }
 
     public override float GetFallFactor() {
-        if (IsFalling() && isStamping) {
+        //if (IsFalling() && isStamping) {
+        if (isStamping) {
             return stampingFallFactor;
         } else {
             return comicFallFactor;

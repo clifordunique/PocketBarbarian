@@ -8,7 +8,6 @@ public class IdleState : AbstractState {
     }
 
     public override void OnEnter() {
-        Debug.Log("In IDLE");
         playerController.animator.SetBool(IDLE_PARAM, true);
     }
 

@@ -53,7 +53,6 @@ public class Door : MonoBehaviour {
         player.transform.position = otherDoor.transform.position;
 
         CameraFollow cf = CameraFollow.GetInstance();
-        Vector2 focusAreaSizeOrigin = cf.focusAreaSize;
         float verticalSmoothTimeOrigin = cf.verticalSmoothTime;
         cf.verticalSmoothTime = 0;
         cf.transform.position = otherDoor.transform.position;
@@ -78,7 +77,6 @@ public class Door : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D collider) {
         // react to trigger
         if (reactLayer == (reactLayer | (1 << collider.gameObject.layer))) {
-            Debug.Log("IN TRIGGER ENTER DOOR!");
             actionArrow.SetActive(true);
         }
     }
@@ -86,7 +84,6 @@ public class Door : MonoBehaviour {
     public void OnTriggerExit2D(Collider2D collider) {
         // react to trigger
         if (reactLayer == (reactLayer | (1 << collider.gameObject.layer))) {
-            Debug.Log("IN TRIGGER ENTER DOOR!");
             actionArrow.SetActive(false);
         }
     }

@@ -45,7 +45,7 @@ public class InputController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void LateUpdate () {
 		if (((Input.GetKeyDown(KeyCode.LeftArrow) && lastDirectionX == -1) || (Input.GetKeyDown(KeyCode.RightArrow) && lastDirectionX == 1))) {
             // double direction, check for time between
             if (timeLastDirectionX != -1 && Time.time - timeLastDirectionX <= timeDoubleDash) {

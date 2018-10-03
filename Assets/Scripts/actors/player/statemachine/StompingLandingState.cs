@@ -5,14 +5,18 @@ using UnityEngine;
 public class StompingLandingState : AbstractState {
 
     private bool animationEnded = false;
-    private bool shake = false;
+    private bool lastFrameFalling = true;
+    private bool lastFrameGrounded = false;
+    private bool checkAnimations = false;
+    private bool hitSomething = false;
+
+    private int waitFrame = 0;
 
     public StompingLandingState(PlayerController playerController) : base(ACTION.LANDING, playerController) {
     }
 
     public override void OnEnter() {        
-        playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);
-        
+        playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);       
         playerController.animator.SetBool(STOMPING_LANDING_PARAM, true);
         Move(0, input.GetDirectionY());
     }
@@ -30,22 +34,45 @@ public class StompingLandingState : AbstractState {
         if (interrupt != null) {
             return interrupt;
         }
-        
 
-        if (playerController.moveController.IsGrounded() && shake) {
-            CameraFollow.GetInstance().ShakeStamp();
-            playerController.InstantiateEffect(playerController.prefabEffectStompingGround);
-            shake = false;
+        waitFrame++;
+
+        if (hitSomething) {
+            playerController.moveController.OnStamp();
+            hitSomething = false;
         }
 
-        if (animationEnded) {
-            if (input.GetDirectionX() == 0) {
-                return new IdleState(playerController);
+        if (waitFrame > 1) {
+
+
+
+            if ((playerController.moveController.IsGrounded() && lastFrameFalling)) {
+                
+                lastFrameFalling = false;
+                CameraFollow.GetInstance().ShakeStamp();
+                playerController.InstantiateEffect(playerController.prefabEffectStompingGround);
+            }
+        
+            //if (playerController.moveController.IsFalling() && lastFrameGrounded) {
+            //    playerController.moveController.OnStamp();
+            //}
+
+            if (playerController.moveController.IsFalling()) {
+                lastFrameFalling = true;
+                lastFrameGrounded = false;
             } else {
-                return new MoveState(playerController);
+                lastFrameFalling = false;
+                lastFrameGrounded = true;
+            }
+
+            if (animationEnded && playerController.moveController.IsGrounded()) {
+                if (input.GetDirectionX() == 0) {
+                    return new IdleState(playerController);
+                } else {
+                    return new MoveState(playerController);
+                }
             }
         }
-
         return null;
     }
 
@@ -54,8 +81,11 @@ public class StompingLandingState : AbstractState {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             animationEnded = true;
         }
-        if (parameter == "shake") {
-            shake = true;
+        if (parameter == "checkpoint") {
+            checkAnimations = true;
+        }
+        if (parameter == EVENT_PARAM_HIT) {
+            hitSomething = true;
         }
     }
 
