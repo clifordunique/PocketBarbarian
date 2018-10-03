@@ -81,14 +81,18 @@ public class HurtBox : MonoBehaviour {
             enemyController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
         }
 
-        boxCollider.enabled = false;
+        if (hitTime > 0) {
+            boxCollider.enabled = false;
+        }
         if (flashOnHit) {
             FlashSprite(flashTime);
             if (currentHealth <= 0 && !destroyOnDeathImmediate) {
                 Invoke("DeathAction", flashTime);
             }
         }
-        Invoke("EnableBoxCollider", hitTime);        
+        if (hitTime > 0) {
+            Invoke("EnableBoxCollider", hitTime);
+        }
     }
 
     private void EnableBoxCollider() {
