@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovePixelPerfect : MonoBehaviour {    
 	
 	// Update is called once per frame
-	void LateUpdate () {        
+	void FixedUpdate () {        
        Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(transform.position);
        transform.position = pixelPerfectMoveAmount;
     }

@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: 1aca9102bb140de4bbc014320b26da4b
+guid: f751a0e43c82c8b469e5d284027e8d21
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stomping_effect_ground_0
-    21300002: stomping_effect_ground_1
-    21300004: stomping_effect_ground_2
-    21300006: stomping_effect_ground_3
-    21300008: stomping_effect_ground_4
-    21300010: stomping_effect_ground_5
-    21300012: stomping_effect_ground_6
-    21300014: stomping_effect_ground_7
-    21300016: stomping_effect_ground_8
-    21300018: stomping_effect_ground_9
+    21300000: diamond_ss_0
+    21300002: diamond_ss_1
+    21300004: diamond_ss_2
+    21300006: diamond_ss_3
+    21300008: diamond_ss_4
+    21300010: diamond_ss_5
+    21300012: diamond_ss_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -127,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stomping_effect_ground_0
+      name: diamond_ss_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96867116c1be7714f904acd9f6ebf866
+      spriteID: acd8e7af972ebc544b8015a50034cc5c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_1
+      name: diamond_ss_1
       rect:
         serializedVersion: 2
-        x: 46
+        x: 12
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a34c6ed7b4935c4f9b433eaa8b6fd4d
+      spriteID: 64f3209e237645549aa20a344818d690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_2
+      name: diamond_ss_2
       rect:
         serializedVersion: 2
-        x: 92
+        x: 24
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,19 +178,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e20f6dcd64948ed4fb273f44bf64f304
+      spriteID: 0979d63314bc86148b8a1118ef77b44f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_3
+      name: diamond_ss_3
       rect:
         serializedVersion: 2
-        x: 138
+        x: 36
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,19 +198,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21084325d4b542b4db99758bf52f175c
+      spriteID: 1bdca4e571bf7234187d933a35ced9db
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_4
+      name: diamond_ss_4
       rect:
         serializedVersion: 2
-        x: 184
+        x: 48
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,19 +218,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2d8d1561754c8d489f86edc7a3ce486
+      spriteID: b182454ff1a61e040b734153a34e74db
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_5
+      name: diamond_ss_5
       rect:
         serializedVersion: 2
-        x: 230
+        x: 60
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,19 +238,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1b3b46c0e6f13d4da4c49bb58ad84b7
+      spriteID: 8168974c75187f34186ec3f3f0fef88f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_6
+      name: diamond_ss_6
       rect:
         serializedVersion: 2
-        x: 276
+        x: 72
         y: 0
-        width: 46
-        height: 18
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,67 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b933ec5cb3112b6488cacd2e6afbb2d2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_7
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 795bfb7c39d16de4698efeefd043bad9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_8
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30fdf97e06105114e9c4eeeeea8ab1dc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_9
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f0135d904009814caf509878c33d329
+      spriteID: 8a932264a3710944eb49bdb6029409de
       vertices: []
       indices: 
       edges: []
@@ -329,7 +266,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 03b61667b9b0a254abd8823cf21697b3
+    spriteID: d38c2e55e14d0994f88128966cdc2286
     vertices: []
     indices: 
     edges: []

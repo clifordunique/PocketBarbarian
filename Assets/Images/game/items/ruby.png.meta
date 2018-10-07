@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: 1aca9102bb140de4bbc014320b26da4b
+guid: aa72599f1a3ed2647a3fb72d3df986c9
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stomping_effect_ground_0
-    21300002: stomping_effect_ground_1
-    21300004: stomping_effect_ground_2
-    21300006: stomping_effect_ground_3
-    21300008: stomping_effect_ground_4
-    21300010: stomping_effect_ground_5
-    21300012: stomping_effect_ground_6
-    21300014: stomping_effect_ground_7
-    21300016: stomping_effect_ground_8
-    21300018: stomping_effect_ground_9
+    21300000: ruby_0
+    21300002: ruby_1
+    21300004: ruby_2
+    21300006: ruby_3
+    21300008: ruby_4
+    21300010: ruby_5
+    21300012: ruby_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -127,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stomping_effect_ground_0
+      name: ruby_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96867116c1be7714f904acd9f6ebf866
+      spriteID: f117aaa40b93c944cb8ff8dc6c9fcf9c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_1
+      name: ruby_1
       rect:
         serializedVersion: 2
-        x: 46
+        x: 8
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a34c6ed7b4935c4f9b433eaa8b6fd4d
+      spriteID: 959f8824b047c7044b66654bb3894b27
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_2
+      name: ruby_2
       rect:
         serializedVersion: 2
-        x: 92
+        x: 16
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,19 +178,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e20f6dcd64948ed4fb273f44bf64f304
+      spriteID: de35012aefb0ea34d8f28316697b6441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_3
+      name: ruby_3
       rect:
         serializedVersion: 2
-        x: 138
+        x: 24
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,19 +198,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21084325d4b542b4db99758bf52f175c
+      spriteID: ceb1284c8a661724bbada683a4882a40
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_4
+      name: ruby_4
       rect:
         serializedVersion: 2
-        x: 184
+        x: 32
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,19 +218,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2d8d1561754c8d489f86edc7a3ce486
+      spriteID: db160967a2eed4b40a78df61d2e8b157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_5
+      name: ruby_5
       rect:
         serializedVersion: 2
-        x: 230
+        x: 40
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,19 +238,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1b3b46c0e6f13d4da4c49bb58ad84b7
+      spriteID: dadfb1d52f6c2834da2c43f8e66f1a22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stomping_effect_ground_6
+      name: ruby_6
       rect:
         serializedVersion: 2
-        x: 276
+        x: 48
         y: 0
-        width: 46
-        height: 18
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,67 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b933ec5cb3112b6488cacd2e6afbb2d2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_7
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 795bfb7c39d16de4698efeefd043bad9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_8
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30fdf97e06105114e9c4eeeeea8ab1dc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stomping_effect_ground_9
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 0
-        width: 46
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f0135d904009814caf509878c33d329
+      spriteID: 0b2f52f9d42d4ae41bfa4eeecc0a2583
       vertices: []
       indices: 
       edges: []
@@ -329,7 +266,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 03b61667b9b0a254abd8823cf21697b3
+    spriteID: 1a15e1f070b98ea4288d7a4db542f570
     vertices: []
     indices: 
     edges: []

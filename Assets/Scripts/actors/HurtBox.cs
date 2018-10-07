@@ -19,6 +19,7 @@ public class HurtBox : MonoBehaviour {
 
     public GameObject prefabHitEffect;
     public GameObject prefabDeathEffect;
+    public GameObject prefabLoot;
 
     public float hitTime;
 
@@ -107,6 +108,11 @@ public class HurtBox : MonoBehaviour {
         if (prefabDeathEffect != null) {
             InstantiateEffect(prefabDeathEffect);
         }
+
+        if (prefabLoot != null) {
+            InstantiateEffect(prefabLoot);
+        }
+
         if (destroyOnDeath) {
             Destroy(actorGameObject);
         }
