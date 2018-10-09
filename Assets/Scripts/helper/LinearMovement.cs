@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTest : RaycastController2D {
+public class LinearMovement : RaycastController2D {
     
 
     public float seconds;
@@ -14,8 +14,10 @@ public class MoveTest : RaycastController2D {
     // Use this for initialization
     public override void Start () {
         base.Start();
+
         startPos = transform.position;
-        endpos = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
+        float scaleX = transform.localScale.x;
+        endpos = new Vector3(transform.position.x + (scaleX * distance), transform.position.y, transform.position.z);
 
         StartCoroutine("SmoothMove");
     }

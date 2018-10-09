@@ -19,7 +19,6 @@ public class HurtBox : MonoBehaviour {
 
     public GameObject prefabHitEffect;
     public GameObject prefabDeathEffect;
-    public GameObject prefabLoot;
 
     public float hitTime;
 
@@ -27,6 +26,7 @@ public class HurtBox : MonoBehaviour {
     private GameObject actorGameObject;
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
+    private LootController lootController;
 
     // Use this for initialization
     public virtual void Start() {
@@ -48,6 +48,12 @@ public class HurtBox : MonoBehaviour {
             // search in parent
             spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
         }
+
+        lootController = GetComponent<LootController>();
+        if (!lootController && transform.parent) {
+            // search in parent
+            lootController = transform.parent.GetComponent<LootController>();
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
@@ -68,18 +74,25 @@ public class HurtBox : MonoBehaviour {
 
 
     private void ReactHurt(Collision2D collision) {
+        Vector3 hitDirection = Utils.GetHitDirection(collision.transform.position, transform);
+
         if (currentHealth <= 0) {
             if (destroyOnDeathImmediate) {
-                DeathAction();
+                DeathAction(hitDirection.x);
             }            
         } else {
-            if (prefabHitEffect != null) {
-                InstantiateEffect(prefabHitEffect);
+            if (prefabHitEffect != null) {                
+                InstantiateEffect(prefabHitEffect, hitDirection.x);
             }
         }
 
         if (enemyController != null) {
             enemyController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
+        }
+
+        // Spawn loot hit
+        if (currentHealth > 0 && lootController && lootController.lootOnHit) {
+            lootController.SpawnLootHit();
         }
 
 
@@ -90,7 +103,7 @@ public class HurtBox : MonoBehaviour {
             boxCollider.enabled = false;
         }
         if (currentHealth <= 0 && !destroyOnDeathImmediate) {
-            Invoke("DeathAction", flashTime);
+            StartCoroutine(CoroutineDeath(hitDirection.x, flashTime));
         }
         if (hitTime > 0 && currentHealth > 0) {
             // enable box collider if still living
@@ -102,15 +115,19 @@ public class HurtBox : MonoBehaviour {
         boxCollider.enabled = true;
     }
 
+    IEnumerator CoroutineDeath(float hitDirectionX, float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        DeathAction(hitDirectionX);
+    }
 
-
-    private void DeathAction() {
+    private void DeathAction(float hitDirectionX) {
         if (prefabDeathEffect != null) {
-            InstantiateEffect(prefabDeathEffect);
+            InstantiateEffect(prefabDeathEffect, hitDirectionX);
         }
 
-        if (prefabLoot != null) {
-            InstantiateEffect(prefabLoot);
+        // Spawn loot hit
+        if (lootController) {
+            lootController.SpawnLootDeath();
         }
 
         if (destroyOnDeath) {
@@ -118,10 +135,11 @@ public class HurtBox : MonoBehaviour {
         }
     }
 
-    private void InstantiateEffect(GameObject effectToInstanciate) {
+    private void InstantiateEffect(GameObject effectToInstanciate, float dirX) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = transform.position;
+        effect.transform.localScale = new Vector3(dirX, effect.transform.localScale.y, effect.transform.localScale.z);
     }
 
     private void FlashSprite(float time) {
