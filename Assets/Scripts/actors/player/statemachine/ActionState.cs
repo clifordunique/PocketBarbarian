@@ -7,7 +7,7 @@ public class ActionState : AbstractState {
 
     private bool animationEnded = false;
     private bool actionTriggered = false;
-    private Door interactable;
+    private AbstactInteractable interactable;
 
     public ActionState(PlayerController playerController) : base(ACTION.ACTION, playerController) {
     }
@@ -15,7 +15,7 @@ public class ActionState : AbstractState {
     public override void OnEnter() {
         playerController.animator.SetBool(ACTION_PARAM, true);
         if (playerController.interactable) {
-            interactable = playerController.interactable.GetComponent<Door>();
+            interactable = playerController.interactable.GetComponent<AbstactInteractable>();
         }
     }
 
@@ -35,14 +35,18 @@ public class ActionState : AbstractState {
 
         if (animationEnded && playerController.interactable && !actionTriggered) {
             if (interactable) {
-                // door detected!
+                // AbstactInteractable detected!
                 interactable.Activate();
                 actionTriggered = true;
             }
         }
 
         if (actionTriggered && interactable.actionFinished) {
-            return new WalkOutState(playerController);
+            if (interactable is Door) {
+                return new WalkOutState(playerController);
+            } else {
+                return new ActionOutState(playerController);
+            }
         }
 
         Move(0, 0);

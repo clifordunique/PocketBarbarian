@@ -8,7 +8,7 @@ public class HurtBox : MonoBehaviour {
     // layers to react on contact and receive damage
     public LayerMask attackLayers;
     public int maxHealth;
-    public int currentHealth;
+    public int currentHealth = 0;
     
     public bool pushedOnHit;
     public bool flashOnHit;
@@ -24,13 +24,14 @@ public class HurtBox : MonoBehaviour {
 
     private IActorController enemyController;
     private GameObject actorGameObject;
-    private BoxCollider2D boxCollider;
+    [HideInInspector]
+    public BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private LootController lootController;
 
     // Use this for initialization
     public virtual void Start() {
-        currentHealth = maxHealth;
+        ModifyHealth(maxHealth);
         boxCollider = GetComponent<BoxCollider2D>();
         enemyController = GetComponent<IActorController>();
         if (enemyController == null && transform.parent) {
@@ -56,19 +57,30 @@ public class HurtBox : MonoBehaviour {
         }
     }
 
+    public virtual void ModifyHealth(int healthModifier) {
+        if ((currentHealth + healthModifier) > maxHealth) {
+            currentHealth = maxHealth;
+        } else {
+            currentHealth = currentHealth + healthModifier;
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log("CollisionEnter Hurtbox " + gameObject.name);
         // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
             if (attackerActor) {
                 // receive damage from attacker
-                currentHealth -= attackerActor.damage;
+                ModifyHealth(-attackerActor.damage);
                 attackerActor.ReactHit();
                 ReactHurt(collision);
             } else {
                 Debug.Log("Attacker has no HitBox component!");
             }
+        } else {
+            Debug.Log("CollisionEnter Hurtbox " + gameObject.name + " WRONG LAYERMASK");
         }
     }
 
@@ -91,8 +103,8 @@ public class HurtBox : MonoBehaviour {
         }
 
         // Spawn loot hit
-        if (currentHealth > 0 && lootController && lootController.lootOnHit) {
-            lootController.SpawnLootHit();
+        if (currentHealth > 0 && lootController && lootController.lootMin) {
+            lootController.SpawnLootMin();
         }
 
 
@@ -127,7 +139,7 @@ public class HurtBox : MonoBehaviour {
 
         // Spawn loot hit
         if (lootController) {
-            lootController.SpawnLootDeath();
+            lootController.SpawnLootMax();
         }
 
         if (destroyOnDeath) {

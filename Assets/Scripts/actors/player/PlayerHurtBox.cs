@@ -10,6 +10,16 @@ public class PlayerHurtBox : HurtBox {
     private LayerMask attackLayersOrigin;
     private bool dashLayerActive = false;
 
+    private static PlayerHurtBox _instance;
+
+    public void Awake() {
+        _instance = this;    
+    }
+
+    public static PlayerHurtBox GetInstance() {
+        return _instance;
+    }
+
     public void SwitchToDashLayer() {
         if (!dashLayerActive) {
             attackLayersOrigin = attackLayers;
@@ -26,6 +36,13 @@ public class PlayerHurtBox : HurtBox {
         if (dashLayerActive) {
             attackLayers = attackLayersOrigin;
             dashLayerActive = false;
+            // switch boxCollider off and on to receive a new collision if still in a enemy collider
+            boxCollider.enabled = false;
+            Invoke("EnableBoxCollider", 0.01F);
         }
+    }
+
+    public void EnableBoxCollider() {
+        boxCollider.enabled = true;
     }
 }

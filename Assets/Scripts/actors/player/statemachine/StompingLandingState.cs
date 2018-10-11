@@ -6,8 +6,6 @@ public class StompingLandingState : AbstractState {
 
     private bool animationEnded = false;
     private bool lastFrameFalling = true;
-    private bool lastFrameGrounded = false;
-    private bool checkAnimations = false;
     private bool hitSomething = false;
 
     private int waitFrame = 0;
@@ -61,10 +59,8 @@ public class StompingLandingState : AbstractState {
 
             if (playerController.moveController.IsFalling()) {
                 lastFrameFalling = true;
-                lastFrameGrounded = false;
             } else {
                 lastFrameFalling = false;
-                lastFrameGrounded = true;
             }
 
             if (animationEnded && playerController.moveController.IsGrounded()) {
@@ -82,9 +78,6 @@ public class StompingLandingState : AbstractState {
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             animationEnded = true;
-        }
-        if (parameter == "checkpoint") {
-            checkAnimations = true;
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;

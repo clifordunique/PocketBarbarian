@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinearMovement : RaycastController2D {
+public class RaycastSimpleMovement : RaycastController2D {
     
 
     public float seconds;
@@ -54,16 +54,29 @@ public class LinearMovement : RaycastController2D {
         if (Mathf.Abs(moveX) < skinWidth) {
             rayLength = 2 * skinWidth;
         }
+        
+        Vector2 rayOrigin1 = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+        Vector2 rayOrigin2 = (directionX == -1) ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
 
-        for (int i = 0; i < horizontalRayCount; i++) {
-            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+        float result = CheckCollision(moveX, directionX, rayLength, rayOrigin1);
+        if (result == 0) {
+            result = CheckCollision(moveX, directionX, rayLength, rayOrigin2);
+            if (result != 0) {
+                result += myCollider.size.x;
+            }
+        }
+        return result;
+    }
+
+    float CheckCollision(float moveX, float directionX, float rayLength, Vector2 rayOrigin) {
+        for (int i = 0; i < horizontalRayCount; i++) {            
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
 
             if (hit) {
-                
+
                 if (hit.distance == 0) {
                     continue;
                 }

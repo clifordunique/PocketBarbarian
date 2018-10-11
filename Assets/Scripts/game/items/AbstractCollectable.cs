@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectable: MonoBehaviour {
+public abstract class AbstractCollectable : MonoBehaviour {
 
     public LayerMask collectorLayer;
     public float delayTimeCollection = 0;
-    public IntValue points;
-
     public PrefabValue collectableEffect;
 
     private BoxCollider2D boxCollider;
@@ -20,7 +18,7 @@ public class Collectable: MonoBehaviour {
             if (delayTimeCollection > 0) {
                 boxCollider.enabled = false;
                 Invoke("EnableBoxCollider", delayTimeCollection);
-            }            
+            }
         }
 
         if (GetComponent<SpriteRenderer>()) {
@@ -34,6 +32,8 @@ public class Collectable: MonoBehaviour {
         boxCollider.enabled = true;
     }
 
+    public abstract void CollectItem();
+
     public void OnTriggerEnter2D(Collider2D collider) {
         // react to hit
         if (collectorLayer == (collectorLayer | (1 << collider.gameObject.layer))) {
@@ -42,8 +42,7 @@ public class Collectable: MonoBehaviour {
                 if (collectableEffect) {
                     InstantiateEffect(collectableEffect.value);
                 }
-                Debug.Log("Collected: " + points.value);
-                Inventory.GetInstance().AddPoints(points.value);
+                CollectItem();
                 Destroy(activeGameObject);
             }
         }

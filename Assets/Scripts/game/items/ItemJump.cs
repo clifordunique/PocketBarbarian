@@ -8,7 +8,6 @@ public class ItemJump : MonoBehaviour {
     public bool randomDirectionY = false;
 
     private Rigidbody2D rBody;
-    private bool moving = false;
 
     // Use this for initialization
     void Start () {
@@ -22,16 +21,5 @@ public class ItemJump : MonoBehaviour {
 
         rBody.velocity = new Vector2(jumpForce.x, jumpForce.y);
     }
-	
-	void Update () {
-        
-     /*   if (rBody.IsTouchingLayers()) {
-            moving = false;
-        }
-        if (!moving && Input.GetKeyDown(KeyCode.C)) {
-            rBody.velocity = new Vector2(jumpForce.x, jumpForce.y);
-            moving = true;
-        }
-        */
-    }
+
 }

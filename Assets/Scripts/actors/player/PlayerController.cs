@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour, IActorController {
     public void OnTriggerEnter2D(Collider2D collider) {
         // react to trigger
         if (interactiveLayers == (interactiveLayers | (1 << collider.gameObject.layer))) {
-            Debug.Log("Trigger enter detected!");
             interactableInRange = true;
             interactable = collider.gameObject;
         }
@@ -110,7 +109,6 @@ public class PlayerController : MonoBehaviour, IActorController {
         // react to trigger
         if (interactiveLayers == (interactiveLayers | (1 << collider.gameObject.layer))) {
             if (interactable != null && collider.gameObject == interactable) {
-                Debug.Log("Trigger exit detected!");
                 interactableInRange = false;
                 interactable = null;
             } else {

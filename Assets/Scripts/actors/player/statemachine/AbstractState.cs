@@ -12,6 +12,7 @@ public abstract class AbstractState {
     public static string DASHING_PARAM = "DASHING";
     public static string ATTACK1_PARAM = "ATTACK1";
     public static string ACTION_PARAM = "ACTION";
+    public static string ACTION_OUT_PARAM = "ACTION_OUT";
     public static string WALK_OUT_PARAM = "WALK_OUT";
     public static string LANDING_PARAM = "LANDING";
     public static string STOMPING_PARAM = "STOMPING";

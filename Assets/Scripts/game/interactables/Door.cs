@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door : AbstactInteractable {
 
     public Sprite closedDoor;
     public Sprite openDoor;    
     public Door otherDoor;
     public Animator fadeAnimator;
     public Image uiImage;
-    public GameObject actionArrow;
-    public LayerMask reactLayer;
-
+ 
     [HideInInspector]
     public bool inAnimation = false;
     private SpriteRenderer spriteRenderer;
-    [HideInInspector]
-    public bool actionFinished = false;
-
+ 
     public void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -31,7 +27,7 @@ public class Door : MonoBehaviour {
         spriteRenderer.sprite = closedDoor;
     }
 
-    public void Activate() {
+    public override void Activate() {
         OpenDoor();
         actionFinished = false;
         if (!inAnimation) {
@@ -71,20 +67,5 @@ public class Door : MonoBehaviour {
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
         otherDoor.CloseDoor();
         inAnimation = false;
-    }
-
-
-    public void OnTriggerEnter2D(Collider2D collider) {
-        // react to trigger
-        if (reactLayer == (reactLayer | (1 << collider.gameObject.layer))) {
-            actionArrow.SetActive(true);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collider) {
-        // react to trigger
-        if (reactLayer == (reactLayer | (1 << collider.gameObject.layer))) {
-            actionArrow.SetActive(false);
-        }
     }
 }

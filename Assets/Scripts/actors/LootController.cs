@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LootController : MonoBehaviour {
-    [Header("Loot Death")]
-    public LootPackage lootPackageDeath;
+    [Header("Loot Max")]
+    public LootPackage lootPackageMax;
 
-    [Header("Loot Hit")]
-    public bool lootOnHit = false;
-    [ConditionalHideAttribute("lootOnHit", true)]
-    public LootPackage lootPackageHit;
+    [Header("Loot Min")]
+    public bool lootMin = false;
+    [ConditionalHideAttribute("lootMin", true)]
+    public LootPackage lootPackageMin;
 
 
 
-    public void SpawnLootHit() {
-        if (lootOnHit) {
-            Spawn(lootPackageHit);
+    public void SpawnLootMin() {
+        if (lootMin) {
+            Spawn(lootPackageMin);
         }
     }
 
-    public void SpawnLootDeath() {
-        Spawn(lootPackageDeath);
+    public void SpawnLootMax() {
+        Spawn(lootPackageMax);
     }
 
     private void Spawn(LootPackage lootPackage) {

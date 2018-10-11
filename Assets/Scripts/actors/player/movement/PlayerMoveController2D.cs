@@ -43,7 +43,9 @@ public class PlayerMoveController2D : MoveGroundController2D {
     public void OnStamp() {
         if (stampingAllowed) { // && !collisions.below) {
             isStamping = true;
-            velocity.y = 0;
+            if (velocity.y > 0) {
+                velocity.y = 0;
+            }
         }
     }
 
