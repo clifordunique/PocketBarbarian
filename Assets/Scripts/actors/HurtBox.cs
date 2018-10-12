@@ -66,7 +66,6 @@ public class HurtBox : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("CollisionEnter Hurtbox " + gameObject.name);
         // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
             // get GameActor from collision gameobject
@@ -79,8 +78,6 @@ public class HurtBox : MonoBehaviour {
             } else {
                 Debug.Log("Attacker has no HitBox component!");
             }
-        } else {
-            Debug.Log("CollisionEnter Hurtbox " + gameObject.name + " WRONG LAYERMASK");
         }
     }
 

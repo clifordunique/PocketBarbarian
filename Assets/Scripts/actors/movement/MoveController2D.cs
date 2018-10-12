@@ -17,7 +17,8 @@ public class MoveController2D : RaycastController2D {
 	}
 
 	public void Move(Vector2 moveAmount, bool standingOnPlatform = false) {
-		UpdateRaycastOrigins ();
+
+        UpdateRaycastOrigins ();
 
 		collisions.Reset ();
 		collisions.moveAmountOld = moveAmount;      
@@ -31,10 +32,8 @@ public class MoveController2D : RaycastController2D {
 		if (moveAmount.y != 0) {
 			VerticalCollisions (ref moveAmount);
 		}
-
-        Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(moveAmount);
-
-        transform.Translate(pixelPerfectMoveAmount);
+        
+        transform.Translate(moveAmount);
 
         if (standingOnPlatform) {
 			collisions.below = true;
