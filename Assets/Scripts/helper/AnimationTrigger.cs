@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationTriggerKettenMechanik : MonoBehaviour {
+public class AnimationTrigger : MonoBehaviour {
 
     private Animator[] animatorList;
 

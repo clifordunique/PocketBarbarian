@@ -10,6 +10,8 @@ TextureImporter:
     21300010: barbarian_attack1_5
     21300012: barbarian_attack1_6
     21300014: barbarian_attack1_7
+    21300016: barbarian_attack1_8
+    21300018: barbarian_attack1_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,7 +141,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 855b2c392006b8a40803ccf1265ac8b9
+      spriteID: 62b3ba4de2fcadb4ba0ae8683911a49f
       vertices: []
       indices: 
       edges: []
@@ -159,7 +161,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67bdaa475c134444da7e146b26f6c2c7
+      spriteID: 2d79888fd4b55b140a40e93883072b6a
       vertices: []
       indices: 
       edges: []
@@ -179,7 +181,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29ab815b776d8fc4d9abfdb24ed811fa
+      spriteID: 0685058839b28504ea770918769fbd04
       vertices: []
       indices: 
       edges: []
@@ -199,7 +201,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c62b19aeb28571b428b8d8495cb5249b
+      spriteID: e0560c6b7b151cf499965eda0ef43db5
       vertices: []
       indices: 
       edges: []
@@ -219,7 +221,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e096bab21423f640b58b02a43f57264
+      spriteID: 374af6f56c1dcab4aa5d44073034e851
       vertices: []
       indices: 
       edges: []
@@ -239,7 +241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b580c0246ec3fe64f9db4577aea101b4
+      spriteID: f174337e2e44df84aa12ffaf37b33456
       vertices: []
       indices: 
       edges: []
@@ -259,7 +261,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbe5745144d90eb4899117817eeeda41
+      spriteID: bdc02675eb4a50f41a9ef9fa22aa95b1
       vertices: []
       indices: 
       edges: []
@@ -279,7 +281,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a12394818772e58498bbc22a2f8e7d46
+      spriteID: 670ad6f217ff0c148a81995d514fb896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_attack1_8
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 0
+        width: 62
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b884902646efd4eb3338c5ee86158c
       vertices: []
       indices: 
       edges: []
