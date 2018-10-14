@@ -6,6 +6,7 @@ TextureImporter:
     21300002: platforms_simple_1
     21300004: platforms_simple_2
     21300006: platforms_simple_3
+    21300008: platforms_simple_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -125,6 +126,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 64
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96867cf1174a1e41b32548441cb852f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platforms_simple_1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 48
         width: 64
         height: 16
@@ -135,13 +156,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 277aee2b43e097c4098f262dece8a04d
+      spriteID: 69592803766ec6146a1642bb0311c2c7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: platforms_simple_1
+      name: platforms_simple_2
       rect:
         serializedVersion: 2
         x: 0
@@ -155,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 372e12558569ffd44ba00cd895b9e437
+      spriteID: feeacfb3cccf0874a90423a691de67da
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: platforms_simple_2
+      name: platforms_simple_3
       rect:
         serializedVersion: 2
         x: 0
@@ -175,13 +196,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93c8772e29c9e2d428257c19ccb01310
+      spriteID: e405c434164e39f468db177c00d6adbf
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: platforms_simple_3
+      name: platforms_simple_4
       rect:
         serializedVersion: 2
         x: 0
@@ -195,7 +216,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57c537a9b05e89f4dae1cf7c9fcb160a
+      spriteID: 2c649d08fb48a644c88d684eab473525
       vertices: []
       indices: 
       edges: []

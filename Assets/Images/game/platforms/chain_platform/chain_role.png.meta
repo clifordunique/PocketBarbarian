@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e48f8caccc2b1f14185abb9a5b1c613f
+guid: 9a350b12faeec1e44b225f640ca1b1ec
 TextureImporter:
   fileIDToRecycleName:
     21300000: ketten-mechanik_0
@@ -124,8 +124,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 14
+        width: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fde3111b730a5f40a4672d509720b7b
+      spriteID: fd58312d52086304eabdf822c5dc5673
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: ketten-mechanik_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 0
-        width: 16
-        height: 14
+        width: 32
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e15ccba01bad764388f747f72e56edd
+      spriteID: eba0ea893c5786c48a576d0eb9466f32
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 68a83b1f9f4124c4fa5326827ea5daea
+    spriteID: a4319e4fd6fbdb940b22a4ac454e5326
     vertices: []
     indices: 
     edges: []

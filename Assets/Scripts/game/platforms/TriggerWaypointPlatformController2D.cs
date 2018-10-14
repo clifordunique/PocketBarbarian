@@ -16,7 +16,7 @@ public class TriggerWaypointPlatformController2D: WaypointPlatformController2D {
 
     public override Vector3 CalculatePlatformMovement() {
         Vector3 result = base.CalculatePlatformMovement();
-        if (result == Vector3.zero) {
+        if (Time.time < nextMoveTime) {
             animationTrigger.StopTrigger();
         } else {
             animationTrigger.StartTrigger();

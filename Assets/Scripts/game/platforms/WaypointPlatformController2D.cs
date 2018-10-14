@@ -16,7 +16,8 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 
 	int fromWaypointIndex;
 	float percentBetweenWaypoints;
-	float nextMoveTime;
+    [HideInInspector]
+	public float nextMoveTime;
     
 	
 	public override void Start () {
