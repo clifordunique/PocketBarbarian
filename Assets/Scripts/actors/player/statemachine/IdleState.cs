@@ -21,6 +21,10 @@ public class IdleState : AbstractState {
             return interrupt;
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            Debug.Log("DOWN ARROW");
+        }
+
         if (playerController.moveController.IsFalling()) {
             return new FallingState(playerController);
         }

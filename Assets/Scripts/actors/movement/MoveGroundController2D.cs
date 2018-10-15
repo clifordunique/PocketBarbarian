@@ -112,7 +112,7 @@ public class MoveGroundController2D: MoveController2D {
     }
 
     public bool IsGrounded() {
-        return (collisions.below && velocity.y <= 0);
+        return (collisions.below && velocity.y == 0);
     }
 
     public virtual float GetFallFactor() {

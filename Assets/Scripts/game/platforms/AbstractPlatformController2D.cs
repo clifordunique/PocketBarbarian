@@ -14,15 +14,16 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
         base.Start();
     }
 
-    void LateUpdate() {
+    void Update() {
 
         UpdateRaycastOrigins();
 
-        Vector3 velocity = CalculatePlatformMovement();        
-        CalculatePassengerMovement(velocity);
+        Vector3 velocity = CalculatePlatformMovement();
+        Vector2 pixelPerfectVelocity = Utils.MakePixelPerfect(velocity);
+        CalculatePassengerMovement(pixelPerfectVelocity);
 
         MovePassengers(true);
-        transform.Translate(velocity);
+        transform.Translate(pixelPerfectVelocity);
         MovePassengers(false);
     }
 

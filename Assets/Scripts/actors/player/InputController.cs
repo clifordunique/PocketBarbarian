@@ -36,6 +36,10 @@ public class InputController : MonoBehaviour {
         return (Input.GetKeyUp(KeyCode.Space));
     }
 
+    public bool DownKeyDown() {
+        return (Input.GetKeyDown(KeyCode.DownArrow));
+    }
+
     public float GetDirectionX() {
         return Input.GetAxisRaw("Horizontal");
     }

@@ -33,7 +33,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         startPos = transform.position;
         endpos = new Vector3(transform.position.x + distance.x, transform.position.y + distance.y, transform.position.z);
         distancePos = Vector3.Distance(startPos, endpos);
-        shakePos = startPos + Vector3.down * (Constants.WorldUnitsPerPixel() * 3);
+        shakePos = startPos + Vector3.down * (Constants.WorldUnitsPerPixel() * 5);
     }
 
     public override Vector3 CalculatePlatformMovement() {
@@ -46,7 +46,6 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
             } else {
                 if (waitTime > 0 && currentTime + waitTime < Time.time) {
                     result = SmoothMove();
-                    Debug.Log("V3 Result2: " + result);
                 }
             }
         }
@@ -61,7 +60,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
             if (newTime > 1) {
                 newTime = 1;
             }
-
+            Debug.Log("> NEW TIME:" + newTime) ;
             Vector3 newPosition;
             if (shakeBack) {
                 newPosition = Vector3.Lerp(shakePos, startPos, newTime);
@@ -75,6 +74,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         if (!shakeBack) {
             shakeBack = true;            
         } else {
+            shakeBack = false;
             isInitialShake = false;
             InstantiateDustEffects();
         }
@@ -126,10 +126,10 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
             currentStartPos = transform.position;
             currentEndpos = endpos;
             CalculateCurrentSeconds();
-            t = 0.0f;
+            if (!isInitialShake) {
+                t = 0.0f;
+            }
             if (startPos == transform.position && !isInitialShake) {
-                // start pos
-                //InstantiateDustEffects();
                 isInitialShake = true;
             } else {
                 if (startPos != transform.position && endpos != transform.position) {

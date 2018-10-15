@@ -32,8 +32,9 @@ public class MoveController2D : RaycastController2D {
 		if (moveAmount.y != 0) {
 			VerticalCollisions (ref moveAmount);
 		}
-        
-        transform.Translate(moveAmount);
+
+        Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(moveAmount);
+        transform.Translate(pixelPerfectMoveAmount);
 
         if (standingOnPlatform) {
 			collisions.below = true;
@@ -99,7 +100,7 @@ public class MoveController2D : RaycastController2D {
 					}
 					if (moveDirectionY == -1) {
 						collisions.fallingThroughPlatform = true;
-						Invoke("ResetFallingThroughPlatform",.5f);
+						Invoke("ResetFallingThroughPlatform",.1f);
 						continue;
 					}
 				}

@@ -27,7 +27,7 @@ public class FallingState : AbstractState {
             return new LandingState(playerController);
         }
 
-        if (playerController.moveController.IsFalling() && input.GetDirectionY() == -1) {
+        if (playerController.moveController.IsFalling() && Input.GetKeyDown(KeyCode.DownArrow)) {
             return new StompingState(playerController);
         }
 
