@@ -74,8 +74,6 @@ public class MoveGroundController2D: MoveController2D {
             this.moveDirectionX = moveDirectionX;
             this.moveDirectionY = moveDirectionY;
             targetVelocityX = moveDirectionX * moveSpeed;
-        } else {
-            Debug.Log("Not Stopping, still pushed!");
         }
     }
 

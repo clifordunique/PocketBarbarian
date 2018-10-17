@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class IntIntEvent: UnityEvent<int, int> { }
 
 public class PlayerHurtBox : HurtBox {
+
 
     public LayerMask attackLayersUnDashable;
     public float switchBackDelayTime = 0.1F;
@@ -11,6 +16,7 @@ public class PlayerHurtBox : HurtBox {
     private bool dashLayerActive = false;
 
     private static PlayerHurtBox _instance;
+    [SerializeField] private IntIntEvent someEvent;
 
     public void Awake() {
         _instance = this;    
@@ -44,5 +50,10 @@ public class PlayerHurtBox : HurtBox {
 
     public void EnableBoxCollider() {
         boxCollider.enabled = true;
+    }
+
+    public override void ModifyHealth(int healthModifier) {
+        base.ModifyHealth(healthModifier);
+        someEvent.Invoke(maxHealth, currentHealth);
     }
 }
