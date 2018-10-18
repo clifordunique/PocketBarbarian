@@ -16,7 +16,8 @@ public class PlayerHurtBox : HurtBox {
     private bool dashLayerActive = false;
 
     private static PlayerHurtBox _instance;
-    [SerializeField] private IntIntEvent someEvent;
+    [SerializeField]
+    private IntIntEvent someEvent;
 
     public void Awake() {
         _instance = this;    

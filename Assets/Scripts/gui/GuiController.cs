@@ -21,7 +21,7 @@ public class GuiController : MonoBehaviour {
 
     public void RefreshPositions() {
         SetGUIPosition(backgroundLeft, 0f, 1.0f, 0, 0);
-        SetGUIPosition(backgroundCenter, 0.5f, 1.0f, (4F / Constants.PPU), 0);
+        SetGUIPosition(backgroundCenter, 0.5f, 1.0f, (5F / Constants.PPU), 0);
         SetGUIPosition(backgroundRight, 1f, 1.0f, 0, 0);
     }
 

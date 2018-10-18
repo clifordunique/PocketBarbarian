@@ -47,19 +47,12 @@ public class GuiHealth : MonoBehaviour {
         }
     }
 
-    private GameObject InstantiateSprite(Sprite sprite, int position) {
-        
-        GameObject newSpriteGo = new GameObject(sprite.name);
-        SpriteRenderer spriteRenderer = newSpriteGo.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprite;
-        spriteRenderer.sortingLayerName = Constants.SORTING_LAYER_GUI;
-        spriteRenderer.sortingOrder = 1;
-        newSpriteGo.transform.parent = this.transform;
+    private GameObject InstantiateSprite(Sprite sprite, int position) {        
+        GameObject newSpriteGo = Utils.InstantiateSpriteGameObject(sprite, Constants.SORTING_LAYER_GUI, 1, this.transform);
         float positionX = offsetPixelsX / Constants.PPU;
         positionX += position * (distancePixelsX / Constants.PPU);
         positionX += position * widthSprite;
         newSpriteGo.transform.localPosition = new Vector3(positionX, offsetPixelsY / Constants.PPU, 0);
         return newSpriteGo;
-
     }
 }

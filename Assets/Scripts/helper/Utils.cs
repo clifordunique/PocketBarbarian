@@ -69,4 +69,14 @@ public class Utils {
         }
         return spawnPosition;
     }
+
+    public static GameObject InstantiateSpriteGameObject(Sprite sprite, string sortingLayerName, int sortingOrder, Transform parent) {
+        GameObject newSpriteGo = new GameObject(sprite.name);
+        SpriteRenderer spriteRenderer = newSpriteGo.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprite;
+        spriteRenderer.sortingLayerName = sortingLayerName;
+        spriteRenderer.sortingOrder = sortingOrder;
+        newSpriteGo.transform.parent = parent;
+        return newSpriteGo;
+    }
 }
