@@ -48,7 +48,7 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 		percentBetweenWaypoints = Mathf.Clamp01 (percentBetweenWaypoints);
 		float easedPercentBetweenWaypoints = Ease (percentBetweenWaypoints);
 
-		Vector3 newPos = Vector3.Lerp (globalWaypoints [fromWaypointIndex], globalWaypoints [toWaypointIndex], percentBetweenWaypoints);
+		Vector3 newPos = Vector3.Lerp (globalWaypoints [fromWaypointIndex], globalWaypoints [toWaypointIndex], easedPercentBetweenWaypoints);
 
         Vector3 pixelPerfectMoveAmount = Utils.MakePixelPerfect(newPos);
 

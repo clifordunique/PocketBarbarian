@@ -6,13 +6,17 @@ using UnityEngine.Events;
 [System.Serializable]
 public class IntEvent: UnityEvent<int> { }
 
+[System.Serializable]
+public class FloatEvent: UnityEvent<float> { }
+
 public class PlayerStatistics : MonoBehaviour {
 
     public int points;
     public int ammo;
     public int potions;
-    public int stamina;
+    public float stamina; // stamina in percent 0-1F
     public float timeStaminaRegeneration;
+    public float stepsStaminaRegeneration;
 
     [SerializeField]
     private IntEvent eventPoints;
@@ -21,7 +25,7 @@ public class PlayerStatistics : MonoBehaviour {
     [SerializeField]
     private IntEvent eventPotions;
     [SerializeField]
-    private IntEvent eventStamina;
+    private FloatEvent eventStamina;
 
     private bool coroutineStamina = false;
 
@@ -34,17 +38,15 @@ public class PlayerStatistics : MonoBehaviour {
 
     void Update() {
         
-        if (stamina < 22 && !coroutineStamina) {
+        if (stamina < 1 && !coroutineStamina) {
             StartCoroutine(RegenerateStamina());
         }
     }
 
     IEnumerator RegenerateStamina() {
-        Debug.Log("Regenerate Stamina start");
         coroutineStamina = true;
-        while (stamina < 22) {
-            stamina++;
-            Debug.Log("Regenerate Stamina Invoke Event!");
+        while (stamina < 1) {
+            stamina += stepsStaminaRegeneration;
             eventStamina.Invoke(stamina);
             yield return new WaitForSeconds(timeStaminaRegeneration);
         }
@@ -55,8 +57,8 @@ public class PlayerStatistics : MonoBehaviour {
         return _instance;
     }
 
-    public void ModifyStamina(int modifyStamina) {
-        stamina = (stamina + modifyStamina < 0 ? 0 : stamina + modifyStamina);
+    public void ModifyStamina(float modifyStaminaPercent) {
+        stamina = (stamina + modifyStaminaPercent < 0 ? 0 : stamina + modifyStaminaPercent);
         
         eventStamina.Invoke(stamina);
     }

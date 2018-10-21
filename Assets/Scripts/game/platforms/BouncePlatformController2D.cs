@@ -10,6 +10,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
     public Vector2 distance;
     public float waitTime = 0;
     public GameObject prefabDustEffect;
+    public GameObject prefabDustBottomEffect;
 
     private Vector3 endpos;
     private Vector3 startPos;
@@ -27,6 +28,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
     private bool isInitialShake = false;
     private Vector3 shakePos;
     private bool shakeBack = false;
+    private bool dustBottomPlayed = false;
 
     public override void Start() {
         base.Start();        
@@ -39,7 +41,15 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
     public override Vector3 CalculatePlatformMovement() {
         Vector3 result = Vector3.zero;
 
+
+
         if (isMoving) {
+            // wenn auf dem weg nach unten, noch nicht effekt abgespielt und auf dem Weg nach unten
+            if (transform.position.y - (4 * 1 / Constants.PPU) <= endpos.y && !dustBottomPlayed && endpos == currentEndpos) {
+                InstantiateDustEffects(prefabDustBottomEffect);
+                dustBottomPlayed = true;
+            }
+
             if (isInitialShake) {
                 // initial shake on impact
                 result = InitialShake();                
@@ -48,6 +58,8 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
                     result = SmoothMove();
                 }
             }
+        } else {
+            dustBottomPlayed = false;
         }
         
         return result;        
@@ -60,7 +72,6 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
             if (newTime > 1) {
                 newTime = 1;
             }
-            Debug.Log("> NEW TIME:" + newTime) ;
             Vector3 newPosition;
             if (shakeBack) {
                 newPosition = Vector3.Lerp(shakePos, startPos, newTime);
@@ -76,7 +87,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         } else {
             shakeBack = false;
             isInitialShake = false;
-            InstantiateDustEffects();
+            InstantiateDustEffects(prefabDustEffect);
         }
         t = 0.0F;
         return Vector3.zero;
@@ -93,9 +104,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
             }
             float easeFactor = newTime;
 
-            //EasingFunction.EaseOutBounce
-            //EaseOutElastic
-            //EaseInExpo
+
 
             if (easing == EASING_FUNCTION.INOUTCUBIC) {
                 easeFactor = EasingFunction.EaseInOutCubic(0.0F, 1.0F, newTime);
@@ -160,10 +169,10 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
     }
 
 
-    private void InstantiateDustEffects() {
+    private void InstantiateDustEffects(GameObject prefabEffect) {
         for (int i = 0; i < transform.childCount; i++) {
             if (transform.GetChild(i).tag == "Effect") {
-                GameObject effect = (GameObject)Instantiate(prefabDustEffect);
+                GameObject effect = (GameObject)Instantiate(prefabEffect);
                 effect.transform.parent = EffectCollection.GetInstance().transform;
                 effect.transform.position = transform.GetChild(i).position;
             }

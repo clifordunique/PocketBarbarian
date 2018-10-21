@@ -67,8 +67,6 @@ public class PlayerMoveController2D : MoveGroundController2D {
             } else {
                 targetVelocityX = moveDirectionX * moveSpeed;
             }
-        } else {
-            Debug.Log("Not Stopping, still pushed!");
         }
     }
 }

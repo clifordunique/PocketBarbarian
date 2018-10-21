@@ -36,7 +36,6 @@ public class StompingLandingState : AbstractState {
         waitFrame++;
 
         if (hitSomething) {
-            Debug.Log("Hit on stamp");
             playerController.moveController.OnStamp();
 
             hitSomething = false;

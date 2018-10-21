@@ -8,8 +8,6 @@ public class AnimationTrigger : MonoBehaviour {
 
     public void Start() {
         animatorList = GetComponentsInChildren<Animator>();
-
-        Debug.Log("Animators found:" + animatorList.Length);
     }
 
     public void StartTrigger() {

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Utils {
 
+    public static int WorldunitToPixel(float worldunit) {
+        return Mathf.RoundToInt(worldunit / (1 / Constants.PPU));
+    }
     public static Vector2 MakePixelPerfect(Vector2 v) {
         Vector2 result;
         result.x = (Mathf.Round(v.x * Constants.PPU) / Constants.PPU);
@@ -16,7 +19,6 @@ public class Utils {
         Vector3 result = new Vector3();
         if (v.x > 0F) result.x = 1;
         if (v.x <= -0F) result.x = -1;
-        Debug.Log("v.y:" + v.y);
         if (v.y > 0.5F) result.y = 1;
         if (v.y <= -0.5F) result.y = -1;
         return result;

@@ -44,7 +44,6 @@ public class Curve: MonoBehaviour {
 
             // Do something when we reach the target
             if (Mathf.Abs(arcHeight - arc) <= 0.1F) {
-                Debug.Log("REACHED!");
                 Arrived();
             }
         } else {

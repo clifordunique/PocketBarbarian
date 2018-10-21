@@ -23,7 +23,7 @@ public class NumberDisplayer: ScriptableObject {
             int position = numberString.Length - 1 - i;
             int num = (int)char.GetNumericValue(numberString[position]);
             Sprite numSprite = numbers[num];
-            GameObject newGameObject = CreateNewNumber(numSprite, parent, i, offsetPixelsX, offsetPixelsY);            
+            CreateNewNumber(numSprite, parent, i, offsetPixelsX, offsetPixelsY);            
         }
     }
 

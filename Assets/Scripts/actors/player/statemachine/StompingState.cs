@@ -13,6 +13,9 @@ public class StompingState : AbstractState {
 
         playerController.animator.SetBool(STOMPING_PARAM, true);
         playerController.moveController.OnStamp();
+
+        // Reduce Stamina
+        PlayerStatistics.GetInstance().ModifyStamina(-playerController.staminaForStomp);
     }
 
     public override void OnExit() {

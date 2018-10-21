@@ -23,7 +23,6 @@ public class BezierTest : MonoBehaviour {
         float distance = Vector3.Distance(target.position, transform.position);
         
         time = baseSpeed + (distance * 2) * 0.02F;
-        Debug.Log(distance + " / " + time);
 
         startFlight = true;
         waypoints[0] = transform.position;

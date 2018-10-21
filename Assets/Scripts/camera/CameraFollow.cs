@@ -115,7 +115,6 @@ public class CameraFollow : MonoBehaviour {
                 float modifierUp;
                 if (down) {
                     modifierUp = Random.Range(shakeIntensityY, 0);
-                    Debug.Log(modifierUp);
                 } else {
                     modifierUp = Random.Range(-shakeIntensityY, shakeIntensityY);
                 }

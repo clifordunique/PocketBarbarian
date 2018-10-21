@@ -34,8 +34,10 @@ public class MoveState : AbstractState {
             return new FallingState(playerController);
         }
         if (input.IsDashing()) {
-            Debug.Log("startDashing");
-            return new DashingState(playerController);
+            // check if Dashing possible
+            if (PlayerStatistics.GetInstance().stamina - playerController.staminaForDash >= 0) {
+                return new DashingState(playerController);
+            }
         }
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;

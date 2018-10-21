@@ -28,6 +28,5 @@ public class SinusMovement: MonoBehaviour {
     void Update() {
         pos += transform.up * Time.deltaTime * MoveSpeed;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
-        Debug.Log((Mathf.Sin(Time.time * frequency) * magnitude));
     }
 }

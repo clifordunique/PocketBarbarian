@@ -27,8 +27,11 @@ public class FallingState : AbstractState {
             return new LandingState(playerController);
         }
 
-        if (playerController.moveController.IsFalling() && Input.GetKeyDown(KeyCode.DownArrow)) {
-            return new StompingState(playerController);
+        if (playerController.moveController.IsFalling() && InputController.GetInstance().DownKeyDown()) {
+            // check if Stomping possible
+            if (PlayerStatistics.GetInstance().stamina - playerController.staminaForStomp >= 0) {
+                return new StompingState(playerController);
+            }
         }
 
         Move(input.GetDirectionX(), input.GetDirectionY());

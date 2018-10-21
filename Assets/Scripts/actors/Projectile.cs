@@ -22,7 +22,6 @@ public class Projectile : MonoBehaviour {
 
     public void InitProjectile(Vector3 target, bool vector = false) {
         this.target = target;
-        Debug.Log("Target:" + target);
         this.startPosition = transform.position;
         this.vector = vector;
         if (target.x < transform.position.x) {

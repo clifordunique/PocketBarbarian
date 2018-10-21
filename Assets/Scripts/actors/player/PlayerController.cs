@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMoveController2D))]
 public class PlayerController : MonoBehaviour, IActorController {
 
+    public float staminaForDash = 0.5F;
+    public float staminaForStomp = 0.5F;
+
     public LayerMask interactiveLayers;
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;

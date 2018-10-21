@@ -21,22 +21,21 @@ public class GuiStaminaBar : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        widthSprite = barElement.bounds.size.x;        
+        widthSprite = barElement.bounds.size.x;
+        StartCoroutine(ChangeBar(0.001F)); // init
     }
 
-    public void UpdateStamina(int newStaminaBars) {
-        Debug.Log("Update Stamina:" + newStaminaBars);
-        newBars = (newStaminaBars > maxBars ? maxBars : newStaminaBars);
-        newBars = (newBars < 0 ? 0 : newBars);
+    public void UpdateStamina(float newStaminaInPercent) {
+        newBars = Mathf.RoundToInt(maxBars* newStaminaInPercent);
+        
         if (!coroutineRunning) {
-            StartCoroutine(ChangeBar());
+            StartCoroutine(ChangeBar(delayTime));
         }
     }
     
 
-    IEnumerator ChangeBar() {
+    IEnumerator ChangeBar(float myDelayTime) {
         coroutineRunning = true;
-        Debug.Log("ChangeBar: " + newBars + " / " + currentBars);
         while (newBars != currentBars && newBars >= 0) {
             
             // delete bars
@@ -61,7 +60,7 @@ public class GuiStaminaBar : MonoBehaviour {
                 currentBarArray.Add(newBar);
                 currentBars++;
             }
-            yield return new WaitForSeconds(delayTime);
+            yield return new WaitForSeconds(myDelayTime);
         }
         coroutineRunning = false;
     }
