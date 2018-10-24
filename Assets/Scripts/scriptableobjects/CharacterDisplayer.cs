@@ -31,6 +31,11 @@ public class CharacterDisplayer : ScriptableObject {
     public Range asciiRangeSpecial;
     public Range asciiRangeBlank;
     public int charSpacingPixel;
+    public int charPixelHeight;
+
+    private static int LINEBREAK = 92;
+
+    private float maxLineWidth = float.MinValue;
 
     public void OnEnable() {
         for(int i = 0; i < characterUppercaseList.Length; i++) {
@@ -50,18 +55,32 @@ public class CharacterDisplayer : ScriptableObject {
         }
     }
 
-    public float DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY) {
+    public Vector2 DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY) {
         if (text != null) {
             Vector2 position = new Vector2((myTransform.position.x + offsetPixelsX / Constants.PPU), (myTransform.position.y + offsetPixelsY / Constants.PPU));
             Vector2 originalPosition = position;
-            for(int i = 0; i < text.Length; i++ ) {
-                Debug.Log(text[i] +"="+ ((int)text[i]));
-                DisplayCharacter(text[i], myTransform, ref position);
+            maxLineWidth = float.MinValue;
+            for (int i = 0; i < text.Length; i++ ) {
+
+                Debug.Log("PosX" + position.x + " / MaxLine" + maxLineWidth);
+                if (position.x > maxLineWidth) {
+                    // laengste Zeile merken
+                    maxLineWidth = position.x;
+                    Debug.Log("PosX" + maxLineWidth);
+                }
+                
+                if (((int)text[i]) == LINEBREAK) {
+                    position.x = originalPosition.x;
+                    position.y -= (charPixelHeight + charSpacingPixel) / Constants.PPU;
+                } else {
+                    DisplayCharacter(text[i], myTransform, ref position);
+                }
             }
-            Debug.Log("Length: " + (position.x - originalPosition.x));
-            return (position.x - originalPosition.x);
+            Debug.Log("Length1: " + (position.x - originalPosition.x));
+            Debug.Log("Length2: " + maxLineWidth  + "/" + (maxLineWidth - originalPosition.x));
+            return new Vector2((maxLineWidth - originalPosition.x), (originalPosition.y - position.y));
         }
-        return -1;
+        return Vector2.zero;
     }
 
     private void DisplayCharacter(char character, Transform myTransform, ref Vector2 position) {

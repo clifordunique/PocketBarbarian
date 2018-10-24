@@ -19,9 +19,7 @@ public class TextBox : MonoBehaviour {
         charController.Show(text);
 
         Vector2 sizeBox = bgrController.GetSize();
-
-        Vector3 favoritePosition = new Vector3(transform.parent.position.x, transform.parent.position.y + offsetY + (sizeBox.y/2F), transform.parent.position.z);// + positionOffset;
-        Debug.Log("FavoritePosX" + favoritePosition.x);
+        Vector3 favoritePosition = new Vector3(transform.parent.position.x, transform.parent.position.y + offsetY + (sizeBox.y/2F), transform.parent.position.z);
         
         float minX = favoritePosition.x - (sizeBox.x / 2F);
         float maxX = favoritePosition.x + (sizeBox.x / 2F);

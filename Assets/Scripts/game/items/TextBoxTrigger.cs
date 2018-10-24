@@ -7,6 +7,7 @@ public class TextBoxTrigger : MonoBehaviour {
     public TextBox textBox;
     public LayerMask layerMaskToAcitvate;
     public string text;
+    public int offsetPixelsY;
 
     private float offsetY;
 
@@ -14,12 +15,11 @@ public class TextBoxTrigger : MonoBehaviour {
     void Start () {
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         offsetY = boxCollider.bounds.extents.y;
+        if (offsetPixelsY > 0) {
+            offsetY += offsetPixelsY / Constants.PPU;
+        }
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (layerMaskToAcitvate == (layerMaskToAcitvate | (1 << collision.gameObject.layer))) {
