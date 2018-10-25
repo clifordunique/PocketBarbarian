@@ -27,7 +27,7 @@ public class HurtBox : MonoBehaviour {
     [HideInInspector]
     public BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
-    private LootController lootController;
+    private IChildGenerator lootController;
 
     // Use this for initialization
     public virtual void Start() {
@@ -50,10 +50,10 @@ public class HurtBox : MonoBehaviour {
             spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
         }
 
-        lootController = GetComponent<LootController>();
-        if (!lootController && transform.parent) {
+        lootController = GetComponent<IChildGenerator>();
+        if (lootController == null && transform.parent) {
             // search in parent
-            lootController = transform.parent.GetComponent<LootController>();
+            lootController = transform.parent.GetComponent<IChildGenerator>();
         }
     }
 
@@ -99,9 +99,9 @@ public class HurtBox : MonoBehaviour {
             enemyController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
         }
 
-        // Spawn loot hit
-        if (currentHealth > 0 && lootController && lootController.lootMin) {
-            lootController.SpawnLootMin();
+        // Spawn Effect on hit
+        if (currentHealth > 0 && lootController != null) {
+            lootController.SpawnChildrenOnHit();
         }
 
 
@@ -134,9 +134,9 @@ public class HurtBox : MonoBehaviour {
             InstantiateEffect(prefabDeathEffect, hitDirectionX);
         }
 
-        // Spawn loot hit
-        if (lootController) {
-            lootController.SpawnLootMax();
+        // Spawn Effect on death
+        if (lootController != null) {
+            lootController.SpawnChildrenOnDeath();
         }
 
         if (destroyOnDeath) {

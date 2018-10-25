@@ -63,14 +63,5 @@ public class BezierTest : MonoBehaviour {
             t += Time.deltaTime / time;
             transform.position = GetPoint(t);
         }
-/*
-        Vector3 AtoB = Vector3.Lerp(waypoints[0], waypoints[1], t);
-        Vector3 BtoC = Vector3.Lerp(waypoints[1], waypoints[2], t);
-        Vector3 final = Vector3.Lerp(AtoB, BtoC, t);
-
-        if (Vector3.Distance(transform.position, waypoints[1]) <= 0.1F) {
-            Debug.Log("REACHED!");
-        }
-        transform.position = final;*/
     }
 }

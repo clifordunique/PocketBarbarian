@@ -52,7 +52,6 @@ public class ItemPhysicsSimulator : RaycastController2D {
             if (hit) {
                 if (hit.transform.gameObject == this.gameObject) {
                     // is the same gameobject
-                    Debug.Log("Is Same Gameobject: " + this.gameObject.name);
                     continue;
                 }
                 if (hit.collider.tag == "Through") {

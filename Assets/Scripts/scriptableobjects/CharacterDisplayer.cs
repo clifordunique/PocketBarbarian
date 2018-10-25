@@ -61,12 +61,10 @@ public class CharacterDisplayer : ScriptableObject {
             Vector2 originalPosition = position;
             maxLineWidth = float.MinValue;
             for (int i = 0; i < text.Length; i++ ) {
-
-                Debug.Log("PosX" + position.x + " / MaxLine" + maxLineWidth);
+                
                 if (position.x > maxLineWidth) {
                     // laengste Zeile merken
                     maxLineWidth = position.x;
-                    Debug.Log("PosX" + maxLineWidth);
                 }
                 
                 if (((int)text[i]) == LINEBREAK) {
@@ -76,8 +74,6 @@ public class CharacterDisplayer : ScriptableObject {
                     DisplayCharacter(text[i], myTransform, ref position);
                 }
             }
-            Debug.Log("Length1: " + (position.x - originalPosition.x));
-            Debug.Log("Length2: " + maxLineWidth  + "/" + (maxLineWidth - originalPosition.x));
             return new Vector2((maxLineWidth - originalPosition.x), (originalPosition.y - position.y));
         }
         return Vector2.zero;

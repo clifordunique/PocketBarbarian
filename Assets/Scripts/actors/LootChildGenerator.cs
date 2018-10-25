@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootController : MonoBehaviour {
+public class LootChildGenerator: MonoBehaviour, IChildGenerator  {
     [Header("Loot Max")]
     public LootPackage lootPackageMax;
 
@@ -11,17 +11,16 @@ public class LootController : MonoBehaviour {
     [ConditionalHideAttribute("lootMin", true)]
     public LootPackage lootPackageMin;
 
-
-
-    public void SpawnLootMin() {
+    public void SpawnChildrenOnHit() {
         if (lootMin) {
             Spawn(lootPackageMin);
         }
     }
 
-    public void SpawnLootMax() {
+    public void SpawnChildrenOnDeath() {
         Spawn(lootPackageMax);
     }
+
 
     private void Spawn(LootPackage lootPackage) {
         int amount = lootPackage.amountMin;
@@ -41,4 +40,6 @@ public class LootController : MonoBehaviour {
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = transform.position;
     }
+
+
 }

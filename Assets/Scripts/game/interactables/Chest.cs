@@ -7,12 +7,12 @@ public class Chest : AbstactInteractable {
     private const string OPEN_PARAM = "OPEN";
     private Animator animator;
     private BoxCollider2D boxCollider;
-    private LootController lootController;
+    private LootChildGenerator lootController;
 
     public void Start() {
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        lootController = GetComponent<LootController>();
+        lootController = GetComponent<LootChildGenerator>();
     }
 
     public override void Activate() {
@@ -25,6 +25,6 @@ public class Chest : AbstactInteractable {
 
     public void Opened() {
         actionFinished = true;
-        lootController.SpawnLootMax();
+        lootController.SpawnChildrenOnDeath();
     }
 }
