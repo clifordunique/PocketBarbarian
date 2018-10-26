@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack1State : AbstractState {
+public class Attack2State : AbstractState {
 
     private bool attackFinished = false;
-    private bool comboAttack = false;
+    private bool comboAttach = false;
     private bool exitCombo = false;
     private bool hitSomething = false;
-    private float moveTime = 0.2F;
+    private bool moveForward = false;
+    private float moveTime1 = 0.08F;
+    private float moveTime2 = 0.2F;
     private float checkMoveStarted;
 
-    public Attack1State(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
+    public Attack2State(PlayerController playerController) : base(ACTION.ATTACK2, playerController) {
     }
 
     public override void OnEnter() {
-        playerController.animator.SetBool(ATTACK1_PARAM, true);
+        playerController.animator.SetBool(ATTACK2_PARAM, true);
+        Move(0, input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(ATTACK1_PARAM, false);
+        playerController.animator.SetBool(ATTACK2_PARAM, false);
     }
 
     public override AbstractState UpdateState() {
@@ -29,7 +32,7 @@ public class Attack1State : AbstractState {
         }
 
         if (input.IsAttack1KeyDown()) {
-            comboAttack = true;
+            comboAttach = true;
         }
 
         if (hitSomething) {
@@ -38,16 +41,16 @@ public class Attack1State : AbstractState {
             hitSomething = false;
         }
 
-        if (attackFinished || (!comboAttack && exitCombo)) {
-            return new IdleState(playerController);
+        if (attackFinished || (!comboAttach && exitCombo)) {
+            return new MoveState(playerController);
         }
 
-        if (comboAttack && exitCombo) {
+        if (moveForward) {
             if (checkMoveStarted > Time.time) {
                 Move(playerController.dirX, input.GetDirectionY());
             } else {
                 Move(0, input.GetDirectionY());
-                checkMoveStarted = 0;
+                moveForward = false;
             }
         }
         return null;
@@ -57,12 +60,19 @@ public class Attack1State : AbstractState {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             attackFinished = true;
         }
-        if (parameter == "exit_combo") {
-            exitCombo = true;
-            checkMoveStarted = Time.time + moveTime;
-        }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;
+        }
+        if (parameter == "exit_combo") {
+            exitCombo = true;
+        }
+        if (parameter == "move_forward1") {
+            moveForward = true;
+            checkMoveStarted = Time.time + moveTime1;
+        }
+        if (parameter == "move_forward2") {
+            moveForward = true;
+            checkMoveStarted = Time.time + moveTime2;
         }
     }
 }

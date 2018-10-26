@@ -33,6 +33,10 @@ public class MoveState : AbstractState {
         if (playerController.moveController.IsFalling()) {
             return new FallingState(playerController);
         }
+        if (input.IsAttack1KeyDown()) {
+            return new Attack2State(playerController);
+        }
+
         if (input.IsDashing()) {
             // check if Dashing possible
             if (PlayerStatistics.GetInstance().stamina - playerController.staminaForDash >= 0) {

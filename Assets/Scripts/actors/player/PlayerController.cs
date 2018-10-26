@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour, IActorController {
     public HitBox hitBoxDash;
     public PlayerHurtBox hurtBox;
 
-    private float dirX = 1;
+    [HideInInspector]
+    public float dirX = 1;
     [HideInInspector]
     public bool dead = false;
     [HideInInspector]
