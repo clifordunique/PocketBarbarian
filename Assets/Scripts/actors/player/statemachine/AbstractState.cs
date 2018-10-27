@@ -9,6 +9,7 @@ public abstract class AbstractState {
     public static string IDLE_PARAM = "IDLE";
     public static string RUNNING_PARAM = "RUNNING";
     public static string JUMPING_PARAM = "JUMPING";
+    public static string JUMPING_ATTACK_PARAM = "JUMPING_ATTACK";
     public static string DASHING_PARAM = "DASHING";
     public static string ATTACK1_PARAM = "ATTACK1";
     public static string ATTACK2_PARAM = "ATTACK2";
@@ -18,6 +19,7 @@ public abstract class AbstractState {
     public static string LANDING_PARAM = "LANDING";
     public static string STOMPING_PARAM = "STOMPING";
     public static string STOMPING_LANDING_PARAM = "STOMPING_LANDING";
+    public static string DYING_PARAM = "DYING";
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";

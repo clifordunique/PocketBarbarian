@@ -7,16 +7,32 @@ public class GuiController : MonoBehaviour {
     public GameObject backgroundLeft;
     public GameObject backgroundCenter;
     public GameObject backgroundRight;
+    public GameObject prefabDiedEffect;
+
+    private static GuiController _instance;
 
     // Use this for initialization
     void Start () {
-        
+        _instance = this;
+    }
 
+    public static GuiController GetInstance() {
+        if (_instance) {
+            return _instance;
+        } else {
+            Debug.LogError("GuiController not yet instanciated!");
+            return null;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         RefreshPositions();
+    }
+
+    public void InstanciateDiedEffect() {
+        GameObject effect = Instantiate(prefabDiedEffect);
+        effect.transform.parent = EffectCollection.GetInstance().transform;
     }
 
     public void RefreshPositions() {

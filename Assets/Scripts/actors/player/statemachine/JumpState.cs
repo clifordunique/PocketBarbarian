@@ -33,11 +33,15 @@ public class JumpState : AbstractState {
             playerController.moveController.OnJumpInputUp();
         }
 
-        if (playerController.moveController.IsFalling() && Input.GetKeyDown(KeyCode.DownArrow)) {
+        if (playerController.moveController.IsFalling() && input.DownKeyDown()) {
             // check if Stomping possible
             if (PlayerStatistics.GetInstance().stamina - playerController.staminaForStomp >= 0) {
                 return new StompingState(playerController);
             }
+        }
+
+        if (input.IsAttack1KeyDown()) {
+            return new JumpAttackState(playerController);
         }
 
         Move(input.GetDirectionX(), input.GetDirectionY());

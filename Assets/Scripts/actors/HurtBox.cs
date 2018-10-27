@@ -29,6 +29,8 @@ public class HurtBox : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private IChildGenerator lootController;
 
+    private bool alreadyHitThisFrame = false;
+
     // Use this for initialization
     public virtual void Start() {
         ModifyHealth(maxHealth);
@@ -68,17 +70,25 @@ public class HurtBox : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision) {
         // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
-            // get GameActor from collision gameobject
-            HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
-            if (attackerActor) {
-                // receive damage from attacker
-                ModifyHealth(-attackerActor.damage);
-                attackerActor.ReactHit();
-                ReactHurt(collision);
-            } else {
-                Debug.Log("Attacker has no HitBox component!");
+            if (!alreadyHitThisFrame) {
+                // get GameActor from collision gameobject
+                HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
+                if (attackerActor) {
+                    // receive damage from attacker
+                    ModifyHealth(-attackerActor.damage);
+                    attackerActor.ReactHit();
+                    ReactHurt(collision);
+                } else {
+                    Debug.Log("Attacker has no HitBox component!");
+                }
+                alreadyHitThisFrame = true;
             }
         }
+    }
+
+    public void Update() {
+        // Nach den Collisions wird alreadyHit wieder auf false gesetzt, damit es im nächsten Frame wieder funktioniert.
+        alreadyHitThisFrame = false;
     }
 
 

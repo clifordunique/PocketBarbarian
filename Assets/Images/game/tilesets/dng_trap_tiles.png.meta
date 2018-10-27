@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: 6437a890b2f47c44db1dfc1bf3b4ea3a
+guid: c22226e3759cf434f8f858e56eace7c1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dng_ground_destructable_0
-    21300002: dng_ground_destructable_1
-    21300004: dng_ground_destructable_2
-    21300006: dng_ground_destructable_3
-    21300008: dng_ground_destructable_4
-    21300010: dng_ground_destructable_5
+    21300000: dng_trap_tiles_0
+    21300002: dng_trap_tiles_1
+    21300004: dng_trap_tiles_2
+    21300006: dng_trap_tiles_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -123,121 +121,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dng_ground_destructable_0
+      name: dng_trap_tiles_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 112
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -6, y: 1}
+        - {x: 5, y: 1}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 357d726ea2bc01e43a849c0b3614996e
+      spriteID: f9639c71a5be44e43bfc82c670388b85
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_ground_destructable_1
+      name: dng_trap_tiles_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 112
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 1, y: 6}
+        - {x: 1, y: -5}
       tessellationDetail: 0
       bones: []
-      spriteID: ecf54e2aa5cb26e4a9b2b0f8b32a1fcc
+      spriteID: f481106dffb50354a87e868e1e8710bb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_ground_destructable_2
+      name: dng_trap_tiles_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 0
+        y: 96
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -5, y: -1}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 6, y: -1}
       tessellationDetail: 0
       bones: []
-      spriteID: d9ac93bc88e7b79419661639c30002bf
+      spriteID: 81df9b26014b53344b585daee92838e5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_ground_destructable_3
+      name: dng_trap_tiles_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 16
+        y: 96
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -1, y: -6}
+        - {x: -1, y: 5}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: e8c6bb850707ef642b034780d840d387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dng_ground_destructable_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ff879437a01e8a498774703b0af76e1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dng_ground_destructable_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfac953f3a7c696459b87cc02282fd92
+      spriteID: c6cfdfeb0e2e2b749a4b23f3c8a6fb32
       vertices: []
       indices: 
       edges: []
@@ -245,7 +219,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 69e285c9938a3674ea3d8ef46cab3bbf
+    spriteID: 5e08076c542353e4685dd3e095c76602
     vertices: []
     indices: 
     edges: []
