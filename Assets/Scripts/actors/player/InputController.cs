@@ -6,6 +6,8 @@ public class InputController : MonoBehaviour {
 
     public float timeDoubleDash;
 
+    public bool moveInputEnabled = true;
+
     private float timeLastDirectionX = -1;
     private float lastDirectionX;
     private bool isDashing;
@@ -25,27 +27,49 @@ public class InputController : MonoBehaviour {
     }
 
     public bool IsJumpKeyDown() {
-        return (Input.GetKeyDown(KeyCode.Space));
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.Space));
+        }
+        return false;
     }
 
     public bool IsAttack1KeyDown() {
-        return (Input.GetKeyDown(KeyCode.X));
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.X));
+        }
+        return false;
     }
 
     public bool IsJumpKeyUp() {
-        return (Input.GetKeyUp(KeyCode.Space));
+        if (moveInputEnabled) {
+            return (Input.GetKeyUp(KeyCode.Space));
+        }
+        return false;
     }
 
     public bool DownKeyDown() {
-        return (Input.GetKeyDown(KeyCode.DownArrow));
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.DownArrow));
+        }
+        return false;
     }
 
     public float GetDirectionX() {
-        return Input.GetAxisRaw("Horizontal");
+        if (moveInputEnabled) {
+            return Input.GetAxisRaw("Horizontal");
+        }
+        return 0F;
     }
 
     public float GetDirectionY() {
-        return Input.GetAxisRaw("Vertical");
+        if (moveInputEnabled) {
+            return Input.GetAxisRaw("Vertical");
+        }
+        return 0F;
+    }
+
+    public bool AnyKeyDown() {
+        return Input.anyKeyDown;
     }
 
     // Update is called once per frame

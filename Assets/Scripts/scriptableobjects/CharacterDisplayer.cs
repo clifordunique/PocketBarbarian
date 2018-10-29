@@ -21,13 +21,16 @@ public class CharacterDisplayer : ScriptableObject {
     
     public int defaultCharacterWidthUppercase;
     public int defaultCharacterWidthLowercase;
+    public int defaultCharacterWidthNumbers;
     public int defaultCharacterWidthSpecial;
     public Character[] characterUppercaseList;
     public Character[] characterLowercaseList;
+    public Character[] characterNumbersList;
     public Character[] characterSpecialList;
     
     public Range asciiRangeUppercase;
     public Range asciiRangeLowercase;
+    public Range asciiRangeNumbers;
     public Range asciiRangeSpecial;
     public Range asciiRangeBlank;
     public int charSpacingPixel;
@@ -46,6 +49,11 @@ public class CharacterDisplayer : ScriptableObject {
         for (int i = 0; i < characterLowercaseList.Length; i++) {
             if (characterLowercaseList[i].widthInPixel == 0) {
                 characterLowercaseList[i].widthInPixel = defaultCharacterWidthLowercase;
+            }
+        }
+        for (int i = 0; i < characterNumbersList.Length; i++) {
+            if (characterNumbersList[i].widthInPixel == 0) {
+                characterNumbersList[i].widthInPixel = defaultCharacterWidthNumbers;
             }
         }
         for (int i = 0; i < characterSpecialList.Length; i++) {
@@ -89,13 +97,18 @@ public class CharacterDisplayer : ScriptableObject {
                 // Lowercase Character
                 DisplayCharacterFromArray((ascii - asciiRangeLowercase.from), characterLowercaseList, myTransform, ref position);
             } else {
-                // Blank Characters
-                if (ascii >= asciiRangeBlank.from && ascii <= asciiRangeBlank.to) {
-                    position.x += (defaultCharacterWidthSpecial) / Constants.PPU;
-                }
-                // Special Characters
-                if (ascii >= asciiRangeSpecial.from && ascii <= asciiRangeSpecial.to) {
-                    DisplaySpecialCharacterFromArray(ascii, myTransform, ref position);
+                if (ascii >= asciiRangeNumbers.from && ascii <= asciiRangeNumbers.to) {
+                    // Number Character
+                    DisplayCharacterFromArray((ascii - asciiRangeNumbers.from), characterNumbersList, myTransform, ref position);
+                } else {
+                    // Blank Characters
+                    if (ascii >= asciiRangeBlank.from && ascii <= asciiRangeBlank.to) {
+                        position.x += (defaultCharacterWidthSpecial) / Constants.PPU;
+                    }
+                    // Special Characters
+                    if (ascii >= asciiRangeSpecial.from && ascii <= asciiRangeSpecial.to) {
+                        DisplaySpecialCharacterFromArray(ascii, myTransform, ref position);
+                    }
                 }
             }
         }
