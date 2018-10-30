@@ -92,15 +92,18 @@ public class GuiSimpleCharacterBackgroundController : MonoBehaviour {
         bgrBottomCenterGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(0, -extendsY));
 
         bgrTopLeftGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(-extendsX, extendsY));
+        bgrTopLeftGo.transform.localScale = new Vector3(1, 1, 0);
         bgrLeftGo.transform.localScale = new Vector3(1, newScaleY, 0);
         bgrLeftGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(-extendsX, 0));
         bgrBottomLeftGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(-extendsX, -extendsY));
+        bgrBottomLeftGo.transform.localScale = new Vector3(1, 1, 0);
 
         bgrTopRightGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(extendsX, extendsY));
+        bgrTopRightGo.transform.localScale = new Vector3(1, 1, 0);
         bgrRightGo.transform.localScale = new Vector3(1, newScaleY, 0);
         bgrRightGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(extendsX, 0));
         bgrBottomRightGo.transform.localPosition = Utils.MakePixelPerfect(new Vector2(extendsX, -extendsY));
-
+        bgrBottomRightGo.transform.localScale = new Vector3(1, 1, 0);
 
         SpriteRenderer srBottomCenter = bgrBottomCenterGo.GetComponent<SpriteRenderer>();
         float extendsBottomY = srBottomCenter.bounds.size.y;

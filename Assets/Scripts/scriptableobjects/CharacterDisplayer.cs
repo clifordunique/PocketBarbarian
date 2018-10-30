@@ -144,6 +144,14 @@ public class CharacterDisplayer : ScriptableObject {
             // +
             CreateNewChar(characterSpecialList[6], myTransform, ref position);
         }
+        if (ascii == 42) {
+            // *
+            CreateNewChar(characterSpecialList[7], myTransform, ref position);
+        }
+        if (ascii == 39) {
+            // '
+            CreateNewChar(characterSpecialList[8], myTransform, ref position);
+        }
     }
 
 
