@@ -9,29 +9,41 @@ public class SimpleMovement : MonoBehaviour {
     public Vector2 distance;
     public bool biDirectional = false;
     public bool easeInOut = false;
+    public bool autoStart = true;
 
     private Vector3 endpos;
     private Vector3 startPos;
 
     private bool isMoving = false;
+    private float t = 0.0f;
 
     // Use this for initialization
     public void Start () {
         startPos = transform.position;
         endpos = new Vector3(transform.position.x + distance.x, transform.position.y + distance.y, transform.position.z);
+        if (autoStart) {
+            StartCoroutine(SmoothMove());
+        }
+    }
 
-        StartCoroutine(SmoothMove());
+    public bool StartMoving() {
+
+        if (!isMoving) {
+            StartCoroutine(SmoothMove());
+            return true;
+        }
+        return false;
     }
 
     public void Update() {
-        if (biDirectional && !isMoving) {
+        if (autoStart && biDirectional && !isMoving) {
             StartCoroutine(SmoothMove());
         }
     }
 
     IEnumerator SmoothMove() {
         isMoving = true;
-        float t = 0.0f;
+        t = 0.0f;
         while (t <= 1.0) {
 
             t += Time.deltaTime / seconds;

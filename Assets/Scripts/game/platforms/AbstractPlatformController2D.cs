@@ -42,7 +42,16 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
 
             if (passenger.moveBeforePlatform == beforeMovePlatform) {
                 if (passengerDictionary.ContainsKey(passenger.transform)) {
-                    passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
+                    if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].collisions.below) {
+                        Debug.Log("SQUISH  BOTTOM!!!");
+                    } else {
+                        if (passenger.velocity.y > 0 && passenger.standingOnPlatform && passengerDictionary[passenger.transform].collisions.above) {
+                            Debug.Log("SQUISH  TOP!!!");
+                        } else {
+                            //Debug.Log("MOVE PASSANGER");
+                            passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
+                        }
+                    }                    
                 }
             }
         }
@@ -69,7 +78,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                         movedPassengers.Add(hit.transform);
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
-
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
                     }
                 }
@@ -89,8 +97,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                     if (!movedPassengers.Contains(hit.transform)) {
                         movedPassengers.Add(hit.transform);
                         float pushX = velocity.x - (hit.distance - skinWidth) * directionX;
-                        float pushY = -skinWidth;
-
+                        float pushY = -skinWidth;                        
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true));
                     }
                 }
@@ -110,7 +117,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                         movedPassengers.Add(hit.transform);
                         float pushX = velocity.x;
                         float pushY = velocity.y;
-
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
                     }
                 }
