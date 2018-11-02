@@ -15,7 +15,7 @@ public class HitBox : MonoBehaviour {
 
     public void Start() {
         actorController = GetComponent<IActorController>();
-        if (actorController == null) {
+        if (actorController == null && transform.parent != null) {
             // search in parent
             actorController = transform.parent.GetComponent<IActorController>();
         }

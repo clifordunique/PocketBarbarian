@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour, IActorController {
     public float staminaForStomp = 0.5F;
 
     public LayerMask interactiveLayers;
+
+    public GameObject prefabProjectile;
+    public GameObject spawnPositionProjectile;
+
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;
     public GameObject prefabEffectLanding;
@@ -40,6 +44,8 @@ public class PlayerController : MonoBehaviour, IActorController {
     public bool interactableInRange = false;
     [HideInInspector]
     public GameObject interactable;
+    [HideInInspector]
+    public PlayerStatistics statistics;
 
     private static PlayerController _instance;
 
@@ -49,7 +55,7 @@ public class PlayerController : MonoBehaviour, IActorController {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         currentState = new IdleState(this);
-
+        statistics = GetComponentInChildren<PlayerStatistics>();
         _instance = this;
     }
 
@@ -120,5 +126,34 @@ public class PlayerController : MonoBehaviour, IActorController {
             }
 
         }
+    }
+
+    public bool HasEnoughStaminaForDash() {
+        if (statistics.stamina - staminaForDash >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasEnoughStaminaForStomp() {
+        if (statistics.stamina - staminaForStomp >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void ReduceStaminaDash() {
+        statistics.ModifyStamina(-staminaForDash);
+    }
+
+    public void ReduceStaminaStomp() {
+        statistics.ModifyStamina(-staminaForStomp);
+    }
+
+    public void ShootProjectile() {
+        Vector3 target = new Vector3(dirX, 0, 0);
+
+        GameObject projectileGo = Instantiate(prefabProjectile, spawnPositionProjectile.transform.position, transform.rotation, EffectCollection.GetInstance().transform);
+        projectileGo.GetComponent<Projectile>().InitProjectile(target, true);        
     }
 }

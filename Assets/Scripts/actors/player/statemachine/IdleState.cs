@@ -39,6 +39,10 @@ public class IdleState : AbstractState {
             return new ActionState(playerController);
         }
 
+        if (input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+            return new ThrowIdleState(playerController);
+        }
+
         Move(0, input.GetDirectionY());
         return null;
     }

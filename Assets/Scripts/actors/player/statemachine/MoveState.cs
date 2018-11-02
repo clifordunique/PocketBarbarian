@@ -36,10 +36,12 @@ public class MoveState : AbstractState {
         if (input.IsAttack1KeyDown()) {
             return new Attack2State(playerController);
         }
-
+        if (input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+            return new ThrowRunningState(playerController);
+        }
         if (input.IsDashing()) {
             // check if Dashing possible
-            if (PlayerStatistics.GetInstance().stamina - playerController.staminaForDash >= 0) {
+            if (playerController.HasEnoughStaminaForDash()) {
                 return new DashingState(playerController);
             }
         }

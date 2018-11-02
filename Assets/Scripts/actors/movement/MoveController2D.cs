@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveController2D : RaycastController2D {
+public class MoveController2D : RaycastController2D, IMove {
     
 	public CollisionInfo collisions;
 	[HideInInspector]
@@ -118,7 +118,15 @@ public class MoveController2D : RaycastController2D {
 		collisions.fallingThroughPlatform = false;
 	}
 
-	public struct CollisionInfo {
+    public bool IsBelow() {
+        return collisions.below;
+    }
+
+    public bool IsAbove() {
+        return collisions.above;
+    }
+
+    public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;
 

@@ -40,6 +40,13 @@ public class InputController : MonoBehaviour {
         return false;
     }
 
+    public bool IsAttack2KeyDown() {
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.C));
+        }
+        return false;
+    }
+
     public bool IsJumpKeyUp() {
         if (moveInputEnabled) {
             return (Input.GetKeyUp(KeyCode.Space));

@@ -20,9 +20,13 @@ public abstract class AbstractState {
     public static string STOMPING_PARAM = "STOMPING";
     public static string STOMPING_LANDING_PARAM = "STOMPING_LANDING";
     public static string DYING_PARAM = "DYING";
+    public static string THROW_IDLE_PARAM = "THROW_IDLE";
+    public static string THROW_JUMP_PARAM = "THROW_JUMP";
+    public static string THROW_RUNNING_PARAM = "THROW_RUNNING";
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
+    public static string EVENT_PARAM_THROW = "throw";
     
 
     public enum ACTION {NA, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH };

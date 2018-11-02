@@ -33,8 +33,11 @@ public class PlayerStatistics : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _instance = this;        
-	}
+        _instance = this;
+        eventAmmo.Invoke(ammo);
+        eventPoints.Invoke(points);
+        eventPotions.Invoke(potions);
+    }
 
     void Update() {
         

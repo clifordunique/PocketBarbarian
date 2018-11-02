@@ -112,6 +112,5 @@ public class EnemyController : MonoBehaviour, IActorController {
             projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
             lastShot = Time.time;
         }
-
     }
 }

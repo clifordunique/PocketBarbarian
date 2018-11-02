@@ -27,7 +27,9 @@ public class GuiController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        RefreshPositions();
+        if (Time.frameCount % 5 == 0) {
+            RefreshPositions();
+        }
     }
 
     public void InstanciateDiedEffect() {

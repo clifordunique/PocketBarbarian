@@ -38,7 +38,7 @@ public class JumpAttackState : AbstractState {
         }
 
 
-        if (input.IsJumpKeyUp()) {
+        if (!playerController.moveController.IsFalling() && input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
         }        
 

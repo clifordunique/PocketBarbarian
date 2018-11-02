@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleLever : AbstactInteractable {
 
-    public SimpleMovement activatableObject;
+    public AbstractActivatable activatableObject;
 
     public bool activated = false;
     public Sprite leverSpriteOn;
@@ -21,14 +21,14 @@ public class SimpleLever : AbstactInteractable {
     public override void Activate() {
         if (activated) {
             // deactivate
-            bool startMoving = activatableObject.StartMoving();
+            bool startMoving = activatableObject.Activate();
             if (startMoving) {
                 sr.sprite = leverSpriteOff;
                 activated = false;
             }
         } else {
             // activate
-            bool startMoving = activatableObject.StartMoving();
+            bool startMoving = activatableObject.DeActivate();
             if (startMoving) {
                 sr.sprite = leverSpriteOn;
                 activated = true;
