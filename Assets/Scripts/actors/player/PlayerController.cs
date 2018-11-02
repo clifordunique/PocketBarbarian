@@ -5,14 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMoveController2D))]
 public class PlayerController : MonoBehaviour, IActorController {
 
-    public float staminaForDash = 0.5F;
-    public float staminaForStomp = 0.5F;
+
 
     public LayerMask interactiveLayers;
 
+    public bool hasWeapons = false;
+
+    [Header("Projectile Settings")]
     public GameObject prefabProjectile;
     public GameObject spawnPositionProjectile;
 
+    [Header("HitBoxes")]
+    public HitBox hitBoxAttack1;
+    public HitBox hitBoxDash;
+
+    [Header("Effect Prefabs")]
     public GameObject prefabEffectStep;
     public GameObject prefabEffectJump;
     public GameObject prefabEffectLanding;
@@ -22,18 +29,17 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectStompingSilhouette;
     public GameObject prefabEffectStompingGround;
 
-    private AbstractState currentState;
+    [Header("Outline Effect Material")]
+    public Material outlineMaterial;
+
     [HideInInspector]
     public PlayerMoveController2D moveController;
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
     [HideInInspector]
     public Animator animator;
-    
-    public HitBox hitBoxAttack1;
-    public HitBox hitBoxDash;
+    [HideInInspector]
     public PlayerHurtBox hurtBox;
-
     [HideInInspector]
     public float dirX = 1;
     [HideInInspector]
@@ -47,6 +53,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     [HideInInspector]
     public PlayerStatistics statistics;
 
+    private AbstractState currentState;
     private static PlayerController _instance;
 
     // Use this for initialization
@@ -56,7 +63,16 @@ public class PlayerController : MonoBehaviour, IActorController {
         animator = GetComponent<Animator>();
         currentState = new IdleState(this);
         statistics = GetComponentInChildren<PlayerStatistics>();
+        hurtBox = GetComponentInChildren<PlayerHurtBox>();
         _instance = this;
+
+        if (hasWeapons) {
+            animator.SetLayerWeight(0, 1);
+            animator.SetLayerWeight(1, 0);
+        } else {
+            animator.SetLayerWeight(0, 0);
+            animator.SetLayerWeight(1, 1);
+        }
     }
 
     public static PlayerController GetInstance() {
@@ -128,29 +144,11 @@ public class PlayerController : MonoBehaviour, IActorController {
         }
     }
 
-    public bool HasEnoughStaminaForDash() {
-        if (statistics.stamina - staminaForDash >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public bool HasEnoughStaminaForStomp() {
-        if (statistics.stamina - staminaForStomp >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public void ReduceStaminaDash() {
-        statistics.ModifyStamina(-staminaForDash);
-    }
-
-    public void ReduceStaminaStomp() {
-        statistics.ModifyStamina(-staminaForStomp);
-    }
 
     public void ShootProjectile() {
+        SpriteOutlineEffect so = new SpriteOutlineEffect(spriteRenderer.material, outlineMaterial);
+        StartCoroutine(so.OutlineFlashing(spriteRenderer, 1F));
+
         Vector3 target = new Vector3(dirX, 0, 0);
 
         GameObject projectileGo = Instantiate(prefabProjectile, spawnPositionProjectile.transform.position, transform.rotation, EffectCollection.GetInstance().transform);

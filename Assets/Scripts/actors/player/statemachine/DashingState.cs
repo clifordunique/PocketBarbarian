@@ -25,7 +25,7 @@ public class DashingState : AbstractState {
         playerController.hurtBox.SwitchToDashLayer();
 
         // Reduce Stamina
-        playerController.ReduceStaminaDash();
+        playerController.statistics.ReduceStaminaForDash();
     }
 
     public override void OnExit() {

@@ -15,6 +15,10 @@ public class PlayerStatistics : MonoBehaviour {
     public int ammo;
     public int potions;
     public float stamina; // stamina in percent 0-1F
+
+    public float staminaCostForDash = 0.5F;
+    public float staminaCostForStomp = 0.5F;
+
     public float timeStaminaRegeneration;
     public float stepsStaminaRegeneration;
 
@@ -81,4 +85,27 @@ public class PlayerStatistics : MonoBehaviour {
         eventPotions.Invoke(potions);
     }
 
+
+    public bool HasEnoughStaminaForDash() {
+        if (stamina - staminaCostForDash >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public bool HasEnoughStaminaForStomp() {
+        if (stamina - staminaCostForStomp >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public void ReduceStaminaForDash() {
+        ModifyStamina(-staminaCostForDash);
+    }
+
+    public void ReduceStaminaForStomp() {
+        ModifyStamina(-staminaCostForStomp);
+    }
 }

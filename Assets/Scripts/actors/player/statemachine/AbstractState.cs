@@ -26,8 +26,7 @@ public abstract class AbstractState {
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
-    public static string EVENT_PARAM_THROW = "throw";
-    
+    public static string EVENT_PARAM_THROW = "throw";    
 
     public enum ACTION {NA, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH };
     public ACTION myAction = ACTION.NA;
@@ -39,7 +38,6 @@ public abstract class AbstractState {
         this.playerController = playerController;
         this.input = InputController.GetInstance();
     }
-
 
     public abstract void OnEnter();    
     public abstract void OnExit();

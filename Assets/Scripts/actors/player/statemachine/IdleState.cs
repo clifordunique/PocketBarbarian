@@ -31,15 +31,16 @@ public class IdleState : AbstractState {
         if (input.GetDirectionX() != 0) {
             return new MoveState(playerController);
         }
-        if (input.IsAttack1KeyDown()) {
-            return new Attack1State(playerController);
-        }
 
         if (input.GetDirectionY() == 1 && playerController.interactableInRange) {
             return new ActionState(playerController);
         }
 
-        if (input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
+            return new Attack1State(playerController);
+        }
+
+        if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowIdleState(playerController);
         }
 

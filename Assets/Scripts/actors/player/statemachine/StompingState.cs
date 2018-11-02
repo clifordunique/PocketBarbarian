@@ -15,7 +15,7 @@ public class StompingState : AbstractState {
         playerController.moveController.OnStamp();
 
         // Reduce Stamina
-        playerController.ReduceStaminaStomp();
+        playerController.statistics.ReduceStaminaForStomp();
     }
 
     public override void OnExit() {

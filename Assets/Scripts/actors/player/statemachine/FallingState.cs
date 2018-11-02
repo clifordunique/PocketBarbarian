@@ -27,18 +27,18 @@ public class FallingState : AbstractState {
             return new LandingState(playerController);
         }
 
-        if (playerController.moveController.IsFalling() && input.DownKeyDown()) {
+        if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
             // check if Stomping possible
-            if (playerController.HasEnoughStaminaForStomp()) {
+            if (playerController.statistics.HasEnoughStaminaForStomp()) {
                 return new StompingState(playerController);
             }
         }
 
-        if (input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
         }
 
-        if (input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
 
