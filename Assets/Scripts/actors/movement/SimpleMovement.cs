@@ -14,7 +14,8 @@ public class SimpleMovement : MonoBehaviour {
     private Vector3 endpos;
     private Vector3 startPos;
 
-    private bool isMoving = false;
+    [HideInInspector]
+    public bool isMoving = false;
     private float t = 0.0f;
 
     // Use this for initialization
@@ -45,7 +46,6 @@ public class SimpleMovement : MonoBehaviour {
         isMoving = true;
         t = 0.0f;
         while (t <= 1.0) {
-
             t += Time.deltaTime / seconds;
             float v = t;
             if (easeInOut) {
@@ -62,7 +62,6 @@ public class SimpleMovement : MonoBehaviour {
             endpos = startPos;
             startPos = transform.position;
         }
-
         isMoving = false;
     }
 

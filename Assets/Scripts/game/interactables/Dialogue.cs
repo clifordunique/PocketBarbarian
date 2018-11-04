@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dialogue : MonoBehaviour {
 
     public TextAsset textAsset;
+    public bool dialogueInteractive = true;
     public float timeOffsetToBeginDialogue = 0.5F;
     public float pauseBetweenDialogues = 0.2F;
 
@@ -33,22 +34,26 @@ public class Dialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (inDialogue && lastDialogueReady) {
+        if (dialogueInteractive && inDialogue && lastDialogueReady) {
             if (InputController.GetInstance().AnyKeyDown() && currentPositionInDialogue <= dialogueLines.Length) {
                 NextDialogueStep();
             }
         }
 	}
 
-    private void NextDialogueStep() {
+    public void DisableLastTextBox() {
+        if (lastTextBox) {
+            lastTextBox.gameObject.SetActive(false);
+        }
+    }
+
+    public void NextDialogueStep() {
         lastDialogueReady = false;
         if (currentPositionInDialogue == dialogueLines.Length) {
             StartCoroutine(EndDialogue(pauseBetweenDialogues));
         } else {
 
-            if (lastTextBox) {
-                lastTextBox.gameObject.SetActive(false);
-            }
+            DisableLastTextBox();
 
             string dialogueLine = dialogueLines[currentPositionInDialogue];
             string[] dialogueLineSplit = dialogueLine.Split('|');
