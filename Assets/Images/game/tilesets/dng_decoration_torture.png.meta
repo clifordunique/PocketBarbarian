@@ -16,6 +16,25 @@ TextureImporter:
     21300022: dng_decoration_torture_11
     21300024: dng_decoration_torture_12
     21300026: dng_decoration_torture_13
+    21300028: dng_decoration_torture_14
+    21300030: dng_decoration_torture_15
+    21300032: dng_decoration_torture_16
+    21300034: dng_decoration_torture_17
+    21300036: dng_decoration_torture_18
+    21300038: dng_decoration_torture_19
+    21300040: dng_decoration_torture_20
+    21300042: dng_decoration_torture_21
+    21300044: dng_decoration_torture_22
+    21300046: dng_decoration_torture_23
+    21300048: dng_decoration_torture_24
+    21300050: dng_decoration_torture_25
+    21300052: dng_decoration_torture_26
+    21300054: dng_decoration_torture_27
+    21300056: dng_decoration_torture_28
+    21300058: dng_decoration_torture_29
+    21300060: dng_decoration_torture_30
+    21300062: dng_decoration_torture_31
+    21300064: dng_decoration_torture_32
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -135,7 +154,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -145,7 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc5acecb9a890364fbfb9a7b4bbac093
+      spriteID: 76f88aa660e8c0b4391c56fe4eb092da
       vertices: []
       indices: 
       edges: []
@@ -155,6 +174,326 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf801ceec702b7478de256f69354c9f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af24792c2ea0a624c8806339821ed738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c44abab9744525d449ee5b729daaecb6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd12e878202bd843afa59997934df61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2058f3912a8d36a47ac74d84c4c04ddd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c65eed302eeecf4c800908223f7d481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9a86ab00e9add4c94377f40274a0d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10702d958e3258b48b5d7270c0e08eed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb01c1c5c32ffe4f8940af38e115be1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4e66c7e04342a43a50b1688cca04b1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e75d2956d39e54b9b02379e7f7c6ca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f444bde8210a2e34fa6331765b50be2d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9873dbccd69efab4abb9fe05b598ce0f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d4dc0e0dc47a641844da8152e8780e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd41ccf097e53e9498bf8abeecdf40cd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a1f604fbf576f49919e4314b28e05e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_17
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 16
         height: 16
@@ -165,13 +504,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86e9eb1f3ffdf5e4dad6352c67b42d96
+      spriteID: 8ffbade0f2c0a47419f4d8db4d039737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_2
+      name: dng_decoration_torture_18
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 193be4188b4ba214f8e9633eacdd7f73
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_19
       rect:
         serializedVersion: 2
         x: 32
@@ -185,13 +544,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6325cc4e4820d54784933be9423ae9a
+      spriteID: fe45afd39067a4e49b8d1cc3abb3ef66
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_3
+      name: dng_decoration_torture_20
       rect:
         serializedVersion: 2
         x: 48
@@ -205,13 +564,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1c993171eb7fbd498358aae5331c801
+      spriteID: add34c68769970349a4f84563418baf2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_4
+      name: dng_decoration_torture_21
       rect:
         serializedVersion: 2
         x: 64
@@ -225,13 +584,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b97ad54a43bf2d419d2630f98b4053b
+      spriteID: 0c69bf8300dd49445975e4e562f0d401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_5
+      name: dng_decoration_torture_22
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28efea4c70770f4b873af6699199e6f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_23
       rect:
         serializedVersion: 2
         x: 0
@@ -245,13 +624,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c2d3cd04ebe1de41b218ed4dcd2b351
+      spriteID: 3c6f8e96a516c524f8208027b5aad9a5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_6
+      name: dng_decoration_torture_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9feb6df0e84bcf48b2fc94ee5aac10a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_25
       rect:
         serializedVersion: 2
         x: 32
@@ -265,13 +664,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71d739dbf9b71a44a90b99a8c8280732
+      spriteID: b2492f27e83128d4a8d93bec4ec8de0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_7
+      name: dng_decoration_torture_26
       rect:
         serializedVersion: 2
         x: 48
@@ -285,13 +684,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c90f4b2c76f4db4d940bc1292a6cba5
+      spriteID: 9407f2f0a2a28834b96e420c1563a8bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_8
+      name: dng_decoration_torture_27
       rect:
         serializedVersion: 2
         x: 64
@@ -305,13 +704,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6093c46df98fbc340921294f10fda745
+      spriteID: 3d6a2903b281d5042a8111f1c59100c9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_9
+      name: dng_decoration_torture_28
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6f5829e3efe644e9bc303db3f76f76
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dng_decoration_torture_29
       rect:
         serializedVersion: 2
         x: 0
@@ -325,13 +744,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d19ed75db598e1647b1466a39f366c74
+      spriteID: 67534aad012dc8748a4926906ec031df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_10
+      name: dng_decoration_torture_30
       rect:
         serializedVersion: 2
         x: 16
@@ -345,13 +764,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 682de787c74cc8641a6e0206c6b79cd9
+      spriteID: 3f9f2ec02604442488a61eb58f04f0d2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_11
+      name: dng_decoration_torture_31
       rect:
         serializedVersion: 2
         x: 32
@@ -365,13 +784,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b193187a3eb72e24dbcfeb84651fca3d
+      spriteID: 7223fa0a787590a49a61440edd189c8d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dng_decoration_torture_12
+      name: dng_decoration_torture_32
       rect:
         serializedVersion: 2
         x: 48
@@ -385,27 +804,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17d25097ca7bd804a9af03f39689c145
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dng_decoration_torture_13
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f272e9f98fa5be64a9dbe630a07fe280
+      spriteID: c4034872750249f429aefdd84c728cbd
       vertices: []
       indices: 
       edges: []
