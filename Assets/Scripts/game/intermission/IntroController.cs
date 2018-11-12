@@ -9,6 +9,7 @@ public class IntroController : MonoBehaviour {
     public AnimationController barbarianClip;
     public AnimationController goblinClip;
     public SimpleMovement goblinMovement;
+    public GameObject player;
 
     
     public float startTime = 0F;
@@ -42,6 +43,8 @@ public class IntroController : MonoBehaviour {
 
     public float barbarianStartTalking3Time = 0F;
     public float barbarianStopTalking3Time = 0F;
+
+    public float barbarianStartPlayer = 0F;
 
     private int doorClipStep = 0;
     private int goblinClipStep = 0;
@@ -166,6 +169,7 @@ public class IntroController : MonoBehaviour {
 
         // controll barbarian
         if (doorClipStep == 7 && doorClip.animationComplete && barbarianClipStep == 0) {
+            doorClip.TriggerClip("CLIP5");
             barbarianClip.gameObject.SetActive(true);
             barbarianClipStep++;
         }
@@ -202,5 +206,13 @@ public class IntroController : MonoBehaviour {
             dialogue.DisableLastTextBox();
             barbarianClipStep++;
         }
+
+        if (Time.time > startTime + barbarianStartPlayer && barbarianClipStep == 7) {
+            barbarianClip.gameObject.SetActive(false);
+            goblinClip.gameObject.SetActive(false);
+            player.SetActive(true);
+            barbarianClipStep++;
+        }
+        
     }
 }

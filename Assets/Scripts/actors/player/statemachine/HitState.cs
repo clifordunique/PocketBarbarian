@@ -27,7 +27,7 @@ public class HitState : AbstractState {
     public override AbstractState UpdateState() {
         // can not be interrupted
 
-        if ((Time.time - startTime) > playerController.hurtBox.hitTime) {
+        if ((Time.time - startTime) > (playerController.hurtBox.hitTime / 2)) {
             if (playerController.hurtBox.currentHealth <= 0) {
                 return new DyingState(playerController);
             } else {

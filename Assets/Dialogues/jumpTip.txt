@@ -1,0 +1,4 @@
+n1|Tip:\To jump please press...
+n1|...Oh come on,\this is a simple 2D platformer.
+n1|The controlls ain't\that hard to figure out!
+n2|... What???

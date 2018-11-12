@@ -6,8 +6,8 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour {
 
     
-    public LayerMask layerMaskToAcitvate;   
-    
+    public LayerMask layerMaskToAcitvate;
+    public bool detachCamera = true;
     public float cameraMoveSeconds;
     public float moveCameraDelay;
 
@@ -26,7 +26,9 @@ public class DialogueTrigger : MonoBehaviour {
             if (!alreadyDone) {
                 inDialogue = true;
                 InputController.GetInstance().moveInputEnabled = false;
-                StartCoroutine(MoveCameraDelay());
+                if (detachCamera) {
+                    StartCoroutine(MoveCameraDelay());
+                }
                 dialogue.StartDialogue();                
             }
         }
@@ -40,7 +42,11 @@ public class DialogueTrigger : MonoBehaviour {
                 Vector3 dummy = startPos;
                 startPos = endPos;
                 endPos = dummy;
-                StartCoroutine(MoveCamera());
+                if (detachCamera) {
+                    StartCoroutine(MoveCamera());
+                } else {
+                    InputController.GetInstance().moveInputEnabled = true;
+                }
                 inDialogue = false;
                 alreadyDone = true;
             }
