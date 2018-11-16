@@ -91,10 +91,10 @@ public class CameraFollow : MonoBehaviour {
 
         if (focusArea.velocity.x != 0) {
 			lookAheadDirX = Mathf.Sign (focusArea.velocity.x);
-			if (Mathf.Sign(target.moveDirectionX) == Mathf.Sign(focusArea.velocity.x) && target.moveDirectionY != 0) {
-				lookAheadStopped = false;
-				targetLookAheadX = lookAheadDirX * lookAheadDstX;
-			}
+			if (Mathf.Sign(target.moveDirectionX) == Mathf.Sign(focusArea.velocity.x)) {// && target.moveDirectionY != 0) {
+				lookAheadStopped = false;                
+                targetLookAheadX = lookAheadDirX * lookAheadDstX;
+            }
 			else {
 				if (!lookAheadStopped) {
 					lookAheadStopped = true;
@@ -107,6 +107,7 @@ public class CameraFollow : MonoBehaviour {
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
 		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, (shake ? 0.0F : verticalSmoothTime));
+        //Debug.Log("CurrentLookAheadX:" + currentLookAheadX);
 		focusPosition += Vector2.right * currentLookAheadX;
 
         if (shake) {

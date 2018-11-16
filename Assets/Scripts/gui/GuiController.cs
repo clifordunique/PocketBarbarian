@@ -10,10 +10,12 @@ public class GuiController : MonoBehaviour {
     public GameObject prefabDiedEffect;
 
     private static GuiController _instance;
+    private float lastScreenWidth = 0;
 
     // Use this for initialization
     void Start () {
         _instance = this;
+        Invoke("RefreshPositions", 0.5F);
     }
 
     public static GuiController GetInstance() {
@@ -26,9 +28,10 @@ public class GuiController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (Time.frameCount % 5 == 0) {
+	void LateUpdate () {
+        if (Screen.width != lastScreenWidth) {
             RefreshPositions();
+            lastScreenWidth = Screen.width;
         }
     }
 

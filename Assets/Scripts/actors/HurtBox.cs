@@ -21,8 +21,8 @@ public class HurtBox : MonoBehaviour {
     public GameObject prefabDeathEffect;
 
     public float hitTime;
-
-    private IActorController enemyController;
+    [HideInInspector]
+    public IActorController actorController;
     private GameObject actorGameObject;
     [HideInInspector]
     public BoxCollider2D boxCollider;
@@ -32,13 +32,12 @@ public class HurtBox : MonoBehaviour {
     private bool alreadyHitThisFrame = false;
 
     // Use this for initialization
-    public virtual void Start() {
-        ModifyHealth(maxHealth);
+    public virtual void Start() {        
         boxCollider = GetComponent<BoxCollider2D>();
-        enemyController = GetComponent<IActorController>();
-        if (enemyController == null && transform.parent) {
+        actorController = GetComponent<IActorController>();
+        if (actorController == null && transform.parent) {
             // search in parent
-            enemyController = transform.parent.GetComponent<IActorController>();
+            actorController = transform.parent.GetComponent<IActorController>();
         } 
 
         actorGameObject = gameObject;
@@ -57,6 +56,8 @@ public class HurtBox : MonoBehaviour {
             // search in parent
             lootController = transform.parent.GetComponent<IChildGenerator>();
         }
+
+        ModifyHealth(0);
     }
 
     public virtual void ModifyHealth(int healthModifier) {
@@ -105,8 +106,8 @@ public class HurtBox : MonoBehaviour {
             }
         }
 
-        if (enemyController != null) {
-            enemyController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
+        if (actorController != null) {
+            actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
         }
 
         // Spawn Effect on hit

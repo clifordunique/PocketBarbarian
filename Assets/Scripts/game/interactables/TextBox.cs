@@ -14,11 +14,11 @@ public class TextBox : MonoBehaviour {
     private float offsetY;
 
     // Use this for initialization
-    private void Start () {
+    public virtual void Start () {
         Init();
     }
 
-    private void Init() {
+    public virtual void Init() {
         offsetX = (offsetPixelsX / Constants.PPU);
         SpriteRenderer sr = transform.parent.GetComponent<SpriteRenderer>();
         if (sr) {
@@ -29,7 +29,7 @@ public class TextBox : MonoBehaviour {
         isInit = true;
     }
 	
-	public void ShowTextBox(string text) {
+	public virtual void ShowTextBox(string text) {
         if (!isInit) {
             Init();
         }

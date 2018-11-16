@@ -144,11 +144,12 @@ public class PlayerController : MonoBehaviour, IActorController {
         }
     }
 
+    public void FlashOutline() {
+        SpriteOutlineEffect so = new SpriteOutlineEffect(spriteRenderer.material, outlineMaterial);
+        StartCoroutine(so.OutlineFlashing(spriteRenderer, 0.75F));
+    }
 
     public void ShootProjectile() {
-        SpriteOutlineEffect so = new SpriteOutlineEffect(spriteRenderer.material, outlineMaterial);
-        StartCoroutine(so.OutlineFlashing(spriteRenderer, 1F));
-
         Vector3 target = new Vector3(dirX, 0, 0);
 
         GameObject projectileGo = Instantiate(prefabProjectile, spawnPositionProjectile.transform.position, transform.rotation, EffectCollection.GetInstance().transform);

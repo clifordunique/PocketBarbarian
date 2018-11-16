@@ -23,6 +23,20 @@ public class PlayerHurtBox : HurtBox {
         _instance = this;    
     }
 
+    public override void Start() {
+        base.Start();
+        actorController = GetComponent<PlayerController>();
+        if (actorController == null && transform.parent) {
+            // search in parent
+            actorController = transform.parent.GetComponent<PlayerController>();
+            if (actorController != null) {
+                Debug.Log("ActorController gefunden!");
+            } else {
+                Debug.Log("ActorController NICHT gefunden!");
+            }
+        }
+    }
+
     public static PlayerHurtBox GetInstance() {
         return _instance;
     }
@@ -56,5 +70,9 @@ public class PlayerHurtBox : HurtBox {
     public override void ModifyHealth(int healthModifier) {
         base.ModifyHealth(healthModifier);
         someEvent.Invoke(maxHealth, currentHealth);
+
+        if (healthModifier > 0) {
+            ((PlayerController)actorController).FlashOutline();
+        }
     }
 }
