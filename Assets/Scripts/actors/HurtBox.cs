@@ -78,7 +78,7 @@ public class HurtBox : MonoBehaviour {
                     // receive damage from attacker
                     ModifyHealth(-attackerActor.damage);
                     attackerActor.ReactHit();
-                    ReactHurt(collision);
+                    ReactHurt(collision, attackerActor);
                 } else {
                     Debug.Log("Attacker has no HitBox component!");
                 }
@@ -93,7 +93,7 @@ public class HurtBox : MonoBehaviour {
     }
 
 
-    private void ReactHurt(Collision2D collision) {
+    private void ReactHurt(Collision2D collision, HitBox attackerActor) {
         Vector3 hitDirection = Utils.GetHitDirection(collision.transform.position, transform);
 
         if (currentHealth <= 0) {
@@ -107,7 +107,7 @@ public class HurtBox : MonoBehaviour {
         }
 
         if (actorController != null) {
-            actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position);
+            actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position, attackerActor.damageType);
         }
 
         // Spawn Effect on hit

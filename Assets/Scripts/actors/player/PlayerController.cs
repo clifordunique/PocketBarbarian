@@ -91,10 +91,14 @@ public class PlayerController : MonoBehaviour, IActorController {
         currentState.HandleEvent(parameter);
     }
 
-    public void ReactHurt(bool dead, bool push, Vector3 hitSource) {
+    public void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
         this.dead = dead;
         lastHitSource = hitSource;
-        currentState.InterruptEvent(AbstractState.ACTION.HIT);
+        if (damageType == HitBox.DAMAGE_TYPE.WATER) {
+            currentState.InterruptEvent(AbstractState.ACTION.DROWNING);
+        } else {
+            currentState.InterruptEvent(AbstractState.ACTION.HIT);
+        }
     }
 
     public void ReactHit() {

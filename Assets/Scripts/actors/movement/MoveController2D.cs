@@ -17,7 +17,6 @@ public class MoveController2D : RaycastController2D, IMove {
 	}
 
 	public void Move(Vector2 moveAmount, bool standingOnPlatform = false) {
-
         UpdateRaycastOrigins ();
 
 		collisions.Reset ();

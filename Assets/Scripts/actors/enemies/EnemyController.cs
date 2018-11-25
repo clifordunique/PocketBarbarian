@@ -29,11 +29,15 @@ public class EnemyController : MonoBehaviour, IActorController {
     [HideInInspector]
     public HurtBox hurtBox;
 
+    [HideInInspector]
+    public SpriteRenderer spriteRenderer;
+
     public void Start() {
         defaultAction.moveTarget = Vector3.positiveInfinity;
         moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (aiBehaviour) {
             currentAction = aiBehaviour.GetCurrentAction();
@@ -54,7 +58,7 @@ public class EnemyController : MonoBehaviour, IActorController {
     }
 
 
-    public void ReactHurt(bool dead, bool push, Vector3 hitSource) {
+    public void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
 
         EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
         if (push) {
@@ -111,6 +115,14 @@ public class EnemyController : MonoBehaviour, IActorController {
             GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectCollection.GetInstance().transform);
             projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
             lastShot = Time.time;
+        }
+    }
+
+    public void SetDirection(float dirX) {
+        if (dirX < 0) {
+            spriteRenderer.flipX = true;
+        } else {
+            spriteRenderer.flipX = false;
         }
     }
 }

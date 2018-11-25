@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IActorController {
 
-    void ReactHurt(bool dead, bool push, Vector3 hitSource);
+    void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType);
     void ReactHit();
 }

@@ -126,5 +126,7 @@ public class MoveGroundController2D: MoveController2D {
         }
 
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-	}
+        Debug.Log(velocity.x);
+
+    }
 }

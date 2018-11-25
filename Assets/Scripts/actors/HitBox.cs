@@ -8,7 +8,7 @@ public class HitBox : MonoBehaviour {
     // damage on contact
     public int damage;
 
-    public enum DAMAGE_TYPE { DEFAULT};
+    public enum DAMAGE_TYPE { DEFAULT, WATER};
     public DAMAGE_TYPE damageType;
 
     private IActorController actorController;
