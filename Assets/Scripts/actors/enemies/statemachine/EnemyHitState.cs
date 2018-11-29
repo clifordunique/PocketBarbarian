@@ -18,14 +18,23 @@ public class EnemyHitState : AbstractEnemyState {
 
         if (enemyController.currentAction.HasHitTarget()) {
             Vector3 hitDirection = Utils.GetHitDirection(enemyController.currentAction.hitTarget, enemyController.transform);
-            moveController.OnPush(hitDirection.x, hitDirection.y);
+            if (enemyController.lastDamageType == HitBox.DAMAGE_TYPE.DASH) {
+                Debug.Log("DASH HIT");
+                moveController.OnPush(hitDirection.x, hitDirection.y, true);
+            } else {
+                Debug.Log("NORMAL HIT");
+                moveController.OnPush(hitDirection.x, hitDirection.y, false);
+            }
         }
         
     }
 
     public override AbstractEnemyState UpdateState() {
 
-        // can not be interrupted
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.HIT) {
+            // Interrupt current Action
+            return GetEnemyState(enemyController.currentAction.actionEvent);
+        }
 
         if ((Time.time - startTime) > enemyController.hurtBox.hitTime) { 
             moveController.StopMoving();

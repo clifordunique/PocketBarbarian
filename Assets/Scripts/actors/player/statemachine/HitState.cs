@@ -15,7 +15,6 @@ public class HitState : AbstractState {
         playerController.animator.SetBool(JUMPING_PARAM, true);
         
         Vector3 hitDirection = Utils.GetHitDirection(playerController.lastHitSource, playerController.transform);
-        Debug.Log("HitDirection x/y:" + hitDirection.x + "/" + hitDirection.y);
         playerController.moveController.OnPush(hitDirection.x, hitDirection.y);
     }
 
@@ -25,7 +24,10 @@ public class HitState : AbstractState {
     }
 
     public override AbstractState UpdateState() {
-        // can not be interrupted
+        AbstractState interrupt = base.UpdateState();
+        if (interrupt != null) {
+            return interrupt;
+        }
 
         if ((Time.time - startTime) > (playerController.hurtBox.hitTime / 2)) {
             if (playerController.hurtBox.currentHealth <= 0) {

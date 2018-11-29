@@ -7,6 +7,7 @@ public class HurtBox : MonoBehaviour {
 
     // layers to react on contact and receive damage
     public LayerMask attackLayers;
+
     public int maxHealth;
     public int currentHealth = 0;
     
@@ -19,6 +20,7 @@ public class HurtBox : MonoBehaviour {
 
     public GameObject prefabHitEffect;
     public GameObject prefabDeathEffect;
+    public GameObject prefabWaterSplash;
 
     public float hitTime;
     [HideInInspector]
@@ -28,8 +30,8 @@ public class HurtBox : MonoBehaviour {
     public BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private IChildGenerator lootController;
-
-    private bool alreadyHitThisFrame = false;
+    
+    private bool hitInProgress = false;
 
     // Use this for initialization
     public virtual void Start() {        
@@ -71,27 +73,30 @@ public class HurtBox : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision) {
         // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
-            if (!alreadyHitThisFrame) {
-                // get GameActor from collision gameobject
-                HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
-                if (attackerActor) {
+
+            // get GameActor from collision gameobject
+            HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
+            if (attackerActor) {
+                if (IsDamageTypeInstakill(attackerActor.damageType)) {
+                    //instakill
+                    boxCollider.enabled = false;
+                }
+                if (!hitInProgress || IsDamageTypeInstakill(attackerActor.damageType)) {
                     // receive damage from attacker
                     ModifyHealth(-attackerActor.damage);
                     attackerActor.ReactHit();
                     ReactHurt(collision, attackerActor);
-                } else {
-                    Debug.Log("Attacker has no HitBox component!");
                 }
-                alreadyHitThisFrame = true;
+            } else {
+                Debug.Log("Attacker has no HitBox component!");
             }
         }
     }
 
-    public void Update() {
-        // Nach den Collisions wird alreadyHit wieder auf false gesetzt, damit es im nächsten Frame wieder funktioniert.
-        alreadyHitThisFrame = false;
+    private bool IsDamageTypeInstakill(HitBox.DAMAGE_TYPE damageType) {
+        return damageType == HitBox.DAMAGE_TYPE.WATER;
     }
-
+    
 
     private void ReactHurt(Collision2D collision, HitBox attackerActor) {
         Vector3 hitDirection = Utils.GetHitDirection(collision.transform.position, transform);
@@ -102,12 +107,23 @@ public class HurtBox : MonoBehaviour {
             }            
         } else {
             if (prefabHitEffect != null) {                
-                InstantiateEffect(prefabHitEffect, hitDirection.x);
+                InstantiateEffect(prefabHitEffect, hitDirection.x, transform.position);
             }
         }
 
-        if (actorController != null) {
-            actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position, attackerActor.damageType);
+
+        if (attackerActor.damageType == HitBox.DAMAGE_TYPE.WATER) {
+            float y = collision.collider.bounds.center.y + collision.collider.bounds.extents.y;
+            Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
+            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition);
+
+            if (actorController != null) {
+                actorController.ReactHurt(currentHealth <= 0, false, collision.transform.position, attackerActor.damageType);
+            }
+        } else {
+            if (actorController != null) {
+                actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position, attackerActor.damageType);
+            }
         }
 
         // Spawn Effect on hit
@@ -120,19 +136,19 @@ public class HurtBox : MonoBehaviour {
             FlashSprite(flashTime);
         }
         if (hitTime > 0 || currentHealth <= 0) {
-            boxCollider.enabled = false;
+            hitInProgress = true;
         }
         if (currentHealth <= 0 && !destroyOnDeathImmediate) {
             StartCoroutine(CoroutineDeath(hitDirection.x, flashTime));
         }
         if (hitTime > 0 && currentHealth > 0) {
             // enable box collider if still living
-            Invoke("EnableBoxCollider", hitTime);
+            Invoke("HitInProgress", hitTime);
         }
     }
 
-    private void EnableBoxCollider() {
-        boxCollider.enabled = true;
+    private void HitInProgress() {
+        hitInProgress = false;
     }
 
     IEnumerator CoroutineDeath(float hitDirectionX, float waitTime) {
@@ -142,7 +158,7 @@ public class HurtBox : MonoBehaviour {
 
     private void DeathAction(float hitDirectionX) {
         if (prefabDeathEffect != null) {
-            InstantiateEffect(prefabDeathEffect, hitDirectionX);
+            InstantiateEffect(prefabDeathEffect, hitDirectionX, transform.position);
         }
 
         // Spawn Effect on death
@@ -155,10 +171,10 @@ public class HurtBox : MonoBehaviour {
         }
     }
 
-    private void InstantiateEffect(GameObject effectToInstanciate, float dirX) {
+    private void InstantiateEffect(GameObject effectToInstanciate, float dirX, Vector3 position) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         effect.transform.parent = EffectCollection.GetInstance().transform;
-        effect.transform.position = transform.position;
+        effect.transform.position = position;
         effect.transform.localScale = new Vector3(dirX, effect.transform.localScale.y, effect.transform.localScale.z);
     }
 

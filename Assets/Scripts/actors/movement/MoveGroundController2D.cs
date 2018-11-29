@@ -101,6 +101,14 @@ public class MoveGroundController2D: MoveController2D {
         OnPush(pushDirectionX, pushForce, pushDuration);
     }
 
+    public void OnPush(float pushDirectionX, float pushDirectionY, bool dash) {
+        if (dash) {
+            OnPush(pushDirectionX, pushForce * 4, pushDuration);
+        } else {
+            OnPush(pushDirectionX, pushForce, pushDuration);
+        }
+    }
+
     public float GetPushDuration() {
         return pushDuration;
     }

@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour, IActorController {
         this.dead = dead;
         lastHitSource = hitSource;
         if (damageType == HitBox.DAMAGE_TYPE.WATER) {
-            currentState.InterruptEvent(AbstractState.ACTION.DROWNING);
+            currentState.InterruptEvent(AbstractState.ACTION.DEATH);
         } else {
             currentState.InterruptEvent(AbstractState.ACTION.HIT);
         }

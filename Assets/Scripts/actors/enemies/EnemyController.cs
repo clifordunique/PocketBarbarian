@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour, IActorController {
     public Animator animator;
     [HideInInspector]
     public HurtBox hurtBox;
+    [HideInInspector]
+    public HitBox.DAMAGE_TYPE lastDamageType;
 
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
@@ -66,7 +68,7 @@ public class EnemyController : MonoBehaviour, IActorController {
         } else {
             hitAction.hitTarget = Vector3.positiveInfinity;
         }
-
+        lastDamageType = damageType;
         currentAction = hitAction;
         isInterruptAction = true;        
     }

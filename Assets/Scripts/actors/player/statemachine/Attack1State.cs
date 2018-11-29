@@ -8,7 +8,7 @@ public class Attack1State : AbstractState {
     private bool comboAttack = false;
     private bool exitCombo = false;
     private bool hitSomething = false;
-    private float moveTime = 0.13F;
+    private float moveTime = 0.2F;
     private float checkMoveStarted;
 
     public Attack1State(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {

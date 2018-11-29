@@ -49,7 +49,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
         }
     }
 
-    public void OnPush(float pushDirectionX, float pushDirectionY) {
+    public void OnPush(float pushDirectionX, float pushDirectionY, bool dash) {
         isPushed = true;
         timePushed = Time.time + pushDuration;
         velocity = Vector3.zero;

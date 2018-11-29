@@ -52,8 +52,8 @@ public abstract class AbstractState {
             if (interruptAction == ACTION.HIT) {
                 return new HitState(playerController);
             }
-            if (interruptAction == ACTION.DROWNING) {
-                return new DrowningState(playerController);
+            if (interruptAction == ACTION.DEATH) {
+                return new DyingState(playerController);
             }
         }
         return null;

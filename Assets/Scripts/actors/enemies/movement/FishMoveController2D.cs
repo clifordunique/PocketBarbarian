@@ -47,14 +47,12 @@ public class FishMoveController2D : MonoBehaviour {
         if (moveUp) {
             // check if surfaceBreached Up
             if (transform.position.y > waterSurfaceY && !waterEffectPlayed) {
-                Debug.Log("Play out splash effect");
                 InstantiateEffect(waterEffectOut);
                 waterEffectPlayed = true;
             }
         } else {
             // check if surfaceBreached Down
             if (transform.position.y < waterSurfaceY && !waterEffectPlayed) {
-                Debug.Log("Play in splash effect");
                 InstantiateEffect(waterEffectIn);
                 waterEffectPlayed = true;
             }
