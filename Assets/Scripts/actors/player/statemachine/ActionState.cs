@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionState : AbstractState {
 
-
+    private bool unlocked = false;
     private bool animationEnded = false;
     private bool actionTriggered = false;
     private AbstactInteractable interactable;
@@ -35,6 +35,9 @@ public class ActionState : AbstractState {
 
         if (animationEnded && playerController.interactable && !actionTriggered) {
             if (interactable) {
+                if (interactable.locked) {
+                    unlocked = true;
+                }
                 // AbstactInteractable detected!
                 interactable.Activate();
                 actionTriggered = true;
@@ -42,7 +45,8 @@ public class ActionState : AbstractState {
         }
 
         if (actionTriggered && interactable.actionFinished) {
-            if (interactable is Door) {
+            if (interactable is Door && !unlocked) {
+                // nur bei aufgeschlossener Tuer durchgehen!
                 return new WalkOutState(playerController);
             } else {
                 return new ActionOutState(playerController);

@@ -15,6 +15,9 @@ public class PlayerStatistics : MonoBehaviour {
     public int ammo;
     public int potions;
     public float stamina; // stamina in percent 0-1F
+    public bool hasSquareKey;
+    public bool hasCircleKey;
+    public bool hasTriangleKey;
 
     public float staminaCostForDash = 0.5F;
     public float staminaCostForStomp = 0.5F;
@@ -83,6 +86,18 @@ public class PlayerStatistics : MonoBehaviour {
     public void ModifyPotions(int modifyPotions) {
         potions += modifyPotions;
         eventPotions.Invoke(potions);
+    }
+
+    public void ModifyKeys(CollectableKeys.KEY_TYPE keytype, bool equip) {
+        if (keytype == CollectableKeys.KEY_TYPE.SQUARE) {
+            hasSquareKey = equip;
+        }
+        if (keytype == CollectableKeys.KEY_TYPE.CIRCLE) {
+            hasCircleKey = equip;
+        }
+        if (keytype == CollectableKeys.KEY_TYPE.TRIANGLE) {
+            hasTriangleKey = equip;
+        }
     }
 
 

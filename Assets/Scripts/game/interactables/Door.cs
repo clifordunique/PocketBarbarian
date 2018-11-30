@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Door : AbstactInteractable {
 
+    public DoorKeySymbols keySymbols;
     public Sprite closedDoor;
     public Sprite openDoor;    
     public Door otherDoor;
@@ -15,8 +16,13 @@ public class Door : AbstactInteractable {
     public bool inAnimation = false;
     private SpriteRenderer spriteRenderer;
  
-    public void Start() {
+    public override void Start() {
+        base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (locked && keySymbols) {
+            keySymbols.gameObject.SetActive(true);
+            keySymbols.InitKeySymbol(lockedKey);
+        }
     }
 
     private void OpenDoor() {
@@ -28,11 +34,18 @@ public class Door : AbstactInteractable {
     }
 
     public override void Activate() {
-        OpenDoor();
-        actionFinished = false;
-        if (!inAnimation) {
-            inAnimation = true;
-            StartCoroutine(FadeOut());
+        if (locked && Unlockable()) {
+            // nicht durch die tuer gehen sondern aufschliessen
+            Unlock();
+            otherDoor.locked = false;
+            actionFinished = true;
+        } else {
+            OpenDoor();
+            actionFinished = false;
+            if (!inAnimation) {
+                inAnimation = true;
+                StartCoroutine(FadeOut());
+            }
         }
     }
 
