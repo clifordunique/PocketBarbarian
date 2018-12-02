@@ -38,7 +38,7 @@ public class Door : AbstactInteractable {
             // nicht durch die tuer gehen sondern aufschliessen
             Unlock();
             otherDoor.locked = false;
-            actionFinished = true;
+            otherDoor.keySymbol.SetActive(false);
         } else {
             OpenDoor();
             actionFinished = false;

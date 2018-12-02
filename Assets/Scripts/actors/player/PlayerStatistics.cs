@@ -9,6 +9,9 @@ public class IntEvent: UnityEvent<int> { }
 [System.Serializable]
 public class FloatEvent: UnityEvent<float> { }
 
+[System.Serializable]
+public class KeysEvent: UnityEvent<CollectableKeys.KEY_TYPE, bool> { }
+
 public class PlayerStatistics : MonoBehaviour {
 
     public int points;
@@ -33,6 +36,8 @@ public class PlayerStatistics : MonoBehaviour {
     private IntEvent eventPotions;
     [SerializeField]
     private FloatEvent eventStamina;
+    [SerializeField]
+    private KeysEvent eventKey;
 
     private bool coroutineStamina = false;
 
@@ -98,6 +103,7 @@ public class PlayerStatistics : MonoBehaviour {
         if (keytype == CollectableKeys.KEY_TYPE.TRIANGLE) {
             hasTriangleKey = equip;
         }
+        eventKey.Invoke(keytype, equip);
     }
 
 

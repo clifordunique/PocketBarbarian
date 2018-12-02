@@ -9,7 +9,8 @@ public class Chest : AbstactInteractable {
     private BoxCollider2D boxCollider;
     private LootChildGenerator lootController;
 
-    public void Start() {
+    public override void Start() {
+        base.Start();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         lootController = GetComponent<LootChildGenerator>();

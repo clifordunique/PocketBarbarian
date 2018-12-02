@@ -13,7 +13,8 @@ public class SimpleLever : AbstactInteractable {
 
     private SpriteRenderer sr;
 
-    private void Start() {
+    public override void Start() {
+        base.Start();
         sr = GetComponent<SpriteRenderer>();
         leverSpriteOff = sr.sprite;
     }

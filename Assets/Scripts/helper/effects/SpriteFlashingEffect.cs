@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpriteFlashingEffect {
 
-    float flashInterval = 0.08f;
+    float flashIntervalDamage = 0.08f;
+    float flashIntervalAction = 0.12f;
     Shader shaderFlash;
     Shader shaderDefault;
 
@@ -33,10 +34,24 @@ public class SpriteFlashingEffect {
         spriteRenderer.material.shader = shaderDefault;
         spriteRenderer.color = Color.white;
     }
-    
+
+    public IEnumerator ActionFlashing(SpriteRenderer spriteRenderer, float time) {
+        float flashCount = Mathf.Round(time / flashIntervalAction);
+        for (int i = 0; i < flashCount; i++) {
+            // switch color
+            if (i % 2 == 0) {
+                invisibleSprite(spriteRenderer);
+            }
+            if (i % 2 == 1) {
+                normalSprite(spriteRenderer);
+            }
+            yield return new WaitForSeconds(flashIntervalAction);
+        }
+        normalSprite(spriteRenderer);
+    }
 
     public IEnumerator DamageFlashing(SpriteRenderer spriteRenderer, float time) {
-        float flashCount = Mathf.Round(time / flashInterval);
+        float flashCount = Mathf.Round(time / flashIntervalDamage);
         for (int i = 0; i < flashCount; i++) {
             // switch color
             if (i % 2 == 0) {
@@ -45,7 +60,7 @@ public class SpriteFlashingEffect {
             if (i % 2 == 1) {
                 normalSprite(spriteRenderer);
             }
-            yield return new WaitForSeconds(flashInterval);
+            yield return new WaitForSeconds(flashIntervalDamage);
         }
         normalSprite(spriteRenderer);
     }
