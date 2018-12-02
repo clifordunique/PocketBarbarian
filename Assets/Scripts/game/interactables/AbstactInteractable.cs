@@ -17,6 +17,7 @@ public abstract class AbstactInteractable : MonoBehaviour {
     public CollectableKeys.KEY_TYPE lockedKey;
     [ConditionalHideAttribute("locked", true)]
     public float unlockTime = 1F;
+    public float waitAfterUnlockTime = 0.2F;
     public bool permanentDisabled = false;
     
     [HideInInspector]
@@ -64,9 +65,7 @@ public abstract class AbstactInteractable : MonoBehaviour {
     public void Unlock() {
         if (locked && Unlockable()) {
             StartCoroutine(UnlockCoroutine());
-        } else {
-            actionFinished = true;
-        }
+        } 
     }
 
     IEnumerator UnlockCoroutine() {
@@ -75,13 +74,12 @@ public abstract class AbstactInteractable : MonoBehaviour {
         StartCoroutine(effect.ActionFlashing(spriteRenderer, unlockTime));
         yield return new WaitForSeconds(unlockTime);
         actionArrowLocked.SetActive(false);
-        yield return new WaitForSeconds(0.2F);
+        yield return new WaitForSeconds(waitAfterUnlockTime);
 
         locked = false;
         keySymbol.SetActive(false);
         actionArrowLocked.SetActive(false);
         actionArrow.SetActive(true);
-        actionFinished = true;
     }
 
 

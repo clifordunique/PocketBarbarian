@@ -11,6 +11,7 @@ public class Door : AbstactInteractable {
     public Door otherDoor;
     public Animator fadeAnimator;
     public Image uiImage;
+    public float waitOpenTime;
  
     [HideInInspector]
     public bool inAnimation = false;
@@ -25,35 +26,44 @@ public class Door : AbstactInteractable {
         }
     }
 
+
+    public override void Activate() {
+        actionFinished = false;
+        float actualWaitOpenTime = waitOpenTime;
+        if (locked) {
+            if (Unlockable()) {
+                // nicht durch die tuer gehen sondern erst aufschliessen
+                Unlock();
+                otherDoor.locked = false;
+                otherDoor.keySymbol.SetActive(false);
+                actualWaitOpenTime += unlockTime + waitAfterUnlockTime;
+            } else {
+                // locked - keine Action
+                return;
+            }
+        }
+        StartCoroutine(WalkThroughDoor(actualWaitOpenTime));
+    }
+
+
+    IEnumerator WalkThroughDoor(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        OpenDoor();        
+        if (!inAnimation) {
+            inAnimation = true;
+            StartCoroutine(FadeOut());
+        }
+    }
+
     private void OpenDoor() {
         spriteRenderer.sprite = openDoor;
     }
 
-    private void CloseDoor() {
-        spriteRenderer.sprite = closedDoor;
-    }
-
-    public override void Activate() {
-        if (locked && Unlockable()) {
-            // nicht durch die tuer gehen sondern aufschliessen
-            Unlock();
-            otherDoor.locked = false;
-            otherDoor.keySymbol.SetActive(false);
-        } else {
-            OpenDoor();
-            actionFinished = false;
-            if (!inAnimation) {
-                inAnimation = true;
-                StartCoroutine(FadeOut());
-            }
-        }
-    }
 
     IEnumerator FadeOut() {
         fadeAnimator.SetBool("FADE_IN", false);
         fadeAnimator.SetBool("FADE_OUT", true);
         yield return new WaitUntil(()=> uiImage.color.a == 1);
-        CloseDoor();
         Teleport();
     }
 
@@ -78,7 +88,6 @@ public class Door : AbstactInteractable {
         yield return new WaitUntil(() => uiImage.color.a == 0);
 
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
-        otherDoor.CloseDoor();
         inAnimation = false;
     }
 }
