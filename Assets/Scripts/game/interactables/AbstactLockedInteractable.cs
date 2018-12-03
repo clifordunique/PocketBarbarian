@@ -6,39 +6,31 @@ public abstract class AbstactLockedInteractable : AbstactInteractable {
     
     public GameObject actionArrowLocked;
     public GameObject lockSymbol;
-    public GameObject keySymbol;    
-
-    public bool locked;
-    [ConditionalHideAttribute("locked", true)]
-    public CollectableKeys.KEY_TYPE lockedKey;
-    [ConditionalHideAttribute("locked", true)]
+    public GameObject keySymbol;        
+    public CollectableKeys.KEY_TYPE lockedKey;    
     public float unlockTime = 1F;
     public float waitAfterUnlockTime = 0.2F;
 
     private BoxCollider2D boxCollider;
+    [HideInInspector]
+    public bool open;
 
     public override void Start() {
         boxCollider = GetComponent<BoxCollider2D>();
-        if (locked) {
-            if (Unlockable()) {
-                lockSymbol.SetActive(false);
-                keySymbol.SetActive(true);
-                boxCollider.enabled = true;
-            } else {
-                lockSymbol.SetActive(true);
-                keySymbol.SetActive(false);
-                boxCollider.enabled = false;
-            }
-        } else {
+        if (Unlockable()) {
             lockSymbol.SetActive(false);
-            keySymbol.SetActive(false);
+            keySymbol.SetActive(true);
             boxCollider.enabled = true;
+        } else {
+            lockSymbol.SetActive(true);
+            keySymbol.SetActive(false);
+            boxCollider.enabled = false;
         }
     }
 
     public void Update() {
         if (Time.frameCount % 5 == 0) {
-            if (locked) {
+            if (!open) {
                 if (Unlockable()) {
                     lockSymbol.SetActive(false);
                     keySymbol.SetActive(true);
@@ -54,24 +46,23 @@ public abstract class AbstactLockedInteractable : AbstactInteractable {
     
 
     public void Unlock() {
-        if (locked && Unlockable()) {
+        if (Unlockable()) {
             StartCoroutine(UnlockCoroutine());
         } 
     }
 
-    IEnumerator UnlockCoroutine() {
-        Debug.Log("UnlockCo");
+    IEnumerator UnlockCoroutine() {        
         SpriteRenderer spriteRenderer = actionArrowLocked.GetComponent<SpriteRenderer>();
         SpriteFlashingEffect effect = new SpriteFlashingEffect();
         StartCoroutine(effect.ActionFlashing(spriteRenderer, unlockTime));
         yield return new WaitForSeconds(unlockTime);
         actionArrowLocked.SetActive(false);
         yield return new WaitForSeconds(waitAfterUnlockTime);
-
-        locked = false;
+        
         keySymbol.SetActive(false);
         actionArrowLocked.SetActive(false);
         actionArrow.SetActive(true);
+        open = true;
     }
 
 
@@ -79,13 +70,12 @@ public abstract class AbstactLockedInteractable : AbstactInteractable {
         // react to trigger
         if (reactLayer == (reactLayer | (1 << collider.gameObject.layer))) {
             if (!permanentDisabled) {
-                if (locked) {                    
-                    if (Unlockable()) {
-                        actionArrowLocked.SetActive(true);
-                    }
-                } else {
+                if (open) {
                     actionArrow.SetActive(true);
                 }
+                if (!open && Unlockable()) {
+                    actionArrowLocked.SetActive(true);
+                } 
             }
         }
     }
@@ -101,22 +91,18 @@ public abstract class AbstactLockedInteractable : AbstactInteractable {
     }
 
     public bool Unlockable() {
-        if (locked) {
-            PlayerStatistics ps = PlayerStatistics.GetInstance();
-            if (ps) {
-                if (lockedKey == CollectableKeys.KEY_TYPE.CIRCLE && ps.hasCircleKey) {
-                    return true;
-                }
-                if (lockedKey == CollectableKeys.KEY_TYPE.SQUARE && ps.hasSquareKey) {
-                    return true;
-                }
-                if (lockedKey == CollectableKeys.KEY_TYPE.TRIANGLE && ps.hasTriangleKey) {
-                    return true;
-                }
+        PlayerStatistics ps = PlayerStatistics.GetInstance();
+        if (ps) {
+            if (lockedKey == CollectableKeys.KEY_TYPE.CIRCLE && ps.hasCircleKey) {
+                return true;
             }
-            return false;
-        } else {
-            return true;
+            if (lockedKey == CollectableKeys.KEY_TYPE.SQUARE && ps.hasSquareKey) {
+                return true;
+            }
+            if (lockedKey == CollectableKeys.KEY_TYPE.TRIANGLE && ps.hasTriangleKey) {
+                return true;
+            }
         }
+        return false;
     }
 }

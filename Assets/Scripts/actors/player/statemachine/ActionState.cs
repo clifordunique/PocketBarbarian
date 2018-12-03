@@ -41,7 +41,7 @@ public class ActionState : AbstractState {
         }
 
         if (actionTriggered && interactable.actionFinished) {
-            if (interactable is Door) {
+            if (interactable is Door || interactable is DoorLocked) {
                 // nur bei aufgeschlossener Tuer durchgehen!
                 return new WalkOutState(playerController);
             } else {

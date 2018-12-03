@@ -20,7 +20,7 @@ public class DoorLocked : AbstactLockedInteractable {
     public override void Start() {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (locked && keySymbols) {
+        if (keySymbols) {
             keySymbols.gameObject.SetActive(true);
             keySymbols.InitKeySymbol(lockedKey);
         }
@@ -30,12 +30,11 @@ public class DoorLocked : AbstactLockedInteractable {
     public override void Activate() {
         actionFinished = false;
         float actualWaitOpenTime = waitOpenTime;
-        if (locked) {
+        if (!open) {
             if (Unlockable()) {
                 // nicht durch die tuer gehen sondern erst aufschliessen
                 Unlock();
-                otherDoor.locked = false;
-                otherDoor.keySymbol.SetActive(false);
+                otherDoor.Unlock();
                 actualWaitOpenTime += unlockTime + waitAfterUnlockTime;
             } else {
                 // locked - keine Action
