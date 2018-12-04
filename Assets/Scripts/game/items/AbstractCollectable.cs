@@ -7,10 +7,13 @@ public abstract class AbstractCollectable : MonoBehaviour {
     public LayerMask collectorLayer;
     public float delayTimeCollection = 0;
     public PrefabValue collectableEffect;
+    public bool startRandom = true;
 
     private BoxCollider2D boxCollider;
     private GameObject activeGameObject;
     private bool collected = false;
+
+    private Animator animator;
 
     void Start() {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -26,6 +29,24 @@ public abstract class AbstractCollectable : MonoBehaviour {
         } else {
             activeGameObject = transform.parent.gameObject;
         }
+        animator = GetComponent<Animator>();
+        if (!animator && transform.parent != null) {
+            animator = transform.parent.GetComponent<Animator>();
+        }
+
+        if (animator && startRandom) {
+            animator.enabled = false;
+            float randomStartTime = Time.time + Random.Range(0F, 1F);
+            StartCoroutine(StartAnimation(randomStartTime));
+        }
+    }
+
+    IEnumerator StartAnimation(float time) {
+        yield return new WaitForSeconds(time);
+        if (animator) {
+            animator.enabled = true;
+        }
+
     }
 
     private void EnableBoxCollider() {
