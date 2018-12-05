@@ -159,4 +159,9 @@ public class PlayerController : MonoBehaviour, IActorController {
         GameObject projectileGo = Instantiate(prefabProjectile, spawnPositionProjectile.transform.position, transform.rotation, EffectCollection.GetInstance().transform);
         projectileGo.GetComponent<Projectile>().InitProjectile(target, true);        
     }
+
+    public void SetEnabled(bool inputEnabled, bool showPlayer) {
+        InputController.GetInstance().moveInputEnabled = inputEnabled;
+        spriteRenderer.enabled = showPlayer;
+    }
 }

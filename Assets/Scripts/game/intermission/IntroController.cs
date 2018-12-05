@@ -9,7 +9,7 @@ public class IntroController : MonoBehaviour {
     public AnimationController barbarianClip;
     public AnimationController goblinClip;
     public SimpleMovement goblinMovement;
-    public GameObject player;
+    public PlayerController player;
 
     
     public float startTime = 0F;
@@ -44,6 +44,9 @@ public class IntroController : MonoBehaviour {
     public float barbarianStartTalking3Time = 0F;
     public float barbarianStopTalking3Time = 0F;
 
+    public float barbarianStartTalking4Time = 0F;
+    public float barbarianStopTalking4Time = 0F;
+
     public float barbarianStartPlayer = 0F;
 
     private int doorClipStep = 0;
@@ -56,7 +59,8 @@ public class IntroController : MonoBehaviour {
     void Start () {
         dialogue = GetComponent<Dialogue>();
         barbarianClip.gameObject.SetActive(false);
-        doorClip.TriggerClip("WAIT");        
+        doorClip.TriggerClip("WAIT");
+        player.SetEnabled(false, false);
     }
 
     // called first
@@ -70,6 +74,8 @@ public class IntroController : MonoBehaviour {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
         startTime += Time.time;
+
+        
     }
 
     // Update is called once per frame
@@ -102,6 +108,11 @@ public class IntroController : MonoBehaviour {
         }
         if (Time.time > startTime + doorClip4Time && doorClipStep == 6) {
             doorClip.TriggerClip("CLIP4");
+            doorClipStep++;
+            CameraFollow.GetInstance().ShakeSmall();
+        }
+        if (doorClipStep == 7 && doorClip.animationTriggerReached) {
+            CameraFollow.GetInstance().ShakeMedium();
             doorClipStep++;
         }
 
@@ -168,7 +179,7 @@ public class IntroController : MonoBehaviour {
 
 
         // controll barbarian
-        if (doorClipStep == 7 && doorClip.animationComplete && barbarianClipStep == 0) {
+        if (doorClipStep == 8 && doorClip.animationComplete && barbarianClipStep == 0) {
             doorClip.TriggerClip("CLIP5");
             barbarianClip.gameObject.SetActive(true);
             barbarianClipStep++;
@@ -207,10 +218,22 @@ public class IntroController : MonoBehaviour {
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStartPlayer && barbarianClipStep == 7) {
+        if (Time.time > startTime + barbarianStartTalking4Time && barbarianClipStep == 7) {
+            barbarianClip.TriggerClip("TALK");
+            dialogue.NextDialogueStep();
+            barbarianClipStep++;
+        }
+        if (Time.time > startTime + barbarianStopTalking4Time && barbarianClipStep == 8) {
+            barbarianClip.TriggerClip("LOOK");
+            dialogue.DisableLastTextBox();
+            barbarianClipStep++;
+        }
+
+        if (Time.time > startTime + barbarianStartPlayer && barbarianClipStep == 9) {
             barbarianClip.gameObject.SetActive(false);
             goblinClip.gameObject.SetActive(false);
-            player.SetActive(true);
+            player.SetEnabled(true, true);
+            doorClip.GetComponent<EdgeCollider2D>().enabled = false;
             barbarianClipStep++;
         }
         

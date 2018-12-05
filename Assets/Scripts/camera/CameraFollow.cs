@@ -44,8 +44,10 @@ public class CameraFollow : MonoBehaviour {
 
     static CameraFollow _instance;
 
-    void Start() {
+    private void Awake() {
         _instance = this;
+    }
+    void Start() {        
         Init();
 	}
 

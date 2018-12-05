@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour {
 
 	public bool animationComplete = false;
+    public bool animationTriggerReached = false;
 
     private Animator animator;
     private string lastParameter = null;
@@ -15,6 +16,10 @@ public class AnimationController : MonoBehaviour {
 
     public void AnimationCompleteEvent() {
         animationComplete = true;
+    }
+
+    public void TriggerReached() {
+        animationTriggerReached = true;
     }
 
     public void TriggerClip(string parameter) {

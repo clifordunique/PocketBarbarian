@@ -33,7 +33,7 @@ public class MoveController2D : RaycastController2D, IMove {
 		}
 
         Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(moveAmount);
-        transform.Translate(pixelPerfectMoveAmount);
+        transform.Translate(moveAmount);
 
         if (standingOnPlatform) {
 			collisions.below = true;
