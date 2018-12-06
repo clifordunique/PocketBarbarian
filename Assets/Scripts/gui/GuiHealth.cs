@@ -24,8 +24,8 @@ public class GuiHealth : MonoBehaviour {
     }
 
     public void UpdateHealth(int maxHealth, int currentHealth) {
-        showFullHearts = currentHealth;
-        showEmptyHearts = maxHealth - currentHealth;
+        showFullHearts = (currentHealth >= 0 ? currentHealth : 0);
+        showEmptyHearts = maxHealth - showFullHearts;
         Invoke("UpdateHealth", delayTime);
     }
 

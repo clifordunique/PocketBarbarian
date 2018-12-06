@@ -27,8 +27,8 @@ public class FishMoveController2D : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        currentStartPos = transform.position;
-        currentEndpos = new Vector3(transform.position.x, transform.position.y + distanceUp, transform.position.z);
+        currentStartPos = Utils.MakePixelPerfect(transform.position);
+        currentEndpos = Utils.MakePixelPerfect(new Vector3(transform.position.x, transform.position.y + distanceUp, transform.position.z));
         positionUp = currentEndpos;
         waterSurfaceY = waterSurface.position.y;
     }

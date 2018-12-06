@@ -29,16 +29,13 @@ public class JumpState : AbstractState {
             return new LandingState(playerController);
         }
 
-        if (input.IsJumpKeyUp()) {
-            playerController.moveController.OnJumpInputUp();
+        if (playerController.moveController.IsFalling()) {
+            return new FallingState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
-            // check if Stomping possible
-            if (playerController.statistics.HasEnoughStaminaForStomp()) {
-                return new StompingState(playerController);
-            }
-        }
+        if (input.IsJumpKeyUp()) {
+            playerController.moveController.OnJumpInputUp();
+        }        
 
         if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
@@ -47,6 +44,7 @@ public class JumpState : AbstractState {
         if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
+
 
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;
