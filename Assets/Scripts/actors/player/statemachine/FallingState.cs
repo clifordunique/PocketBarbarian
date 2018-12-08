@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class FallingState : AbstractState {
 
+    private const float HIGH_FALL_DISTANCE = 6F;
+    private float startFallingY;
+
     public FallingState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
     }
 
     public override void OnEnter() {
+        startFallingY = playerController.transform.position.y;
         playerController.animator.SetBool(JUMPING_PARAM, true);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
@@ -32,6 +36,12 @@ public class FallingState : AbstractState {
             if (playerController.statistics.HasEnoughStaminaForStomp()) {
                 return new StompingState(playerController);
             }
+        }
+
+        if (startFallingY - playerController.transform.position.y >= HIGH_FALL_DISTANCE) {
+            // Fast falling!
+            Debug.Log("FastFalling!");
+            return new FastFallingState(playerController);
         }
 
         if (playerController.hasWeapons && input.IsAttack1KeyDown()) {

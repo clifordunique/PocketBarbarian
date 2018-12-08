@@ -42,6 +42,8 @@ public class CameraFollow : MonoBehaviour {
     float shakeIntensityY;
     bool down;
 
+    float verticalSmoothTimeTmp;
+
     static CameraFollow _instance;
 
     private void Awake() {
@@ -53,6 +55,7 @@ public class CameraFollow : MonoBehaviour {
 
     public void Init() {
         focusArea = new FocusArea(target.myCollider.bounds, focusAreaSize);
+        verticalSmoothTimeTmp = verticalSmoothTime;
     }
 
     public static CameraFollow GetInstance() {
@@ -83,6 +86,13 @@ public class CameraFollow : MonoBehaviour {
         this.shakeIntensityX = shakeIntensityX;
         this.shakeIntensityY = shakeIntensityY;
         this.down = down;
+    }
+
+    public void CheckForPlayerOnPlatform(Transform passenger) {
+        if (target.transform == passenger.transform) {
+            Debug.Log("Player on Platform!");
+            verticalSmoothTime = 0;
+        }
     }
 
 	void LateUpdate() {
@@ -128,6 +138,8 @@ public class CameraFollow : MonoBehaviour {
         }
         Vector2 pixelPerfectFocus = Utils.MakePixelPerfect(focusPosition);
         transform.position = (Vector3)pixelPerfectFocus + Vector3.forward * (-10);
+
+        verticalSmoothTime = verticalSmoothTimeTmp;
     }
 
 	void OnDrawGizmos() {

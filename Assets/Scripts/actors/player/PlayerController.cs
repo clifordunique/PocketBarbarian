@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectDashingHit;
     public GameObject prefabEffectStompingSilhouette;
     public GameObject prefabEffectStompingGround;
+    public GameObject prefabEffectFallingSilhouette;
+    public GameObject prefabEffectHardLanding;
 
     [Header("Outline Effect Material")]
     public Material outlineMaterial;

@@ -36,12 +36,10 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         endpos = new Vector3(transform.position.x + distance.x, transform.position.y + distance.y, transform.position.z);
         distancePos = Vector3.Distance(startPos, endpos);
         shakePos = startPos + Vector3.down * (Constants.WorldUnitsPerPixel() * 5);
-    }
+    }    
 
     public override Vector3 CalculatePlatformMovement() {
         Vector3 result = Vector3.zero;
-
-
 
         if (isMoving) {
             // wenn auf dem weg nach unten, noch nicht effekt abgespielt und auf dem Weg nach unten

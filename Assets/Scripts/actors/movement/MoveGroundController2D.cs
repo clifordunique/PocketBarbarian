@@ -5,6 +5,7 @@ using System.Collections;
 public class MoveGroundController2D: MoveController2D {
 
     [Header("In Air Settings")]
+    public float maxGravitySpeed = -20F;
     public bool jumpingAllowed = false;
     [ConditionalHide("jumpingAllowed", true)]
     public float maxJumpHeight = 0;
@@ -18,7 +19,8 @@ public class MoveGroundController2D: MoveController2D {
     public float comicFallFactor = 1.08f;
     [ConditionalHide("jumpingAllowed", true)]
     public bool doubleJumpAllowed = false;
-
+    
+    
     [Header("On Ground Settings")]
     public float moveSpeed = 6;
     public float accelerationTimeGrounded = 0F;//.05f;
@@ -56,7 +58,7 @@ public class MoveGroundController2D: MoveController2D {
 
 	public virtual void Update() {
 		CalculateVelocity ();
-        Move (velocity * Time.deltaTime);
+        Move(velocity * Time.deltaTime);
 
 		if (collisions.above || collisions.below) {			
 			velocity.y = 0;
@@ -129,6 +131,9 @@ public class MoveGroundController2D: MoveController2D {
         if (IsFalling()) {
             // is falling, comic Fall Factor
             velocity.y += gravity * Time.deltaTime * GetFallFactor();
+            if (velocity.y < maxGravitySpeed * GetFallFactor()) {
+                velocity.y = maxGravitySpeed * GetFallFactor();
+            }
         } else {
             velocity.y += gravity * Time.deltaTime;
         }

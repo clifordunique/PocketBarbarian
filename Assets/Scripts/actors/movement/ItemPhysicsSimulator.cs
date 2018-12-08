@@ -16,7 +16,6 @@ public class ItemPhysicsSimulator : RaycastController2D, IMove {
     }
 
     public void Move(Vector2 moveAmount, bool standingOnPlatform = false) {
-        Debug.Log("MOVE");
         transform.Translate(moveAmount);
         collisions.below = true;
     }

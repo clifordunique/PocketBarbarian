@@ -33,7 +33,7 @@ public class StompingState : AbstractState {
             return new StompingLandingState(playerController);
         }
 
-        if (Time.frameCount % 4 == 0) {
+        if (Time.frameCount % 3 == 0) {
             playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);
         }
 

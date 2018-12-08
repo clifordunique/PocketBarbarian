@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public abstract class AbstractPlatformController2D: RaycastController2D {
 
     public LayerMask passengerMask;
-
+    public bool movePixelPerfect;
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, IMove> passengerDictionary = new Dictionary<Transform, IMove>();
@@ -19,11 +19,15 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
         UpdateRaycastOrigins();
 
         Vector3 velocity = CalculatePlatformMovement();
-        Vector2 pixelPerfectVelocity = Utils.MakePixelPerfect(velocity);
-        CalculatePassengerMovement(pixelPerfectVelocity);
+
+        if (movePixelPerfect) {
+            velocity = Utils.MakePixelPerfect(velocity);
+        }
+        
+        CalculatePassengerMovement(velocity);
 
         MovePassengers(true);
-        transform.Translate(pixelPerfectVelocity);
+        transform.Translate(velocity);
         MovePassengers(false);
     }
 
@@ -42,13 +46,15 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
 
             if (passenger.moveBeforePlatform == beforeMovePlatform) {
                 if (passengerDictionary.ContainsKey(passenger.transform)) {
+                    Debug.Log("MOVE PASSANGER");
+                    CameraFollow.GetInstance().CheckForPlayerOnPlatform(passenger.transform);
+
                     if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow()) {
-                        Debug.Log("SQUISH  BOTTOM!!!");
                     } else {
                         if (passenger.velocity.y > 0 && passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsAbove()) {
-                            Debug.Log("SQUISH  TOP!!!");
                         } else {
                             //Debug.Log("MOVE PASSANGER");
+                            
                             passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                         }
                     }                    
@@ -76,7 +82,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                 if (hit && hit.distance != 0) {
                     if (!movedPassengers.Contains(hit.transform)) {
                         movedPassengers.Add(hit.transform);
-                        Debug.Log("Add passaner");
                         float pushX = (directionY == 1) ? velocity.x : 0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
@@ -97,7 +102,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                 if (hit && hit.distance != 0) {
                     if (!movedPassengers.Contains(hit.transform)) {
                         movedPassengers.Add(hit.transform);
-                        Debug.Log("Add passaner");
                         float pushX = velocity.x - (hit.distance - skinWidth) * directionX;
                         float pushY = -skinWidth;                        
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true));
@@ -117,7 +121,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                 if (hit && hit.distance != 0) {
                     if (!movedPassengers.Contains(hit.transform)) {
                         movedPassengers.Add(hit.transform);
-                        Debug.Log("Add passaner");
                         float pushX = velocity.x;
                         float pushY = velocity.y;
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));

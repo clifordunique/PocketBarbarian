@@ -2,8 +2,10 @@
 using System.Collections;
 
 public class MoveController2D : RaycastController2D, IMove {
-    
-	public CollisionInfo collisions;
+
+    public bool movePixelPerfect = false;
+
+    public CollisionInfo collisions;
 	[HideInInspector]
     public float moveDirectionX = 0F;
     [HideInInspector]
@@ -32,12 +34,16 @@ public class MoveController2D : RaycastController2D, IMove {
 			VerticalCollisions (ref moveAmount);
 		}
 
-        Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(moveAmount);
+        if (movePixelPerfect) {
+            moveAmount = Utils.MakePixelPerfect(moveAmount);
+        }
         transform.Translate(moveAmount);
 
         if (standingOnPlatform) {
 			collisions.below = true;
-		}
+            collisions.onPlatform = true;
+        }
+        
 	}
 
 	void HorizontalCollisions(ref Vector2 moveAmount) {
@@ -129,6 +135,7 @@ public class MoveController2D : RaycastController2D, IMove {
 		public bool above, below;
 		public bool left, right;
 
+        public bool onPlatform;
         public bool initialised;
 
 		public Vector2 moveAmountOld;
@@ -138,6 +145,7 @@ public class MoveController2D : RaycastController2D, IMove {
 		public void Reset() {
 			above = below = false;
 			left = right = false;
+            onPlatform = false;
             initialised = true;
 
         }

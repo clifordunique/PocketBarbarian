@@ -25,16 +25,16 @@ public class JumpAttackState : AbstractState {
             return interrupt;
         }
 
+        if (playerController.moveController.IsGrounded()) {
+            return new LandingState(playerController);
+        }
+
         if (attackFinished) {
-            if (playerController.moveController.IsGrounded()) {
-                return new MoveState(playerController);
+            if (!playerController.moveController.IsGrounded()) {
+                return new LandingState(playerController);
             } else {
                 return new FallingState(playerController);
             }
-        }
-
-        if (playerController.moveController.IsGrounded()) {
-            return new LandingState(playerController);
         }
 
 
