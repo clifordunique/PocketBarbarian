@@ -15,10 +15,11 @@ public class PrefabTile: UnityEngine.Tilemaps.TileBase {
         if (Prefab) tileData.gameObject = Prefab;
     }
 
-    public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go) {
+    public override bool StartUp(Vector3Int location, ITilemap tilemap, GameObject go) {
         // Streangly the position of gameobject starts at Left Bottom point of cell and not at it center
         // TODO need to add anchor points  (vertical and horisontal (left,centre,right)(top,centre,bottom))
-        go.transform.position += Vector3.up * 0.5f + Vector3.right * 0.5f;
+        go.transform.position = location + new Vector3(0.5f, 0.5f, 0);
+        //go.transform.position += Vector3.up * 0.5f + Vector3.right * 0.5f;
         return true;
     }
 

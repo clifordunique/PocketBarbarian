@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallingState : AbstractState {
 
-    private const float HIGH_FALL_DISTANCE = 6F;
+    private const float HIGH_FALL_DISTANCE = 7F;
     private float startFallingY;
 
     public FallingState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
