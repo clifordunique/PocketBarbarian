@@ -6,6 +6,15 @@ public class MoveGroundController2D: MoveController2D {
 
     [Header("In Air Settings")]
     public float maxGravitySpeed = -20F;
+    public bool wallJumpingAllowed = false;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float maxWallSlideSpeed;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float wallSlideBeginTime;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float wallJumpTime;
+
+
     public bool jumpingAllowed = false;
     [ConditionalHide("jumpingAllowed", true)]
     public float maxJumpHeight = 0;
@@ -19,8 +28,9 @@ public class MoveGroundController2D: MoveController2D {
     public float comicFallFactor = 1.08f;
     [ConditionalHide("jumpingAllowed", true)]
     public bool doubleJumpAllowed = false;
+
     
-    
+
     [Header("On Ground Settings")]
     public float moveSpeed = 6;
     public float accelerationTimeGrounded = 0F;//.05f;
@@ -33,17 +43,23 @@ public class MoveGroundController2D: MoveController2D {
     public Vector3 velocity;
     [HideInInspector]
     public float targetVelocityX;
-
-    float gravity;
-	float maxJumpVelocity;
-	float minJumpVelocity;	
+    [HideInInspector]
+    public float gravity;
+    [HideInInspector]
+    public float maxJumpVelocity;
+    [HideInInspector]
+    public float minJumpVelocity;	
     
     float velocityXSmoothing;
     
     [HideInInspector]
     public bool isPushed = false;
     [HideInInspector]
+    public bool isWallJump = false;
+    [HideInInspector]
     public float endTimePush;
+
+    
 
     int jumpCounter = 0;
 
@@ -64,11 +80,12 @@ public class MoveGroundController2D: MoveController2D {
 			velocity.y = 0;
             jumpCounter = 0;
         }
-        
+
         if (isPushed && endTimePush < Time.time) {
             isPushed = false;            
             targetVelocityX = 0;
         }
+        //moveDirectionX = 0;
     }
 
 	public void OnMove (float moveDirectionX, float moveDirectionY) {		
@@ -79,7 +96,7 @@ public class MoveGroundController2D: MoveController2D {
         }
     }
 
-	public void OnJumpInputDown() {
+    public void OnJumpInputDown() {
         if (collisions.below || (doubleJumpAllowed && jumpCounter == 1)) {
             velocity.y = maxJumpVelocity;
             jumpCounter++;
@@ -123,21 +140,24 @@ public class MoveGroundController2D: MoveController2D {
         return (collisions.below && velocity.y == 0);
     }
 
+
+
     public virtual float GetFallFactor() {
         return comicFallFactor;
     }
 
-    public virtual void CalculateVelocity() {        
+    public virtual void CalculateVelocity() {
         if (IsFalling()) {
             // is falling, comic Fall Factor
             velocity.y += gravity * Time.deltaTime * GetFallFactor();
             if (velocity.y < maxGravitySpeed * GetFallFactor()) {
                 velocity.y = maxGravitySpeed * GetFallFactor();
-            }
+            }            
         } else {
             velocity.y += gravity * Time.deltaTime;
-        }
-
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+        }        
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);        
     }
+
+
 }

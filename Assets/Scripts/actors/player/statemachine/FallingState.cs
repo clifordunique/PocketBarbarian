@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallingState : AbstractState {
 
-    private const float HIGH_FALL_DISTANCE = 7F;
+    private const float HIGH_FALL_DISTANCE = 9F;
     private float startFallingY;
 
     public FallingState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
@@ -31,6 +31,10 @@ public class FallingState : AbstractState {
             return new LandingState(playerController);
         }
 
+        if (playerController.moveController.IsWallSliding()) {
+            return new WallSlidingState(playerController);
+        }
+
         if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
             // check if Stomping possible
             if (playerController.statistics.HasEnoughStaminaForStomp()) {
@@ -52,7 +56,7 @@ public class FallingState : AbstractState {
             return new ThrowJumpState(playerController);
         }
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(input.GetDirectionX(), input.GetDirectionY());        
         return null;
     }
 

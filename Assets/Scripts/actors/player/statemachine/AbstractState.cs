@@ -26,6 +26,8 @@ public abstract class AbstractState {
     public static string THROW_IDLE_PARAM = "THROW_IDLE";
     public static string THROW_JUMP_PARAM = "THROW_JUMP";
     public static string THROW_RUNNING_PARAM = "THROW_RUNNING";
+    public static string WALL_SLIDING_PARAM = "WALL_SLIDING";
+    public static string WALL_JUMP_PARAM = "WALL_JUMP";
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
@@ -69,8 +71,8 @@ public abstract class AbstractState {
         // do nothing
     }
 
-    public void Move(float dirX, float dirY, bool dashMove = false) {
-        playerController.updateSpriteDirection(dirX);
+    public void Move(float dirX, float dirY, bool dashMove = false) {        
         playerController.moveController.OnMove(dirX, dirY, dashMove);
+        playerController.updateSpriteDirection(playerController.moveController.moveDirectionX);
     }
 }

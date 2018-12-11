@@ -61,7 +61,6 @@ public class MouseController : MonoBehaviour {
             if (newTime > 1) {
                 newTime = 1;
             }
-            Debug.Log("time" + newTime);
             float easeFactor = EasingFunction.EaseInOutSine(0.0F, 1.0F, newTime);
             Vector3 newPosition = Vector3.Lerp(currentStartPos, currentEndpos, easeFactor);
 

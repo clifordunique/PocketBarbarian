@@ -19,10 +19,21 @@ public class PlayerMoveController2D : MoveGroundController2D {
     public bool stampingAllowed;
     [ConditionalHide("stampingAllowed", true)]
     public float stampingFallFactor = 2f;
+
     bool isStamping = false;
+
+    private bool wallSliding = false;
+    private float wallContactTime = 0;
+    private float wallJumpStartTime = 0;
+
 
     public override void Update() {
         base.Update();
+
+        // if contact with surface, stop walljump
+        if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.time) {
+            isWallJump = false;
+        }
 
         if (collisions.below) {
             // Stop stamping
@@ -30,14 +41,7 @@ public class PlayerMoveController2D : MoveGroundController2D {
         }
     }
 
-    public override void CalculateVelocity() {
-        base.CalculateVelocity();
 
-        // Stamping Settings
-        if (isStamping && IsFalling() && !isPushed) {
-            velocity.x = 0;
-        }
-    }
     
 
     public void OnStamp() {
@@ -47,6 +51,26 @@ public class PlayerMoveController2D : MoveGroundController2D {
                 velocity.y = 0;
             }
         }
+    }
+
+    public void OnWallJumpInputDown() {
+        if (wallSliding && jumpingAllowed && wallJumpingAllowed) {
+
+            velocity.y = maxJumpVelocity;
+            if (collisions.left) {
+                targetVelocityX = moveSpeed;
+            }
+            if (collisions.right) {
+                targetVelocityX = -moveSpeed;
+            }
+            moveDirectionX = Mathf.Sign(targetVelocityX);
+            isWallJump = true;
+            wallJumpStartTime = Time.time;
+        }
+    }
+
+    public bool IsWallSliding() {
+        return wallSliding;
     }
 
     public override float GetFallFactor() {
@@ -59,7 +83,7 @@ public class PlayerMoveController2D : MoveGroundController2D {
     }
 
     public void OnMove(float moveDirectionX, float moveDirectionY, bool dashMove = false) {
-        if (!isPushed) {
+        if (!isPushed && !isWallJump) {
             this.moveDirectionX = moveDirectionX;
             this.moveDirectionY = moveDirectionY;
             if (dashMove) {
@@ -68,5 +92,49 @@ public class PlayerMoveController2D : MoveGroundController2D {
                 targetVelocityX = moveDirectionX * moveSpeed;
             }
         }
+    }
+
+
+
+    public override void CalculateVelocity() {
+        base.CalculateVelocity();
+        
+        // Wall jumping settings
+        if (IsFalling()) {
+            if (IsWallSlidePossible()) {
+                wallContactTime += Time.deltaTime;
+
+                if (wallContactTime >= wallSlideBeginTime) {
+                    wallSliding = true;
+                    if (velocity.y < -maxWallSlideSpeed) {
+                        velocity.y = -maxWallSlideSpeed;
+                    }
+                }
+            } else {
+                wallSliding = false;
+                wallContactTime = 0;
+            }
+        } else {
+            wallSliding = false;
+            wallContactTime = 0;
+        }
+        if (isWallJump && !isPushed) {
+            velocity.x = targetVelocityX;
+        } 
+
+        // Stamping Settings
+        if (isStamping && IsFalling() && !isPushed) {
+            velocity.x = 0;
+        }
+    }
+
+
+    private bool IsWallSlidePossible() {
+        if (wallJumpingAllowed) {
+            if ((moveDirectionX < 0 && collisions.left) || (moveDirectionX > 0 && collisions.right)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

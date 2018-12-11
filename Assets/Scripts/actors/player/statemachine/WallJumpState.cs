@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : AbstractState {
+public class WallJumpState : AbstractState {
 
-    public JumpState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
+    public WallJumpState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
     }
 
     public override void OnEnter() {
         playerController.animator.SetBool(JUMPING_PARAM, true);
-        playerController.InstantiateEffect(playerController.prefabEffectJump);
-        playerController.moveController.OnJumpInputDown();
+        playerController.InstantiateEffect(playerController.prefabEffectWallJump);
+        playerController.moveController.OnWallJumpInputDown();
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
@@ -24,6 +24,8 @@ public class JumpState : AbstractState {
         if (interrupt != null) {
             return interrupt;
         }
+
+
 
         if (playerController.moveController.IsGrounded()) {
             return new LandingState(playerController);
@@ -49,6 +51,9 @@ public class JumpState : AbstractState {
             return new ThrowJumpState(playerController);
         }
 
+        if (Time.frameCount % 6 == 0) {
+            playerController.InstantiateEffect(playerController.prefabEffectWallJump);
+        }
 
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;

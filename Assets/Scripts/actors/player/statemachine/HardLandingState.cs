@@ -27,10 +27,6 @@ public class HardLandingState : AbstractState {
             return interrupt;
         }
 
-        if (input.IsJumpKeyDown()) {
-            return new JumpState(playerController);
-        }
-
         if (animationEnded) {
             if (input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
