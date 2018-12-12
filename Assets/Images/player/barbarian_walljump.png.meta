@@ -1,15 +1,13 @@
 fileFormatVersion: 2
-guid: 7a9d51639cb8b954bb5a9b0ced01096f
+guid: 531270d5f3c2e9a489152c0646cea89a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: walljump_effect_0
-    21300002: walljump_effect_1
-    21300004: walljump_effect_2
-    21300006: walljump_effect_3
-    21300008: walljump_effect_4
-    21300010: walljump_effect_5
-    21300012: walljump_effect_6
-    21300014: walljump_effect_7
+    21300000: barbarian_walljump_0
+    21300002: barbarian_walljump_1
+    21300004: barbarian_walljump_2
+    21300006: barbarian_walljump_3
+    21300008: barbarian_walljump_4
+    21300010: barbarian_walljump_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -125,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walljump_effect_0
+      name: barbarian_walljump_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -139,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f5858b6f5196f242a666b7d300232a2
+      spriteID: bb4835123bbe8fb419e32173047a6bc9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walljump_effect_1
+      name: barbarian_walljump_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -159,18 +157,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46ec52c33ce9bcf469e5326d59d2b414
+      spriteID: 9c0be1045a3dd704abcc800b676776a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walljump_effect_2
+      name: barbarian_walljump_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -179,38 +177,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7ed65b468b4b5e428da70c7d6283269
+      spriteID: a69660558f358004e9dab14d79b4486d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walljump_effect_3
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 24
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2144803b73ba87c46bd1ee847108ece3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walljump_effect_4
+      name: barbarian_walljump_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -219,18 +197,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 268a6875626741b46bb5752ef4e14b3a
+      spriteID: ad8f09e7f52a72f45a71914ea19dcd3a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walljump_effect_5
+      name: barbarian_walljump_4
       rect:
         serializedVersion: 2
-        x: 120
+        x: 128
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -239,18 +217,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024cba4b0e7b71841b0dfa3887bf37d7
+      spriteID: 321a4bffe7ed6f54a8307d57acdd1f16
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walljump_effect_6
+      name: barbarian_walljump_5
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 0
-        width: 24
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,27 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86e8af075e225464fb9c17e9ff794939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walljump_effect_7
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 0
-        width: 24
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 766c804821b1c11448c9a91e65cf1eed
+      spriteID: f5e609df14d8fcf4ba89ae9deac7d079
       vertices: []
       indices: 
       edges: []
@@ -287,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: feec956e2c1f08f43894478d30f2d4dc
+    spriteID: 9176521e146224844b018745c8e4f094
     vertices: []
     indices: 
     edges: []

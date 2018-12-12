@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FastFallingState : AbstractState {
-
-    bool wallSlidingTmp;
-
+    
     public FastFallingState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
     }
 
     public override void OnEnter() {
-        wallSlidingTmp = playerController.moveController.wallJumpingAllowed;
-        playerController.moveController.wallJumpingAllowed = false;
         playerController.animator.SetBool(FAST_FALLING_PARAM, true);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.moveController.wallJumpingAllowed = wallSlidingTmp;
         playerController.animator.SetBool(FAST_FALLING_PARAM, false);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
@@ -30,6 +25,10 @@ public class FastFallingState : AbstractState {
 
         if (Time.frameCount % 3 == 0) {
             playerController.InstantiateEffect(playerController.prefabEffectFallingSilhouette);
+        }
+
+        if (playerController.moveController.IsWallSliding()) {
+            return new WallSlidingState(playerController);
         }
 
         if (playerController.moveController.IsGrounded()) {

@@ -4,6 +4,8 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: barbarian_wallslide_0
     21300002: barbarian_wallslide_1
+    21300004: barbarian_wallslide_2
+    21300006: barbarian_wallslide_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a200f1f29f63a2441ae586bc6c3ebebe
+      spriteID: 03fde9bc72107be45909dc202e999365
       vertices: []
       indices: 
       edges: []
@@ -153,7 +155,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc621140c0ed5f479ad85ab55418c23
+      spriteID: 220b36def0cced546bed9242d461d694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_wallslide_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6850e6bb2f74be0488762f1bc73550bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_wallslide_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5458da0f37137b84faf4e7a2d27a3572
       vertices: []
       indices: 
       edges: []

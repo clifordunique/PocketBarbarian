@@ -9,6 +9,7 @@ public abstract class AbstractState {
     public static string IDLE_PARAM = "IDLE";
     public static string RUNNING_PARAM = "RUNNING";
     public static string JUMPING_PARAM = "JUMPING";
+    public static string FALLING_PARAM = "FALLING";
     public static string FAST_FALLING_PARAM = "FAST_FALLING";
     public static string JUMPING_ATTACK_PARAM = "JUMPING_ATTACK";
     public static string DASHING_PARAM = "DASHING";

@@ -8,14 +8,14 @@ public class WallJumpState : AbstractState {
     }
 
     public override void OnEnter() {
-        playerController.animator.SetBool(JUMPING_PARAM, true);
+        playerController.animator.SetBool(WALL_JUMP_PARAM, true);
         playerController.InstantiateEffect(playerController.prefabEffectWallJump);
         playerController.moveController.OnWallJumpInputDown();
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(JUMPING_PARAM, false);
+        playerController.animator.SetBool(WALL_JUMP_PARAM, false);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
@@ -50,10 +50,7 @@ public class WallJumpState : AbstractState {
         if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
-
-        if (Time.frameCount % 6 == 0) {
-            playerController.InstantiateEffect(playerController.prefabEffectWallJump);
-        }
+        
 
         Move(input.GetDirectionX(), input.GetDirectionY());
         return null;

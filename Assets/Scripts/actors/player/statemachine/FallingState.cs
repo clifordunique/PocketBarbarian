@@ -12,12 +12,12 @@ public class FallingState : AbstractState {
 
     public override void OnEnter() {
         startFallingY = playerController.transform.position.y;
-        playerController.animator.SetBool(JUMPING_PARAM, true);
+        playerController.animator.SetBool(FALLING_PARAM, true);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(JUMPING_PARAM, false);
+        playerController.animator.SetBool(FALLING_PARAM, false);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
 
