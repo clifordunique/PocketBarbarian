@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveController2D : MoveGroundController2D {    
+public class PlayerMoveController2D : MoveGroundController2D {
+
+    [Header("Wall Jump Settings")]
+    public bool wallJumpingAllowed = false;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float maxWallSlideSpeed;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float wallSlideBeginTime;
+    [ConditionalHide("wallJumpingAllowed", true)]
+    public float wallJumpTime;
 
     [Header("Dash Settings")]
     public bool dashAllowed = false;

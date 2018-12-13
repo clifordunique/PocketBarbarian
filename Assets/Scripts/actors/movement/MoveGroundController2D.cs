@@ -6,15 +6,6 @@ public class MoveGroundController2D: MoveController2D {
 
     [Header("In Air Settings")]
     public float maxGravitySpeed = -20F;
-    public bool wallJumpingAllowed = false;
-    [ConditionalHide("wallJumpingAllowed", true)]
-    public float maxWallSlideSpeed;
-    [ConditionalHide("wallJumpingAllowed", true)]
-    public float wallSlideBeginTime;
-    [ConditionalHide("wallJumpingAllowed", true)]
-    public float wallJumpTime;
-
-
     public bool jumpingAllowed = false;
     [ConditionalHide("jumpingAllowed", true)]
     public float maxJumpHeight = 0;

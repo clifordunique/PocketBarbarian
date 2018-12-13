@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WallSlidingState: AbstractState {
-    
+
+    bool swordTouchWall = false;
 
     public WallSlidingState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
     }
 
-    public override void OnEnter() {
-        playerController.sparkParticle.Play();
+    public override void OnEnter() {        
         playerController.animator.SetBool(WALL_SLIDING_PARAM, true);
         Move(input.GetDirectionX(), input.GetDirectionY());
     }
@@ -26,6 +26,10 @@ public class WallSlidingState: AbstractState {
             return interrupt;
         }
 
+        if (swordTouchWall && !playerController.sparkParticle.isPlaying) {
+            playerController.sparkParticle.Play();            
+        }
+
         if (input.IsJumpKeyDown()) {
             return new WallJumpState(playerController);
         }
@@ -40,6 +44,13 @@ public class WallSlidingState: AbstractState {
         
         playerController.moveController.OnMove(input.GetDirectionX(), input.GetDirectionY(), false);
         return null;
+    }
+
+
+    public override void HandleEvent(string parameter) {
+        if (parameter == EVENT_PARAM_ANIMATION_END) {
+            swordTouchWall = true;
+        }
     }
 
 
