@@ -73,9 +73,11 @@ public class PlayerController : MonoBehaviour, IActorController {
         if (hasWeapons) {
             animator.SetLayerWeight(0, 1);
             animator.SetLayerWeight(1, 0);
+            moveController.wallJumpingAllowed = true;
         } else {
             animator.SetLayerWeight(0, 0);
             animator.SetLayerWeight(1, 1);
+            moveController.wallJumpingAllowed = false;
         }
     }
 

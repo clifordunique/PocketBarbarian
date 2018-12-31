@@ -10,6 +10,7 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnEnter() {
+        Debug.Log("Enter Enemy Hit!");
         startTime = Time.time;
 
         if (enemyController.animator) {
@@ -45,6 +46,7 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnExit() {
+        Debug.Log("Exit Enemy Hit!");
         if (enemyController.animator) {
             enemyController.animator.SetBool("HIT", false);
         }

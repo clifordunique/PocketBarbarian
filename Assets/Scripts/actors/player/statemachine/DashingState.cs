@@ -63,7 +63,7 @@ public class DashingState : AbstractState {
             return new IdleState(playerController);
         }
 
-        if (Time.frameCount % 3 == 0) { 
+        if (Time.frameCount % 5 == 0) { 
             playerController.InstantiateEffect(playerController.prefabEffectDashingSilhouette);
             playerController.InstantiateEffect(playerController.prefabEffectStep);
         }

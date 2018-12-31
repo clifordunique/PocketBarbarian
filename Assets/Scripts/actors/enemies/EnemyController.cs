@@ -6,6 +6,9 @@ public class EnemyController : MonoBehaviour, IActorController {
 
     public EnemyAction defaultAction;
 
+    public float randomDelaySeconds = 0;
+    private float delayTime = 0;
+
     public bool isShooter = false;
     [ConditionalHideAttribute("isShooter", true)]
     public GameObject projectile;
@@ -57,6 +60,11 @@ public class EnemyController : MonoBehaviour, IActorController {
 
         // init ENEMY state
         currentState = new EnemyIdleState(this);
+
+        if (randomDelaySeconds > 0) {
+            delayTime = Random.Range(0F, randomDelaySeconds);
+            animator.speed = 0;
+        }
     }
 
 
@@ -91,17 +99,26 @@ public class EnemyController : MonoBehaviour, IActorController {
     }
 
     private void Update() {
-        // refresh AiBehaviour if not an interruptAction is finished
-        if (aiBehaviour && !isInterruptAction) {
-            currentAction = aiBehaviour.GetCurrentAction();
-        }
+        if (delayTime > 0) {
+            // check if delayTime reached
+            if (Time.time > delayTime) {
+                delayTime = 0;
+                animator.speed = 1;
+            }
+        } else {
 
-        // handle StateMachine
-        AbstractEnemyState newState = currentState.UpdateState();
-        if (newState != null) {
-            currentState.OnExit();
-            currentState = newState;
-            currentState.OnEnter();
+            // refresh AiBehaviour if not an interruptAction is finished
+            if (aiBehaviour && !isInterruptAction) {
+                currentAction = aiBehaviour.GetCurrentAction();
+            }
+
+            // handle StateMachine
+            AbstractEnemyState newState = currentState.UpdateState();
+            if (newState != null) {
+                currentState.OnExit();
+                currentState = newState;
+                currentState.OnEnter();
+            }
         }
     }
 

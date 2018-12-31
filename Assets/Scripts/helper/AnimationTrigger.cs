@@ -7,7 +7,12 @@ public class AnimationTrigger : MonoBehaviour {
     private Animator[] animatorList;
 
     public void Start() {
-        animatorList = GetComponentsInChildren<Animator>();
+        if (GetComponent<Animator>()) {
+            animatorList = new Animator[1];
+            animatorList[0] = GetComponent<Animator>();
+        } else {
+            animatorList = GetComponentsInChildren<Animator>();
+        }
     }
 
     public void StartTrigger() {
