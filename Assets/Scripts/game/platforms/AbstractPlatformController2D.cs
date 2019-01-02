@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class AbstractPlatformController2D: RaycastController2D {
+public abstract class AbstractPlatformController2D: RaycastController2D, ITriggerReactor {
 
+    public bool waitForTrigger = false;
     public LayerMask passengerMask;
     public bool movePixelPerfect;
 
@@ -15,20 +16,21 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
     }
 
     void Update() {
+        if (!waitForTrigger) {
+            UpdateRaycastOrigins();
 
-        UpdateRaycastOrigins();
+            Vector3 velocity = CalculatePlatformMovement();
 
-        Vector3 velocity = CalculatePlatformMovement();
+            if (movePixelPerfect) {
+                velocity = Utils.MakePixelPerfect(velocity);
+            }
 
-        if (movePixelPerfect) {
-            velocity = Utils.MakePixelPerfect(velocity);
+            CalculatePassengerMovement(velocity);
+
+            MovePassengers(true);
+            transform.Translate(velocity);
+            MovePassengers(false);
         }
-        
-        CalculatePassengerMovement(velocity);
-
-        MovePassengers(true);
-        transform.Translate(velocity);
-        MovePassengers(false);
     }
 
 
@@ -128,6 +130,14 @@ public abstract class AbstractPlatformController2D: RaycastController2D {
                 }
             }
         }
+    }
+
+    public void TriggerActivated() {
+        waitForTrigger = false;
+    }
+
+    public void TriggerDeactivated() {
+        //nix zu tun
     }
 
     struct PassengerMovement {
