@@ -8,8 +8,6 @@ public class Door: AbstactInteractable {
     public Sprite closedDoor;
     public Sprite openDoor;
     public Door otherDoor;
-    public Animator fadeAnimator;
-    public Image uiImage;
 
     [HideInInspector]
     public bool inAnimation = false;
@@ -35,9 +33,9 @@ public class Door: AbstactInteractable {
     }
 
     IEnumerator FadeOut() {
-        fadeAnimator.SetBool("FADE_IN", false);
-        fadeAnimator.SetBool("FADE_OUT", true);
-        yield return new WaitUntil(() => uiImage.color.a == 1);
+        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
+        fe.FadeOutCanvas();
+        yield return new WaitUntil(() => fe.fadeComplete);
         Teleport();
     }
 
@@ -55,12 +53,13 @@ public class Door: AbstactInteractable {
     }
 
     IEnumerator FadeIn(CameraFollow cf, float verticalSmoothTimeOrigin) {
+        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
+        fe.FadeInCanvas();
+
         otherDoor.OpenDoor();
         cf.Init();
-        fadeAnimator.SetBool("FADE_OUT", false);
-        fadeAnimator.SetBool("FADE_IN", true);
-        yield return new WaitUntil(() => uiImage.color.a == 0);
 
+        yield return new WaitUntil(() => fe.fadeComplete);
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
         inAnimation = false;
     }

@@ -20,15 +20,13 @@ public class DyingState : AbstractState {
 
     public override AbstractState UpdateState() {
         // can not be interrupted
-
-
         return null;
     }
 
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
-            GuiController.GetInstance().InstanciateDiedEffect();
+            GameManager.GetInstance().PlayerDied();
         }
     }
 
-    }
+ }

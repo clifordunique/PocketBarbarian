@@ -22,7 +22,7 @@ public class GuiController : MonoBehaviour {
         if (_instance) {
             return _instance;
         } else {
-            Debug.LogError("GuiController not yet instanciated!");
+            Debug.LogError("GuiController not yet instantiated!");
             return null;
         }
     }
