@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     private static PlayerController _instance;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         moveController = GetComponent<PlayerMoveController2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();

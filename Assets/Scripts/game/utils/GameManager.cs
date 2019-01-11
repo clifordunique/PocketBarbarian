@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public string testSavepointUuid;
     public float waitTimeRestartOnDeath = 0F;
 
+    private LoadSaveGame loadSaveGame;
     private bool playerDead = false;
     private static GameManager _instance;
 
@@ -30,10 +32,47 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         Debug.Log("GameManager: OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
+
+        // place Player on correct savepoint
+        //LoadSavePoint();
+        
         FadeCanvasEffect.GetInstance().FadeInSceneCanvas();
     }
 
- 
+    private void Start() {
+        Debug.Log("In GM start");
+        loadSaveGame = GetComponent<LoadSaveGame>();
+        loadSaveGame.Load();
+        //StartCoroutine(CheckUniqueIds());
+    }
+    IEnumerator CheckUniqueIds() {
+        yield return 0;
+        UniqueId[] uniqueIds = FindObjectsOfType<UniqueId>();
+        Debug.Log("Found " +uniqueIds.Length + " unique ids");
+        foreach(UniqueId ui in uniqueIds) {
+            Debug.Log(ui.uniqueId);
+        }
+    }
+
+
+    public void SaveGame() {
+        loadSaveGame.Save();
+    }
+
+    private void LoadSavePoint() {
+        SavePoint[] savePoints = FindObjectsOfType<SavePoint>();
+        SavePoint foundSavePoint = null;
+        foreach(SavePoint savePoint in savePoints) {
+            if (savePoint.uuid == testSavepointUuid) {
+                foundSavePoint = savePoint;
+            }
+        }
+
+        if (foundSavePoint != null) {
+            // Player an position setzen
+            PlayerController.GetInstance().transform.position = foundSavePoint.GetSpawnPosition();
+        }
+    }
 
     public void PlayerDied() {
         if (!playerDead) {
