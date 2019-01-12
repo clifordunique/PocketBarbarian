@@ -16,22 +16,40 @@ public class LoadSaveGame: MonoBehaviour
     }
 
 
-
     public void Load() {
         if (File.Exists(path)) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(path, FileMode.Open);
             GameSaveData saveData = (GameSaveData)bf.Deserialize(file);
             file.Close();
-            foreach(string id in saveData.collectableIds) {
-                Debug.Log("-> ID:" + id);
-            }
+
+            
+            ActivateSavePoints(saveData);
             DeleteCollectables(saveData);
+
+            SetSpawnPosition(saveData);
+        }
+    }
+
+    private void SetSpawnPosition(GameSaveData saveData) {
+        PlayerController.GetInstance().transform.position = saveData.GetSpawnPosition();
+    }
+
+    private void ActivateSavePoints(GameSaveData saveData) {
+        SavePoint[] currentSavePoints = FindObjectsOfType<SavePoint>();
+        foreach (SavePoint currentSavePoint in currentSavePoints) {
+            string uniqueId = GetUniqueId(currentSavePoint.gameObject);
+            if (uniqueId != "") {
+                if (Array.IndexOf(saveData.activatedSavePoints, uniqueId) != -1) {
+                    // found, so activate this item
+                    currentSavePoint.SetActive(true);
+                }
+            }
         }
     }
 
     private void DeleteCollectables(GameSaveData saveData) {
-        AbstractCollectable[] currentCollectables = GetAllCollectables();
+        AbstractCollectable[] currentCollectables = FindObjectsOfType<AbstractCollectable>(); 
         foreach(AbstractCollectable currentCollectable in currentCollectables) {
             string uniqueId = GetUniqueId(currentCollectable.gameObject);
             if (uniqueId != "") {
@@ -44,8 +62,8 @@ public class LoadSaveGame: MonoBehaviour
     }
     
 
-    public void Save() {
-        lastSaveData = CreateSaveData();
+    public void Save(SavePoint savePoint) {
+        lastSaveData = CreateSaveData(savePoint);
         Thread _t1 = new Thread(SaveToFile);
         _t1.Start();        
     }
@@ -59,23 +77,51 @@ public class LoadSaveGame: MonoBehaviour
         Debug.Log("Save complete");
     }
 
-    private GameSaveData CreateSaveData() {
+    private GameSaveData CreateSaveData(SavePoint savePoint) {
         GameSaveData saveData = new GameSaveData();
 
+        // save spawnPoint
+        saveData.SetSpawnPosition(savePoint.GetSpawnPosition());
+
+        // save active SavePoints
+        saveData.activatedSavePoints = GetAllActiveSavePointsUniqueIds();
+
         // get collectables
-        AbstractCollectable[] collectables = GetAllCollectables();
-        Debug.Log("Found " + collectables.Length + " collectables to save...");
-        saveData.collectableIds = new string[collectables.Length];
-        for (int i = 0; i < collectables.Length; i++) {
-            AbstractCollectable collectable = collectables[i];
-            saveData.collectableIds[i] = GetUniqueId(collectable.gameObject);
-        }
+        saveData.collectableIds = GetAllCollectablesUniqueIds();
+
+
         return saveData;
     }
 
-    private AbstractCollectable[] GetAllCollectables() {
+
+    private string[] GetAllActiveSavePointsUniqueIds() {
+        SavePoint[] savePoints = FindObjectsOfType<SavePoint>();
+        Debug.Log("Found " + savePoints.Length + " savePoints to save...");
+        if (savePoints != null) {
+            List<string> result = new List<string>();
+            for (int i = 0; i < savePoints.Length; i++) {
+                SavePoint savePoint = savePoints[i];
+                if (savePoint.activated) {
+                    result.Add(GetUniqueId(savePoint.gameObject));
+                }
+            }
+            return result.ToArray();
+        }
+        return new string[0];
+    }
+
+    private string[] GetAllCollectablesUniqueIds() {
         AbstractCollectable[] collectables = FindObjectsOfType<AbstractCollectable>();
-        return collectables;
+        Debug.Log("Found " + collectables.Length + " collectables to save...");
+        if (collectables != null) {
+            string[] result = new string[collectables.Length];
+            for (int i = 0; i < collectables.Length; i++) {
+                AbstractCollectable collectable = collectables[i];
+                result[i] = GetUniqueId(collectable.gameObject);
+            }
+            return result;
+        }
+        return new string[0];
     }
 
     private string GetUniqueId(GameObject go) {

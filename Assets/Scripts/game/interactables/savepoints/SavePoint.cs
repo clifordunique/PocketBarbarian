@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-    public string uuid;
     public bool activated = false;
     public float spawnOffsetY = -0.75F;
     public LayerMask reactLayer;
 
     private Animator animator;
-    private BoxCollider2D boxCollider;   
 
     void Awake() {
         animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public Vector3 GetSpawnPosition() {
@@ -31,19 +28,17 @@ public class SavePoint : MonoBehaviour
         }
     }
 
-    public void Activate() {
-        activated = true;
-        if (animator) {
-            animator.SetBool("ACTIVATE", true);
-            animator.SetBool("DEACTIVATE", false);
-        }
-        GameManager.GetInstance().SaveGame();
+    private void Activate() {
+        SetActive(true);
+        GameManager.GetInstance().SaveGame(this);
     }
 
-    public void DeActivate() {
+    public void SetActive(bool active) {
+        activated = active;
         if (animator) {
-            animator.SetBool("ACTIVATE", false);
-            animator.SetBool("DEACTIVATE", true);
+            animator.SetBool("ACTIVATE", active);
+            animator.SetBool("DEACTIVATE", !active);
         }
     }
+
 }
