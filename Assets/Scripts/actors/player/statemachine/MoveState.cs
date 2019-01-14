@@ -41,7 +41,7 @@ public class MoveState : AbstractState {
         }
         if (playerController.hasWeapons && input.IsDashing()) {
             // check if Dashing possible
-            if (playerController.statistics.HasEnoughStaminaForDash()) {
+            if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new DashingState(playerController);
             }
         }

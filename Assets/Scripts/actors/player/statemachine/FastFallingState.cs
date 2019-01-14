@@ -37,7 +37,7 @@ public class FastFallingState : AbstractState {
 
         if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
             // check if Stomping possible
-            if (playerController.statistics.HasEnoughStaminaForStomp()) {
+            if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new StompingState(playerController);
             }
         } 

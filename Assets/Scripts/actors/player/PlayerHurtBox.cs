@@ -29,11 +29,6 @@ public class PlayerHurtBox : HurtBox {
         if (actorController == null && transform.parent) {
             // search in parent
             actorController = transform.parent.GetComponent<PlayerController>();
-            if (actorController != null) {
-                Debug.Log("ActorController gefunden!");
-            } else {
-                Debug.Log("ActorController NICHT gefunden!");
-            }
         }
     }
 

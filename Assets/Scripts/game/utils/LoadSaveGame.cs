@@ -70,11 +70,10 @@ public class LoadSaveGame: MonoBehaviour
 
     private void SaveToFile() {
         BinaryFormatter bf = new BinaryFormatter();
-        Debug.Log("SavePath:" + path);
         FileStream file = File.Create(path);
         bf.Serialize(file, lastSaveData);
         file.Close();
-        Debug.Log("Save complete");
+        Debug.Log("Save Game complete");
     }
 
     private GameSaveData CreateSaveData(SavePoint savePoint) {

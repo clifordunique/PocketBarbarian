@@ -13,20 +13,40 @@ public class FloatEvent: UnityEvent<float> { }
 public class KeysEvent: UnityEvent<CollectableKeys.KEY_TYPE, bool> { }
 
 public class PlayerStatistics : MonoBehaviour {
+    [Header("BaseSettings")]
+    [ReadOnly]
+    public int baseMaxHealth = 3;
+    [ReadOnly]
+    public int baseMaxPotions = 3;
+    [ReadOnly]
+    public int baseMaxAmmo = 5;
+    [ReadOnly]
+    public float baseStaminaActionCost = 1F;
 
-    public int points;
-    public int ammo;
+    [Header("ModifiedBaseSettings")]
+    public int maxHealth;
+    public int maxPotions;
+    public int maxAmmo;
+    public float staminaActionCost;
+    public float timeStaminaRegeneration;
+    public float stepsStaminaRegeneration;
+
+    [Header("Variable Properties")]
+    public int lives;
+    public int health;
     public int potions;
-    public float stamina; // stamina in percent 0-1F
+    public int ammo;
+    public int points;
+    public float currentStamina; // stamina in percent 0-1F
+
     public bool hasSquareKey;
     public bool hasCircleKey;
     public bool hasTriangleKey;
 
-    public float staminaCostForDash = 0.5F;
-    public float staminaCostForStomp = 0.5F;
+    [ReadOnly]
+    public List<string> inventoryItemUuids;
+    public List<Item> inventory;    
 
-    public float timeStaminaRegeneration;
-    public float stepsStaminaRegeneration;
 
     [SerializeField]
     private IntEvent eventPoints;
@@ -53,16 +73,16 @@ public class PlayerStatistics : MonoBehaviour {
 
     void Update() {
         
-        if (stamina < 1 && !coroutineStamina) {
+        if (currentStamina < 1 && !coroutineStamina) {
             StartCoroutine(RegenerateStamina());
         }
     }
 
     IEnumerator RegenerateStamina() {
         coroutineStamina = true;
-        while (stamina < 1) {
-            stamina += stepsStaminaRegeneration;
-            eventStamina.Invoke(stamina);
+        while (currentStamina < 1) {
+            currentStamina += stepsStaminaRegeneration;
+            eventStamina.Invoke(currentStamina);
             yield return new WaitForSeconds(timeStaminaRegeneration);
         }
         coroutineStamina = false;
@@ -73,9 +93,22 @@ public class PlayerStatistics : MonoBehaviour {
     }
 
     public void ModifyStamina(float modifyStaminaPercent) {
-        stamina = (stamina + modifyStaminaPercent < 0 ? 0 : stamina + modifyStaminaPercent);
+        currentStamina = (currentStamina + modifyStaminaPercent < 0 ? 0 : currentStamina + modifyStaminaPercent);
         
-        eventStamina.Invoke(stamina);
+        eventStamina.Invoke(currentStamina);
+    }
+
+    public bool HasEnoughStaminaForAction() {
+        if (currentStamina - staminaActionCost >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public void ReduceStaminaForAction() {
+        ModifyStamina(-staminaActionCost);
     }
 
     public void ModifyAmmo(int modifyAmmo) {
@@ -107,26 +140,35 @@ public class PlayerStatistics : MonoBehaviour {
     }
 
 
-    public bool HasEnoughStaminaForDash() {
-        if (stamina - staminaCostForDash >= 0) {
-            return true;
-        }
-        return false;
+
+
+    public PlayerSaveData CreateSaveData() {
+        PlayerSaveData result = new PlayerSaveData();
+        result.lives = lives;
+        result.health = health;
+        result.potions = potions;
+        result.ammo = ammo;
+        result.points = points;
+        result.currentStamina = currentStamina;
+        result.hasSquareKey = hasSquareKey;
+        result.hasCircleKey = hasCircleKey;
+        result.hasTriangleKey = hasTriangleKey;
+        result.itemUuids = inventoryItemUuids;
+        return result;
     }
 
-    public bool HasEnoughStaminaForStomp() {
-        if (stamina - staminaCostForStomp >= 0) {
-            return true;
-        }
-        return false;
-    }
+    public void RefreshSaveData(PlayerSaveData saveData) {
 
+        lives = saveData.lives;
+        health = saveData.health;
+        ModifyPotions(saveData.potions - potions);
+        ModifyAmmo(saveData.ammo - ammo);
+        ModifyPoints(saveData.points - points);         
+        currentStamina = saveData.currentStamina;
+        if (saveData.hasSquareKey) { ModifyKeys(CollectableKeys.KEY_TYPE.SQUARE, true); }
+        if (saveData.hasCircleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.CIRCLE, true); }
+        if (saveData.hasTriangleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.TRIANGLE, true); }
 
-    public void ReduceStaminaForDash() {
-        ModifyStamina(-staminaCostForDash);
-    }
-
-    public void ReduceStaminaForStomp() {
-        ModifyStamina(-staminaCostForStomp);
+        inventoryItemUuids = saveData.itemUuids;
     }
 }

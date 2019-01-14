@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ItemCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <Item>
+      <UUID>sss</UUID>
+      <ItemType>SWORD</ItemType>
+      <Shop>BLACKSMITH</Shop>
+      <Name>bla</Name>
+      <Ammount>1</Ammount>
+      <Effects>
+        <Effect>
+          <effectType>DAMAGE</effectType>
+          <value>1</value>
+        </Effect>
+      </Effects>
+    </Item>
+  </Items>
+</ItemCollection>

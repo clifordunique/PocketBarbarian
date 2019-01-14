@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     public string testSavepointUuid;
     public float waitTimeRestartOnDeath = 0F;
 
     private LoadSaveGame loadSaveGame;
+    private LoadSavePlayer loadSavePlayer;
     private bool playerDead = false;
     private static GameManager _instance;
 
@@ -38,18 +40,26 @@ public class GameManager : MonoBehaviour
 
     private void Start() {     
         loadSaveGame = GetComponent<LoadSaveGame>();
-        
+        loadSavePlayer = GetComponent<LoadSavePlayer>();
+
         StartCoroutine(LoadGame());
+        ItemManager im = new ItemManager();
+        im.SaveShopItems();
+        im.LoadShopItems();
     }
+
+
 
     IEnumerator LoadGame() {
         yield return 0;
         loadSaveGame.Load();
+        loadSavePlayer.Load();
     }
 
 
     public void SaveGame(SavePoint savePoint) {
         loadSaveGame.Save(savePoint);
+        loadSavePlayer.Save();
     }
 
 
