@@ -2,15 +2,18 @@
 <ItemCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
     <Item>
-      <UUID>sss</UUID>
-      <ItemType>SWORD</ItemType>
-      <Shop>BLACKSMITH</Shop>
-      <Name>bla</Name>
-      <Ammount>1</Ammount>
+      <UUID>eb404dfd-5ae4-463a-900f-32c242998f3b</UUID>
+      <ItemType>POTION</ItemType>
+      <ItemGameobjectLink>MEDIUM_POTION</ItemGameobjectLink>
+      <Priority>2</Priority>
+      <Shop>TRADER</Shop>
+      <Name>Health Potion Medium</Name>
+      <Stackable>true</Stackable>
+      <Ammount>10</Ammount>
       <Effects>
         <Effect>
-          <effectType>DAMAGE</effectType>
-          <value>1</value>
+          <effectType>HEALTH</effectType>
+          <value>2</value>
         </Effect>
       </Effects>
     </Item>

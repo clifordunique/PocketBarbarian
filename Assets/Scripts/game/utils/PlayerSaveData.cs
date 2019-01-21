@@ -7,14 +7,14 @@ public class PlayerSaveData
 {
     public int lives;
     public int health;
-    public int potions;
-    public int ammo;
     public int points;
     public float currentStamina;
     public bool hasSquareKey;
     public bool hasCircleKey;
     public bool hasTriangleKey;
+    public string selectedPotionUuid;
+    public string selectedAmmoUuid;
 
-    public List<string> itemUuids;
-    
+    public Dictionary<string, int> inventoryItems = new Dictionary<string, int>();
+
 }

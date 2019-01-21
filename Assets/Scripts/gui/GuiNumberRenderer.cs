@@ -17,7 +17,7 @@ public class GuiNumberRenderer : MonoBehaviour {
         Invoke("UpdateNumber", delayTime);
     }
 
-    public void UpdateNumber(int number) {
+    public void UpdatePotion(CollectablePotions.POTION_TYPE potionType, int number) {
         currentNumber = number;
         Invoke("UpdateNumber", delayTime);
     }

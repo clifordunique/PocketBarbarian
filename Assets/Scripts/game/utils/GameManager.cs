@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        Debug.Log("GameManager: OnSceneLoaded: " + scene.name);
-
         FadeCanvasEffect.GetInstance().FadeInSceneCanvas();
     }
 
@@ -44,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(LoadGame());
         ItemManager im = new ItemManager();
-        im.SaveShopItems();
+        //im.SaveShopItems();
         im.LoadShopItems();
     }
 

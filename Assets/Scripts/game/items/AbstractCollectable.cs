@@ -14,6 +14,7 @@ public abstract class AbstractCollectable : MonoBehaviour {
     private bool collected = false;
 
     private Animator animator;
+    private SimpleMovement movement;
 
     void Start() {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -29,13 +30,16 @@ public abstract class AbstractCollectable : MonoBehaviour {
         } else {
             activeGameObject = transform.parent.gameObject;
         }
+
+        movement = GetComponent<SimpleMovement>();
         animator = GetComponent<Animator>();
         if (!animator && transform.parent != null) {
             animator = transform.parent.GetComponent<Animator>();
         }
 
-        if (animator && startRandom) {
-            animator.enabled = false;
+        if (startRandom) {
+            if (movement) movement.enabled = false;
+            if (animator) animator.enabled = false;
             float randomStartTime = Time.time + Random.Range(0F, 1F);
             StartCoroutine(StartAnimation(randomStartTime));
         }
@@ -46,7 +50,9 @@ public abstract class AbstractCollectable : MonoBehaviour {
         if (animator) {
             animator.enabled = true;
         }
-
+        if (movement) {
+            movement.enabled = true;
+        }
     }
 
     private void EnableBoxCollider() {

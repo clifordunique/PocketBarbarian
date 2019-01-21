@@ -10,9 +10,17 @@ public class IntEvent: UnityEvent<int> { }
 public class FloatEvent: UnityEvent<float> { }
 
 [System.Serializable]
+public class PotionsEvent: UnityEvent<CollectablePotions.POTION_TYPE, int> { }
+
+[System.Serializable]
 public class KeysEvent: UnityEvent<CollectableKeys.KEY_TYPE, bool> { }
 
 public class PlayerStatistics : MonoBehaviour {
+
+    // absolute obergrenze fuer health
+    [ReadOnly]
+    public int MAXMAXHEALTH = 6;
+
     [Header("BaseSettings")]
     [ReadOnly]
     public int baseMaxHealth = 3;
@@ -28,24 +36,36 @@ public class PlayerStatistics : MonoBehaviour {
     public int maxPotions;
     public int maxAmmo;
     public float staminaActionCost;
+
     public float timeStaminaRegeneration;
     public float stepsStaminaRegeneration;
 
     [Header("Variable Properties")]
+    public string selectedPotionUuid;
+    public string selectedAmmoUuid;
+
     public int lives;
     public int health;
     public int potions;
     public int ammo;
     public int points;
+    public int damage;
+    public bool hasWeapon;
+    public bool wallJumpAllowed;
+    public bool doubleJumpAllowed;
+    public bool dashAllowed;
+    public float dashDuration;
+    public bool stompAllowed;
+    public bool comboAllowed;
+    public float comboLevel;
+
     public float currentStamina; // stamina in percent 0-1F
 
     public bool hasSquareKey;
     public bool hasCircleKey;
     public bool hasTriangleKey;
 
-    [ReadOnly]
-    public List<string> inventoryItemUuids;
-    public List<Item> inventory;    
+    public Dictionary<string, Item> inventoryItems = new Dictionary<string, Item>();    
 
 
     [SerializeField]
@@ -53,7 +73,7 @@ public class PlayerStatistics : MonoBehaviour {
     [SerializeField]
     private IntEvent eventAmmo;
     [SerializeField]
-    private IntEvent eventPotions;
+    private PotionsEvent eventPotions;
     [SerializeField]
     private FloatEvent eventStamina;
     [SerializeField]
@@ -63,12 +83,20 @@ public class PlayerStatistics : MonoBehaviour {
 
     private static PlayerStatistics _instance;
 
+    public static PlayerStatistics GetInstance() {
+        return _instance;
+    }
+
     // Use this for initialization
     void Start () {
+        InitBaseData();
+
         _instance = this;
+
+
         eventAmmo.Invoke(ammo);
         eventPoints.Invoke(points);
-        eventPotions.Invoke(potions);
+        eventPotions.Invoke(CollectablePotions.POTION_TYPE.SMALL_POTION, potions);
     }
 
     void Update() {
@@ -78,6 +106,10 @@ public class PlayerStatistics : MonoBehaviour {
         }
     }
 
+    // **************************************************************
+    // STAMINA - BEGIN
+    // **************************************************************
+
     IEnumerator RegenerateStamina() {
         coroutineStamina = true;
         while (currentStamina < 1) {
@@ -86,10 +118,6 @@ public class PlayerStatistics : MonoBehaviour {
             yield return new WaitForSeconds(timeStaminaRegeneration);
         }
         coroutineStamina = false;
-    }
-
-    public static PlayerStatistics GetInstance() {
-        return _instance;
     }
 
     public void ModifyStamina(float modifyStaminaPercent) {
@@ -105,11 +133,13 @@ public class PlayerStatistics : MonoBehaviour {
         return false;
     }
 
-
-
     public void ReduceStaminaForAction() {
         ModifyStamina(-staminaActionCost);
     }
+
+    // **************************************************************
+    // STAMINA - END
+    // **************************************************************
 
     public void ModifyAmmo(int modifyAmmo) {
         ammo += modifyAmmo;
@@ -121,9 +151,9 @@ public class PlayerStatistics : MonoBehaviour {
         eventPoints.Invoke(points);
     }
 
-    public void ModifyPotions(int modifyPotions) {
+    public void ModifyPotions(CollectablePotions.POTION_TYPE potionType, int modifyPotions) {
         potions += modifyPotions;
-        eventPotions.Invoke(potions);
+        eventPotions.Invoke(potionType, potions);
     }
 
     public void ModifyKeys(CollectableKeys.KEY_TYPE keytype, bool equip) {
@@ -140,35 +170,117 @@ public class PlayerStatistics : MonoBehaviour {
     }
 
 
+    public void ModifyItem(Item item) {
+        // search for existing item
+        bool inventoryChanged = false;
+        Item myItem = null;
+        if (item != null) {
+            if (inventoryItems.ContainsKey(item.uuid)) {
+                myItem = inventoryItems[item.uuid];
+                // item gefunden
+                if (myItem.stackable) {
+                    // item darf gestackt werden
+                    inventoryChanged = AddAmount(myItem, item.amount);
+                }
+            } else {
+                // item nicht gefunden, hinzufuegen
+                myItem = new Item(item);
+                inventoryItems.Add(myItem.uuid, myItem);
+                inventoryChanged = true;
+            }
 
+            if (inventoryChanged) {
+                Debug.Log("Refresh Player Inventory");
+                InitBaseData();
+                ItemManager.GetInstance().RefreshPlayerStatisticsWithInventory(this, inventoryItems);
+            }
+        }        
+    }    
+
+    private bool AddAmount(Item item, int newAmount) {
+        if (item.itemType == Item.ITEM_TYPES.AMMO)
+            return AddAmount(item, newAmount, maxAmmo);
+        if (item.itemType == Item.ITEM_TYPES.POTION)
+            return AddAmount(item, newAmount, maxPotions);
+        if (item.itemType == Item.ITEM_TYPES.AMULETTE)
+            return AddAmount(item, newAmount, MAXMAXHEALTH);
+        return false;
+    }
+
+    private bool AddAmount(Item item, int newAmount, int max) {
+        if (item.amount >= max || newAmount <= 0) {
+            return false;
+        }
+        if (item.amount + newAmount > max) {
+            item.amount = max;
+            return true;
+        } else {
+            item.amount += newAmount;
+            return true;
+        }
+    }
 
     public PlayerSaveData CreateSaveData() {
         PlayerSaveData result = new PlayerSaveData();
         result.lives = lives;
         result.health = health;
-        result.potions = potions;
-        result.ammo = ammo;
         result.points = points;
         result.currentStamina = currentStamina;
+        result.selectedPotionUuid = selectedPotionUuid;
+        result.selectedAmmoUuid = selectedAmmoUuid;
         result.hasSquareKey = hasSquareKey;
         result.hasCircleKey = hasCircleKey;
         result.hasTriangleKey = hasTriangleKey;
-        result.itemUuids = inventoryItemUuids;
+        foreach(KeyValuePair<string, Item> kvp in inventoryItems) {
+            // speichere Item UUID und Anzahl
+            result.inventoryItems.Add(kvp.Key, kvp.Value.amount);
+        }        
         return result;
     }
 
     public void RefreshSaveData(PlayerSaveData saveData) {
-
+        Debug.Log("Refresh SaveData");
         lives = saveData.lives;
         health = saveData.health;
-        ModifyPotions(saveData.potions - potions);
-        ModifyAmmo(saveData.ammo - ammo);
+        selectedPotionUuid = saveData.selectedPotionUuid;
+        selectedAmmoUuid = saveData.selectedAmmoUuid;
+
         ModifyPoints(saveData.points - points);         
         currentStamina = saveData.currentStamina;
         if (saveData.hasSquareKey) { ModifyKeys(CollectableKeys.KEY_TYPE.SQUARE, true); }
         if (saveData.hasCircleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.CIRCLE, true); }
         if (saveData.hasTriangleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.TRIANGLE, true); }
 
-        inventoryItemUuids = saveData.itemUuids;
+        inventoryItems = new Dictionary<string, Item>();
+        foreach (KeyValuePair<string, int> kvp in saveData.inventoryItems) {
+            Item originalItem = ItemManager.GetInstance().FindItem(kvp.Key);
+            Item myItem = new Item(originalItem);
+            myItem.amount = kvp.Value;
+            inventoryItems.Add(myItem.uuid, myItem);
+        }
+
+        InitBaseData();
+        ItemManager.GetInstance().RefreshPlayerStatisticsWithInventory(this, inventoryItems);
+    }
+
+
+    private void InitBaseData() {
+
+        maxHealth = baseMaxHealth;
+        maxPotions = baseMaxPotions;
+        maxAmmo = baseMaxAmmo;
+        staminaActionCost = baseStaminaActionCost;
+
+        potions = 0;
+        ammo = 0;
+        damage = 0;
+        hasWeapon = false;
+        wallJumpAllowed = false;
+        doubleJumpAllowed = false;
+        dashAllowed = false;
+        dashDuration = 0;
+        stompAllowed = false;
+        comboAllowed = false;
+        comboLevel = 0;
     }
 }
