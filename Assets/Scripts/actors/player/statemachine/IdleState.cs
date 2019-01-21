@@ -25,26 +25,26 @@ public class IdleState : AbstractState {
             return new FallingState(playerController);
         }
 
-        if (input.IsJumpKeyDown()) {
+        if (playerController.input.IsJumpKeyDown()) {
             return new JumpState(playerController);
         }
-        if (input.GetDirectionX() != 0) {
+        if (playerController.input.GetDirectionX() != 0) {
             return new MoveState(playerController);
         }
 
-        if (input.GetDirectionY() == 1 && playerController.interactableInRange) {
+        if (playerController.input.GetDirectionY() == 1 && playerController.interactableInRange) {
             return new ActionState(playerController);
         }
 
-        if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
             return new Attack1State(playerController);
         }
 
-        if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowIdleState(playerController);
         }
 
-        Move(0, input.GetDirectionY());
+        Move(0, playerController.input.GetDirectionY());
         return null;
     }
 

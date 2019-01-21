@@ -13,12 +13,12 @@ public class FallingState : AbstractState {
     public override void OnEnter() {
         startFallingY = playerController.transform.position.y;
         playerController.animator.SetBool(FALLING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(FALLING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -35,7 +35,7 @@ public class FallingState : AbstractState {
             return new WallSlidingState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
+        if (playerController.hasWeapons && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
             // check if Stomping possible
             if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new StompingState(playerController);
@@ -48,15 +48,15 @@ public class FallingState : AbstractState {
             return new FastFallingState(playerController);
         }
 
-        if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
         }
 
-        if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
 
-        Move(input.GetDirectionX(), input.GetDirectionY());        
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());        
         return null;
     }
 

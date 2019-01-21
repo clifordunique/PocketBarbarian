@@ -13,12 +13,12 @@ public class HardLandingState : AbstractState {
         CameraFollow.GetInstance().ShakeSmall();
         playerController.InstantiateEffect(playerController.prefabEffectHardLanding);
         playerController.animator.SetBool(HARD_LANDING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(HARD_LANDING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -28,7 +28,7 @@ public class HardLandingState : AbstractState {
         }
 
         if (animationEnded) {
-            if (input.GetDirectionX() == 0) {
+            if (playerController.input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
             } else {
                 return new MoveState(playerController);

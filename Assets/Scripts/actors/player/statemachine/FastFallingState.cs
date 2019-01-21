@@ -9,12 +9,12 @@ public class FastFallingState : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(FAST_FALLING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(FAST_FALLING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -35,14 +35,14 @@ public class FastFallingState : AbstractState {
             return new HardLandingState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.moveController.IsFalling() && input.DownKeyDown()) {
+        if (playerController.hasWeapons && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
             // check if Stomping possible
             if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new StompingState(playerController);
             }
         } 
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 

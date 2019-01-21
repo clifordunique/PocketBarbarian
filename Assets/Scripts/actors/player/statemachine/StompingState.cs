@@ -27,7 +27,7 @@ public class StompingState : AbstractState {
     public override void OnExit() {
         playerController.moveController.wallJumpingAllowed = wallSlidingTmp;
         playerController.animator.SetBool(STOMPING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -44,7 +44,7 @@ public class StompingState : AbstractState {
             playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);
         }
 
-        Move(0, input.GetDirectionY());
+        Move(0, playerController.input.GetDirectionY());
         return null;
     }
 

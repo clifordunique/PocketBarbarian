@@ -16,8 +16,8 @@ public class DashingState : AbstractState {
         playerController.hitBoxDash.gameObject.SetActive(true);
         playerController.animator.SetBool(DASHING_PARAM, true);
         //playerController.InstantiateEffect(playerController.prefabEffectDashing);
-        directionX = input.GetDirectionX();
-        directionY = input.GetDirectionY();
+        directionX = playerController.input.GetDirectionX();
+        directionY = playerController.input.GetDirectionY();
         Move(directionX, directionY, true);
         timeDash = Time.time;
 
@@ -31,7 +31,7 @@ public class DashingState : AbstractState {
     public override void OnExit() {
         playerController.hitBoxDash.gameObject.SetActive(false);
         playerController.animator.SetBool(DASHING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
 
         // Switch HurtBox Layers back
         playerController.hurtBox.SwitchToOriginLayer();

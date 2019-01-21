@@ -28,7 +28,7 @@ public class Attack1State : AbstractState {
             return interrupt;
         }
 
-        if (input.IsAttack1KeyDown()) {
+        if (playerController.input.IsAttack1KeyDown()) {
             comboAttack = true;
         }
 
@@ -44,9 +44,9 @@ public class Attack1State : AbstractState {
 
         if (comboAttack && exitCombo) {
             if (checkMoveStarted > Time.time) {
-                Move(playerController.dirX, input.GetDirectionY());
+                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
-                Move(0, input.GetDirectionY());
+                Move(0, playerController.input.GetDirectionY());
                 checkMoveStarted = 0;
             }
         }

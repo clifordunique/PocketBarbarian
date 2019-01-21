@@ -11,13 +11,13 @@ public class WallSlidingState: AbstractState {
 
     public override void OnEnter() {        
         playerController.animator.SetBool(WALL_SLIDING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.sparkParticle.Stop();
         playerController.animator.SetBool(WALL_SLIDING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -30,7 +30,7 @@ public class WallSlidingState: AbstractState {
             playerController.sparkParticle.Play();            
         }
 
-        if (input.IsJumpKeyDown()) {
+        if (playerController.input.IsJumpKeyDown()) {
             return new WallJumpState(playerController);
         }
 
@@ -42,7 +42,7 @@ public class WallSlidingState: AbstractState {
             return new FallingState(playerController);
         }
         
-        playerController.moveController.OnMove(input.GetDirectionX(), input.GetDirectionY(), false);
+        playerController.moveController.OnMove(playerController.input.GetDirectionX(), playerController.input.GetDirectionY(), false);
         return null;
     }
 

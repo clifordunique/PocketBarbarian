@@ -18,7 +18,7 @@ public class Attack2State : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK2_PARAM, true);
-        Move(0, input.GetDirectionY());
+        Move(0, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
@@ -31,7 +31,7 @@ public class Attack2State : AbstractState {
             return interrupt;
         }
 
-        if (input.IsAttack1KeyDown()) {
+        if (playerController.input.IsAttack1KeyDown()) {
             comboAttach = true;
         }
 
@@ -47,9 +47,9 @@ public class Attack2State : AbstractState {
 
         if (moveForward) {
             if (checkMoveStarted > Time.time) {
-                Move(playerController.dirX, input.GetDirectionY());
+                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
-                Move(0, input.GetDirectionY());
+                Move(0, playerController.input.GetDirectionY());
                 moveForward = false;
             }
         }

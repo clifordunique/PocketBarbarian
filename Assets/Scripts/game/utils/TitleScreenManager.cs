@@ -12,7 +12,7 @@ public class TitleScreenManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        fadeAnimator.SetBool("FADE_IN_SCENE", true);
     }
 	
 	// Update is called once per frame

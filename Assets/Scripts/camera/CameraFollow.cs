@@ -43,6 +43,7 @@ public class CameraFollow : MonoBehaviour {
     bool down;
 
     float verticalSmoothTimeTmp;
+    ScrollingBackground[] scrollingBackgrounds;
 
     static CameraFollow _instance;
 
@@ -56,6 +57,7 @@ public class CameraFollow : MonoBehaviour {
     public void Init() {
         focusArea = new FocusArea(target.myCollider.bounds, focusAreaSize);
         verticalSmoothTimeTmp = verticalSmoothTime;
+        scrollingBackgrounds = FindObjectsOfType<ScrollingBackground>();
     }
 
     public static CameraFollow GetInstance() {
@@ -140,6 +142,12 @@ public class CameraFollow : MonoBehaviour {
         transform.position = (Vector3)pixelPerfectFocus + Vector3.forward * (-10);
 
         verticalSmoothTime = verticalSmoothTimeTmp;
+
+        if (scrollingBackgrounds != null && scrollingBackgrounds.Length > 0) {
+            foreach (ScrollingBackground scrollingBackground in scrollingBackgrounds) {
+                scrollingBackground.UpdateAfterCameraChanges();
+            }
+        }
     }
 
 	void OnDrawGizmos() {

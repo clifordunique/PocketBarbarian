@@ -10,12 +10,12 @@ public class DrowningState : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(DROWNING_PARAM, true);
-        Move(0F, input.GetDirectionY());
+        Move(0F, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(DROWNING_PARAM, false);
-        Move(0F, input.GetDirectionY());
+        Move(0F, playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {

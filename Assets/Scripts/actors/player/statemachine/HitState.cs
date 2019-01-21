@@ -20,7 +20,7 @@ public class HitState : AbstractState {
 
     public override void OnExit() {
         playerController.animator.SetBool(JUMPING_PARAM, false);
-        Move(0F, input.GetDirectionY());
+        Move(0F, playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -36,7 +36,7 @@ public class HitState : AbstractState {
                 return new IdleState(playerController);
             }
         }
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 

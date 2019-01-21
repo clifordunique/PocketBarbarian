@@ -16,12 +16,12 @@ public class StompingLandingState : AbstractState {
     public override void OnEnter() {        
         playerController.InstantiateEffect(playerController.prefabEffectStompingSilhouette);       
         playerController.animator.SetBool(STOMPING_LANDING_PARAM, true);
-        Move(0, input.GetDirectionY());
+        Move(0, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {        
         playerController.animator.SetBool(STOMPING_LANDING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
 
         // Switch HurtBox Layers back
         playerController.hurtBox.SwitchToOriginLayer();
@@ -63,7 +63,7 @@ public class StompingLandingState : AbstractState {
             }
 
             if (animationEnded && playerController.moveController.IsGrounded()) {
-                if (input.GetDirectionX() == 0) {
+                if (playerController.input.GetDirectionX() == 0) {
                     return new IdleState(playerController);
                 } else {
                     return new MoveState(playerController);

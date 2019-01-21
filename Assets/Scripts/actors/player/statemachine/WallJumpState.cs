@@ -11,12 +11,12 @@ public class WallJumpState : AbstractState {
         playerController.animator.SetBool(WALL_JUMP_PARAM, true);
         playerController.InstantiateEffect(playerController.prefabEffectWallJump);
         playerController.moveController.OnWallJumpInputDown();
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(WALL_JUMP_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -39,20 +39,20 @@ public class WallJumpState : AbstractState {
             return new FallingState(playerController);
         }
 
-        if (input.IsJumpKeyUp()) {
+        if (playerController.input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
         }        
 
-        if (playerController.hasWeapons && input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
         }
 
-        if (playerController.hasWeapons && input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
         
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 

@@ -37,12 +37,10 @@ public abstract class AbstractState {
     public enum ACTION {NA, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
-    public InputController input;
 
     public AbstractState(ACTION myAction, PlayerController playerController) {
         this.myAction = myAction;
-        this.playerController = playerController;
-        this.input = InputController.GetInstance();
+        this.playerController = playerController;        
     }
 
     public abstract void OnEnter();    

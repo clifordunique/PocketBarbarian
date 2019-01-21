@@ -12,12 +12,12 @@ public class ThrowRunningState: AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(THROW_RUNNING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(THROW_RUNNING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -31,13 +31,13 @@ public class ThrowRunningState: AbstractState {
         }
 
         if (throwFinished) {
-            if (input.GetDirectionX() == 0) {
+            if (playerController.input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
             }
         }
 
         if (animationFinished) {
-            if (input.GetDirectionX() == 0) {
+            if (playerController.input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
             } else {
                 return new MoveState(playerController);
@@ -45,7 +45,7 @@ public class ThrowRunningState: AbstractState {
         }
         
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 

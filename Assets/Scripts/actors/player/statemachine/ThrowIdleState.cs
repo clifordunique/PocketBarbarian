@@ -32,7 +32,7 @@ public class ThrowIdleState: AbstractState {
         }
         
 
-        Move(0, input.GetDirectionY());
+        Move(0, playerController.input.GetDirectionY());
         return null;
     }
 

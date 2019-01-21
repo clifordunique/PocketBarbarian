@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject interactable;
     [HideInInspector]
     public PlayerStatistics statistics;
+    [HideInInspector]
+    public InputController input;
 
     private AbstractState currentState;
     private static PlayerController _instance;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour, IActorController {
         animator = GetComponent<Animator>();
         currentState = new IdleState(this);
         statistics = GetComponentInChildren<PlayerStatistics>();
+        input = GetComponent<InputController>();
         hurtBox = GetComponentInChildren<PlayerHurtBox>();
         _instance = this;
 
@@ -167,7 +170,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     }
 
     public void SetEnabled(bool inputEnabled, bool showPlayer) {
-        InputController.GetInstance().moveInputEnabled = inputEnabled;
+        input.moveInputEnabled = inputEnabled;
         spriteRenderer.enabled = showPlayer;
     }
 }

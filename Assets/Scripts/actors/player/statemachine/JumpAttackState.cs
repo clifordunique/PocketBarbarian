@@ -11,12 +11,12 @@ public class JumpAttackState : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(JUMPING_ATTACK_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(JUMPING_ATTACK_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -38,11 +38,11 @@ public class JumpAttackState : AbstractState {
         }
 
 
-        if (!playerController.moveController.IsFalling() && input.IsJumpKeyUp()) {
+        if (!playerController.moveController.IsFalling() && playerController.input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
         }        
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 

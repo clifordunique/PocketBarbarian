@@ -12,12 +12,12 @@ public class LandingState : AbstractState {
     public override void OnEnter() {
         playerController.InstantiateEffect(playerController.prefabEffectLanding);
         playerController.animator.SetBool(LANDING_PARAM, true);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(LANDING_PARAM, false);
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
     public override AbstractState UpdateState() {
@@ -26,19 +26,19 @@ public class LandingState : AbstractState {
             return interrupt;
         }
 
-        if (input.IsJumpKeyDown()) {
+        if (playerController.input.IsJumpKeyDown()) {
             return new JumpState(playerController);
         }
 
         if (animationEnded) {
-            if (input.GetDirectionX() == 0) {
+            if (playerController.input.GetDirectionX() == 0) {
                 return new IdleState(playerController);
             } else {
                 return new MoveState(playerController);
             }
         }
 
-        Move(input.GetDirectionX(), input.GetDirectionY());
+        Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
     }
 
