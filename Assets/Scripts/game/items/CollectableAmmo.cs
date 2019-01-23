@@ -8,7 +8,7 @@ public class CollectableAmmo : AbstractCollectable {
 
     public override void CollectItem() {
         if (ammo != null) {
-            PlayerStatistics.GetInstance().ModifyAmmo(ammo.value);
+            //PlayerStatistics.GetInstance().ModifyAmmo(ammo.value);
         }
     }
 }

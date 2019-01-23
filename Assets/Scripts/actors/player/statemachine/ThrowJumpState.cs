@@ -52,7 +52,7 @@ public class ThrowJumpState : AbstractState {
         }
         if (parameter == EVENT_PARAM_THROW) {
             playerController.ShootProjectile();
-            playerController.statistics.ModifyAmmo(-1);
+            // ammo benutzen playerController.statistics.ModifyAmmo(-1);
         }
     }
 }

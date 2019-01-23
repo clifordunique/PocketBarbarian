@@ -36,7 +36,7 @@ public class MoveState : AbstractState {
         if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
             return new Attack2State(playerController);
         }
-        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown() && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
             return new ThrowRunningState(playerController);
         }
         if (playerController.hasWeapons && playerController.input.IsDashing()) {

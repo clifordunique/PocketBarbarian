@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class IntIntEvent: UnityEvent<int, int> { }
 
 public class PlayerHurtBox : HurtBox {
 
@@ -16,8 +14,6 @@ public class PlayerHurtBox : HurtBox {
     private bool dashLayerActive = false;
 
     private static PlayerHurtBox _instance;
-    [SerializeField]
-    private IntIntEvent someEvent;
 
     public void Awake() {
         _instance = this;    
@@ -64,10 +60,6 @@ public class PlayerHurtBox : HurtBox {
 
     public override void ModifyHealth(int healthModifier) {
         base.ModifyHealth(healthModifier);
-        someEvent.Invoke(maxHealth, currentHealth);
-
-        if (healthModifier > 0) {
-            ((PlayerController)actorController).FlashOutline();
-        }
+        ((PlayerController)actorController).statistics.ModifyHealth(healthModifier);
     }
 }

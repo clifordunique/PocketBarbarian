@@ -6,7 +6,8 @@ using UnityEngine;
 public class NumberDisplayer: ScriptableObject {
 
     public Sprite[] numbers;
-    
+
+    private string gameObjectName = "NUMBER";
     private float spriteWidth = -1;
 
     public void UpdateNumber(int newNumber, Transform parent, float offsetPixelsX, float offsetPixelsY) {
@@ -32,6 +33,7 @@ public class NumberDisplayer: ScriptableObject {
         float positionX = offsetPixelsX / Constants.PPU;
         positionX -= position * spriteWidth;
         newSpriteGo.transform.localPosition = new Vector3(positionX, offsetPixelsY / Constants.PPU, 0);
+        newSpriteGo.name = gameObjectName;
         return newSpriteGo;
     }
 
@@ -45,7 +47,9 @@ public class NumberDisplayer: ScriptableObject {
     private void ClearOldNumbers(Transform parent) {
         // delete old list of numbers
         foreach (Transform child in parent) {
-            GameObject.Destroy(child.gameObject);
+            if (child.gameObject.name == gameObjectName) {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
 }

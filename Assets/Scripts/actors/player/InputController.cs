@@ -75,6 +75,20 @@ public class InputController : MonoBehaviour {
         return 0F;
     }
 
+    public bool IsSwitchPotionsKeyDown() {
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.Alpha1));
+        }
+        return false;
+    }
+
+    public bool IsUsePotionsKeyDown() {
+        if (moveInputEnabled) {
+            return (Input.GetKeyDown(KeyCode.V));
+        }
+        return false;
+    }
+
     public bool AnyKeyDown() {
         return Input.anyKeyDown;
     }

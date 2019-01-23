@@ -42,8 +42,10 @@ public class Item
     public Item(Item original) {
         this.uuid = original.uuid;
         this.itemType = original.itemType;
+        this.priority = original.priority;
         this.shop = original.shop;
         this.name = original.name;
+        this.stackable = original.stackable;
         this.amount = original.amount;
         this.effectList = original.effectList;
     }
@@ -62,7 +64,7 @@ public class Item
         List<Item> result = itemList.FindAll(x => x.itemType.Equals(itemType));
         return result;
     }
-
+    
     public static List<Item> SearchItemsWithUuids(List<Item> items, List<string> uuids) {
 
         List<Item> itemsResult = new List<Item>();

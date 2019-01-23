@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class IntEvent: UnityEvent<int> { }
 
 [System.Serializable]
-public class FloatEvent: UnityEvent<float> { }
+public class IntIntEvent: UnityEvent<int, int> { }
 
 [System.Serializable]
-public class PotionsEvent: UnityEvent<CollectablePotions.POTION_TYPE, int> { }
+public class FloatEvent: UnityEvent<float> { }
 
 [System.Serializable]
 public class KeysEvent: UnityEvent<CollectableKeys.KEY_TYPE, bool> { }
@@ -41,13 +41,8 @@ public class PlayerStatistics : MonoBehaviour {
     public float stepsStaminaRegeneration;
 
     [Header("Variable Properties")]
-    public string selectedPotionUuid;
-    public string selectedAmmoUuid;
-
     public int lives;
     public int health;
-    public int potions;
-    public int ammo;
     public int points;
     public int damage;
     public bool hasWeapon;
@@ -65,21 +60,19 @@ public class PlayerStatistics : MonoBehaviour {
     public bool hasCircleKey;
     public bool hasTriangleKey;
 
-    public Dictionary<string, Item> inventoryItems = new Dictionary<string, Item>();    
 
-
+    [SerializeField]
+    private IntIntEvent eventHealth;
     [SerializeField]
     private IntEvent eventPoints;
-    [SerializeField]
-    private IntEvent eventAmmo;
-    [SerializeField]
-    private PotionsEvent eventPotions;
     [SerializeField]
     private FloatEvent eventStamina;
     [SerializeField]
     private KeysEvent eventKey;
 
     private bool coroutineStamina = false;
+
+    private PlayerInventory inventoryManager;
 
     private static PlayerStatistics _instance;
 
@@ -89,20 +82,34 @@ public class PlayerStatistics : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        // init Health data ( later maybe overwritten with save data)
+        maxHealth = baseMaxHealth;
+        health = maxHealth;
+        PublishHealth();
+
+        inventoryManager = GetComponent<PlayerInventory>();
+        if (!inventoryManager) {
+            Debug.Log("Inventory Manager not found!");
+        }
         InitBaseData();
 
         _instance = this;
-
-
-        eventAmmo.Invoke(ammo);
-        eventPoints.Invoke(points);
-        eventPotions.Invoke(CollectablePotions.POTION_TYPE.SMALL_POTION, potions);
+        
+        eventPoints.Invoke(points);        
     }
 
     void Update() {
         
         if (currentStamina < 1 && !coroutineStamina) {
             StartCoroutine(RegenerateStamina());
+        }
+
+        if (InputController.GetInstance().IsSwitchPotionsKeyDown()) {
+            inventoryManager.SwitchPotions();
+        }
+
+        if (InputController.GetInstance().IsUsePotionsKeyDown()) {
+            inventoryManager.UsePotion();
         }
     }
 
@@ -141,19 +148,26 @@ public class PlayerStatistics : MonoBehaviour {
     // STAMINA - END
     // **************************************************************
 
-    public void ModifyAmmo(int modifyAmmo) {
-        ammo += modifyAmmo;
-        eventAmmo.Invoke(ammo);
+    public void PublishHealth() {
+        // publish new health to hurtbox
+        PlayerHurtBox.GetInstance().currentHealth = health;
+        PlayerHurtBox.GetInstance().maxHealth = maxHealth;
+
+        // publish health to gui
+        eventHealth.Invoke(maxHealth, health);
+    }
+    
+    public void ModifyHealth(int healthMod) {
+        health += healthMod;
+        eventHealth.Invoke(maxHealth, health);
+        if (healthMod > 0) {
+            PlayerController.GetInstance().FlashOutline();
+        }
     }
 
     public void ModifyPoints(int additionalPoints) {
         points += additionalPoints;
         eventPoints.Invoke(points);
-    }
-
-    public void ModifyPotions(CollectablePotions.POTION_TYPE potionType, int modifyPotions) {
-        potions += modifyPotions;
-        eventPotions.Invoke(potionType, potions);
     }
 
     public void ModifyKeys(CollectableKeys.KEY_TYPE keytype, bool equip) {
@@ -171,54 +185,9 @@ public class PlayerStatistics : MonoBehaviour {
 
 
     public void ModifyItem(Item item) {
-        // search for existing item
-        bool inventoryChanged = false;
-        Item myItem = null;
-        if (item != null) {
-            if (inventoryItems.ContainsKey(item.uuid)) {
-                myItem = inventoryItems[item.uuid];
-                // item gefunden
-                if (myItem.stackable) {
-                    // item darf gestackt werden
-                    inventoryChanged = AddAmount(myItem, item.amount);
-                }
-            } else {
-                // item nicht gefunden, hinzufuegen
-                myItem = new Item(item);
-                inventoryItems.Add(myItem.uuid, myItem);
-                inventoryChanged = true;
-            }
-
-            if (inventoryChanged) {
-                Debug.Log("Refresh Player Inventory");
-                InitBaseData();
-                ItemManager.GetInstance().RefreshPlayerStatisticsWithInventory(this, inventoryItems);
-            }
-        }        
+        inventoryManager.AddItem(item);
     }    
 
-    private bool AddAmount(Item item, int newAmount) {
-        if (item.itemType == Item.ITEM_TYPES.AMMO)
-            return AddAmount(item, newAmount, maxAmmo);
-        if (item.itemType == Item.ITEM_TYPES.POTION)
-            return AddAmount(item, newAmount, maxPotions);
-        if (item.itemType == Item.ITEM_TYPES.AMULETTE)
-            return AddAmount(item, newAmount, MAXMAXHEALTH);
-        return false;
-    }
-
-    private bool AddAmount(Item item, int newAmount, int max) {
-        if (item.amount >= max || newAmount <= 0) {
-            return false;
-        }
-        if (item.amount + newAmount > max) {
-            item.amount = max;
-            return true;
-        } else {
-            item.amount += newAmount;
-            return true;
-        }
-    }
 
     public PlayerSaveData CreateSaveData() {
         PlayerSaveData result = new PlayerSaveData();
@@ -226,12 +195,12 @@ public class PlayerStatistics : MonoBehaviour {
         result.health = health;
         result.points = points;
         result.currentStamina = currentStamina;
-        result.selectedPotionUuid = selectedPotionUuid;
-        result.selectedAmmoUuid = selectedAmmoUuid;
+        result.selectedPotionUuid = inventoryManager.selectedPotionUuid;
+        result.selectedAmmoUuid = inventoryManager.selectedAmmoUuid;
         result.hasSquareKey = hasSquareKey;
         result.hasCircleKey = hasCircleKey;
         result.hasTriangleKey = hasTriangleKey;
-        foreach(KeyValuePair<string, Item> kvp in inventoryItems) {
+        foreach(KeyValuePair<string, Item> kvp in inventoryManager.inventory) {
             // speichere Item UUID und Anzahl
             result.inventoryItems.Add(kvp.Key, kvp.Value.amount);
         }        
@@ -239,11 +208,10 @@ public class PlayerStatistics : MonoBehaviour {
     }
 
     public void RefreshSaveData(PlayerSaveData saveData) {
-        Debug.Log("Refresh SaveData");
         lives = saveData.lives;
         health = saveData.health;
-        selectedPotionUuid = saveData.selectedPotionUuid;
-        selectedAmmoUuid = saveData.selectedAmmoUuid;
+        inventoryManager.selectedPotionUuid = saveData.selectedPotionUuid;
+        inventoryManager.selectedAmmoUuid = saveData.selectedAmmoUuid;
 
         ModifyPoints(saveData.points - points);         
         currentStamina = saveData.currentStamina;
@@ -251,28 +219,24 @@ public class PlayerStatistics : MonoBehaviour {
         if (saveData.hasCircleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.CIRCLE, true); }
         if (saveData.hasTriangleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.TRIANGLE, true); }
 
-        inventoryItems = new Dictionary<string, Item>();
+        Dictionary<string, Item> inventoryItems = new Dictionary<string, Item>();
         foreach (KeyValuePair<string, int> kvp in saveData.inventoryItems) {
             Item originalItem = ItemManager.GetInstance().FindItem(kvp.Key);
             Item myItem = new Item(originalItem);
             myItem.amount = kvp.Value;
             inventoryItems.Add(myItem.uuid, myItem);
         }
-
-        InitBaseData();
-        ItemManager.GetInstance().RefreshPlayerStatisticsWithInventory(this, inventoryItems);
+        
+        inventoryManager.InitInventory(inventoryItems);
     }
 
 
-    private void InitBaseData() {
+    public void InitBaseData() {
 
         maxHealth = baseMaxHealth;
         maxPotions = baseMaxPotions;
         maxAmmo = baseMaxAmmo;
         staminaActionCost = baseStaminaActionCost;
-
-        potions = 0;
-        ammo = 0;
         damage = 0;
         hasWeapon = false;
         wallJumpAllowed = false;

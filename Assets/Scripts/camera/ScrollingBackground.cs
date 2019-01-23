@@ -6,8 +6,9 @@ public class ScrollingBackground : MonoBehaviour {
 
     public float delay = 0F;
     public float backgroundSize;
-    public float parallaySpeed;
+    public float parallaxSpeed;
     public float viewzone = 10;
+    public float constantSpeed = 0F;
 
     private Transform cameraTransform;
     private Transform[] layers;
@@ -34,10 +35,15 @@ public class ScrollingBackground : MonoBehaviour {
 	public void UpdateAfterCameraChanges () {
         if (Time.time > delay) {
             float deltaX = cameraTransform.position.x - lastCameraX;
-            if (parallaySpeed < 1) {
-                transform.position += Vector3.right * (deltaX * parallaySpeed);
+            if (constantSpeed <= 0) {
+                if (parallaxSpeed < 1) {
+                    float diffX = (deltaX * parallaxSpeed);
+                    transform.position += Vector3.right * diffX;
+                } else {
+                    transform.position = new Vector2(cameraTransform.position.x, transform.position.y);
+                }
             } else {
-                transform.position = new Vector2(cameraTransform.position.x, transform.position.y);
+                transform.position += Vector3.right * constantSpeed;
             }
 
             lastCameraX = cameraTransform.position.x;
