@@ -16,13 +16,17 @@ public class ScrollingBackground : MonoBehaviour {
     private int leftIndex;
     private int rightIndex;
     private float lastCameraX;
+    private float lastCameraY;
+    private float originalPosY;
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         cameraTransform = Camera.main.transform;
         lastCameraX = cameraTransform.position.x;
+        lastCameraY = cameraTransform.position.y;
+        originalPosY = transform.position.y;
         layers = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++) {
             layers[i] = transform.GetChild(i);
@@ -35,18 +39,23 @@ public class ScrollingBackground : MonoBehaviour {
 	public void UpdateAfterCameraChanges () {
         if (Time.time > delay) {
             float deltaX = cameraTransform.position.x - lastCameraX;
+            float deltaY = cameraTransform.position.y - lastCameraY;
             if (constantSpeed <= 0) {
                 if (parallaxSpeed < 1) {
                     float diffX = (deltaX * parallaxSpeed);
+                    float diffY = (deltaY * (parallaxSpeed/2));
                     transform.position += Vector3.right * diffX;
+                    transform.position += Vector3.up * diffY;
                 } else {
                     transform.position = new Vector2(cameraTransform.position.x, transform.position.y);
+                    transform.position += Vector3.up * deltaY;
                 }
             } else {
                 transform.position += Vector3.right * constantSpeed;
             }
 
             lastCameraX = cameraTransform.position.x;
+            lastCameraY = cameraTransform.position.y;
             if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewzone)) {
                 ScrollLeft();
             }
