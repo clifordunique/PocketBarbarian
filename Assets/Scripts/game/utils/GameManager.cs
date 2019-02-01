@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // called first
     void OnEnable() {
         _instance = this;
-        //Cursor.visible = false;
+        Cursor.visible = false;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

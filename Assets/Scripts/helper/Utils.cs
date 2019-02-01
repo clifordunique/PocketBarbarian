@@ -81,4 +81,12 @@ public class Utils {
         newSpriteGo.transform.parent = parent;
         return newSpriteGo;
     }
+
+    public static float GetWidthFromSpriteGO(GameObject go) {
+        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+        if (sr) {
+            return (sr.sprite.bounds.extents.x * 2);
+        }
+        return 0;
+    }
 }
