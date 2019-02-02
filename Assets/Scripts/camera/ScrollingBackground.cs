@@ -17,7 +17,6 @@ public class ScrollingBackground : MonoBehaviour {
     private int rightIndex;
     private float lastCameraX;
     private float lastCameraY;
-    private float originalPosY;
 
 
 
@@ -26,7 +25,6 @@ public class ScrollingBackground : MonoBehaviour {
         cameraTransform = Camera.main.transform;
         lastCameraX = cameraTransform.position.x;
         lastCameraY = cameraTransform.position.y;
-        originalPosY = transform.position.y;
         layers = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++) {
             layers[i] = transform.GetChild(i);

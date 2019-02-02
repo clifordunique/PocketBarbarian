@@ -6,7 +6,6 @@ public class MenueItem : MonoBehaviour
 {
     private MenueItemSprite sr;
     private SimpleMovementPosition movement;
-    private float startTime = -1F;
 
     [HideInInspector]
     public bool movementComplete = false;
@@ -16,17 +15,29 @@ public class MenueItem : MonoBehaviour
         sr = transform.GetComponentInChildren<MenueItemSprite>();
     }
     void OnMouseEnter() {
+        TitleScreenManager.GetInstance().MenueItemSelected(this);
+    }
+
+    void OnMouseExit() {
+        //Deselect();
+    }
+
+    void OnMouseDown() {
+        Click();
+    }
+
+    public void Select() {
         if (Cursor.visible) {
             sr.SetEnabled();
             sr.StartShake();
         }
     }
 
-    void OnMouseExit() {
+    public void Deselect() {
         sr.SetDisabled();
     }
 
-    void OnMouseDown() {
+    public void Click() {
         sr.Click();
         FadeCanvasEffect.GetInstance().FadeOutSceneCanvas();
         Cursor.visible = false;

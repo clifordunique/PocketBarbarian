@@ -15,8 +15,6 @@ public class AiReactionBehaviour: AiBehaviour {
 
     private AiDetector detector;
 
-    private EnemyAction action;
-
     private Vector3 startPosition;
     private float startIgnore = -1;
 
@@ -48,7 +46,6 @@ public class AiReactionBehaviour: AiBehaviour {
         if (follow) {             
             return CreateEnemyAction();
         } else {
-            action = null;
             return base.GetCurrentAction();
         }
     }
@@ -107,7 +104,6 @@ public class AiReactionBehaviour: AiBehaviour {
     }
 
     public override EnemyAction GetNextAction() {
-        action = null;
         return base.GetNextAction();
     }
 }

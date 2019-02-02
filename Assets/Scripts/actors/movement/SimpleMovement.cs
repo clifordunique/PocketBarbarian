@@ -11,7 +11,8 @@ public class SimpleMovement : MonoBehaviour {
     public bool easeInOut = false;
     public bool autoStart = true;
 
-    private Vector3 endpos;
+    [HideInInspector]
+    public Vector3 endpos;
     private Vector3 startPos;
 
     [HideInInspector]
@@ -58,6 +59,7 @@ public class SimpleMovement : MonoBehaviour {
 
             yield return new WaitForEndOfFrame();
         }
+        transform.position = endpos;
         if (biDirectional) {
             endpos = startPos;
             startPos = transform.position;
@@ -65,5 +67,7 @@ public class SimpleMovement : MonoBehaviour {
         isMoving = false;
     }
 
-    
+    public bool IsInEndposition() {
+        return transform.position == endpos;
+    }
 }
