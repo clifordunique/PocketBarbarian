@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public string testSavepointUuid;
     public float waitTimeRestartOnDeath = 0F;
 
     private LoadSaveGame loadSaveGame;
     private LoadSavePlayer loadSavePlayer;
     private bool playerDead = false;
+
+    private InGameMenueManager menueManager;
+
     private static GameManager _instance;
 
     public static GameManager GetInstance() {
@@ -39,16 +41,37 @@ public class GameManager : MonoBehaviour
     private void Start() {     
         loadSaveGame = GetComponent<LoadSaveGame>();
         loadSavePlayer = GetComponent<LoadSavePlayer>();
+        menueManager = GetComponent<InGameMenueManager>();
 
-        StartCoroutine(LoadGame());
+        StartCoroutine(LoadGameCoroutine());
         ItemManager im = new ItemManager();
         //im.SaveShopItems();
         im.LoadShopItems();
     }
 
+    public void Update() {
+
+        // Pause / Ingame Manue handling
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
+            if (Time.timeScale == 0) {
+                CloseMenue();
+            } else {
+                Time.timeScale = 0;
+                menueManager.ShowMenue();
+                InputController.GetInstance().moveInputEnabled = false;
+            }
+        }
+    }
 
 
-    IEnumerator LoadGame() {
+    public void CloseMenue() {
+        Time.timeScale = 1;
+        menueManager.HideMenue();
+        InputController.GetInstance().moveInputEnabled = true;
+    }
+
+
+    IEnumerator LoadGameCoroutine() {
         yield return 0;
         loadSaveGame.Load();
         loadSavePlayer.Load();
@@ -65,17 +88,36 @@ public class GameManager : MonoBehaviour
         if (!playerDead) {
             playerDead = true;
             GuiController.GetInstance().InstanciateDiedEffect();
-            StartCoroutine(RestartLevel());
+            StartCoroutine(ReloadLevelOnDeathCoroutine());
         }
     }
 
-    IEnumerator RestartLevel() {
+    IEnumerator ReloadLevelOnDeathCoroutine() {
         yield return new WaitForSeconds(waitTimeRestartOnDeath);
-        Debug.Log("Restart Level!");
+        StartCoroutine(ReloadLevelCouroutine(SceneManager.GetActiveScene().buildIndex));
+    }
+
+
+    public void ReloadLevel() {
+        CloseMenue();
+        StartCoroutine(ReloadLevelCouroutine(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    public void LoadMainMenue() {
+        menueManager.ShowQuestion();
+        //CloseMenue();
+        //StartCoroutine(ReloadLevelCouroutine(0));
+    }
+
+    IEnumerator ReloadLevelCouroutine(int sceneIndex) {
+        Debug.Log("ReloadLevel");
         FadeCanvasEffect fadeEffect = FadeCanvasEffect.GetInstance();
         fadeEffect.FadeOutSceneCanvas();
         yield return new WaitUntil(() => fadeEffect.fadeComplete);
-        Scene loadedLevel = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(loadedLevel.buildIndex);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void ExitGame() {
+
     }
 }

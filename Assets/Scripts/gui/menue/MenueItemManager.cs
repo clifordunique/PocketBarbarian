@@ -7,6 +7,8 @@ public class MenueItemManager
     private MenueItem[] menueItemArray;
     private int selectedIndex = -1;
 
+
+
     public MenueItemManager(MenueItem[] menueItemArray) {
         this.menueItemArray = menueItemArray;
     }
@@ -51,5 +53,9 @@ public class MenueItemManager
         }
         DeselectAll();
         menueItemArray[selectedIndex].Select();
+    }
+
+    public void ReInit() {
+        selectedIndex = -1;
     }
 }

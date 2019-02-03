@@ -127,12 +127,14 @@ public class PlayerController : MonoBehaviour, IActorController {
     // Update is called once per frame
     void Update () {
 
-        // handle StateMachine
-        AbstractState newState = currentState.UpdateState();
-        if (newState != null) {
-            currentState.OnExit();
-            currentState = newState;
-            currentState.OnEnter();
+        if (Time.timeScale != 0) {
+            // handle StateMachine
+            AbstractState newState = currentState.UpdateState();
+            if (newState != null) {
+                currentState.OnExit();
+                currentState = newState;
+                currentState.OnEnter();
+            }
         }
     }
 

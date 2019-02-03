@@ -64,16 +64,16 @@ public class MoveGroundController2D: MoveController2D {
 	}
 
 	public virtual void Update() {
-		CalculateVelocity ();
+        CalculateVelocity();
         Move(velocity * Time.deltaTime);
 
-		if (collisions.above || collisions.below) {			
-			velocity.y = 0;
+        if (collisions.above || collisions.below) {
+            velocity.y = 0;
             jumpCounter = 0;
         }
 
         if (isPushed && endTimePush < Time.time) {
-            isPushed = false;            
+            isPushed = false;
             targetVelocityX = 0;
         }
         //moveDirectionX = 0;
@@ -124,7 +124,7 @@ public class MoveGroundController2D: MoveController2D {
     }
 
     public bool IsFalling () {
-        return (collisions.initialised && !collisions.below && velocity.y <= 0);
+        return (collisions.initialised && !collisions.below && velocity.y < 0);
     }
 
     public bool IsGrounded() {

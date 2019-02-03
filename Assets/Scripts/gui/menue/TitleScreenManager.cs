@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TitleScreenManager : MonoBehaviour {
+public class TitleScreenManager : AbstractMenueManager {
 
     public bool skipTitle = false;
 
@@ -19,26 +19,12 @@ public class TitleScreenManager : MonoBehaviour {
     private bool startSceneComplete = false;
 
     private bool itemsReady = false;
-
-    public MenueItem[] menueItems;
-
-    private MenueItemManager menueItemManager;
-
-    private static TitleScreenManager _instance;
+    
 
 
     // Use this for initialization
     void Start() {
-        _instance = this;
         Cursor.visible = false;
-    }
-
-    public static TitleScreenManager GetInstance() {
-        if (_instance) {
-            return _instance;
-        }
-        Debug.LogError("TitleScreenManager not initialized yet!");
-        return null;
     }
 
     // Update is called once per frame
@@ -129,9 +115,6 @@ public class TitleScreenManager : MonoBehaviour {
         menueItemManager.NextMenueItem();       
 
     }
-    
-
-
 
     IEnumerator WaitForStartSceneComplete() {
         while (!footer.IsInEndposition() || !title.IsInEndposition()) {
@@ -141,10 +124,7 @@ public class TitleScreenManager : MonoBehaviour {
         Debug.Log("Jetzt kommt das main menue!");
         StartCoroutine(ShowItems());
     }
-
-    public void MenueItemSelected(MenueItem menueItem) {
-        menueItemManager.MenueItemSelected(menueItem);
-    }
+    
 
 
     private void SetGUIPosition(GameObject go, float x, float y, float offsetX, float offsetY) {

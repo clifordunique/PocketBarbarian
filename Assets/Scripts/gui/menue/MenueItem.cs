@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenueItem : MonoBehaviour
 {
-    private MenueItemSprite sr;
+    private IMenueItemSprite sr;
     private SimpleMovementPosition movement;
 
     [HideInInspector]
@@ -12,10 +12,10 @@ public class MenueItem : MonoBehaviour
 
     public void Awake() {
         movement = GetComponent<SimpleMovementPosition>();
-        sr = transform.GetComponentInChildren<MenueItemSprite>();
+        sr = transform.GetComponentInChildren<IMenueItemSprite>();
     }
     void OnMouseEnter() {
-        TitleScreenManager.GetInstance().MenueItemSelected(this);
+        AbstractMenueManager.GetInstance().MenueItemSelected(this);
     }
 
     void OnMouseExit() {
@@ -29,7 +29,7 @@ public class MenueItem : MonoBehaviour
     public void Select() {
         if (Cursor.visible) {
             sr.SetEnabled();
-            sr.StartShake();
+            
         }
     }
 
@@ -39,8 +39,6 @@ public class MenueItem : MonoBehaviour
 
     public void Click() {
         sr.Click();
-        FadeCanvasEffect.GetInstance().FadeOutSceneCanvas();
-        Cursor.visible = false;
     }
 
     public void ShowItem() {
@@ -58,6 +56,6 @@ public class MenueItem : MonoBehaviour
     }
 
     public float GetWidth() {
-        return Utils.GetWidthFromSpriteGO(sr.gameObject);
+        return sr.GetWidth();
     }
 }

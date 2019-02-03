@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenueItemSprite : MonoBehaviour
-{
+public class MenueItemSpriteAnim : MonoBehaviour, IMenueItemSprite {
+
     public float duration = 1f;
     public float speed = 1f;
     public float amount = 1f;
@@ -20,6 +20,7 @@ public class MenueItemSprite : MonoBehaviour
     public void SetEnabled() {
         animator.SetBool("ENABLED", true);
         animator.SetBool("DISABLED", false);
+        StartShake();
     }
 
     public void SetDisabled() {
@@ -33,7 +34,7 @@ public class MenueItemSprite : MonoBehaviour
         animator.SetBool("CLICKED", true);
     }
 
-    public void StartShake() {
+    private void StartShake() {
         if (startTime == -1) {
             // Position nur beim ersten mal merken
             startingPos.x = transform.position.x;
@@ -48,5 +49,9 @@ public class MenueItemSprite : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = startingPos;
+    }
+
+    public float GetWidth() {
+        return Utils.GetWidthFromSpriteGO(gameObject);
     }
 }
