@@ -19,7 +19,7 @@ public class MenueItemManager
         }
     }
 
-    public void MenueItemSelected(MenueItem menueItemNew) {
+    public void MenueItemFocused(MenueItem menueItemNew) {
         int index = -1;
         int foundIndex = -1;
         foreach(MenueItem menueItem in menueItemArray) {

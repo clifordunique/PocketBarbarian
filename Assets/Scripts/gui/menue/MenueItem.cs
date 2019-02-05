@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MenueItem : MonoBehaviour
 {
+    public AbstractMenueManager.MENUEITEM_TYPE menueItemType;
+
     private IMenueItemSprite sr;
     private SimpleMovementPosition movement;
 
@@ -15,7 +17,9 @@ public class MenueItem : MonoBehaviour
         sr = transform.GetComponentInChildren<IMenueItemSprite>();
     }
     void OnMouseEnter() {
-        AbstractMenueManager.GetInstance().MenueItemSelected(this);
+        if (AbstractMenueManager.GetInstance().menueInputEnabled) {
+            AbstractMenueManager.GetInstance().MenueItemFocused(this);
+        }
     }
 
     void OnMouseExit() {
@@ -23,13 +27,14 @@ public class MenueItem : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Click();
+        if (AbstractMenueManager.GetInstance().menueInputEnabled) {
+            Click();
+        }
     }
 
     public void Select() {
         if (Cursor.visible) {
-            sr.SetEnabled();
-            
+            sr.SetEnabled();            
         }
     }
 
@@ -39,6 +44,7 @@ public class MenueItem : MonoBehaviour
 
     public void Click() {
         sr.Click();
+        AbstractMenueManager.GetInstance().MenueItemSelected(menueItemType);
     }
 
     public void ShowItem() {

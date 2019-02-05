@@ -52,22 +52,14 @@ public class GameManager : MonoBehaviour
     public void Update() {
 
         // Pause / Ingame Manue handling
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
-            if (Time.timeScale == 0) {
-                CloseMenue();
-            } else {
-                Time.timeScale = 0;
-                menueManager.ShowMenue();
-                InputController.GetInstance().moveInputEnabled = false;
-            }
+        if (Time.timeScale != 0 && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))) {
+            StartCoroutine(ShowMenue());
         }
     }
 
-
-    public void CloseMenue() {
-        Time.timeScale = 1;
-        menueManager.HideMenue();
-        InputController.GetInstance().moveInputEnabled = true;
+    IEnumerator ShowMenue() {
+        yield return new WaitForEndOfFrame();
+        menueManager.ShowMenue();
     }
 
 
@@ -99,14 +91,11 @@ public class GameManager : MonoBehaviour
 
 
     public void ReloadLevel() {
-        CloseMenue();
         StartCoroutine(ReloadLevelCouroutine(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadMainMenue() {
-        menueManager.ShowQuestion();
-        //CloseMenue();
-        //StartCoroutine(ReloadLevelCouroutine(0));
+        StartCoroutine(ReloadLevelCouroutine(0));
     }
 
     IEnumerator ReloadLevelCouroutine(int sceneIndex) {

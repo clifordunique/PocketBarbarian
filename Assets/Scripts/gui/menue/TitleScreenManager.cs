@@ -124,7 +124,10 @@ public class TitleScreenManager : AbstractMenueManager {
         Debug.Log("Jetzt kommt das main menue!");
         StartCoroutine(ShowItems());
     }
-    
+
+
+    public override void MenueItemSelected(MENUEITEM_TYPE menueItemType) {
+    }
 
 
     private void SetGUIPosition(GameObject go, float x, float y, float offsetX, float offsetY) {

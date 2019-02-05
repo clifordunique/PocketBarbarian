@@ -4,7 +4,10 @@ using UnityEngine;
 
 public abstract class AbstractMenueManager : MonoBehaviour
 {
+    public enum MENUEITEM_TYPE { BACK_TO_GAME, RELOAD_SAVEPOINT, MAIN_MENUE, EXIT, NAN };
     public MenueItem[] menueItems;
+    public bool menueInputEnabled = true;
+
 
     [HideInInspector]
     public MenueItemManager menueItemManager;
@@ -21,7 +24,9 @@ public abstract class AbstractMenueManager : MonoBehaviour
         return _instance;
     }
 
-    public void MenueItemSelected(MenueItem menueItem) {
-        menueItemManager.MenueItemSelected(menueItem);
+    public void MenueItemFocused(MenueItem menueItem) {
+        menueItemManager.MenueItemFocused(menueItem);
     }
+
+    public abstract void MenueItemSelected(MENUEITEM_TYPE menueItemType);
 }
