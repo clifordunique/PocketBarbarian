@@ -4,7 +4,15 @@ using System.Collections.Generic;
 
 public abstract class AbstractPlatformController2D: RaycastController2D, ITriggerReactor {
 
-    public bool waitForTrigger = false;
+    [Header("Trigger Settings")]
+    public bool useTrigger = false;
+    [ConditionalHide("useTrigger", true)]
+    public bool triggerActivated = false;
+    [ConditionalHide("useTrigger", true)]
+    public bool reactOnTriggerActivate = true;
+    [ConditionalHide("useTrigger", true)]
+    public bool reactOnTriggerDeactivate = true;
+
     public LayerMask passengerMask;
     public bool movePixelPerfect;
 
@@ -16,7 +24,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
     }
 
     void Update() {
-        if (!waitForTrigger) {
+        if (!useTrigger || (useTrigger && triggerActivated)) {
             UpdateRaycastOrigins();
 
             Vector3 velocity = CalculatePlatformMovement();
@@ -132,12 +140,20 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
         }
     }
 
-    public void TriggerActivated() {
-        waitForTrigger = false;
+    public bool TriggerActivated() {
+        if (reactOnTriggerActivate) {
+            triggerActivated = true;
+            return true;
+        }
+        return false;
     }
 
-    public void TriggerDeactivated() {
-        //nix zu tun
+    public bool TriggerDeactivated() {
+        if (reactOnTriggerDeactivate) {
+            triggerActivated = false;
+            return true;
+        }
+        return false;
     }
 
     struct PassengerMovement {

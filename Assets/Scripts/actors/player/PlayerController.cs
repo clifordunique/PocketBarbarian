@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     public GameObject prefabEffectFallingSilhouette;
     public GameObject prefabEffectHardLanding;
     public GameObject prefabEffectWallJump;
+    public GameObject prefabEffectGroundHitOneSided;
     public ParticleSystem sparkParticle;
 
     [Header("Outline Effect Material")]
@@ -114,14 +115,14 @@ public class PlayerController : MonoBehaviour, IActorController {
         currentState.HandleEvent(AbstractState.EVENT_PARAM_HIT);
     }
 
-    public void InstantiateEffect(GameObject effectToInstanciate) {
+    public void InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
         if (effectSpriteRenderer) {
             effectSpriteRenderer.flipX = (dirX < 0);
         }
         effect.transform.parent = EffectCollection.GetInstance().transform;
-        effect.transform.position = transform.position;
+        effect.transform.position = new Vector2(transform.position.x + offsetX, transform.position.y);
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ITriggerReactor
 {
-    void TriggerActivated();
+    bool TriggerActivated();
 
-    void TriggerDeactivated();
+    bool TriggerDeactivated();
 }

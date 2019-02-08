@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterTrigger : MonoBehaviour
-{
+public class EnterTrigger : MonoBehaviour   {
+
     public LayerMask interactableLayer;
 
-    private ITriggerReactor triggerReactor;
+    private TriggerManager triggerManager;
 
     void Start() {
-        triggerReactor = GetComponent<ITriggerReactor>();
-        if (triggerReactor == null) {
-            triggerReactor = transform.parent.GetComponent<ITriggerReactor>();
+        triggerManager = GetComponent<TriggerManager>();
+        if (triggerManager == null) {
+            Debug.Log("TriggeManager does not exist on " + gameObject.name);
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collider) {
         // react to trigger
         if (interactableLayer == (interactableLayer | (1 << collider.gameObject.layer))) {
-            if (triggerReactor != null) {
-                triggerReactor.TriggerActivated();
+            if (triggerManager != null) {
+                triggerManager.ActivateReactors();
             }
         }
     }
@@ -27,8 +27,8 @@ public class EnterTrigger : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collider) {
         // react to trigger
         if (interactableLayer == (interactableLayer | (1 << collider.gameObject.layer))) {
-            if (triggerReactor != null) {
-                triggerReactor.TriggerDeactivated();
+            if (triggerManager != null) {
+                triggerManager.DeactivateReactors();
             }
         }
     }

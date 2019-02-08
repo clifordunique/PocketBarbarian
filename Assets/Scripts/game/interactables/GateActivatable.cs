@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateActivatable : AbstractActivatable {
+public class GateActivatable : MonoBehaviour, ITriggerReactor {
     
 
     public float seconds;
@@ -23,7 +23,7 @@ public class GateActivatable : AbstractActivatable {
     }
 
 
-    public override bool Activate() {
+    public bool TriggerActivated() { 
         if (!isMoving) {
             StartCoroutine(SmoothMove());
             return true;
@@ -31,7 +31,7 @@ public class GateActivatable : AbstractActivatable {
         return false;
     }
 
-    public override bool DeActivate() {
+    public bool TriggerDeactivated() {
         if (!isMoving) {
             StartCoroutine(SmoothMove());
             return true;

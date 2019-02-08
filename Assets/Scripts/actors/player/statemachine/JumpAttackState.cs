@@ -30,7 +30,7 @@ public class JumpAttackState : AbstractState {
         }
 
         if (attackFinished) {
-            if (!playerController.moveController.IsGrounded()) {
+            if (playerController.moveController.IsGrounded()) {
                 return new LandingState(playerController);
             } else {
                 return new FallingState(playerController);

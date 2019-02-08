@@ -14,9 +14,13 @@ public class RaycastSimpleMovement : RaycastController2D {
     // Use this for initialization
     public override void Start () {
         base.Start();
-
         startPos = transform.position;
         float scaleX = transform.localScale.x;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr && sr.flipX) {
+            scaleX = -1;
+        }
         endpos = new Vector3(transform.position.x + (scaleX * distance), transform.position.y, transform.position.z);
 
         StartCoroutine("SmoothMove");

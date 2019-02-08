@@ -13,12 +13,14 @@ public class ButterflyController : MonoBehaviour, ITriggerReactor
         animator = GetComponent<Animator>();
     }
 
-    public void TriggerActivated() {
+    public bool TriggerActivated() {
         animator.SetTrigger(evadeString);
+        return true;
     }
 
-    public void TriggerDeactivated() {
+    public bool TriggerDeactivated() {
         animator.SetTrigger(backToIdleString);
+        return true;
     }
     
 }

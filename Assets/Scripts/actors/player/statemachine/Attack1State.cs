@@ -7,9 +7,13 @@ public class Attack1State : AbstractState {
     private bool attackFinished = false;
     private bool comboAttack = false;
     private bool exitCombo = false;
+    private bool combo2 = false;
     private bool hitSomething = false;
-    private float moveTime = 0.2F;
-    private float checkMoveStarted;
+    private float moveTime1 = 0.1F;
+    private float moveTime2 = 0.25F;
+    private float checkMoveStarted1;
+    private float checkMoveStarted2;
+    private bool effectPlayed = false;
 
     public Attack1State(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
@@ -39,15 +43,28 @@ public class Attack1State : AbstractState {
         }
 
         if (attackFinished || (!comboAttack && exitCombo)) {
+            
             return new IdleState(playerController);
         }
 
         if (comboAttack && exitCombo) {
-            if (checkMoveStarted > Time.time) {
+            if (checkMoveStarted1 > Time.time) {
+               Move(playerController.dirX, playerController.input.GetDirectionY());
+            } else {
+                Move(0, playerController.input.GetDirectionY());
+                checkMoveStarted1 = 0;
+            }
+        }
+        if (comboAttack && combo2) {
+            if (checkMoveStarted2 > Time.time) {
                 Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
-                checkMoveStarted = 0;
+                checkMoveStarted2 = 0;
+                if (!effectPlayed) {
+                    playerController.InstantiateEffect(playerController.prefabEffectGroundHitOneSided, playerController.dirX * 0.75F);
+                    effectPlayed = true;
+                }
             }
         }
         return null;
@@ -59,7 +76,12 @@ public class Attack1State : AbstractState {
         }
         if (parameter == "exit_combo") {
             exitCombo = true;
-            checkMoveStarted = Time.time + moveTime;
+            checkMoveStarted1 = Time.time + moveTime1;
+        }
+        if (parameter == "combo2") {
+            combo2 = true;
+            checkMoveStarted2 = Time.time + moveTime2;
+            
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;
