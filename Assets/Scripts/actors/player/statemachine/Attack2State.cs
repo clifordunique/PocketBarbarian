@@ -8,17 +8,19 @@ public class Attack2State : AbstractState {
     private bool comboAttach = false;
     private bool exitCombo = false;
     private bool hitSomething = false;
-    private bool moveForward = false;
-    private float moveTime1 = 0.08F;
+    private bool doJump = false;
+    private float moveTime1 = 0.4F;
+    private float jumpTime = 0.05F;
     private float moveTime2 = 0.2F;
     private float checkMoveStarted;
+    private float checkJumpStarted = -1F;
 
     public Attack2State(PlayerController playerController) : base(ACTION.ATTACK2, playerController) {
     }
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK2_PARAM, true);
-        Move(0, playerController.input.GetDirectionY());
+        //Move(0, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
@@ -45,12 +47,21 @@ public class Attack2State : AbstractState {
             return new MoveState(playerController);
         }
 
-        if (moveForward) {
+        if (doJump) {
+            if (checkJumpStarted == -1F) {
+                playerController.moveController.OnJumpInputDown();
+                checkJumpStarted = Time.time + jumpTime;
+            } else {
+                if (checkJumpStarted < Time.time) {
+                    playerController.moveController.OnJumpInputUp();
+                }
+            }
+
             if (checkMoveStarted > Time.time) {
                 Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
-                moveForward = false;
+                //doJump = false;
             }
         }
         return null;
@@ -66,12 +77,12 @@ public class Attack2State : AbstractState {
         if (parameter == "exit_combo") {
             exitCombo = true;
         }
-        if (parameter == "move_forward1") {
-            moveForward = true;
+        if (parameter == "jump") {
+            doJump = true;
             checkMoveStarted = Time.time + moveTime1;
         }
         if (parameter == "move_forward2") {
-            moveForward = true;
+            doJump = true;
             checkMoveStarted = Time.time + moveTime2;
         }
     }

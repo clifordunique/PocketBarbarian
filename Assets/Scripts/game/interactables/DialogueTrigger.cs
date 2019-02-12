@@ -8,8 +8,14 @@ public class DialogueTrigger : MonoBehaviour {
     
     public LayerMask layerMaskToAcitvate;
     public bool detachCamera = true;
+    [ConditionalHide("detachCamera", true)]
     public float cameraMoveSeconds;
+    [ConditionalHide("detachCamera", true)]
     public float moveCameraDelay;
+    [ConditionalHide("detachCamera", true)]
+    public bool moveCameraX = true;
+    [ConditionalHide("detachCamera", true)]
+    public bool moveCameraY = true;
 
     private Dialogue dialogue;
     private bool alreadyDone = false;
@@ -56,7 +62,7 @@ public class DialogueTrigger : MonoBehaviour {
     IEnumerator MoveCameraDelay() {
         yield return new WaitForSeconds(moveCameraDelay);
         startPos = Camera.main.transform.position;
-        endPos = transform.position;
+        endPos = new Vector2 ((moveCameraX ? transform.position.x : startPos.x), (moveCameraY ? transform.position.y : startPos.y));
         CameraFollow.GetInstance().enabled = false;
         StartCoroutine(MoveCamera());
     }
@@ -76,7 +82,7 @@ public class DialogueTrigger : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         if (!inDialogue) {
-            CameraFollow.GetInstance().enabled = true;
+            CameraFollow.GetInstance().enabled = true;            
             InputController.GetInstance().moveInputEnabled = true;
         }
     }

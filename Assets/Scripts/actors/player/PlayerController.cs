@@ -68,21 +68,14 @@ public class PlayerController : MonoBehaviour, IActorController {
         moveController = GetComponent<PlayerMoveController2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        currentState = new IdleState(this);
+        currentState = new SwordUpState(this);
         statistics = GetComponentInChildren<PlayerStatistics>();
         input = GetComponent<InputController>();
         hurtBox = GetComponentInChildren<PlayerHurtBox>();
         _instance = this;
 
-        if (hasWeapons) {
-            animator.SetLayerWeight(0, 1);
-            animator.SetLayerWeight(1, 0);
-            moveController.wallJumpingAllowed = true;
-        } else {
-            animator.SetLayerWeight(0, 0);
-            animator.SetLayerWeight(1, 1);
-            moveController.wallJumpingAllowed = false;
-        }
+        // init
+        SetHasWeapon(hasWeapons);
     }
 
     public static PlayerController GetInstance() {
@@ -101,13 +94,19 @@ public class PlayerController : MonoBehaviour, IActorController {
         currentState.HandleEvent(parameter);
     }
 
+    public void InterruptState (AbstractState.ACTION action) {
+        if (currentState != null) {
+            currentState.InterruptEvent(action);
+        }
+    }
+
     public void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
         this.dead = dead;
         lastHitSource = hitSource;
         if (damageType == HitBox.DAMAGE_TYPE.WATER) {
-            currentState.InterruptEvent(AbstractState.ACTION.DEATH);
+            InterruptState(AbstractState.ACTION.DEATH);
         } else {
-            currentState.InterruptEvent(AbstractState.ACTION.HIT);
+            InterruptState(AbstractState.ACTION.HIT);
         }
     }
 
@@ -175,5 +174,19 @@ public class PlayerController : MonoBehaviour, IActorController {
     public void SetEnabled(bool inputEnabled, bool showPlayer) {
         input.moveInputEnabled = inputEnabled;
         spriteRenderer.enabled = showPlayer;
+    }
+
+
+    public void SetHasWeapon(bool hasWeapon) {
+        this.hasWeapons = hasWeapon;
+        if (hasWeapons) {
+            animator.SetLayerWeight(0, 1);
+            animator.SetLayerWeight(1, 0);
+            moveController.wallJumpingAllowed = true;
+        } else {
+            animator.SetLayerWeight(0, 0);
+            animator.SetLayerWeight(1, 1);
+            moveController.wallJumpingAllowed = false;
+        }
     }
 }

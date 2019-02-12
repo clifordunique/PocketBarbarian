@@ -113,6 +113,11 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void UpdateSelectedItem(Item item) {
+        if (item.itemType == Item.ITEM_TYPES.SWORD) {
+            Debug.Log("SWORD!!!");
+            PlayerController.GetInstance().SetHasWeapon(true);
+            PlayerController.GetInstance().InterruptState(AbstractState.ACTION.SWORD_UP);
+        }
         if (item.itemType == Item.ITEM_TYPES.POTION) {            
             if (inventory.ContainsKey(selectedPotionUuid)) {
                 Item selectedItem = inventory[selectedPotionUuid];

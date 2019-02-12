@@ -2,6 +2,15 @@
 <ItemCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
     <Item>
+      <UUID>82d25d8e-76f1-4f28-9327-e52e7ea2c227</UUID>
+      <ItemType>SWORD</ItemType>
+      <Priority>1</Priority>
+      <Shop>BLACKSMITH</Shop>
+      <Name>Bastard Sword</Name>
+      <Stackable>false</Stackable>
+      <Amount>1</Amount>
+    </Item>
+    <Item>
       <UUID>bfce9a15-1435-4229-8cb6-138c6dedbedc</UUID>
       <ItemType>POTION</ItemType>
       <Priority>3</Priority>
