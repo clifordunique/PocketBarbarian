@@ -50,6 +50,7 @@ public class Item
         this.effectList = original.effectList;
     }
 
+    [System.Serializable]
     public class Effect {
         public EFFECT_TYPES effectType;
         public float value;

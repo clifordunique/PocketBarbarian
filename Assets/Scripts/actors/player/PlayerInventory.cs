@@ -20,7 +20,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     public ItemEvent eventItem;
 
-    public Dictionary<string, Item> inventory = new Dictionary<string, Item>();
+
+    [SerializeField]
+    public DictionaryOfUuidAndItem inventory = new DictionaryOfUuidAndItem();
 
     // Start is called before the first frame update
     void Start()    {
@@ -30,7 +32,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void InitInventory(Dictionary<string, Item> loadInventory) {
+    public void InitInventory(DictionaryOfUuidAndItem loadInventory) {
 
         statistics.InitBaseData();
 
@@ -46,9 +48,8 @@ public class PlayerInventory : MonoBehaviour
             CheckMaxValuesInInventory(kvp.Value);
         }
 
-
-        // publish health
-        statistics.PublishHealth();
+        // publish all statistic data to all depending components
+        statistics.PublishBaseData();
 
         // publish items to display
         PublishSelectedItems();
@@ -109,15 +110,13 @@ public class PlayerInventory : MonoBehaviour
             UpdateEffectToPlayerStatistics(myItem, true);
             CheckMaxValuesInInventory(myItem);
         }
+        // publish all statistic data to all depending components
+        statistics.PublishBaseData();
+
         UpdateSelectedItem(myItem);
     }
 
     private void UpdateSelectedItem(Item item) {
-        if (item.itemType == Item.ITEM_TYPES.SWORD) {
-            Debug.Log("SWORD!!!");
-            PlayerController.GetInstance().SetHasWeapon(true);
-            PlayerController.GetInstance().InterruptState(AbstractState.ACTION.SWORD_UP);
-        }
         if (item.itemType == Item.ITEM_TYPES.POTION) {            
             if (inventory.ContainsKey(selectedPotionUuid)) {
                 Item selectedItem = inventory[selectedPotionUuid];
@@ -217,8 +216,8 @@ public class PlayerInventory : MonoBehaviour
                 statistics.comboAllowed = true;
                 statistics.comboLevel = effect.value;
             }
-            if (effect.effectType == Item.EFFECT_TYPES.DAMAGE && item.itemType == Item.ITEM_TYPES.SWORD) {
-                statistics.hasWeapon = true;
+            if (effect.effectType == Item.EFFECT_TYPES.DAMAGE && item.itemType == Item.ITEM_TYPES.SWORD) {                
+                statistics.weaponUuid = item.uuid;
                 statistics.damage = Mathf.RoundToInt(effect.value);
             }
             if (!equipOnly) {

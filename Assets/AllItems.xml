@@ -9,6 +9,15 @@
       <Name>Bastard Sword</Name>
       <Stackable>false</Stackable>
       <Amount>1</Amount>
+      <Effects>
+        <Effect>
+          <effectType>DAMAGE</effectType>
+          <value>1</value>
+        </Effect>
+        <Effect>
+          <effectType>WALL_JUMP</effectType>
+        </Effect>
+      </Effects>
     </Item>
     <Item>
       <UUID>bfce9a15-1435-4229-8cb6-138c6dedbedc</UUID>

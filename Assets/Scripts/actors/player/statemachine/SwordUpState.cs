@@ -27,7 +27,7 @@ public class SwordUpState : AbstractState {
         AbstractState interrupt = base.UpdateState();
         if (interrupt != null) {
             return interrupt;
-        }
+        }        
 
         if (playerController.moveController.IsGrounded()) {
             playerController.animator.SetBool(SWORD_UP_PARAM, true);

@@ -9,8 +9,8 @@ public class Attack2State : AbstractState {
     private bool exitCombo = false;
     private bool hitSomething = false;
     private bool doJump = false;
-    private float moveTime1 = 0.4F;
-    private float jumpTime = 0.05F;
+    private float moveTime1 = 0.6F;
+    private float jumpTime = 0.08F;
     private float moveTime2 = 0.2F;
     private float checkMoveStarted;
     private float checkJumpStarted = -1F;
@@ -33,7 +33,7 @@ public class Attack2State : AbstractState {
             return interrupt;
         }
 
-        if (playerController.input.IsAttack1KeyDown()) {
+        if (playerController.comboAllowed && playerController.input.IsAttack1KeyDown()) {
             comboAttach = true;
         }
 
@@ -49,8 +49,12 @@ public class Attack2State : AbstractState {
 
         if (doJump) {
             if (checkJumpStarted == -1F) {
-                playerController.moveController.OnJumpInputDown();
-                checkJumpStarted = Time.time + jumpTime;
+                if (playerController.moveController.IsGrounded()) {
+                    playerController.moveController.OnJumpInputDown();
+                    checkJumpStarted = Time.time + jumpTime;
+                } else {
+                    return new MoveState(playerController);
+                }
             } else {
                 if (checkJumpStarted < Time.time) {
                     playerController.moveController.OnJumpInputUp();
@@ -80,10 +84,15 @@ public class Attack2State : AbstractState {
         if (parameter == "jump") {
             doJump = true;
             checkMoveStarted = Time.time + moveTime1;
+            playerController.InstantiateEffect(playerController.prefabEffectJump);
         }
         if (parameter == "move_forward2") {
             doJump = true;
             checkMoveStarted = Time.time + moveTime2;
+        }
+        if (parameter == "smash") {
+            playerController.InstantiateEffect(playerController.prefabEffectLanding);
+            CameraFollow.GetInstance().ShakeSmall();
         }
     }
 }

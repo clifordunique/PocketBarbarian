@@ -43,11 +43,11 @@ public class WallJumpState : AbstractState {
             playerController.moveController.OnJumpInputUp();
         }        
 
-        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapon && playerController.input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapon && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
         

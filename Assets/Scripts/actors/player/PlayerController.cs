@@ -9,15 +9,19 @@ public class PlayerController : MonoBehaviour, IActorController {
 
     public LayerMask interactiveLayers;
 
-    public bool hasWeapons = false;
+    [Header("Weapon Settings")]
+    public bool hasWeapon = false;
+    public bool comboAllowed = false;
+    public List<string> weaponUuid;
+    public List<int> weaponLayerId;
+    public HitBox[] weaponHitBoxList;
+    public HitBox hitBoxDash;
+
 
     [Header("Projectile Settings")]
     public GameObject prefabProjectile;
     public GameObject spawnPositionProjectile;
-
-    [Header("HitBoxes")]
-    public HitBox hitBoxAttack1;
-    public HitBox hitBoxDash;
+    
 
     [Header("Effect Prefabs")]
     public GameObject prefabEffectStep;
@@ -74,8 +78,8 @@ public class PlayerController : MonoBehaviour, IActorController {
         hurtBox = GetComponentInChildren<PlayerHurtBox>();
         _instance = this;
 
-        // init
-        SetHasWeapon(hasWeapons);
+        // init weapon and animation layer
+        SetWeapon("-1", 0);
     }
 
     public static PlayerController GetInstance() {
@@ -177,16 +181,30 @@ public class PlayerController : MonoBehaviour, IActorController {
     }
 
 
-    public void SetHasWeapon(bool hasWeapon) {
-        this.hasWeapons = hasWeapon;
-        if (hasWeapons) {
-            animator.SetLayerWeight(0, 1);
-            animator.SetLayerWeight(1, 0);
-            moveController.wallJumpingAllowed = true;
-        } else {
-            animator.SetLayerWeight(0, 0);
-            animator.SetLayerWeight(1, 1);
-            moveController.wallJumpingAllowed = false;
+    public void SetWeapon(string uuid, int damage) {
+        hasWeapon = true;
+        if (uuid == "-1") {
+            // no weapon
+            hasWeapon = false;
         }
+
+        int index = weaponUuid.IndexOf(uuid);
+        int layer = weaponLayerId[index];
+        if (layer >= 0 && layer < animator.layerCount) {
+            SetAnimatorLayer(layer);
+        } else {
+            Debug.LogError("Weapon Animator layer " + layer + " not supported!");
+        }
+
+        foreach(HitBox hitbox in weaponHitBoxList) {
+            hitbox.damage = damage;
+        }
+    }
+
+    private void SetAnimatorLayer(int activeLayer) {
+        for (int i = 0; i < animator.layerCount; i++) {
+            animator.SetLayerWeight(i, 0);
+        }
+        animator.SetLayerWeight(activeLayer, 1);
     }
 }

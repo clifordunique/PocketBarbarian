@@ -35,7 +35,7 @@ public class FallingState : AbstractState {
             return new WallSlidingState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
+        if (playerController.hasWeapon && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
             // check if Stomping possible
             if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new StompingState(playerController);
@@ -48,11 +48,11 @@ public class FallingState : AbstractState {
             return new FastFallingState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapon && playerController.input.IsAttack1KeyDown()) {
             return new JumpAttackState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown()) { // hat ammo! && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapon && playerController.input.IsAttack2KeyDown()) { // hat ammo! && playerController.statistics.ammo > 0) {
             return new ThrowJumpState(playerController);
         }
 

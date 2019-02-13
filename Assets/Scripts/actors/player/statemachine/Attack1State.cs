@@ -32,7 +32,7 @@ public class Attack1State : AbstractState {
             return interrupt;
         }
 
-        if (playerController.input.IsAttack1KeyDown()) {
+        if (playerController.comboAllowed && playerController.input.IsAttack1KeyDown()) {
             comboAttack = true;
         }
 

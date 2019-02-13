@@ -36,11 +36,11 @@ public class IdleState : AbstractState {
             return new ActionState(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapon && playerController.input.IsAttack1KeyDown()) {
             return new Attack1State(playerController);
         }
 
-        if (playerController.hasWeapons && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapon && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
             return new ThrowIdleState(playerController);
         }
 

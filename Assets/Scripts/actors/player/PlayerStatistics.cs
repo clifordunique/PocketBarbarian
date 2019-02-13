@@ -44,8 +44,8 @@ public class PlayerStatistics : MonoBehaviour {
     public int lives;
     public int health;
     public int points;
+    public string weaponUuid;
     public int damage;
-    public bool hasWeapon;
     public bool wallJumpAllowed;
     public bool doubleJumpAllowed;
     public bool dashAllowed;
@@ -186,6 +186,10 @@ public class PlayerStatistics : MonoBehaviour {
 
     public void ModifyItem(Item item) {
         inventoryManager.AddItem(item);
+        if (item.itemType == Item.ITEM_TYPES.SWORD) {
+            // react to sword collect
+            PlayerController.GetInstance().InterruptState(AbstractState.ACTION.SWORD_UP);
+        }
     }    
 
 
@@ -219,7 +223,7 @@ public class PlayerStatistics : MonoBehaviour {
         if (saveData.hasCircleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.CIRCLE, true); }
         if (saveData.hasTriangleKey) { ModifyKeys(CollectableKeys.KEY_TYPE.TRIANGLE, true); }
 
-        Dictionary<string, Item> inventoryItems = new Dictionary<string, Item>();
+        DictionaryOfUuidAndItem inventoryItems = new DictionaryOfUuidAndItem();
         foreach (KeyValuePair<string, int> kvp in saveData.inventoryItems) {
             Item originalItem = ItemManager.GetInstance().FindItem(kvp.Key);
             Item myItem = new Item(originalItem);
@@ -238,7 +242,7 @@ public class PlayerStatistics : MonoBehaviour {
         maxAmmo = baseMaxAmmo;
         staminaActionCost = baseStaminaActionCost;
         damage = 0;
-        hasWeapon = false;
+        weaponUuid = "-1";
         wallJumpAllowed = false;
         doubleJumpAllowed = false;
         dashAllowed = false;
@@ -246,5 +250,23 @@ public class PlayerStatistics : MonoBehaviour {
         stompAllowed = false;
         comboAllowed = false;
         comboLevel = 0;
+
+        PublishBaseData();
+    }
+
+    public void PublishBaseData() {
+        PublishHealth();
+        // publish weapon
+        PlayerController.GetInstance().SetWeapon(weaponUuid, damage);
+
+        // publish moveData
+        PlayerMoveController2D moveController = PlayerController.GetInstance().moveController;
+        moveController.wallJumpingAllowed = wallJumpAllowed;
+        moveController.doubleJumpAllowed = doubleJumpAllowed;
+        moveController.dashAllowed = dashAllowed;
+        moveController.dashDuration = dashDuration;
+        moveController.stampingAllowed = stompAllowed;
+
+        PlayerController.GetInstance().comboAllowed = comboAllowed;
     }
 }
