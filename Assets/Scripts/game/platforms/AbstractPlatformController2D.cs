@@ -56,15 +56,12 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
 
             if (passenger.moveBeforePlatform == beforeMovePlatform) {
                 if (passengerDictionary.ContainsKey(passenger.transform)) {
-                    Debug.Log("MOVE PASSANGER");
                     CameraFollow.GetInstance().CheckForPlayerOnPlatform(passenger.transform);
 
                     if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow()) {
                     } else {
                         if (passenger.velocity.y > 0 && passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsAbove()) {
                         } else {
-                            //Debug.Log("MOVE PASSANGER");
-                            
                             passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                         }
                     }                    

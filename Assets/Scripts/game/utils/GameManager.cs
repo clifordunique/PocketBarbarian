@@ -86,27 +86,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ReloadLevelOnDeathCoroutine() {
         yield return new WaitForSeconds(waitTimeRestartOnDeath);
-        StartCoroutine(ReloadLevelCouroutine(SceneManager.GetActiveScene().buildIndex));
+        ReloadLevel();
     }
 
 
     public void ReloadLevel() {
-        StartCoroutine(ReloadLevelCouroutine(SceneManager.GetActiveScene().buildIndex));
+        LevelManager.GetInstance().ReloadActiveLevel();
     }
 
     public void LoadMainMenue() {
-        StartCoroutine(ReloadLevelCouroutine(0));
+        LevelManager.GetInstance().LoadMainMenue();
     }
-
-    IEnumerator ReloadLevelCouroutine(int sceneIndex) {
-        Debug.Log("ReloadLevel");
-        FadeCanvasEffect fadeEffect = FadeCanvasEffect.GetInstance();
-        fadeEffect.FadeOutSceneCanvas();
-        yield return new WaitUntil(() => fadeEffect.fadeComplete);
-        SceneManager.LoadScene(sceneIndex);
-    }
+    
 
     public void ExitGame() {
-
+        LevelManager.GetInstance().Quit();
     }
 }

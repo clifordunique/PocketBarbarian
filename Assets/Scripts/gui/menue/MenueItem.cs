@@ -11,11 +11,18 @@ public class MenueItem : MonoBehaviour
 
     [HideInInspector]
     public bool movementComplete = false;
+    private BoxCollider2D boxCollider;
 
     public void Awake() {
         movement = GetComponent<SimpleMovementPosition>();
+        boxCollider = GetComponent<BoxCollider2D>();
         sr = transform.GetComponentInChildren<IMenueItemSprite>();
     }
+
+    public void SetColliderActive(bool active) {
+        boxCollider.enabled = active;
+    }
+
     void OnMouseEnter() {
         if (AbstractMenueManager.GetInstance().menueInputEnabled) {
             AbstractMenueManager.GetInstance().MenueItemFocused(this);

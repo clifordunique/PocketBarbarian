@@ -19,7 +19,7 @@ public class TitleScreenManager : AbstractMenueManager {
     private bool startSceneComplete = false;
 
     private bool itemsReady = false;
-    
+    private MENUEITEM_TYPE selectedMenueItem = MENUEITEM_TYPE.NAN;
 
 
     // Use this for initialization
@@ -56,6 +56,7 @@ public class TitleScreenManager : AbstractMenueManager {
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        Debug.Log("TITLESCREENMANAGER-ONSCENELOADED");
         FadeCanvasEffect.GetInstance().FadeInSceneCanvas();
         StartCoroutine(Init());
     }
@@ -126,7 +127,42 @@ public class TitleScreenManager : AbstractMenueManager {
     }
 
 
-    public override void MenueItemSelected(MENUEITEM_TYPE menueItemType) {
+    public override void MenueItemSelected(MENUEITEM_TYPE itemSelected) {
+        selectedMenueItem = itemSelected;
+        switch (itemSelected) {
+            case MENUEITEM_TYPE.NEW_GAME:
+            case MENUEITEM_TYPE.LOAD_GAME:
+            case MENUEITEM_TYPE.OPTIONS:
+            case MENUEITEM_TYPE.CREDITS:
+                ExecuteSelectedMenueItem();
+                break;
+            case MENUEITEM_TYPE.EXIT:
+                ShowQuestion();
+                break;
+            default: break;
+        }
+    }
+
+    public override void ExecuteSelectedMenueItem() {
+        switch (selectedMenueItem) {
+            case MENUEITEM_TYPE.NEW_GAME:
+                LevelManager.GetInstance().LoadNextLevel();
+                break;
+            case MENUEITEM_TYPE.LOAD_GAME:                
+                Debug.Log("LOAD GAME");
+                break;
+            case MENUEITEM_TYPE.OPTIONS:
+                Debug.Log("OPTIONS");
+                break;
+            case MENUEITEM_TYPE.CREDITS:
+                Debug.Log("CREDITS");
+                break;
+            case MENUEITEM_TYPE.EXIT:                
+                Debug.Log("Exit");
+                LevelManager.GetInstance().Quit();
+                break;
+            default: break;
+        }
     }
 
 

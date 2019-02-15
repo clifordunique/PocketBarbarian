@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishMoveController2D : MonoBehaviour {
+public class FishMoveController2D : MonoBehaviour, ITriggerReactor {
 
     public float seconds;
     public float distanceUp;
@@ -11,6 +11,9 @@ public class FishMoveController2D : MonoBehaviour {
     public Transform waterSurface;
     public GameObject waterEffectIn;
     public GameObject waterEffectOut;
+
+    public bool reactToTrigger;
+    private bool triggerMoveUp = false;
 
     private float t;
     private Vector3 currentStartPos;
@@ -36,12 +39,13 @@ public class FishMoveController2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if (moveUp && t == 0F && Time.time < (reachedBottomTime + waitUnderWater)) {
-            // wait time under water
+        if (moveUp && t == 0F && StayDown()) {
+            // wait under water
         } else {
             Vector2 velocity = SmoothMove();
             Vector2 pixelPerfectVelocity = Utils.MakePixelPerfect(velocity);
             transform.Translate(pixelPerfectVelocity);
+
         }
 
         if (moveUp) {
@@ -59,6 +63,14 @@ public class FishMoveController2D : MonoBehaviour {
         }
     }
 
+    private bool StayDown() {
+        if (reactToTrigger) {
+            return !triggerMoveUp;
+        } else {
+            return Time.time < (reachedBottomTime + waitUnderWater);
+        }
+    }
+
 
     private Vector3 SmoothMove() {
 
@@ -70,12 +82,13 @@ public class FishMoveController2D : MonoBehaviour {
                 newTime = 1;
             }
             float easeFactor = EasingFunction.EaseInOutCubic(0.0F, 1.0F, newTime);
-            Vector3 newPosition = Vector3.Lerp(currentStartPos, currentEndpos, easeFactor);            
+            Vector3 newPosition = Vector3.Lerp(currentStartPos, currentEndpos, easeFactor);
 
             return newPosition - transform.position;
 
         } else {
             if (transform.position == positionUp) {
+
                 animator.SetBool("UP", false);
                 animator.SetBool("TURN", true);
                 moveUp = false;
@@ -84,6 +97,7 @@ public class FishMoveController2D : MonoBehaviour {
                 animator.SetBool("TURN", false);
                 moveUp = true;
                 reachedBottomTime = Time.time;
+                triggerMoveUp = false;
             }
 
             t = 0F;
@@ -102,5 +116,16 @@ public class FishMoveController2D : MonoBehaviour {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = new Vector3(transform.position.x, waterSurfaceY, transform.position.z);
+    }
+
+    public bool TriggerActivated() {
+        Debug.Log("Fish trigger Activated");
+        triggerMoveUp = true;
+        return true;
+    }
+
+    public bool TriggerDeactivated() {
+        //nix zu tun
+        return true;
     }
 }

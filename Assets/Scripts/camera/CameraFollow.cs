@@ -92,7 +92,6 @@ public class CameraFollow : MonoBehaviour {
 
     public void CheckForPlayerOnPlatform(Transform passenger) {
         if (target.transform == passenger.transform) {
-            Debug.Log("Player on Platform!");
             verticalSmoothTime = 0;
         }
     }

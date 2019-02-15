@@ -26,6 +26,7 @@ public class MenueItemSpriteAnim : MonoBehaviour, IMenueItemSprite {
     public void SetDisabled() {
         animator.SetBool("ENABLED", false);
         animator.SetBool("DISABLED", true);
+        animator.SetBool("CLICKED", false);
     }
 
     public void Click() {

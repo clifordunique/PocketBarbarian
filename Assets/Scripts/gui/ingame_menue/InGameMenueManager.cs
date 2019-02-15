@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class InGameMenueManager : AbstractMenueManager
 {
-
-    public QuestionManager questionManager;
+    
     public GameObject menue;
     public Texture2D mouseTexture;
 
@@ -40,8 +39,8 @@ public class InGameMenueManager : AbstractMenueManager
             default: break;
         }
     }
-
-    public void ExecuteSelectedMenueItem() {
+    
+    public override void ExecuteSelectedMenueItem() {
         HideMenue();
         switch (selectedMenueItem) {
             case MENUEITEM_TYPE.BACK_TO_GAME:
@@ -62,25 +61,6 @@ public class InGameMenueManager : AbstractMenueManager
                 break;
             default: break;
         }
-    }
-
-    private void ShowQuestion() {
-        menueInputEnabled = false;
-        questionManager.gameObject.SetActive(true);
-        questionManager.Init();
-        StartCoroutine(WaitForAnswer());
-    }
-
-    IEnumerator WaitForAnswer() {
-        while (questionManager.selectedAnswer == QuestionManager.ANSWER_TYPE.NAN) {
-            yield return new WaitForEndOfFrame();
-        }
-        menueInputEnabled = true;
-        // question selected
-        if (questionManager.selectedAnswer == QuestionManager.ANSWER_TYPE.YES) {
-            ExecuteSelectedMenueItem();
-        }
-        questionManager.gameObject.SetActive(false);
     }
     
 
