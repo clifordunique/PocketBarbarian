@@ -9,8 +9,8 @@ public class Attack2State : AbstractState {
     private bool exitCombo = false;
     private bool hitSomething = false;
     private bool doJump = false;
-    private float moveTime1 = 0.6F;
-    private float jumpTime = 0.08F;
+    private float moveTime1 = 0.4F;
+    private float jumpTime = 0.02F;
     private float moveTime2 = 0.2F;
     private float checkMoveStarted;
     private float checkJumpStarted = -1F;

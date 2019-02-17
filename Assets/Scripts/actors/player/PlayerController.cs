@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMoveController2D))]
-public class PlayerController : MonoBehaviour, IActorController {
+public class PlayerController: MonoBehaviour, IActorController {
 
 
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     [Header("Projectile Settings")]
     public GameObject prefabProjectile;
     public GameObject spawnPositionProjectile;
-    
+
 
     [Header("Effect Prefabs")]
     public GameObject prefabEffectStep;
@@ -52,9 +52,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     [HideInInspector]
     public float dirX = 1;
     [HideInInspector]
-    public bool dead = false;
-    [HideInInspector]
-    public Vector3 lastHitSource;
+    public LastHit lastHit = new LastHit();
     [HideInInspector]
     public bool interactableInRange = false;
     [HideInInspector]
@@ -68,7 +66,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     private static PlayerController _instance;
 
     // Use this for initialization
-    void Awake () {
+    void Awake() {
         moveController = GetComponent<PlayerMoveController2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -91,27 +89,25 @@ public class PlayerController : MonoBehaviour, IActorController {
         if (this.dirX != dirX && dirX != 0) {
             this.dirX = dirX;
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }            
+        }
     }
 
     public void HandleEvent(string parameter) {
         currentState.HandleEvent(parameter);
     }
 
-    public void InterruptState (AbstractState.ACTION action) {
+    public void InterruptState(AbstractState.ACTION action) {
         if (currentState != null) {
             currentState.InterruptEvent(action);
         }
     }
 
-    public void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
-        this.dead = dead;
-        lastHitSource = hitSource;
-        if (damageType == HitBox.DAMAGE_TYPE.WATER) {
-            InterruptState(AbstractState.ACTION.DEATH);
-        } else {
-            InterruptState(AbstractState.ACTION.HIT);
-        }
+    public void ReactHurt(bool dead, bool push, bool instakill, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
+        lastHit.push = push;
+        lastHit.instakill = instakill;
+        lastHit.hitSource = hitSource;
+        lastHit.damageType = damageType;
+        InterruptState(AbstractState.ACTION.HIT);
     }
 
     public void ReactHit() {
@@ -129,7 +125,7 @@ public class PlayerController : MonoBehaviour, IActorController {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         if (Time.timeScale != 0) {
             // handle StateMachine
@@ -172,7 +168,7 @@ public class PlayerController : MonoBehaviour, IActorController {
         Vector3 target = new Vector3(dirX, 0, 0);
 
         GameObject projectileGo = Instantiate(prefabProjectile, spawnPositionProjectile.transform.position, transform.rotation, EffectCollection.GetInstance().transform);
-        projectileGo.GetComponent<Projectile>().InitProjectile(target, true);        
+        projectileGo.GetComponent<Projectile>().InitProjectile(target, true);
     }
 
     public void SetEnabled(bool inputEnabled, bool showPlayer) {
@@ -196,7 +192,7 @@ public class PlayerController : MonoBehaviour, IActorController {
             Debug.LogError("Weapon Animator layer " + layer + " not supported!");
         }
 
-        foreach(HitBox hitbox in weaponHitBoxList) {
+        foreach (HitBox hitbox in weaponHitBoxList) {
             hitbox.damage = damage;
         }
     }
@@ -206,5 +202,12 @@ public class PlayerController : MonoBehaviour, IActorController {
             animator.SetLayerWeight(i, 0);
         }
         animator.SetLayerWeight(activeLayer, 1);
+    }
+
+    public struct LastHit {
+        public Vector3 hitSource;
+        public HitBox.DAMAGE_TYPE damageType;
+        public bool push;
+        public bool instakill;
     }
 }

@@ -24,7 +24,7 @@ public abstract class AbstractState {
     public static string STOMPING_PARAM = "STOMPING";
     public static string STOMPING_LANDING_PARAM = "STOMPING_LANDING";
     public static string DYING_PARAM = "DYING";
-    public static string DROWNING_PARAM = "DROWNING";
+    public static string DYING_DROWN_PARAM = "DYING_DROWN";
     public static string THROW_IDLE_PARAM = "THROW_IDLE";
     public static string THROW_JUMP_PARAM = "THROW_JUMP";
     public static string THROW_RUNNING_PARAM = "THROW_RUNNING";
@@ -55,9 +55,6 @@ public abstract class AbstractState {
             }
             if (interruptAction == ACTION.HIT) {
                 return new HitState(playerController);
-            }
-            if (interruptAction == ACTION.DEATH) {
-                return new DyingState(playerController);
             }
             if (interruptAction == ACTION.SWORD_UP) {
                 return new SwordUpState(playerController);

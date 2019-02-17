@@ -10,6 +10,7 @@ public class HitBox : MonoBehaviour {
 
     public enum DAMAGE_TYPE { DEFAULT, DASH, WATER};
     public DAMAGE_TYPE damageType;
+    public bool instakill = false;
 
     private IActorController actorController;
 

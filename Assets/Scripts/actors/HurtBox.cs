@@ -77,13 +77,17 @@ public class HurtBox : MonoBehaviour {
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.gameObject.GetComponent<HitBox>();
             if (attackerActor) {
-                if (IsDamageTypeInstakill(attackerActor.damageType)) {
+                if (attackerActor.instakill) {
                     //instakill
                     boxCollider.enabled = false;
                 }
-                if (!hitInProgress || IsDamageTypeInstakill(attackerActor.damageType)) {
+                if (!hitInProgress || attackerActor.instakill) {
                     // receive damage from attacker
-                    ModifyHealth(-attackerActor.damage);
+                    if (attackerActor.instakill) {
+                        ModifyHealth(-currentHealth);
+                    } else {
+                        ModifyHealth(-attackerActor.damage);
+                    }
                     attackerActor.ReactHit();
                     ReactHurt(collision, attackerActor);
                 }
@@ -92,11 +96,7 @@ public class HurtBox : MonoBehaviour {
             }
         }
     }
-
-    private bool IsDamageTypeInstakill(HitBox.DAMAGE_TYPE damageType) {
-        return damageType == HitBox.DAMAGE_TYPE.WATER;
-    }
-    
+        
 
     private void ReactHurt(Collision2D collision, HitBox attackerActor) {
         Vector3 hitDirection = Utils.GetHitDirection(collision.transform.position, transform);
@@ -112,25 +112,19 @@ public class HurtBox : MonoBehaviour {
         }
 
 
-        if (attackerActor.damageType == HitBox.DAMAGE_TYPE.WATER) {
+        if (attackerActor.damageType == HitBox.DAMAGE_TYPE.WATER && attackerActor.instakill) {
             float y = collision.collider.bounds.center.y + collision.collider.bounds.extents.y;
             Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
             InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition);
-
-            if (actorController != null) {
-                actorController.ReactHurt(currentHealth <= 0, false, collision.transform.position, attackerActor.damageType);
-            }
-        } else {
-            if (actorController != null) {
-                actorController.ReactHurt(currentHealth <= 0, pushedOnHit, collision.transform.position, attackerActor.damageType);
-            }
+        }
+        if (actorController != null) {
+            actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, attackerActor.instakill, collision.transform.position, attackerActor.damageType);
         }
 
         // Spawn Effect on hit
         if (currentHealth > 0 && lootController != null) {
             lootController.SpawnChildrenOnHit();
         }
-
 
         if (flashOnHit) {
             FlashSprite(flashTime);

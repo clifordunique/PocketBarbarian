@@ -68,10 +68,10 @@ public class EnemyController : MonoBehaviour, IActorController {
     }
 
 
-    public void ReactHurt(bool dead, bool push, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
+    public void ReactHurt(bool dead, bool push, bool instakill, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
 
         EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
-        if (push) {
+        if (push && !instakill) {
             hitAction.hitTarget = hitSource;
         } else {
             hitAction.hitTarget = Vector3.positiveInfinity;

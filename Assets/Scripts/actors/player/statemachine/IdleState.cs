@@ -33,7 +33,11 @@ public class IdleState : AbstractState {
         }
 
         if (playerController.input.GetDirectionY() == 1 && playerController.interactableInRange) {
-            return new ActionState(playerController);
+            // Check if interactable activatable
+            AbstactInteractable interactable = playerController.interactable.GetComponent<AbstactInteractable>();
+            if (interactable && !interactable.permanentDisabled) {
+                return new ActionState(playerController);
+            }
         }
 
         if (playerController.hasWeapon && playerController.input.IsAttack1KeyDown()) {

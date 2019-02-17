@@ -11,15 +11,17 @@ public class HitState : AbstractState {
 
     public override void OnEnter() {
         startTime = Time.time;
-
-        playerController.animator.SetBool(JUMPING_PARAM, true);
-        
-        Vector3 hitDirection = Utils.GetHitDirection(playerController.lastHitSource, playerController.transform);
-        playerController.moveController.OnPush(hitDirection.x, hitDirection.y);
+        if (playerController.lastHit.push && !playerController.lastHit.instakill) {
+            playerController.animator.SetBool(JUMPING_PARAM, true);
+            Vector3 hitDirection = Utils.GetHitDirection(playerController.lastHit.hitSource, playerController.transform);
+            playerController.moveController.OnPush(hitDirection.x, hitDirection.y);
+        }
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(JUMPING_PARAM, false);
+        if (playerController.lastHit.push && !playerController.lastHit.instakill) {
+            playerController.animator.SetBool(JUMPING_PARAM, false);
+        }
         Move(0F, playerController.input.GetDirectionY());
     }
 
@@ -29,9 +31,17 @@ public class HitState : AbstractState {
             return interrupt;
         }
 
-        if ((Time.time - startTime) > (playerController.hurtBox.hitTime / 2)) {
-            if (playerController.hurtBox.currentHealth <= 0) {
-                return new DyingState(playerController);
+        if (playerController.lastHit.push && !playerController.lastHit.instakill) {
+            if ((Time.time - startTime) > (playerController.hurtBox.hitTime / 2)) {
+                if (playerController.statistics.health <= 0) {
+                    return new DyingState(playerController.lastHit.damageType, playerController);
+                } else {
+                    return new IdleState(playerController);
+                }
+            }
+        } else {
+            if (playerController.statistics.health <= 0) {
+                return new DyingState(playerController.lastHit.damageType, playerController);
             } else {
                 return new IdleState(playerController);
             }

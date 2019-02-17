@@ -18,6 +18,8 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 	float percentBetweenWaypoints;
     [HideInInspector]
 	public float nextMoveTime;
+
+    private Vector3 startWaypoint;
     
 	
 	public override void Start () {
@@ -27,7 +29,9 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 		for (int i =0; i < localWaypoints.Length; i++) {
 			globalWaypoints[i] = localWaypoints[i].position;
 		}
-	}
+        startWaypoint = globalWaypoints[0];
+
+    }
     
 
 	float Ease(float x) {
@@ -65,6 +69,9 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 			nextMoveTime = Time.time + waitTime;
         }
 
+        if (useTrigger && !reactToTriggerOnce && newPos == startWaypoint) {
+            triggerActivated = false;
+        }
 		return pixelPerfectMoveAmount - transform.position;
 	}
     

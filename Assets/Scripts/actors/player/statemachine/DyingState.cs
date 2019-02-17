@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DyingState : AbstractState {
-    
 
-    public DyingState(PlayerController playerController) : base(ACTION.DEATH, playerController) {
+    private HitBox.DAMAGE_TYPE damageType;
+
+    public DyingState(HitBox.DAMAGE_TYPE damageType, PlayerController playerController) : base(ACTION.DEATH, playerController) {
+        this.damageType = damageType;
     }
 
     public override void OnEnter() {
-        playerController.animator.SetBool(DYING_PARAM, true);
+
+        playerController.animator.SetBool(GetAnimParam(), true);
         Move(0F, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(DYING_PARAM, false);
+        playerController.animator.SetBool(GetAnimParam(), false);
         Move(0F, playerController.input.GetDirectionY());
     }
 
@@ -29,4 +32,13 @@ public class DyingState : AbstractState {
         }
     }
 
+
+    private string GetAnimParam() {
+        switch (damageType) {
+            case HitBox.DAMAGE_TYPE.WATER:
+                return DYING_DROWN_PARAM;
+            default:
+                return DYING_PARAM;
+        }
+    }
  }

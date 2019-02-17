@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleLever : AbstactInteractable {
-    
 
+
+    public bool oneTimeUse = false;
     public bool activated = false;
     public Sprite leverSpriteOn;
+
 
     private Sprite leverSpriteOff;
 
@@ -25,7 +27,7 @@ public class SimpleLever : AbstactInteractable {
     }
 
     public override void Activate() {
-        if (activated) {
+        if (activated && !permanentDisabled) {
             // deactivate
             bool startMoving = triggerManager.DeactivateReactors();
             if (startMoving) {
@@ -34,10 +36,16 @@ public class SimpleLever : AbstactInteractable {
             }
         } else {
             // activate
-            bool startMoving = triggerManager.ActivateReactors();
-            if (startMoving) {
-                sr.sprite = leverSpriteOn;
-                activated = true;
+            if (!permanentDisabled) {
+                bool startMoving = triggerManager.ActivateReactors();
+                if (startMoving) {
+                    sr.sprite = leverSpriteOn;
+                    activated = true;
+                }
+                if (oneTimeUse) {
+                    permanentDisabled = true;
+                    actionArrow.SetActive(false);
+                }
             }
         }
         actionFinished = true;

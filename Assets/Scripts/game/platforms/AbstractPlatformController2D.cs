@@ -12,6 +12,8 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
     public bool reactOnTriggerActivate = true;
     [ConditionalHide("useTrigger", true)]
     public bool reactOnTriggerDeactivate = true;
+    [ConditionalHide("useTrigger", true)]
+    public bool reactToTriggerOnce = true;
 
     public LayerMask passengerMask;
     public bool movePixelPerfect;
