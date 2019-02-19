@@ -72,12 +72,16 @@ public class Utils {
         return spawnPosition;
     }
 
-    public static GameObject InstantiateSpriteGameObject(Sprite sprite, string sortingLayerName, int sortingOrder, Transform parent) {
+    public static GameObject InstantiateSpriteGameObject(Sprite sprite, string sortingLayerName, int sortingOrder, Transform parent, bool maskInteraction = false) {
         GameObject newSpriteGo = new GameObject(sprite.name);
         SpriteRenderer spriteRenderer = newSpriteGo.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
         spriteRenderer.sortingLayerName = sortingLayerName;
         spriteRenderer.sortingOrder = sortingOrder;
+        if (maskInteraction) {
+            spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            spriteRenderer.sortingLayerName = "MaskedSprites";
+        }
         newSpriteGo.transform.parent = parent;
         return newSpriteGo;
     }

@@ -36,6 +36,8 @@ public class CharacterDisplayer : ScriptableObject {
     public int charSpacingPixel;
     public int charPixelHeight;
 
+    public bool charsUseSpriteMask = false;
+
     private static int LINEBREAK = 92;
 
     private float maxLineWidth = float.MinValue;
@@ -75,7 +77,7 @@ public class CharacterDisplayer : ScriptableObject {
                     maxLineWidth = position.x;
                 }
                 
-                if (((int)text[i]) == LINEBREAK) {
+                if (((int)text[i]) == LINEBREAK || text[i] == '\n') {
                     position.x = originalPosition.x;
                     position.y -= (charPixelHeight + charSpacingPixel) / Constants.PPU;
                 } else {
@@ -163,8 +165,9 @@ public class CharacterDisplayer : ScriptableObject {
     }
 
     private void CreateNewChar(Character character, Transform myTransform, ref Vector2 position) {
-        GameObject spriteObject = Utils.InstantiateSpriteGameObject(character.charSprite, Constants.SORTING_LAYER_DIALOGUE, 10, myTransform);
+        GameObject spriteObject = Utils.InstantiateSpriteGameObject(character.charSprite, Constants.SORTING_LAYER_DIALOGUE, 10, myTransform, charsUseSpriteMask);
         spriteObject.transform.position = position;
+        Debug.Log("PositionX: " + position.x);
         position.x += (character.widthInPixel + charSpacingPixel) / Constants.PPU;
     }
 }
