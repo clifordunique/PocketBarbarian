@@ -12,6 +12,9 @@ public class DyingState : AbstractState {
 
     public override void OnEnter() {
 
+        if (damageType == HitBox.DAMAGE_TYPE.WATER) {
+            CameraFollow.GetInstance().enabled = false;
+        }
         playerController.animator.SetBool(GetAnimParam(), true);
         Move(0F, playerController.input.GetDirectionY());
     }

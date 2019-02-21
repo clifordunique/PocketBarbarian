@@ -115,7 +115,7 @@ public class HurtBox : MonoBehaviour {
         if (attackerActor.damageType == HitBox.DAMAGE_TYPE.WATER && attackerActor.instakill) {
             float y = collision.collider.bounds.center.y + collision.collider.bounds.extents.y;
             Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
-            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition);
+            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition, collision.transform);
         }
         if (actorController != null) {
             actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, attackerActor.instakill, collision.transform.position, attackerActor.damageType);
@@ -165,9 +165,13 @@ public class HurtBox : MonoBehaviour {
         }
     }
 
-    private void InstantiateEffect(GameObject effectToInstanciate, float dirX, Vector3 position) {
+    private void InstantiateEffect(GameObject effectToInstanciate, float dirX, Vector3 position, Transform parent = null) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
-        effect.transform.parent = EffectCollection.GetInstance().transform;
+        if (parent == null) {
+            effect.transform.parent = EffectCollection.GetInstance().transform;
+        } else {
+            effect.transform.parent = parent;
+        }
         effect.transform.position = position;
         effect.transform.localScale = new Vector3(dirX, effect.transform.localScale.y, effect.transform.localScale.z);
     }

@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-guid: 2b23855b1ea65a44eb95b11d625276f7
+guid: 63f48c5cb0cf1b2468b51a3ad79d2567
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: water_surface_t3_0
-    21300002: water_surface_t3_1
-    21300004: water_surface_t3_2
-    21300006: water_surface_t3_3
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -44,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,107 +115,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: water_surface_t3_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 2}
-        - {x: 8, y: 2}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c696740ff1eede40a1248fa370eb23d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_surface_t3_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 2}
-        - {x: 8, y: 2}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9da282939fec5448b83e710ba1d41b5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_surface_t3_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 2}
-        - {x: 8, y: 2}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2cf87954e8c6344b8b2b81b4e032d60
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_surface_t3_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -8}
-        - {x: -8, y: 2}
-        - {x: 8, y: 2}
-        - {x: 8, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94bfb74b9f81ca349a59db7115f332b1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 58fee1c9b8ea5b4479fab44ea5e53246
+    spriteID: 51fe199980d3c2445b08dae8151dcc60
     vertices: []
     indices: 
     edges: []
