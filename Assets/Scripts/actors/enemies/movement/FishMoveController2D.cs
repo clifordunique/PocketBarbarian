@@ -119,7 +119,6 @@ public class FishMoveController2D : MonoBehaviour, ITriggerReactor {
     }
 
     public bool TriggerActivated() {
-        Debug.Log("Fish trigger Activated");
         triggerMoveUp = true;
         return true;
     }

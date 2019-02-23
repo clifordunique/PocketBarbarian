@@ -56,7 +56,14 @@ public class InputController : MonoBehaviour {
 
     public bool DownKeyDown() {
         if (moveInputEnabled) {
-            return (Input.GetKeyDown(KeyCode.DownArrow));
+            return (Input.GetKey(KeyCode.DownArrow));
+        }
+        return false;
+    }
+
+    public bool UpKeyDown() {
+        if (moveInputEnabled) {
+            return (Input.GetKey(KeyCode.UpArrow));
         }
         return false;
     }

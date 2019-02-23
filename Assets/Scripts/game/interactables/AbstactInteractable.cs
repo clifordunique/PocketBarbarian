@@ -10,7 +10,7 @@ public abstract class AbstactInteractable: MonoBehaviour {
     public bool permanentDisabled = false;
 
     [HideInInspector]
-    public bool actionFinished = false;
+    public bool actionFinished = true;
 
     public virtual void Start() {
 

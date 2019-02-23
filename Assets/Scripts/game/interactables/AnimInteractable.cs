@@ -8,14 +8,14 @@ public class AnimInteractable : AbstactInteractable {
     public bool oneTimeUse = false;
     public bool activated = false;
 
-
-
     private Animator anim;
     private TriggerManager triggerManager;
 
     public override void Start() {
         base.Start();
         anim = GetComponent<Animator>();
+
+        SetStopAnimation();
 
         triggerManager = GetComponent<TriggerManager>();
         if (triggerManager == null) {
@@ -24,11 +24,13 @@ public class AnimInteractable : AbstactInteractable {
     }
 
     public override void Activate() {
+        actionFinished = false;
         if (activated && !permanentDisabled) {
             // deactivate
             bool startMoving = triggerManager.DeactivateReactors();
             if (startMoving) {
                 anim.SetBool("STOP", false);
+                anim.SetBool("INTERACTABLE", false);
                 anim.SetBool("START", true);
                 activated = false;
             }
@@ -38,6 +40,7 @@ public class AnimInteractable : AbstactInteractable {
                 bool startMoving = triggerManager.ActivateReactors();
                 if (startMoving) {
                     anim.SetBool("STOP", false);
+                    anim.SetBool("INTERACTABLE", false);
                     anim.SetBool("START", true);
                     activated = true;
                 }
@@ -47,12 +50,23 @@ public class AnimInteractable : AbstactInteractable {
                 }
             }
         }
-        actionFinished = true;
+        
     }
     
     public void StopAction() {
-        anim.SetBool("STOP", true);
+        actionFinished = true;
         anim.SetBool("START", false);
+        SetStopAnimation();        
     }
     
+
+    private void SetStopAnimation() {
+        if (actionFinished && !permanentDisabled) {
+            anim.SetBool("STOP", false);
+            anim.SetBool("INTERACTABLE", true);
+        } else {
+            anim.SetBool("STOP", true);
+            anim.SetBool("INTERACTABLE", false);
+        }
+    }
 }

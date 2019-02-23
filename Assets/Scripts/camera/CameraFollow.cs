@@ -7,8 +7,10 @@ public class CameraFollow : MonoBehaviour {
 	public float verticalOffset;
     public float horizontalOffset;
     public float lookAheadDstX;
-	public float lookSmoothTimeX;
-	public float verticalSmoothTime;
+    public float lookAheadDstY;
+    public float lookSmoothTimeX;
+    public float lookSmoothTimeY;
+    public float verticalSmoothTime;
 	public Vector2 focusAreaSize;
 
 	FocusArea focusArea;
@@ -17,9 +19,17 @@ public class CameraFollow : MonoBehaviour {
 	float targetLookAheadX;
 	float lookAheadDirX;
 	float smoothLookVelocityX;
-	float smoothVelocityY;
+
+    float alreadyLookedY;
+    float currentLookAheadY;
+    float targetLookAheadY;
+    float lookAheadDirY;
+    float smoothLookVelocityY;
+
+    float smoothVelocityY;
 
 	bool lookAheadStopped;
+    bool lookUpDownStopped;
 
 
     // Cam shake properties
@@ -100,7 +110,8 @@ public class CameraFollow : MonoBehaviour {
 		focusArea.Update (target.myCollider.bounds);
 
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
-        
+               
+
 
         if (focusArea.velocity.x != 0) {
 			lookAheadDirX = Mathf.Sign (focusArea.velocity.x);
@@ -115,13 +126,21 @@ public class CameraFollow : MonoBehaviour {
 				}
 			}
 		}
-
-
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
-		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, (shake ? 0.0F : verticalSmoothTime));
-        //Debug.Log("CurrentLookAheadX:" + currentLookAheadX);
+        float currentSmoothTime = verticalSmoothTime;
+        if (!shake && target.collisions.below && InputController.GetInstance().GetDirectionY() != 0) {
+            lookAheadDirY = InputController.GetInstance().GetDirectionY();
+            focusPosition += Vector2.up * (lookAheadDirY * lookAheadDstY);
+            currentSmoothTime = lookSmoothTimeY;
+        }
+        
+        if (shake) {
+            currentSmoothTime = 0.0F;
+        }
+        focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, currentSmoothTime);        
 		focusPosition += Vector2.right * currentLookAheadX;
+        
 
         if (shake) {
             if (shakeTime > Time.time) {
