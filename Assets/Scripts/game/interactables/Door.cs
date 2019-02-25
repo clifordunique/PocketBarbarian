@@ -61,6 +61,7 @@ public class Door: AbstactInteractable {
 
         yield return new WaitUntil(() => fe.fadeComplete);
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
+        cf.Init();
         inAnimation = false;
     }
 }

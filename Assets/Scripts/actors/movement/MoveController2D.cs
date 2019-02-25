@@ -131,6 +131,14 @@ public class MoveController2D : RaycastController2D, IMove {
         return collisions.above;
     }
 
+    public bool IsLeft() {
+        return collisions.left;
+    }
+
+    public bool IsRight() {
+        return collisions.right;
+    }
+
     public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;

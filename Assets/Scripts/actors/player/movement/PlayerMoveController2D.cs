@@ -38,7 +38,6 @@ public class PlayerMoveController2D : MoveGroundController2D {
 
     public override void Update() {
         base.Update();
-
         // if contact with surface, stop walljump
         if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.time) {
             isWallJump = false;

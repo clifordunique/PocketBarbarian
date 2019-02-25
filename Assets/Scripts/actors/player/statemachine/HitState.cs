@@ -18,10 +18,8 @@ public class HitState : AbstractState {
         }
     }
 
-    public override void OnExit() {
-        if (playerController.lastHit.push && !playerController.lastHit.instakill) {
-            playerController.animator.SetBool(JUMPING_PARAM, false);
-        }
+    public override void OnExit() {        
+        playerController.animator.SetBool(JUMPING_PARAM, false);
         Move(0F, playerController.input.GetDirectionY());
     }
 

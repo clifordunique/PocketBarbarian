@@ -19,17 +19,14 @@ public class CameraFollow : MonoBehaviour {
 	float targetLookAheadX;
 	float lookAheadDirX;
 	float smoothLookVelocityX;
-
-    float alreadyLookedY;
-    float currentLookAheadY;
-    float targetLookAheadY;
+    
+    
+    
     float lookAheadDirY;
-    float smoothLookVelocityY;
 
     float smoothVelocityY;
 
 	bool lookAheadStopped;
-    bool lookUpDownStopped;
 
 
     // Cam shake properties

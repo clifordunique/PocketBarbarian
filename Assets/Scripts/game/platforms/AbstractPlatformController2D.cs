@@ -17,6 +17,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
 
     public LayerMask passengerMask;
     public bool movePixelPerfect;
+    
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, IMove> passengerDictionary = new Dictionary<Transform, IMove>();
@@ -37,9 +38,9 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
 
             CalculatePassengerMovement(velocity);
 
-            MovePassengers(true);
+            MovePassengers(true, velocity);
             transform.Translate(velocity);
-            MovePassengers(false);
+            MovePassengers(false, velocity);
         }
     }
 
@@ -47,7 +48,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
     public abstract Vector3 CalculatePlatformMovement();
 
 
-    void MovePassengers(bool beforeMovePlatform) {
+    void MovePassengers(bool beforeMovePlatform, Vector3 velocity) {
         foreach (PassengerMovement passenger in passengerMovement) {
 
             if (!passengerDictionary.ContainsKey(passenger.transform)) {
@@ -60,13 +61,38 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                 if (passengerDictionary.ContainsKey(passenger.transform)) {
                     CameraFollow.GetInstance().CheckForPlayerOnPlatform(passenger.transform);
 
+
+
                     if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow()) {
+                        passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                     } else {
                         if (passenger.velocity.y > 0 && passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsAbove()) {
                         } else {
                             passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                         }
-                    }                    
+                    }
+
+                    bool squisch = false;
+                    if ((!passenger.standingOnPlatform && velocity.x < 0 && passengerDictionary[passenger.transform].IsLeft()) ||
+                        (!passenger.standingOnPlatform && velocity.x > 0 && passengerDictionary[passenger.transform].IsRight())) {
+                        squisch = true;
+                    }
+
+                    if ((passenger.standingOnPlatform && velocity.y > 0 && passengerDictionary[passenger.transform].IsBelow() && passengerDictionary[passenger.transform].IsAbove()) ||
+                        (!passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow() && velocity.y < 0)) {
+                        squisch = true;
+                    }
+
+                    if (squisch) {                        
+                        HurtBox hurtBox = passenger.transform.GetComponent<HurtBox>();
+                        if (!hurtBox) {
+                            hurtBox = passenger.transform.GetComponentInChildren<HurtBox>();
+                        }
+
+                        if (hurtBox) {
+                            hurtBox.ReceiveHit(true, 100, HitBox.DAMAGE_TYPE.DEFAULT, transform, null);
+                        }
+                    }
                 }
             }
         }

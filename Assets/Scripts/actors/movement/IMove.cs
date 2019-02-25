@@ -8,4 +8,6 @@ public interface IMove {
 
     bool IsBelow();
     bool IsAbove();
+    bool IsLeft();
+    bool IsRight();
 }

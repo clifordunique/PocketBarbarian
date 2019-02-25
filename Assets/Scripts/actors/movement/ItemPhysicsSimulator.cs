@@ -28,6 +28,14 @@ public class ItemPhysicsSimulator : RaycastController2D, IMove {
         return collisions.above;
     }
 
+    public bool IsLeft() {
+        return false;
+    }
+
+    public bool IsRight() {
+        return false;
+    }
+
     void Update () {
 
         UpdateRaycastOrigins();
