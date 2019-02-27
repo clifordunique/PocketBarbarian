@@ -15,6 +15,7 @@ public class Utils {
     }
 
     public static Vector3 GetHitDirection(Vector3 attacker, Transform transform) {
+        
         Vector3 v = new Vector3(transform.position.x - attacker.x, transform.position.y - attacker.y, 1).normalized;
         Vector3 result = new Vector3();
         if (v.x > 0F) result.x = 1;

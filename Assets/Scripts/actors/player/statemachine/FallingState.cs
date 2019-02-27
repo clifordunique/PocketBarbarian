@@ -35,7 +35,7 @@ public class FallingState : AbstractState {
             return new WallSlidingState(playerController);
         }
 
-        if (playerController.hasWeapon && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
+        if (playerController.moveController.stampingAllowed && playerController.moveController.IsFalling() && playerController.input.DownKeyDown()) {
             // check if Stomping possible
             if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new StompingState(playerController);

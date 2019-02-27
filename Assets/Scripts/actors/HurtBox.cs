@@ -136,7 +136,7 @@ public class HurtBox : MonoBehaviour {
             lootController.SpawnChildrenOnHit();
         }
 
-        if (flashOnHit) {
+        if (flashOnHit && !instakill) {
             FlashSprite(flashTime);
         }
         if (hitTime > 0 || currentHealth <= 0) {

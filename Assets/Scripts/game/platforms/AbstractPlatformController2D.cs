@@ -73,6 +73,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                     }
 
                     bool squisch = false;
+
                     if ((!passenger.standingOnPlatform && velocity.x < 0 && passengerDictionary[passenger.transform].IsLeft()) ||
                         (!passenger.standingOnPlatform && velocity.x > 0 && passengerDictionary[passenger.transform].IsRight())) {
                         squisch = true;
@@ -90,7 +91,7 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                         }
 
                         if (hurtBox) {
-                            hurtBox.ReceiveHit(true, 100, HitBox.DAMAGE_TYPE.DEFAULT, transform, null);
+                            hurtBox.ReceiveHit(true, 100, HitBox.DAMAGE_TYPE.SQUISH, transform, null);
                         }
                     }
                 }

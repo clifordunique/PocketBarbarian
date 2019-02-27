@@ -8,7 +8,7 @@ public class HitBox : MonoBehaviour {
     // damage on contact
     public int damage;
 
-    public enum DAMAGE_TYPE { DEFAULT, DASH, WATER};
+    public enum DAMAGE_TYPE { DEFAULT, DASH, WATER, SQUISH};
     public DAMAGE_TYPE damageType;
     public bool instakill = false;
 

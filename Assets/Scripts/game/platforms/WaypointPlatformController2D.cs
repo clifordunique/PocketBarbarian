@@ -59,7 +59,7 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
         if (percentBetweenWaypoints >= 1) {
 			percentBetweenWaypoints = 0;
 			fromWaypointIndex ++;
-
+            
 			if (!cyclic) {
 				if (fromWaypointIndex >= globalWaypoints.Length-1) {
 					fromWaypointIndex = 0;

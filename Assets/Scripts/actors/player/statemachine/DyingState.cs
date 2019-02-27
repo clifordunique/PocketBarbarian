@@ -5,6 +5,7 @@ using UnityEngine;
 public class DyingState : AbstractState {
 
     private HitBox.DAMAGE_TYPE damageType;
+    private Vector3 hitDirection;
 
     public DyingState(HitBox.DAMAGE_TYPE damageType, PlayerController playerController) : base(ACTION.DEATH, playerController) {
         this.damageType = damageType;
@@ -15,6 +16,13 @@ public class DyingState : AbstractState {
         if (damageType == HitBox.DAMAGE_TYPE.WATER) {
             CameraFollow.GetInstance().enabled = false;
         }
+
+        if (damageType == HitBox.DAMAGE_TYPE.SQUISH) {
+            hitDirection = Utils.GetHitDirection(playerController.lastHit.hitSource, playerController.transform);
+            
+            playerController.moveController.enabled = false;
+        }
+
         playerController.animator.SetBool(GetAnimParam(), true);
         Move(0F, playerController.input.GetDirectionY());
     }
@@ -33,6 +41,14 @@ public class DyingState : AbstractState {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             GameManager.GetInstance().PlayerDied();
         }
+
+        if (parameter == "start_squish_effect") {
+            if (hitDirection.y < 0) {
+                playerController.InstantiateEffect(playerController.prefabEffectSquishDown);
+            } else {
+                playerController.InstantiateEffect(playerController.prefabEffectSquishUp);
+            }
+        }
     }
 
 
@@ -40,6 +56,8 @@ public class DyingState : AbstractState {
         switch (damageType) {
             case HitBox.DAMAGE_TYPE.WATER:
                 return DYING_DROWN_PARAM;
+            case HitBox.DAMAGE_TYPE.SQUISH:
+                return DYING_SQUISH_PARAM;
             default:
                 return DYING_PARAM;
         }

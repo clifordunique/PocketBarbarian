@@ -36,6 +36,8 @@ public class PlayerController: MonoBehaviour, IActorController {
     public GameObject prefabEffectHardLanding;
     public GameObject prefabEffectWallJump;
     public GameObject prefabEffectGroundHitOneSided;
+    public GameObject prefabEffectSquishDown;
+    public GameObject prefabEffectSquishUp;
     public ParticleSystem sparkParticle;
 
     [Header("Outline Effect Material")]
