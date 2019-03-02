@@ -11,7 +11,7 @@ public class DestroyOnDelayEffect: MonoBehaviour {
     private float startTime;
 	// Use this for initialization
 	void Start () {
-        startTime = Time.time;
+        startTime = Time.timeSinceLevelLoad;
         if (withRandomOffset) {
             startTime += Random.Range(0, randomOffsetDelayTime);
         }
@@ -19,7 +19,7 @@ public class DestroyOnDelayEffect: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((startTime + delayTime) < Time.time) {
+		if ((startTime + delayTime) < Time.timeSinceLevelLoad) {
             Destroy(gameObject);
         }
 	}

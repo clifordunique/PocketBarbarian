@@ -1,14 +1,19 @@
 fileFormatVersion: 2
-guid: cfb55572e07fa5e4ab7f14bccd5f7f38
+guid: 8d794955163487a4d9f3473022f4f52c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: squish_up_effect_0
-    21300002: squish_up_effect_1
-    21300004: squish_up_effect_2
-    21300006: squish_up_effect_3
-    21300008: squish_up_effect_4
-    21300010: squish_up_effect_5
-    21300012: squish_up_effect_6
+    21300000: squish_barbarian_effect_0
+    21300002: squish_barbarian_effect_1
+    21300004: squish_barbarian_effect_2
+    21300006: squish_barbarian_effect_3
+    21300008: squish_barbarian_effect_4
+    21300010: squish_barbarian_effect_5
+    21300012: squish_barbarian_effect_6
+    21300014: squish_barbarian_effect_7
+    21300016: squish_barbarian_effect_8
+    21300018: squish_barbarian_effect_9
+    21300020: squish_barbarian_effect_10
+    21300022: squish_barbarian_effect_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -124,12 +129,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: squish_up_effect_0
+      name: squish_barbarian_effect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,18 +143,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d966fdfed1b5d77439dd93f96939f51c
+      spriteID: f5f821e7eca1e294fbbedae58f8a15c5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_1
+      name: squish_barbarian_effect_1
       rect:
         serializedVersion: 2
-        x: 30
+        x: 80
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,18 +163,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 448ee62b57812264390aea8f5a843130
+      spriteID: 5560058c53763f344876e43219f0a58e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_2
+      name: squish_barbarian_effect_2
       rect:
         serializedVersion: 2
-        x: 60
+        x: 160
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,18 +183,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b70077e9596f6419e2ea39b3a1d4b1
+      spriteID: 51371aabad1c7e34c89f4092b089b215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_3
+      name: squish_barbarian_effect_3
       rect:
         serializedVersion: 2
-        x: 90
+        x: 240
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -198,18 +203,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 203dd0ddfe7ab704d9b91c364c824f52
+      spriteID: 7aa9cfb7be064384cb9fece3b60a7198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_4
+      name: squish_barbarian_effect_4
       rect:
         serializedVersion: 2
-        x: 120
+        x: 320
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -218,18 +223,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e29ccdc46cdc444ebcd4d62ad3b3f37
+      spriteID: b725da88d80e0c44f8b70f34689131ac
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_5
+      name: squish_barbarian_effect_5
       rect:
         serializedVersion: 2
-        x: 150
+        x: 400
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,18 +243,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a846974dea2f6541ba0c98f4cb0fe85
+      spriteID: fb6be6ed47bf50949941d0a1e80d46d6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_up_effect_6
+      name: squish_barbarian_effect_6
       rect:
         serializedVersion: 2
-        x: 180
+        x: 480
         y: 0
-        width: 30
+        width: 80
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -258,7 +263,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a6d88dec2256ea459c9f04d0fa1f547
+      spriteID: f0401a19f32c9b04b9dcc6771a0cb2ce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_barbarian_effect_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c67bfafd336e1e5458acf8166c0824a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_barbarian_effect_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 80
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf48b6880af22d4694530a3d0f38a4e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_barbarian_effect_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 80
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d78af0a519e06047a4e1e746c93107a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_barbarian_effect_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 80
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e935aad07fb5f62418750834a423d306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_barbarian_effect_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 0
+        width: 80
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e501f2f75d2a1943a2ac921a7822496
       vertices: []
       indices: 
       edges: []
@@ -266,7 +371,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e65d02a151f62b84e9b8d88da89f4acb
+    spriteID: 78d80fec7753ce540b1a7051cb391701
     vertices: []
     indices: 
     edges: []

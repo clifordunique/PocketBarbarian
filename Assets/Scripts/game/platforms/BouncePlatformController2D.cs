@@ -52,7 +52,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
                 // initial shake on impact
                 result = InitialShake();                
             } else {
-                if (waitTime > 0 && currentTime + waitTime < Time.time) {
+                if (waitTime > 0 && currentTime + waitTime < Time.timeSinceLevelLoad) {
                     result = SmoothMove();
                 }
             }
@@ -62,6 +62,8 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         
         return result;        
     }
+
+
     private Vector3 InitialShake() {
         if (t <= 1.0) {
 
@@ -129,7 +131,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         // react to hit
         if (passengerMask == (passengerMask | (1 << collider.gameObject.layer))) {
             isMoving = true;
-            currentTime = Time.time;
+            currentTime = Time.timeSinceLevelLoad;
             currentStartPos = transform.position;
             currentEndpos = endpos;
             CalculateCurrentSeconds();
@@ -140,7 +142,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
                 isInitialShake = true;
             } else {
                 if (startPos != transform.position && endpos != transform.position) {
-                    currentTime = Time.time - waitTime;
+                    currentTime = Time.timeSinceLevelLoad - waitTime;
                 }
             }
 
@@ -152,7 +154,7 @@ public class BouncePlatformController2D: AbstractPlatformController2D {
         // react to trigger
         if (passengerMask == (passengerMask | (1 << collider.gameObject.layer))) {
             isMoving = true;
-            currentTime = Time.time;
+            currentTime = Time.timeSinceLevelLoad;
             currentStartPos = transform.position;
             currentEndpos = startPos;
             CalculateCurrentSeconds();

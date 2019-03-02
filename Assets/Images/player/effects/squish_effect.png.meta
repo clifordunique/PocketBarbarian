@@ -1,14 +1,19 @@
 fileFormatVersion: 2
-guid: ea5d40c055a9a174183d953fe2e19ec6
+guid: 282276fe8bbbb4241a10863599881cb9
 TextureImporter:
   fileIDToRecycleName:
-    21300000: squish_down_effect_0
-    21300002: squish_down_effect_1
-    21300004: squish_down_effect_2
-    21300006: squish_down_effect_3
-    21300008: squish_down_effect_4
-    21300010: squish_down_effect_5
-    21300012: squish_down_effect_6
+    21300000: squish_effect_0
+    21300002: squish_effect_1
+    21300004: squish_effect_2
+    21300006: squish_effect_3
+    21300008: squish_effect_4
+    21300010: squish_effect_5
+    21300012: squish_effect_6
+    21300014: squish_effect_7
+    21300016: squish_effect_8
+    21300018: squish_effect_9
+    21300020: squish_effect_10
+    21300022: squish_effect_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -124,141 +129,241 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: squish_down_effect_0
+      name: squish_effect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9e0001a5f17e14faf89f0b6a6295dc
+      spriteID: de5a731ba05317b489afea6cad4c806a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_1
+      name: squish_effect_1
       rect:
         serializedVersion: 2
         x: 30
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7170885153e51644cbf6c2e8543bf997
+      spriteID: 28142479b949c6642bc4ca0810b3c57a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_2
+      name: squish_effect_2
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb02f48744d245c438e3a6df98fdb071
+      spriteID: 43c74c11f3a229d4f87c2df1633aee0c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_3
+      name: squish_effect_3
       rect:
         serializedVersion: 2
         x: 90
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585a5245ae4821046a116eac31aa11ce
+      spriteID: 9ad7200cd41a78f4890692ab64c30959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_4
+      name: squish_effect_4
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc512c5317df6fb4f9cb7ba1b0a8dc5a
+      spriteID: 1a7531019feb2f64592fb4bd3e5c0f2a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_5
+      name: squish_effect_5
       rect:
         serializedVersion: 2
         x: 150
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ee18514376fd0446b002dfb7b38213f
+      spriteID: 408ffed767bc0944da91a10548e50c43
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: squish_down_effect_6
+      name: squish_effect_6
       rect:
         serializedVersion: 2
         x: 180
         y: 0
         width: 30
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.64705884}
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1efd135942bbda44391190e2ede10f8d
+      spriteID: 83240339046d23d40ade4d83b6a30924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_effect_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5beca4d213473654c871d8930b4dfd33
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_effect_8
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83715fb893ae3454fb82e6a2a201c2d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_effect_9
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc6b770bc22262041a46237b57864a99
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_effect_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa970ee4f580084db1f7864ebdf25e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squish_effect_11
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc164d096d329864f9fd03c676298852
       vertices: []
       indices: 
       edges: []
@@ -266,7 +371,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 31c9d05e3c8e1c9438b49e5be7f68960
+    spriteID: 79bb7b023efc1e44abd9f80887031d39
     vertices: []
     indices: 
     edges: []

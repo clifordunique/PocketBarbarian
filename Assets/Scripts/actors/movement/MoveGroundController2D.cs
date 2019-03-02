@@ -72,7 +72,7 @@ public class MoveGroundController2D: MoveController2D {
             jumpCounter = 0;
         }
 
-        if (isPushed && endTimePush < Time.time) {
+        if (isPushed && endTimePush < Time.timeSinceLevelLoad) {
             isPushed = false;
             targetVelocityX = 0;
         }
@@ -104,7 +104,7 @@ public class MoveGroundController2D: MoveController2D {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
         velocity.y = minJumpVelocity;
-        endTimePush = Time.time + pushDuration;
+        endTimePush = Time.timeSinceLevelLoad + pushDuration;
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY) {

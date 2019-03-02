@@ -40,7 +40,7 @@ public abstract class AbstractCollectable : MonoBehaviour {
         if (startRandom) {
             if (movement) movement.enabled = false;
             if (animator) animator.enabled = false;
-            float randomStartTime = Time.time + Random.Range(0F, 1F);
+            float randomStartTime = Time.timeSinceLevelLoad + Random.Range(0F, 1F);
             StartCoroutine(StartAnimation(randomStartTime));
         }
     }

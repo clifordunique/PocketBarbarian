@@ -74,21 +74,26 @@ public class HurtBox : MonoBehaviour {
         // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
 
+            
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.transform.GetComponent<HitBox>();
             if (attackerActor) {
-                ReceiveHit(attackerActor.instakill, attackerActor.damage, attackerActor.damageType, attackerActor.transform, collision.collider);
+                ReceiveHit(attackerActor.instakill, attackerActor.damage, attackerActor.damageType, attackerActor, attackerActor.transform.position, collision.collider);
             } else {
                 Debug.Log("Attacker has no HitBox component!");
             }
         }
     }
 
-    public void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, Transform hitSource, Collider2D collider2d) {
+    // for bypassing collider activation (mainly squish actions)
+    public void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, Vector3 hitSourcePosition) {
+        ReceiveHit(instakill, damage, damageType, null, hitSourcePosition, null);
+    }
+
+    public void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, HitBox attackerActor, Vector3 hitSourcePosition, Collider2D collider2d) {
         if (currentHealth > 0) {
             if (instakill) {
                 //instakill
-                Debug.Log("HurtBox collider = false");
                 boxCollider.enabled = false;
             }
             if (!hitInProgress || instakill) {
@@ -98,18 +103,25 @@ public class HurtBox : MonoBehaviour {
                 } else {
                     ModifyHealth(-damage);
                 }
-                HitBox attackerActor = hitSource.GetComponent<HitBox>();
+
+                // Event for Attacker
                 if (attackerActor) {
                     attackerActor.ReactHit();
                 }
-                ReactHurt(collider2d, hitSource, instakill, damage, damageType);
+
+                // Event for Victim
+                if (actorController != null) {
+                    actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, instakill, hitSourcePosition, damageType);
+                }
+
+                ExecuteEffects(collider2d, hitSourcePosition, instakill, damage, damageType);
             }
         }
     }
         
 
-    private void ReactHurt(Collider2D collider2d, Transform hitSource, bool instakill, int damage, HitBox.DAMAGE_TYPE damageType) {
-        Vector3 hitDirection = Utils.GetHitDirection(hitSource.position, transform);
+    private void ExecuteEffects(Collider2D collider2d, Vector3 hitSourcePosition, bool instakill, int damage, HitBox.DAMAGE_TYPE damageType) {
+        Vector3 hitDirection = Utils.GetHitDirection(hitSourcePosition, transform);
 
         if (currentHealth <= 0) {
             if (destroyOnDeathImmediate) {
@@ -125,11 +137,10 @@ public class HurtBox : MonoBehaviour {
         if (damageType == HitBox.DAMAGE_TYPE.WATER && instakill && collider2d != null) {
             float y = collider2d.bounds.center.y + collider2d.bounds.extents.y;
             Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
-            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition, hitSource);
+            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition, collider2d.transform);
         }
-        if (actorController != null) {
-            actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, instakill, hitSource.position, damageType);
-        }
+
+
 
         // Spawn Effect on hit
         if (currentHealth > 0 && lootController != null) {
@@ -146,13 +157,21 @@ public class HurtBox : MonoBehaviour {
             StartCoroutine(CoroutineDeath(hitDirection.x, flashTime));
         }
         if (hitTime > 0 && currentHealth > 0) {
-            // enable box collider if still living
+            // enable next hit
             Invoke("HitInProgress", hitTime);
         }
     }
 
     private void HitInProgress() {
         hitInProgress = false;
+        StartCoroutine(RefreshCollisions());
+    }
+
+    // switch box collector on and of very shortly to get another collision
+    public IEnumerator RefreshCollisions() {
+        boxCollider.enabled = false;
+        yield return 0; // wait one frame
+        boxCollider.enabled = true;
     }
 
     IEnumerator CoroutineDeath(float hitDirectionX, float waitTime) {

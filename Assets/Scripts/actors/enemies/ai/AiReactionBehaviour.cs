@@ -28,7 +28,7 @@ public class AiReactionBehaviour: AiBehaviour {
 
     public override EnemyAction GetCurrentAction() {
 
-        if (startIgnore != -1 && Time.time - startIgnore > ignoreTime) {
+        if (startIgnore != -1 && Time.timeSinceLevelLoad - startIgnore > ignoreTime) {
             startIgnore = -1;
         }
 
@@ -36,7 +36,7 @@ public class AiReactionBehaviour: AiBehaviour {
         if (detector.detectedTarget && (Vector3.Distance(startPosition, transform.position) > maxFollowDistance) ) {
             if (startIgnore == -1) {
                 // zu weit weg vom Startpunkt, also ignorieren beginnen
-                startIgnore = Time.time;            
+                startIgnore = Time.timeSinceLevelLoad;            
             }
         }
         if (detector.detectedTarget && ((hasMaxFollowDistance && startIgnore == -1) || !hasMaxFollowDistance)) {

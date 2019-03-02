@@ -17,6 +17,8 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
 
     public LayerMask passengerMask;
     public bool movePixelPerfect;
+
+    public GameObject prefabSquishEffect;
     
 
     List<PassengerMovement> passengerMovement;
@@ -62,7 +64,6 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                     CameraFollow.GetInstance().CheckForPlayerOnPlatform(passenger.transform);
 
 
-
                     if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow()) {
                         passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                     } else {
@@ -73,15 +74,20 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                     }
 
                     bool squisch = false;
+                    Vector3 hitSourcePosition = transform.position;
 
                     if ((!passenger.standingOnPlatform && velocity.x < 0 && passengerDictionary[passenger.transform].IsLeft()) ||
                         (!passenger.standingOnPlatform && velocity.x > 0 && passengerDictionary[passenger.transform].IsRight())) {
+                        // sideways squisch!
                         squisch = true;
+                        hitSourcePosition = new Vector3(transform.position.x, passenger.transform.position.y, transform.position.z);
                     }
 
                     if ((passenger.standingOnPlatform && velocity.y > 0 && passengerDictionary[passenger.transform].IsBelow() && passengerDictionary[passenger.transform].IsAbove()) ||
                         (!passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow() && velocity.y < 0)) {
+                        // vertical squisch!
                         squisch = true;
+                        hitSourcePosition = new Vector3(passenger.transform.position.x, transform.position.y, transform.position.z);
                     }
 
                     if (squisch) {                        
@@ -91,12 +97,140 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
                         }
 
                         if (hurtBox) {
-                            hurtBox.ReceiveHit(true, 100, HitBox.DAMAGE_TYPE.SQUISH, transform, null);
+                            hurtBox.ReceiveHit(true, 100, HitBox.DAMAGE_TYPE.SQUISH, hitSourcePosition);
+
+                            // create squish effect on platform
+                            Vector3 positionEffectPlatform = BoundUtils.GetPositionOnBounds(velocity, passenger.transform, myCollider.bounds, 26);
+                            InstantiateEffect(prefabSquishEffect, positionEffectPlatform, BoundUtils.GetEffectRotation(velocity, true), transform);
+
+                            // create squish effect on ground
+                            BoxCollider2D collider2D = passenger.transform.GetComponent<BoxCollider2D>();
+                            if (collider2D) {
+                                Vector3 positionEffectGround = BoundUtils.GetPositionOnBounds(velocity, passenger.transform, collider2D.bounds);
+                                InstantiateEffect(prefabSquishEffect, positionEffectGround, BoundUtils.GetEffectRotation(velocity, false));
+                            }
+
                         }
                     }
                 }
             }
         }
+    }
+
+    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F, Transform parent = null) {
+        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
+        if (parent == null) {
+            effect.transform.parent = EffectCollection.GetInstance().transform;
+        } else {
+            effect.transform.parent = parent;
+        }
+        effect.transform.position = position;
+        if (rotateAngel != 0) {
+            effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
+        }
+    }
+
+    private float GetEffectRotation(Vector3 velocity, bool reverse) {
+        float angel = 0;
+        if (velocity.x > 0) {
+            angel = (reverse ? 90f : -90f);
+        }
+        if (velocity.x < 0) {
+            angel = (reverse ? -90f : 90f);
+        }
+        if (velocity.y < 0) {
+            angel = (reverse ? 180f : 0f);
+        }
+        if (velocity.y > 0) {
+            angel = (reverse ? 0f : 180f);
+        }
+        return angel;
+    }
+
+    private Vector2 GetEffectSquishPositionGround(Vector3 velocity, Transform passenger) {
+
+        Vector2 effectPosition = Vector3.zero;
+        BoxCollider2D collider2D = passenger.GetComponent<BoxCollider2D>();
+        if (!collider2D) {
+            return Vector2.zero;
+        }
+        Bounds bounds = collider2D.bounds;
+        if (velocity.x > 0) {
+            float newX = bounds.center.x + bounds.extents.x;
+            float newY = passenger.position.y;
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.x < 0) {
+            float newX = bounds.center.x - bounds.extents.x;
+            float newY = passenger.position.y;
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.y > 0) {
+            float newY = bounds.center.y + bounds.extents.y;
+            float newX = passenger.position.x;
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.y < 0) {
+            float newY = bounds.center.y - bounds.extents.y;
+            float newX = passenger.position.x;
+            effectPosition = new Vector2(newX, newY);
+        }
+        return effectPosition;
+    }
+
+    private Vector2 GetEffectSquishPositionPlatform(Vector3 velocity, Transform passenger) {
+
+        Vector2 effectPosition = Vector3.zero;
+        Bounds bounds = myCollider.bounds;
+        if (velocity.x > 0) {
+            float newX = bounds.center.x + bounds.extents.x;
+            float newY = CalculateEffectPositionY(passenger.position);
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.x < 0) {
+            float newX = bounds.center.x - bounds.extents.x;
+            float newY = CalculateEffectPositionY(passenger.position);
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.y > 0) {
+            float newY = bounds.center.y + bounds.extents.y;
+            float newX = CalculateEffectPositionX(passenger.position);
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.y < 0) {
+            float newY = bounds.center.y - bounds.extents.y;
+            float newX = CalculateEffectPositionX(passenger.position);
+            effectPosition = new Vector2(newX, newY);
+        }
+        return effectPosition;        
+    }
+
+    private float CalculateEffectPositionX(Vector3 passenger) {
+        Bounds bounds = myCollider.bounds;
+        float distanceEffectX = Utils.PixelToWorldunits(26) / 2;
+        float newX = passenger.x;
+        
+        if (bounds.min.x > (passenger.x - distanceEffectX)) {
+            newX = bounds.min.x + distanceEffectX;
+        }
+        if (bounds.max.x < (passenger.x + distanceEffectX)) {
+            newX = bounds.max.x - distanceEffectX;
+        }
+        return newX;
+    }
+
+    private float CalculateEffectPositionY(Vector3 passenger) {
+        Bounds bounds = myCollider.bounds;
+        float distanceEffectY = Utils.PixelToWorldunits(26) / 2;
+        float newY = passenger.y;
+        
+        if (bounds.min.x > (passenger.x - distanceEffectY)) {
+            newY = bounds.min.y + distanceEffectY;
+        }
+        if (bounds.max.x < (passenger.x + distanceEffectY)) {
+            newY = bounds.max.y - distanceEffectY;
+        }
+        return newY;
     }
 
     void CalculatePassengerMovement(Vector3 velocity) {

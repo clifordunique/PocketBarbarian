@@ -32,7 +32,6 @@ public class TitleScreenManager : AbstractMenueManager {
         SetGUIPosition(version.gameObject, 1.0f, 0.0f, -1, 0.5f);
 
         if (!startSceneComplete && Input.anyKey) {
-            Debug.Log("AnyKey");
             startSceneComplete = true;
             footer.StartMoving();
             title.StartMoving();
@@ -56,7 +55,6 @@ public class TitleScreenManager : AbstractMenueManager {
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        Debug.Log("TITLESCREENMANAGER-ONSCENELOADED");
         FadeCanvasEffect.GetInstance().FadeInSceneCanvas();
         StartCoroutine(Init());
     }

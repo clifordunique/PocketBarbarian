@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour, IActorController {
     private void Update() {
         if (delayTime > 0) {
             // check if delayTime reached
-            if (Time.time > delayTime) {
+            if (Time.timeSinceLevelLoad > delayTime) {
                 delayTime = 0;
                 animator.speed = 1;
             }
@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour, IActorController {
     }
 
     public void ShootProjectile(Vector3 target, bool targetIsVector) {
-        if (Time.time - lastShot > interval) {
+        if (Time.timeSinceLevelLoad - lastShot > interval) {
             Vector3 spawnPosition;
             if (targetIsVector) {
                 spawnPosition = Utils.GetSpawnPositionProjectileVector(target, transform, boxCollider);
@@ -133,7 +133,7 @@ public class EnemyController : MonoBehaviour, IActorController {
 
             GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectCollection.GetInstance().transform);
             projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
-            lastShot = Time.time;
+            lastShot = Time.timeSinceLevelLoad;
         }
     }
 

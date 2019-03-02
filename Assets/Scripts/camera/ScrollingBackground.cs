@@ -35,7 +35,7 @@ public class ScrollingBackground : MonoBehaviour {
 	
 	// Update is called from follow camera
 	public void UpdateAfterCameraChanges () {
-        if (Time.time > delay) {
+        if (Time.timeSinceLevelLoad > delay) {
             float deltaX = cameraTransform.position.x - lastCameraX;
             float deltaY = cameraTransform.position.y - lastCameraY;
             if (constantSpeed <= 0) {

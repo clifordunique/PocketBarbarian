@@ -36,8 +36,9 @@ public class PlayerController: MonoBehaviour, IActorController {
     public GameObject prefabEffectHardLanding;
     public GameObject prefabEffectWallJump;
     public GameObject prefabEffectGroundHitOneSided;
-    public GameObject prefabEffectSquishDown;
-    public GameObject prefabEffectSquishUp;
+    public GameObject prefabEffectBloodSplatt;
+    public GameObject prefabEffectSquish;
+    public GameObject prefabEffectSquishBarbarian;
     public ParticleSystem sparkParticle;
 
     [Header("Outline Effect Material")]
@@ -47,6 +48,8 @@ public class PlayerController: MonoBehaviour, IActorController {
     public PlayerMoveController2D moveController;
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
+    [HideInInspector]
+    public BoxCollider2D boxCollider2D;
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
@@ -71,6 +74,7 @@ public class PlayerController: MonoBehaviour, IActorController {
     void Awake() {
         moveController = GetComponent<PlayerMoveController2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         currentState = new SwordUpState(this);
         statistics = GetComponentInChildren<PlayerStatistics>();
@@ -117,13 +121,20 @@ public class PlayerController: MonoBehaviour, IActorController {
     }
 
     public void InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F) {
+        Vector2 position = new Vector2(transform.position.x + offsetX, transform.position.y);
+        InstantiateEffect(effectToInstanciate, position);
+    }
+    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
         if (effectSpriteRenderer) {
             effectSpriteRenderer.flipX = (dirX < 0);
         }
         effect.transform.parent = EffectCollection.GetInstance().transform;
-        effect.transform.position = new Vector2(transform.position.x + offsetX, transform.position.y);
+        effect.transform.position = position;
+        if (rotateAngel != 0) {
+            effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
+        }
     }
 
     // Update is called once per frame

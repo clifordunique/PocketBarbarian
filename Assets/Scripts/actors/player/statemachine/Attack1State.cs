@@ -48,7 +48,7 @@ public class Attack1State : AbstractState {
         }
 
         if (comboAttack && exitCombo) {
-            if (checkMoveStarted1 > Time.time) {
+            if (checkMoveStarted1 > Time.timeSinceLevelLoad) {
                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
@@ -56,7 +56,7 @@ public class Attack1State : AbstractState {
             }
         }
         if (comboAttack && combo2) {
-            if (checkMoveStarted2 > Time.time) {
+            if (checkMoveStarted2 > Time.timeSinceLevelLoad) {
                 Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
@@ -76,11 +76,11 @@ public class Attack1State : AbstractState {
         }
         if (parameter == "exit_combo") {
             exitCombo = true;
-            checkMoveStarted1 = Time.time + moveTime1;
+            checkMoveStarted1 = Time.timeSinceLevelLoad + moveTime1;
         }
         if (parameter == "combo2") {
             combo2 = true;
-            checkMoveStarted2 = Time.time + moveTime2;
+            checkMoveStarted2 = Time.timeSinceLevelLoad + moveTime2;
             
         }
         if (parameter == EVENT_PARAM_HIT) {

@@ -65,15 +65,12 @@ public class IntroController : MonoBehaviour {
 
     // called first
     void OnEnable() {
-        Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        startTime += Time.time;
+        startTime += Time.timeSinceLevelLoad;
 
         
     }
@@ -86,27 +83,27 @@ public class IntroController : MonoBehaviour {
             doorClip.TriggerClip("CLIP1");
             doorClipStep++;
         }
-        if (Time.time > (startTime + doorClip1Duration) && doorClipStep == 1) {
+        if (Time.timeSinceLevelLoad > (startTime + doorClip1Duration) && doorClipStep == 1) {
             doorClip.TriggerClip("WAIT");
             doorClipStep++;
         }
-        if (Time.time > startTime + doorClip2Time && doorClipStep == 2) {
+        if (Time.timeSinceLevelLoad > startTime + doorClip2Time && doorClipStep == 2) {
             doorClip.TriggerClip("CLIP2");
             doorClipStep++;
         }
-        if (Time.time > startTime + doorClip2Time && doorClipStep == 3 && doorClip.animationComplete) {
+        if (Time.timeSinceLevelLoad > startTime + doorClip2Time && doorClipStep == 3 && doorClip.animationComplete) {
             doorClip.TriggerClip("WAIT");
             doorClipStep++;
         }
-        if (Time.time > startTime + doorClip3Time && doorClipStep == 4) {
+        if (Time.timeSinceLevelLoad > startTime + doorClip3Time && doorClipStep == 4) {
             doorClip.TriggerClip("CLIP3");
             doorClipStep++;
         }
-        if (Time.time > startTime + doorClip3Time && doorClipStep == 5 && doorClip.animationComplete) {
+        if (Time.timeSinceLevelLoad > startTime + doorClip3Time && doorClipStep == 5 && doorClip.animationComplete) {
             doorClip.TriggerClip("WAIT");
             doorClipStep++;
         }
-        if (Time.time > startTime + doorClip4Time && doorClipStep == 6) {
+        if (Time.timeSinceLevelLoad > startTime + doorClip4Time && doorClipStep == 6) {
             doorClip.TriggerClip("CLIP4");
             doorClipStep++;
             CameraFollow.GetInstance().ShakeSmall();
@@ -118,7 +115,7 @@ public class IntroController : MonoBehaviour {
 
 
         // controll goblin
-        if (Time.time > startTime && goblinClipStep == 0) {
+        if (Time.timeSinceLevelLoad > startTime && goblinClipStep == 0) {
             goblinClip.TriggerClip("RUN");
             goblinMovement.StartMoving();
             goblinClipStep++;
@@ -127,52 +124,51 @@ public class IntroController : MonoBehaviour {
             goblinClip.TriggerClip("IDLE");
             goblinClipStep++;
         }
-        if (Time.time > startTime + goblinStartTalking1Time && goblinClipStep == 2) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStartTalking1Time && goblinClipStep == 2) {
             goblinClip.TriggerClip("TALK");
             dialogue.StartDialogue();
             goblinClipStep++;
         }
-        if (Time.time > startTime + goblinStopTalking1Time && goblinClipStep == 3) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStopTalking1Time && goblinClipStep == 3) {
             goblinClip.TriggerClip("IDLE");
             dialogue.DisableLastTextBox();
             goblinClipStep++;
         }
 
-        if (Time.time > startTime + goblinStartTalking2Time && goblinClipStep == 4) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStartTalking2Time && goblinClipStep == 4) {
             goblinClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             goblinClipStep++;
         }
-        if (Time.time > startTime + goblinStopTalking2Time && goblinClipStep == 5) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStopTalking2Time && goblinClipStep == 5) {
             goblinClip.TriggerClip("IDLE");
             dialogue.DisableLastTextBox();
             goblinClipStep++;
         }
 
-        if (Time.time > startTime + goblinStartTalking3Time && goblinClipStep == 6) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStartTalking3Time && goblinClipStep == 6) {
             goblinClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             goblinClipStep++;
         }
-        if (Time.time > startTime + goblinStopTalking3Time && goblinClipStep == 7) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStopTalking3Time && goblinClipStep == 7) {
             goblinClip.TriggerClip("IDLE");
             dialogue.DisableLastTextBox();
             goblinClipStep++;
         }
 
-        if (Time.time > startTime + goblinStartTalking4Time && goblinClipStep == 8) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStartTalking4Time && goblinClipStep == 8) {
             goblinClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             goblinClipStep++;
         }
-        if (Time.time > startTime + goblinStopTalking4Time && goblinClipStep == 9) {
+        if (Time.timeSinceLevelLoad > startTime + goblinStopTalking4Time && goblinClipStep == 9) {
             goblinClip.TriggerClip("IDLE");
             dialogue.DisableLastTextBox();
             goblinClipStep++;
         }
 
-        if (Time.time > startTime + goblinFallTime && goblinClipStep == 10) {
-            Debug.Log("Goblin fall");
+        if (Time.timeSinceLevelLoad > startTime + goblinFallTime && goblinClipStep == 10) {
             goblinClip.TriggerClip("FALL");
             goblinClipStep++;
         }
@@ -190,46 +186,46 @@ public class IntroController : MonoBehaviour {
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStopTalking1Time && barbarianClipStep == 2) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStopTalking1Time && barbarianClipStep == 2) {
             barbarianClip.TriggerClip("LOOK");
             dialogue.DisableLastTextBox();
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStartTalking2Time && barbarianClipStep == 3) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStartTalking2Time && barbarianClipStep == 3) {
             barbarianClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             barbarianClipStep++;
         }
-        if (Time.time > startTime + barbarianStopTalking2Time && barbarianClipStep == 4) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStopTalking2Time && barbarianClipStep == 4) {
             barbarianClip.TriggerClip("LOOK");
             dialogue.DisableLastTextBox();
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStartTalking3Time && barbarianClipStep == 5) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStartTalking3Time && barbarianClipStep == 5) {
             barbarianClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             barbarianClipStep++;
         }
-        if (Time.time > startTime + barbarianStopTalking3Time && barbarianClipStep == 6) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStopTalking3Time && barbarianClipStep == 6) {
             barbarianClip.TriggerClip("LOOK");
             dialogue.DisableLastTextBox();
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStartTalking4Time && barbarianClipStep == 7) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStartTalking4Time && barbarianClipStep == 7) {
             barbarianClip.TriggerClip("TALK");
             dialogue.NextDialogueStep();
             barbarianClipStep++;
         }
-        if (Time.time > startTime + barbarianStopTalking4Time && barbarianClipStep == 8) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStopTalking4Time && barbarianClipStep == 8) {
             barbarianClip.TriggerClip("LOOK");
             dialogue.DisableLastTextBox();
             barbarianClipStep++;
         }
 
-        if (Time.time > startTime + barbarianStartPlayer && barbarianClipStep == 9) {
+        if (Time.timeSinceLevelLoad > startTime + barbarianStartPlayer && barbarianClipStep == 9) {
             barbarianClip.gameObject.SetActive(false);
             goblinClip.gameObject.SetActive(false);
             player.SetEnabled(true, true);

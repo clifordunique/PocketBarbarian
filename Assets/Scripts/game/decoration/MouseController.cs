@@ -30,7 +30,7 @@ public class MouseController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!run && Time.time > startDelay) {
+        if (!run && Time.timeSinceLevelLoad > startDelay) {
             animator.SetBool("IDLE", true);
         }
 

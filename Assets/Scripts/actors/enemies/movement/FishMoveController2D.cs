@@ -67,7 +67,7 @@ public class FishMoveController2D : MonoBehaviour, ITriggerReactor {
         if (reactToTrigger) {
             return !triggerMoveUp;
         } else {
-            return Time.time < (reachedBottomTime + waitUnderWater);
+            return Time.timeSinceLevelLoad < (reachedBottomTime + waitUnderWater);
         }
     }
 
@@ -96,7 +96,7 @@ public class FishMoveController2D : MonoBehaviour, ITriggerReactor {
                 animator.SetBool("UP", true);
                 animator.SetBool("TURN", false);
                 moveUp = true;
-                reachedBottomTime = Time.time;
+                reachedBottomTime = Time.timeSinceLevelLoad;
                 triggerMoveUp = false;
             }
 

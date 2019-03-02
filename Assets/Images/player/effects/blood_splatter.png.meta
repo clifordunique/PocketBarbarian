@@ -1,23 +1,16 @@
 fileFormatVersion: 2
-guid: 6b7f29c6307f8f04cb450113eb0c31fa
+guid: 6fc366dc10c3c2046945aa9c7fd8da29
 TextureImporter:
   fileIDToRecycleName:
-    21300000: barbarian_dying_squish_0
-    21300002: barbarian_dying_squish_1
-    21300004: barbarian_dying_squish_2
-    21300006: barbarian_dying_squish_3
-    21300008: barbarian_dying_squish_4
-    21300010: barbarian_dying_squish_5
-    21300012: barbarian_dying_squish_6
-    21300014: barbarian_dying_squish_7
-    21300016: barbarian_dying_squish_8
-    21300018: barbarian_dying_squish_9
-    21300020: barbarian_dying_squish_10
-    21300022: barbarian_dying_squish_11
-    21300024: barbarian_dying_squish_12
-    21300026: barbarian_dying_squish_13
-    21300028: barbarian_dying_squish_14
-    21300030: barbarian_dying_squish_15
+    21300000: blood_splatter_0
+    21300002: blood_splatter_1
+    21300004: blood_splatter_2
+    21300006: blood_splatter_3
+    21300008: blood_splatter_4
+    21300010: blood_splatter_5
+    21300012: blood_splatter_6
+    21300014: blood_splatter_7
+    21300016: blood_splatter_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,221 +126,181 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: barbarian_dying_squish_0
+      name: blood_splatter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4bd51dc4092c324589891ec70586895
+      spriteID: 5f334d035ba2dc94684638ceafbe84a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: barbarian_dying_squish_1
+      name: blood_splatter_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3fe59d554cde54780bbf429a156ddf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_splatter_2
       rect:
         serializedVersion: 2
         x: 60
         y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f117c0067bbea82488b8c7e79da63d04
+      spriteID: 0afdc92024f62994bb4f83560760d5b8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: barbarian_dying_squish_2
+      name: blood_splatter_3
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7afc53f2573f8249866989520edc591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_splatter_4
       rect:
         serializedVersion: 2
         x: 120
         y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 521bd532b31d5de4f95f28e077e88134
+      spriteID: 9f94d12b87ca9134d98b1d60b8254d3d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: barbarian_dying_squish_3
+      name: blood_splatter_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 159539a534dac8e4ab52cfc89cb78910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_splatter_6
       rect:
         serializedVersion: 2
         x: 180
         y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a045795d9f7e8894d8d0db7a67ffd364
+      spriteID: 3adfc4c4b30d43041a1dbb0382801c0e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: barbarian_dying_squish_4
+      name: blood_splatter_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8497792def5c544f871ee272f920522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_splatter_8
       rect:
         serializedVersion: 2
         x: 240
         y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1e785baa618e82478f418c2deecc2f9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_5
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 480fd3efec3e4d1418a94c93bacfe192
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_6
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e80bfc1779ad1cf4abc010e5d030f89c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_7
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e0e856113ee1fa40872baa58997e23f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_8
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab3810a1fadacbb40af6929a54b88bb4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_9
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4022f4df7dd4df047b3e8ecb67e237a1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: barbarian_dying_squish_10
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 60
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5882353}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ae6716857d53c24887988de7d5da973
+      spriteID: 75f5f46bf78ca0f4db1bc7f0b006fa97
       vertices: []
       indices: 
       edges: []
@@ -355,7 +308,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ba241a8946295e346b9e1f2d67e552d9
+    spriteID: 669e7a4dbcf21d842a8ade82813fe04e
     vertices: []
     indices: 
     edges: []

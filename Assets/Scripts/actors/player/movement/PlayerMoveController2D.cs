@@ -39,7 +39,7 @@ public class PlayerMoveController2D : MoveGroundController2D {
     public override void Update() {
         base.Update();
         // if contact with surface, stop walljump
-        if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.time) {
+        if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.timeSinceLevelLoad) {
             isWallJump = false;
         }
 
@@ -73,7 +73,7 @@ public class PlayerMoveController2D : MoveGroundController2D {
             }
             moveDirectionX = Mathf.Sign(targetVelocityX);
             isWallJump = true;
-            wallJumpStartTime = Time.time;
+            wallJumpStartTime = Time.timeSinceLevelLoad;
         }
     }
 

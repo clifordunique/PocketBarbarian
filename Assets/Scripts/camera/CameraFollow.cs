@@ -91,7 +91,7 @@ public class CameraFollow : MonoBehaviour {
 
     public void ShakeCamera (float shakeTime, float shakeIntensityX, float shakeIntensityY, bool down = false) {
         shake = true;
-        this.shakeTime = Time.time + shakeTime;
+        this.shakeTime = Time.timeSinceLevelLoad + shakeTime;
         this.shakeIntensityX = shakeIntensityX;
         this.shakeIntensityY = shakeIntensityY;
         this.down = down;
@@ -126,8 +126,8 @@ public class CameraFollow : MonoBehaviour {
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
         float currentSmoothTime = verticalSmoothTime;
-        if (!shake && target.collisions.below && InputController.GetInstance().GetDirectionY() != 0) {
-            lookAheadDirY = InputController.GetInstance().GetDirectionY();
+        if (!shake && target.collisions.below && InputController.GetInstance().GetDirectionLookaround() != 0) {
+            lookAheadDirY = InputController.GetInstance().GetDirectionLookaround();
             focusPosition += Vector2.up * (lookAheadDirY * lookAheadDstY);
             currentSmoothTime = lookSmoothTimeY;
         }
@@ -140,7 +140,7 @@ public class CameraFollow : MonoBehaviour {
         
 
         if (shake) {
-            if (shakeTime > Time.time) {
+            if (shakeTime > Time.timeSinceLevelLoad) {
                 float modifierRight = Random.Range(-shakeIntensityX, shakeIntensityX);
                 float modifierUp;
                 if (down) {

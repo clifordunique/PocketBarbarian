@@ -51,17 +51,17 @@ public class Attack2State : AbstractState {
             if (checkJumpStarted == -1F) {
                 if (playerController.moveController.IsGrounded()) {
                     playerController.moveController.OnJumpInputDown();
-                    checkJumpStarted = Time.time + jumpTime;
+                    checkJumpStarted = Time.timeSinceLevelLoad + jumpTime;
                 } else {
                     return new MoveState(playerController);
                 }
             } else {
-                if (checkJumpStarted < Time.time) {
+                if (checkJumpStarted < Time.timeSinceLevelLoad) {
                     playerController.moveController.OnJumpInputUp();
                 }
             }
 
-            if (checkMoveStarted > Time.time) {
+            if (checkMoveStarted > Time.timeSinceLevelLoad) {
                 Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
@@ -83,12 +83,12 @@ public class Attack2State : AbstractState {
         }
         if (parameter == "jump") {
             doJump = true;
-            checkMoveStarted = Time.time + moveTime1;
+            checkMoveStarted = Time.timeSinceLevelLoad + moveTime1;
             playerController.InstantiateEffect(playerController.prefabEffectJump);
         }
         if (parameter == "move_forward2") {
             doJump = true;
-            checkMoveStarted = Time.time + moveTime2;
+            checkMoveStarted = Time.timeSinceLevelLoad + moveTime2;
         }
         if (parameter == "smash") {
             playerController.InstantiateEffect(playerController.prefabEffectLanding);

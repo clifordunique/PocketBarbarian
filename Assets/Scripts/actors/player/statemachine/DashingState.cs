@@ -19,7 +19,7 @@ public class DashingState : AbstractState {
         directionX = playerController.input.GetDirectionX();
         directionY = playerController.input.GetDirectionY();
         Move(directionX, directionY, true);
-        timeDash = Time.time;
+        timeDash = Time.timeSinceLevelLoad;
 
         // Switch HurtBox Layers
         playerController.hurtBox.SwitchToDashLayer();
@@ -58,7 +58,7 @@ public class DashingState : AbstractState {
             return new IdleState(playerController);
         }
 
-        if (Time.time - timeDash >= playerController.moveController.dashDuration) {
+        if (Time.timeSinceLevelLoad - timeDash >= playerController.moveController.dashDuration) {
             // end dashing
             return new IdleState(playerController);
         }

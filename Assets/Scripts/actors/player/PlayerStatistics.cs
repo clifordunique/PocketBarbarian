@@ -158,7 +158,15 @@ public class PlayerStatistics : MonoBehaviour {
     }
     
     public void ModifyHealth(int healthMod) {
-        health += healthMod;
+        if (health + healthMod > maxHealth) {
+            health = maxHealth;
+        } else {
+            if (health + healthMod < 0) {
+                health = 0;
+            } else {
+                health += healthMod;
+            }
+        }        
         eventHealth.Invoke(maxHealth, health);
         if (healthMod > 0) {
             PlayerController.GetInstance().FlashOutline();

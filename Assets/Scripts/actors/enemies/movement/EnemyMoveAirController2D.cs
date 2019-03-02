@@ -34,7 +34,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
 	void Update () {
 
         if (isPushed) {
-            if (timePushed < Time.time) {
+            if (timePushed < Time.timeSinceLevelLoad) {
                 targetPosition = transform.position;
                 isPushed = false;
                 velocity = Vector3.zero;
@@ -51,7 +51,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
 
     public void OnPush(float pushDirectionX, float pushDirectionY, bool dash) {
         isPushed = true;
-        timePushed = Time.time + pushDuration;
+        timePushed = Time.timeSinceLevelLoad + pushDuration;
         velocity = Vector3.zero;
         targetPosition = new Vector3(pushDirectionX * pushForce, pushDirectionY * pushForce * 0.5F, transform.position.z);
     }
@@ -88,7 +88,7 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
         targetPosition = target - transform.position;
         targetPosition = targetPosition / targetPosition.magnitude * speed;
         if (moveSinus) {
-            targetPosition = targetPosition + Vector3.up * (Mathf.Sin(Time.time * frequency) * magnitude);
+            targetPosition = targetPosition + Vector3.up * (Mathf.Sin(Time.timeSinceLevelLoad * frequency) * magnitude);
         }
         return directionX;
     }

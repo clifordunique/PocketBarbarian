@@ -45,19 +45,15 @@ public class InGameMenueManager : AbstractMenueManager
         switch (selectedMenueItem) {
             case MENUEITEM_TYPE.BACK_TO_GAME:
                 HideMenue();
-                Debug.Log("Backtogame");
                 break;
             case MENUEITEM_TYPE.RELOAD_SAVEPOINT:
                 GameManager.GetInstance().ReloadLevel();
-                Debug.Log("Reloadgame");
                 break;
             case MENUEITEM_TYPE.MAIN_MENUE:
                 GameManager.GetInstance().LoadMainMenue();
-                Debug.Log("Loadmainmenug");
                 break;
             case MENUEITEM_TYPE.EXIT:
                 GameManager.GetInstance().ExitGame();
-                Debug.Log("Exit");
                 break;
             default: break;
         }

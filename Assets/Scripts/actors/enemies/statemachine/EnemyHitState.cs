@@ -10,8 +10,7 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnEnter() {
-        Debug.Log("Enter Enemy Hit!");
-        startTime = Time.time;
+        startTime = Time.timeSinceLevelLoad;
 
         if (enemyController.animator) {
             enemyController.animator.SetBool("HIT", true);
@@ -20,11 +19,9 @@ public class EnemyHitState : AbstractEnemyState {
         if (enemyController.currentAction.HasHitTarget()) {
             Vector3 hitDirection = Utils.GetHitDirection(enemyController.currentAction.hitTarget, enemyController.transform);
             if (enemyController.lastDamageType == HitBox.DAMAGE_TYPE.DASH) {
-                Debug.Log("DASH HIT");
-                moveController.OnPush(hitDirection.x, hitDirection.y, true);
+                moveController.OnPush((hitDirection.x == 0F ? -1F : hitDirection.x), hitDirection.y, true);
             } else {
-                Debug.Log("NORMAL HIT");
-                moveController.OnPush(hitDirection.x, hitDirection.y, false);
+                moveController.OnPush((hitDirection.x == 0F ? -1F : hitDirection.x), hitDirection.y, false);
             }
         }
         
@@ -37,7 +34,7 @@ public class EnemyHitState : AbstractEnemyState {
             return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if ((Time.time - startTime) > enemyController.hurtBox.hitTime) { 
+        if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.hitTime) { 
             moveController.StopMoving();
             enemyController.RequestNextAction();
             return GetEnemyState(enemyController.currentAction.actionEvent);
@@ -46,7 +43,6 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnExit() {
-        Debug.Log("Exit Enemy Hit!");
         if (enemyController.animator) {
             enemyController.animator.SetBool("HIT", false);
         }

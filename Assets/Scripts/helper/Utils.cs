@@ -7,6 +7,11 @@ public class Utils {
     public static int WorldunitToPixel(float worldunit) {
         return Mathf.RoundToInt(worldunit / (1 / Constants.PPU));
     }
+
+    public static float PixelToWorldunits(int pixel) {
+        return pixel / Constants.PPU;
+    }
+
     public static Vector2 MakePixelPerfect(Vector2 v) {
         Vector2 result;
         result.x = (Mathf.Round(v.x * Constants.PPU) / Constants.PPU);
@@ -19,9 +24,11 @@ public class Utils {
         Vector3 v = new Vector3(transform.position.x - attacker.x, transform.position.y - attacker.y, 1).normalized;
         Vector3 result = new Vector3();
         if (v.x > 0F) result.x = 1;
-        if (v.x <= -0F) result.x = -1;
+        if (v.x < 0F) result.x = -1;
+        if (v.x == 0F) result.x = 0;
         if (v.y > 0.5F) result.y = 1;
-        if (v.y <= -0.5F) result.y = -1;
+        if (v.y < -0.5F) result.y = -1;
+        if (v.y == 0F) result.y = 0;
         return result;
     }
 

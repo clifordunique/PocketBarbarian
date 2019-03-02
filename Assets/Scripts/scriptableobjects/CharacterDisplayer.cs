@@ -167,7 +167,6 @@ public class CharacterDisplayer : ScriptableObject {
     private void CreateNewChar(Character character, Transform myTransform, ref Vector2 position) {
         GameObject spriteObject = Utils.InstantiateSpriteGameObject(character.charSprite, Constants.SORTING_LAYER_DIALOGUE, 10, myTransform, charsUseSpriteMask);
         spriteObject.transform.position = position;
-        Debug.Log("PositionX: " + position.x);
         position.x += (character.widthInPixel + charSpacingPixel) / Constants.PPU;
     }
 }

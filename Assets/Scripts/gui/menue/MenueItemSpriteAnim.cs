@@ -41,12 +41,12 @@ public class MenueItemSpriteAnim : MonoBehaviour, IMenueItemSprite {
             startingPos.x = transform.position.x;
             startingPos.y = transform.position.y;
         }
-        startTime = Time.time;
+        startTime = Time.timeSinceLevelLoad;
         StartCoroutine(ShakeMenueItem());
     }
     IEnumerator ShakeMenueItem() {
-        while (Time.time <= (startTime + duration)) {
-            transform.position = new Vector2(startingPos.x, (startingPos.y + (Mathf.Sin(Time.time * speed) * amount)));
+        while (Time.timeSinceLevelLoad <= (startTime + duration)) {
+            transform.position = new Vector2(startingPos.x, (startingPos.y + (Mathf.Sin(Time.timeSinceLevelLoad * speed) * amount)));
             yield return new WaitForEndOfFrame();
         }
         transform.position = startingPos;

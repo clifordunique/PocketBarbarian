@@ -10,7 +10,7 @@ public class EnemyIdleState : AbstractEnemyState {
     }
 
     public override void OnEnter() {
-        startTime = Time.time;
+        startTime = Time.timeSinceLevelLoad;
         if (enemyController.animator) {
             enemyController.animator.SetBool("IDLE", true);
         }
@@ -23,7 +23,7 @@ public class EnemyIdleState : AbstractEnemyState {
             return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if ((Time.time - startTime) > enemyController.currentAction.amount) {
+        if ((Time.timeSinceLevelLoad - startTime) > enemyController.currentAction.amount) {
             enemyController.RequestNextAction();
             if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.IDLE) {
                 // only change when not idle

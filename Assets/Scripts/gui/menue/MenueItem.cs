@@ -64,7 +64,6 @@ public class MenueItem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         // fertig
-        Debug.Log("Movement Complete!");
         movementComplete = true;
     }
 

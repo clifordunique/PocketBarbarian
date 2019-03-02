@@ -5,12 +5,16 @@ using UnityEngine;
 public class InputController : MonoBehaviour {
 
     public float timeDoubleDash;
-
     public bool moveInputEnabled = true;
+    public float timeLookAroundActivate = 0F;
 
     private float timeLastDirectionX = -1;
     private float lastDirectionX;
     private bool isDashing;
+
+    private float timeLookAroundStart = -1;
+    private float lastDirectionY;
+    private bool lookAroundEnabled = false;
 
     private static InputController _instance;
 
@@ -61,12 +65,6 @@ public class InputController : MonoBehaviour {
         return false;
     }
 
-    public bool UpKeyDown() {
-        if (moveInputEnabled) {
-            return (Input.GetKey(KeyCode.UpArrow));
-        }
-        return false;
-    }
 
     public float GetDirectionX() {
         if (moveInputEnabled) {
@@ -77,6 +75,13 @@ public class InputController : MonoBehaviour {
 
     public float GetDirectionY() {
         if (moveInputEnabled) {
+            return Input.GetAxisRaw("Vertical");
+        }
+        return 0F;
+    }
+
+    public float GetDirectionLookaround() {
+        if (moveInputEnabled && lookAroundEnabled) {
             return Input.GetAxisRaw("Vertical");
         }
         return 0F;
@@ -104,17 +109,34 @@ public class InputController : MonoBehaviour {
     void LateUpdate () {
 		if (((Input.GetKeyDown(KeyCode.LeftArrow) && lastDirectionX == -1) || (Input.GetKeyDown(KeyCode.RightArrow) && lastDirectionX == 1))) {
             // double direction, check for time between
-            if (timeLastDirectionX != -1 && Time.time - timeLastDirectionX <= timeDoubleDash) {
+            if (timeLastDirectionX != -1 && Time.timeSinceLevelLoad - timeLastDirectionX <= timeDoubleDash) {
                 isDashing = true;
                 return;
             }
-            timeLastDirectionX = Time.time;
+            timeLastDirectionX = Time.timeSinceLevelLoad;
         }
         isDashing = false;        
         if (GetDirectionX() != 0) {
             lastDirectionX = GetDirectionX();
-            timeLastDirectionX = Time.time;
+            timeLastDirectionX = Time.timeSinceLevelLoad;
         }
-        
+
+        CheckLookAhead();
+    }
+
+    private void CheckLookAhead() {
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            // start counting time
+            lastDirectionY = Input.GetAxisRaw("Vertical");
+            timeLookAroundStart = Time.timeSinceLevelLoad;
+        }
+        if (lastDirectionY != 0 && Input.GetAxisRaw("Vertical") == lastDirectionY) {
+            if (timeLookAroundStart + timeLookAroundActivate < Time.timeSinceLevelLoad) {
+                lookAroundEnabled = true;
+            }
+        } else {
+            lastDirectionY = 0F;
+            lookAroundEnabled = false;
+        }
     }
 }

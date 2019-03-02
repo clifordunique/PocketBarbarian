@@ -8,7 +8,7 @@ public class CollectableHealth : AbstractCollectable {
 
     public override void CollectItem() {
         if (health != null) {
-            PlayerHurtBox.GetInstance().ModifyHealth(health.value);
+            PlayerStatistics.GetInstance().ModifyHealth(health.value);
         }
     }
 }

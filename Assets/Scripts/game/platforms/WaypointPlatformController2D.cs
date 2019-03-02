@@ -41,7 +41,7 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 	
 	public override Vector3 CalculatePlatformMovement() {
 
-		if (Time.time < nextMoveTime) {
+		if (Time.timeSinceLevelLoad < nextMoveTime) {
 			return Vector3.zero;
 		}
         
@@ -66,7 +66,7 @@ public class WaypointPlatformController2D : AbstractPlatformController2D {
 					System.Array.Reverse(globalWaypoints);
 				}
 			}
-			nextMoveTime = Time.time + waitTime;
+			nextMoveTime = Time.timeSinceLevelLoad + waitTime;
         }
 
         if (useTrigger && !reactToTriggerOnce && newPos == startWaypoint) {

@@ -16,12 +16,12 @@ public class AnimationTimer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-        timer = Time.time + timeTransition + startTimeOffset;
+        timer = Time.timeSinceLevelLoad + timeTransition + startTimeOffset;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (timer < Time.time) {
+		if (timer < Time.timeSinceLevelLoad) {
             if (state1) {
                 anim.SetBool(param1Name, false);
                 anim.SetBool(param2Name, true);
@@ -31,7 +31,7 @@ public class AnimationTimer : MonoBehaviour {
                 anim.SetBool(param2Name, false);
                 state1 = true;
             }
-            timer = Time.time + timeTransition;
+            timer = Time.timeSinceLevelLoad + timeTransition;
         }
 	}
 }

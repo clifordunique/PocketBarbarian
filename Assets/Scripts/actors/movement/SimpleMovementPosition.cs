@@ -32,7 +32,6 @@ public class SimpleMovementPosition : MonoBehaviour {
 
     public void Update() {
         if (autoStart && !isMoving) {
-            Debug.Log("Start SmoothMove");
             StartCoroutine(SmoothMove());
         }
     }

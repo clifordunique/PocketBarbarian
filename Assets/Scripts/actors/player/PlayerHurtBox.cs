@@ -48,16 +48,10 @@ public class PlayerHurtBox : HurtBox {
         if (dashLayerActive) {
             attackLayers = attackLayersOrigin;
             dashLayerActive = false;
-            // switch boxCollider off and on to receive a new collision if still in a enemy collider
-            boxCollider.enabled = false;
-            Invoke("EnableBoxCollider", 0.01F);
+            StartCoroutine(RefreshCollisions());
         }
     }
-
-    public void EnableBoxCollider() {
-        boxCollider.enabled = true;
-    }
-
+    
     public override void ModifyHealth(int healthModifier) {
         base.ModifyHealth(healthModifier);
         ((PlayerController)actorController).statistics.ModifyHealth(healthModifier);
