@@ -26,7 +26,8 @@ public class DyingState : AbstractState {
             //playerController.InstantiateEffect(playerController.prefabEffectSquish, GetBoundsPosition(hitDirection), GetEffectRotation(hitDirection));
             
             playerController.spriteRenderer.enabled = false;
-            CameraFollow.GetInstance().enabled = false;
+            playerController.boxCollider2D.enabled = false;
+           // CameraFollow.GetInstance().enabled = false;
         }
 
         playerController.animator.SetBool(GetAnimParam(), true);

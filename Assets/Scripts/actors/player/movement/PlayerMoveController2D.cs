@@ -37,15 +37,17 @@ public class PlayerMoveController2D : MoveGroundController2D {
 
 
     public override void Update() {
-        base.Update();
-        // if contact with surface, stop walljump
-        if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.timeSinceLevelLoad) {
-            isWallJump = false;
-        }
+        if (myCollider.enabled) {
+            base.Update();
+            // if contact with surface, stop walljump
+            if (isPushed || collisions.above || collisions.below || collisions.left || collisions.right || wallJumpStartTime + wallJumpTime < Time.timeSinceLevelLoad) {
+                isWallJump = false;
+            }
 
-        if (collisions.below) {
-            // Stop stamping
-            isStamping = false;
+            if (collisions.below) {
+                // Stop stamping
+                isStamping = false;
+            }
         }
     }
 

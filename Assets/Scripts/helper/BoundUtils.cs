@@ -7,10 +7,10 @@ public class BoundUtils
     public static float GetEffectRotation(Vector3 velocity, bool reverse) {
         float angel = 0;
         if (velocity.x > 0) {
-            angel = (reverse ? 90f : -90f);
+            angel = (reverse ? -90f : 90f);
         }
         if (velocity.x < 0) {
-            angel = (reverse ? -90f : 90f);
+            angel = (reverse ? 90f : -90f);
         }
         if (velocity.y < 0) {
             angel = (reverse ? 180f : 0f);
@@ -21,39 +21,70 @@ public class BoundUtils
         return angel;
     }
 
-    public static Vector2 GetPositionOnBounds(Vector3 velocity, Transform trans, Bounds bounds, int effectiveSize = 0) {
+
+    public static Vector2 GetMinMaxFromBoundVector(Vector3 velocity, Bounds bounds, bool min, float offset = 0) {
 
         Vector2 effectPosition = Vector3.zero;
 
         if (velocity.x > 0) {
             float newX = bounds.center.x + bounds.extents.x;
-            float newY = trans.position.y;
+            float newY = (min ? bounds.min.y : bounds.max.y) + offset;
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.x < 0) {
+            float newX = bounds.center.x - bounds.extents.x;
+            float newY = (min ? bounds.min.y : bounds.max.y) + offset;
+            effectPosition = new Vector2(newX, newY);
+        }
+
+        if (velocity.y > 0) {
+            float newX = (min ? bounds.min.x : bounds.max.x) + offset;
+            float newY = bounds.center.y + bounds.extents.y;
+            effectPosition = new Vector2(newX, newY);
+        }
+        if (velocity.y < 0) {
+            float newX = (min ? bounds.min.x : bounds.max.x) + offset;
+            float newY = bounds.center.y - bounds.extents.y;
+            effectPosition = new Vector2(newX, newY);
+        }
+
+        return effectPosition;
+    }
+
+
+    public static Vector2 GetPositionOnBounds(Vector3 velocity, Vector3 position, Bounds bounds, int effectiveSize = 0) {
+
+        Vector2 effectPosition = Vector3.zero;
+
+        if (velocity.x > 0) {
+            float newX = bounds.center.x + bounds.extents.x;
+            float newY = position.y;
             if (effectiveSize > 0) {
-                newY = CorrectPositionOnBoundsY(trans.position, bounds, effectiveSize);
+                newY = CorrectPositionOnBoundsY(position, bounds, effectiveSize);
             }
             effectPosition = new Vector2(newX, newY);
         }
         if (velocity.x < 0) {
             float newX = bounds.center.x - bounds.extents.x;
-            float newY = trans.position.y;
+            float newY = position.y;
             if (effectiveSize > 0) {
-                newY = CorrectPositionOnBoundsY(trans.position, bounds, effectiveSize);
+                newY = CorrectPositionOnBoundsY(position, bounds, effectiveSize);
             }
             effectPosition = new Vector2(newX, newY);
         }
 
         if (velocity.y > 0) {
-            float newX = trans.position.x;
+            float newX = position.x;
             if (effectiveSize > 0) {
-                newX = CorrectPositionOnBoundsX(trans.position, bounds, effectiveSize);
+                newX = CorrectPositionOnBoundsX(position, bounds, effectiveSize);
             }
             float newY = bounds.center.y + bounds.extents.y;
             effectPosition = new Vector2(newX, newY);
         }
         if (velocity.y < 0) {
-            float newX = trans.position.x;
+            float newX = position.x;
             if (effectiveSize > 0) {
-                newX = CorrectPositionOnBoundsX(trans.position, bounds, effectiveSize);
+                newX = CorrectPositionOnBoundsX(position, bounds, effectiveSize);
             }
             float newY = bounds.center.y - bounds.extents.y;
             effectPosition = new Vector2(newX, newY);
@@ -79,10 +110,10 @@ public class BoundUtils
         float distanceEffectY = Utils.PixelToWorldunits(sizeInPixelY) / 2;
         float newY = position.y;
 
-        if (bounds.min.x > (position.x - distanceEffectY)) {
+        if (bounds.min.y > (position.y - distanceEffectY)) {
             newY = bounds.min.y + distanceEffectY;
         }
-        if (bounds.max.x < (position.x + distanceEffectY)) {
+        if (bounds.max.y < (position.y + distanceEffectY)) {
             newY = bounds.max.y - distanceEffectY;
         }
         return newY;
