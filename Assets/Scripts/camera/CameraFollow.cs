@@ -104,7 +104,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
 	void LateUpdate() {
-		focusArea.Update (target.myCollider.bounds);
+		focusArea.Update (target, lookAheadDstY);
 
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
                
@@ -127,14 +127,12 @@ public class CameraFollow : MonoBehaviour {
 
         float currentSmoothTime = verticalSmoothTime;
         if (!shake && target.collisions.below && InputController.GetInstance().GetDirectionLookaround() != 0) {
-            lookAheadDirY = InputController.GetInstance().GetDirectionLookaround();
-            focusPosition += Vector2.up * (lookAheadDirY * lookAheadDstY);
             currentSmoothTime = lookSmoothTimeY;
-        }
-        
+        }        
         if (shake) {
             currentSmoothTime = 0.0F;
         }
+
         focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, currentSmoothTime);        
 		focusPosition += Vector2.right * currentLookAheadX;
         
@@ -187,8 +185,9 @@ public class CameraFollow : MonoBehaviour {
 			centre = new Vector2((left+right)/2,(top +bottom)/2);
 		}
 
-		public void Update(Bounds targetBounds) {
-			float shiftX = 0;
+		public void Update(MoveController2D target, float lookAheadDstY) {
+            Bounds targetBounds = target.myCollider.bounds;
+            float shiftX = 0;
 			if (targetBounds.min.x < left) {
 				shiftX = targetBounds.min.x - left;
 			} else if (targetBounds.max.x > right) {
@@ -203,6 +202,17 @@ public class CameraFollow : MonoBehaviour {
 			} else if (targetBounds.max.y > top) {
 				shiftY = targetBounds.max.y - top;
 			}
+
+            if (target.collisions.below && InputController.GetInstance().GetDirectionLookaround() != 0) {
+                if (InputController.GetInstance().GetDirectionLookaround() > 0) {
+                    // hoch gucken
+                    shiftY = (targetBounds.max.y + lookAheadDstY + (top - bottom)) - top;
+                } else {
+                    // runter gucken
+                    shiftY = (targetBounds.min.y - lookAheadDstY - (top - bottom)) - bottom;
+                }
+                
+            }
 			top += shiftY;
 			bottom += shiftY;
 			centre = new Vector2((left+right)/2,(top +bottom)/2);

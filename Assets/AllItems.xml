@@ -14,9 +14,6 @@
           <effectType>DAMAGE</effectType>
           <value>1</value>
         </Effect>
-        <Effect>
-          <effectType>WALL_JUMP</effectType>
-        </Effect>
       </Effects>
     </Item>
     <Item>

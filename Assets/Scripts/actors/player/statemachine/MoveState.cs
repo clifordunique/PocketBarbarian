@@ -39,7 +39,7 @@ public class MoveState : AbstractState {
         if (playerController.hasWeapon && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
             return new ThrowRunningState(playerController);
         }
-        if (playerController.hasWeapon && playerController.input.IsDashing()) {
+        if (playerController.statistics.dashAllowed && playerController.input.IsDashing()) {
             // check if Dashing possible
             if (playerController.statistics.HasEnoughStaminaForAction()) {
                 return new DashingState(playerController);

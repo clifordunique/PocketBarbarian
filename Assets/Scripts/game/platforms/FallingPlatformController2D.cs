@@ -44,9 +44,12 @@ public class FallingPlatformController2D : AbstractPlatformController2D
 
     private float prewarmTime = 0;
     private float waitUntil = 0;
+    private float lastWaitBuffer = 0F;
+
     private bool actionCompleteEffectPlayed = false;
 
     private SpriteRenderer myRenderer;
+    private HitBox hitbox;
 
     public override void Start() {
         base.Start();
@@ -61,6 +64,15 @@ public class FallingPlatformController2D : AbstractPlatformController2D
         moveVector = endpos - startPos;
 
         waitUntil = Time.timeSinceLevelLoad + delay;
+
+        hitbox = GetComponent<HitBox>();
+        if (!hitbox) {
+            // search in childs
+            hitbox = transform.GetComponentInChildren<HitBox>();
+        }
+        if (hitbox) {
+            hitbox.gameObject.SetActive(false);
+        }
     }
 
     public override Vector3 CalculatePlatformMovement() {
@@ -75,11 +87,24 @@ public class FallingPlatformController2D : AbstractPlatformController2D
             }
             
         } else {
+            float time = Time.timeSinceLevelLoad;
+            if (waitUntil  <= time) {
 
-            if (waitUntil  < Time.timeSinceLevelLoad) {
+
+                lastWaitBuffer = (time - waitUntil);
+                
                 isMoving = true;
                 t = 0F;
                 waitUntil = 0F;
+
+                if (hitbox) {
+                    // enable / disable hitbox
+                    if (isMovingAction) {
+                        hitbox.gameObject.SetActive(true);
+                    } else {
+                        hitbox.gameObject.SetActive(false);
+                    }
+                }
             }
         }
         return result;
@@ -91,13 +116,14 @@ public class FallingPlatformController2D : AbstractPlatformController2D
             // Prewarm Start
             prewarmTime = Time.timeSinceLevelLoad + secondsPrewarm;
         } else {
-            if (prewarmTime < Time.timeSinceLevelLoad) {
+            if (prewarmTime <= Time.timeSinceLevelLoad) {
                 // Prewarm finished!
                 isMoving = false;
                 isMovingAction = true;
-                isMovingPrewarm = false;
+                isMovingPrewarm = false;                
+                lastWaitBuffer = (Time.timeSinceLevelLoad - prewarmTime);
                 prewarmTime = 0F;
-                waitUntil = Time.timeSinceLevelLoad + waitTimePrewarmPosition;
+                waitUntil = Time.timeSinceLevelLoad + waitTimePrewarmPosition - lastWaitBuffer;
                 // end of Prewarm, endpos immer = startPos!
                 Vector3 pixelPerfectMoveAmount = Utils.MakePixelPerfect(startPos);
                 return pixelPerfectMoveAmount - transform.position;
@@ -134,9 +160,6 @@ public class FallingPlatformController2D : AbstractPlatformController2D
     }
 
     private float GetCurrentSeconds() {
-        if (isMovingPrewarm) {
-            return secondsPrewarm;
-        }
         if (isMovingAction) {
             return secondsAction;
         }
@@ -201,14 +224,14 @@ public class FallingPlatformController2D : AbstractPlatformController2D
         isMovingPrewarm = false;
 
         if (currentEndpos == endpos) {
-            waitUntil = Time.timeSinceLevelLoad + waitTimeActionPosition;
+            waitUntil = Time.timeSinceLevelLoad + waitTimeActionPosition - lastWaitBuffer;
             currentStartPos = endpos;
             currentEndpos = startPos;
             actionCompleteEffectPlayed = false;
 
         } else {
             isMovingPrewarm = true;
-            waitUntil = Time.timeSinceLevelLoad + waitTimeBasePosition;
+            waitUntil = Time.timeSinceLevelLoad + waitTimeBasePosition - lastWaitBuffer;
             currentStartPos = startPos;
             currentEndpos = endpos;
         }        

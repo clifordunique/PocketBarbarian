@@ -7,6 +7,8 @@ namespace UnityEditor {
     [CreateAssetMenu(fileName = "Prefab direction brush", menuName = "Brushes/Prefab direction brush")]
     [CustomGridBrush(false, true, false, "Prefab Brush")]
     public class PrefabDirectionBrush: GridBrushBase {
+        private GameObject brushTargetTmp;
+
         private const float k_PerlinOffset = 100000f;
         public GameObject[] m_Prefabs;
         public float z_rotation;
@@ -15,6 +17,12 @@ namespace UnityEditor {
         public int m_Z;
 
         public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position) {
+            // workaround for bug!
+            if (brushTarget == null) {
+                brushTarget = brushTargetTmp;                
+            } else {
+                brushTargetTmp = brushTarget;
+            }
             // Do not allow editing palettes
             if (brushTarget.layer == 31)
                 return;
