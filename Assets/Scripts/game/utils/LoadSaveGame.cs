@@ -16,6 +16,13 @@ public class LoadSaveGame: MonoBehaviour
     }
 
 
+    public void Delete() {
+        // Temporary
+        if (File.Exists(path)) {
+            File.Delete(path);
+        }
+    }
+
     public void Load() {
         if (File.Exists(path)) {
             BinaryFormatter bf = new BinaryFormatter();

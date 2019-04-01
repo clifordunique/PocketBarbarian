@@ -9,7 +9,8 @@ public class InGameMenueManager : AbstractMenueManager
     public Texture2D mouseTexture;
 
     private MENUEITEM_TYPE selectedMenueItem = MENUEITEM_TYPE.NAN;
-    private bool showMenue = false;
+    [HideInInspector]
+    public bool showMenue = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +68,7 @@ public class InGameMenueManager : AbstractMenueManager
         showMenue = true;
         menueItemManager.ReInit();
         menue.SetActive(true);
-        Cursor.visible = true;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.SetCursor(mouseTexture, Vector2.zero, CursorMode.ForceSoftware);
     }
@@ -75,16 +76,22 @@ public class InGameMenueManager : AbstractMenueManager
 
     public void HideMenue() {
         Time.timeScale = 1;
-        InputController.GetInstance().moveInputEnabled = true;
-        showMenue = false;
+        InputController.GetInstance().moveInputEnabled = true;        
         Cursor.visible = false;
         menue.SetActive(false);
+        StartCoroutine(DisableMenue());
+    }
+
+    IEnumerator DisableMenue() {
+        yield return new WaitForEndOfFrame();
+        showMenue = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (menueInputEnabled && showMenue && Input.GetKeyDown(KeyCode.Escape)) {
+            Debug.Log("Close Menue!");
             HideMenue();
         }
         if (menueInputEnabled && showMenue && Input.GetKeyDown(KeyCode.DownArrow)) {
@@ -92,6 +99,11 @@ public class InGameMenueManager : AbstractMenueManager
         }
         if (menueInputEnabled && showMenue && Input.GetKeyDown(KeyCode.UpArrow)) {
             menueItemManager.PreviousMenueItem();
+        }
+        if (menueInputEnabled && showMenue && Input.GetKeyDown(KeyCode.Return)) {
+            if (menueItemManager.GetSelectedMenueItem() != null) {
+                menueItemManager.GetSelectedMenueItem().Click();
+            }
         }
     }
 }

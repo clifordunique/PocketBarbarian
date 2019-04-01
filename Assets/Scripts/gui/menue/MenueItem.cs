@@ -39,10 +39,8 @@ public class MenueItem : MonoBehaviour
         }
     }
 
-    public void Select() {
-        if (Cursor.visible) {
+    public void Select() {        
             sr.SetEnabled();            
-        }
     }
 
     public void Deselect() {

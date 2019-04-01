@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <Item>
+      <UUID>82d25d8e-76f1-4f28-9327-e52e7ea2c227</UUID>
+      <ItemType>SWORD</ItemType>
+      <Priority>1</Priority>
+      <Shop>BLACKSMITH</Shop>
+      <Name>Bastard Sword</Name>
+      <Stackable>false</Stackable>
+      <Amount>1</Amount>
+      <Effects>
+        <Effect>
+          <effectType>DAMAGE</effectType>
+          <value>1</value>
+        </Effect>
+      </Effects>
+    </Item>
+    <Item>
+      <UUID>bfce9a15-1435-4229-8cb6-138c6dedbedc</UUID>
+      <ItemType>POTION</ItemType>
+      <Priority>3</Priority>
+      <Shop>TRADER</Shop>
+      <Name>Health Potion Small</Name>
+      <Stackable>true</Stackable>
+      <Amount>10</Amount>
+      <Effects>
+        <Effect>
+          <effectType>HEALTH</effectType>
+          <value>1</value>
+        </Effect>
+      </Effects>
+    </Item>
+    <Item>
+      <UUID>eb404dfd-5ae4-463a-900f-32c242998f3b</UUID>
+      <ItemType>POTION</ItemType>
+      <Priority>2</Priority>
+      <Shop>TRADER</Shop>
+      <Name>Health Potion Medium</Name>
+      <Stackable>true</Stackable>
+      <Amount>10</Amount>
+      <Effects>
+        <Effect>
+          <effectType>HEALTH</effectType>
+          <value>2</value>
+        </Effect>
+      </Effects>
+    </Item>
+    <Item>
+      <UUID>1d94ef6a-379b-48dc-90f4-b5d6a69e9844</UUID>
+      <ItemType>POTION</ItemType>
+      <Priority>1</Priority>
+      <Shop>TRADER</Shop>
+      <Name>Health Potion Large</Name>
+      <Stackable>true</Stackable>
+      <Amount>10</Amount>
+      <Effects>
+        <Effect>
+          <effectType>HEALTH</effectType>
+          <value>3</value>
+        </Effect>
+      </Effects>
+    </Item>
+  </Items>
+</ItemCollection>

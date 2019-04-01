@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
     public void Update() {
 
         // Pause / Ingame Manue handling
-        if (Time.timeScale != 0 && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))) {
+        if (Time.timeScale != 0 && !menueManager.showMenue && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))) {
+            Debug.Log("Show Menue!" + Time.timeScale);
             StartCoroutine(ShowMenue());
         }
     }
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour
 
 
     public void ReloadLevel() {
+        loadSaveGame.Delete();
+        loadSavePlayer.Delete();
         LevelManager.GetInstance().ReloadActiveLevel();
     }
 

@@ -16,6 +16,8 @@ public class TitleScreenManager : AbstractMenueManager {
     public SpriteRenderer pressButtonText;
     public Texture2D mouseTexture;
 
+    public AudioClip bgMusic;
+
     private bool startSceneComplete = false;
 
     private bool itemsReady = false;
@@ -25,6 +27,13 @@ public class TitleScreenManager : AbstractMenueManager {
     // Use this for initialization
     void Start() {
         Cursor.visible = false;
+        StartCoroutine(PlayMusic());
+    }
+
+    IEnumerator PlayMusic() {
+        yield return new WaitForSeconds(5F);
+        SoundManager.SetBGMVolume(0.5F);
+        SoundManager.PlayBGM(bgMusic, false, 0);
     }
 
     // Update is called once per frame

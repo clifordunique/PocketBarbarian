@@ -14,6 +14,13 @@ public class LoadSavePlayer : MonoBehaviour
         path = Application.persistentDataPath + "/savedPlayer.gd";
     }
 
+    public void Delete() {
+        // Temporary
+        if (File.Exists(path)) {
+            File.Delete(path);
+        }
+    }
+
 
     public void Load() {
         if (File.Exists(path)) {
@@ -39,6 +46,6 @@ public class LoadSavePlayer : MonoBehaviour
         FileStream file = File.Create(path);
         bf.Serialize(file, lastSaveData);
         file.Close();
-        Debug.Log("Save Player complete");
+        Debug.Log("Save Player complete: " + path);
     }
 }

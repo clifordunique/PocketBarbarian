@@ -58,8 +58,8 @@ public class ItemManager
 
     public void LoadShopItems() {
         XmlSerializer serializer = new XmlSerializer(typeof(ItemCollection));
-        string path = Application.dataPath + "/AllItems.xml";
-        var stream = new FileStream(path, FileMode.Open);
+        TextAsset textAsset = Resources.Load("Items/AllItems") as TextAsset;
+        Stream stream = new MemoryStream(textAsset.bytes);
         container = serializer.Deserialize(stream) as ItemCollection;
         Debug.Log("ItemType:" + container.items[0].itemType);
         stream.Close();

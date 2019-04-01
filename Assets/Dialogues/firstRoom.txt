@@ -1,3 +1,0 @@
-n1|When going through a door\you look at the same wall as before\only from the other side.
-n1|So don't get lost!\And if you get lost\well you still could\try brute force!
-n2|Brute force?\Luckily that is my speciality!

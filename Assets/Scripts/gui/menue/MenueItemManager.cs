@@ -35,6 +35,13 @@ public class MenueItemManager
         }
     }
 
+    public MenueItem GetSelectedMenueItem() {
+        if (selectedIndex >= 0) {
+            return menueItemArray[selectedIndex];
+        }
+        return null;
+    }
+
     public void NextMenueItem() {
         if (selectedIndex < 0 || (selectedIndex + 1) >= menueItemArray.Length) {
             selectedIndex = 0;
@@ -42,6 +49,7 @@ public class MenueItemManager
             selectedIndex++;
         }
         DeselectAll();
+        Debug.Log("NextMenue " + selectedIndex);
         menueItemArray[selectedIndex].Select();
     }
 
