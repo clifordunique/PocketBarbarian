@@ -92,8 +92,8 @@ public class GameManager : MonoBehaviour
 
 
     public void ReloadLevel() {
-        loadSaveGame.Delete();
-        loadSavePlayer.Delete();
+      //  loadSaveGame.Delete();
+      //  loadSavePlayer.Delete();
         LevelManager.GetInstance().ReloadActiveLevel();
     }
 

@@ -91,6 +91,15 @@ public class HurtBox : MonoBehaviour {
     }
 
     public void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, HitBox attackerActor, Vector3 hitSourcePosition, Collider2D collider2d) {
+        Vector3 hitDirection = Utils.GetHitDirection(hitSourcePosition, transform);
+
+        // water splash effect
+        if (damageType == HitBox.DAMAGE_TYPE.WATER && instakill && collider2d != null) {
+            float y = collider2d.bounds.center.y + collider2d.bounds.extents.y;
+            Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
+            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition, collider2d.transform);
+        }
+
         if (currentHealth > 0) {
             if (instakill) {
                 //instakill
@@ -114,14 +123,13 @@ public class HurtBox : MonoBehaviour {
                     actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, instakill, hitSourcePosition, damageType);
                 }
 
-                ExecuteEffects(collider2d, hitSourcePosition, instakill, damage, damageType);
+                ExecuteEffects(collider2d, hitDirection, instakill, damage, damageType);
             }
         }
     }
         
 
-    private void ExecuteEffects(Collider2D collider2d, Vector3 hitSourcePosition, bool instakill, int damage, HitBox.DAMAGE_TYPE damageType) {
-        Vector3 hitDirection = Utils.GetHitDirection(hitSourcePosition, transform);
+    private void ExecuteEffects(Collider2D collider2d, Vector3 hitDirection, bool instakill, int damage, HitBox.DAMAGE_TYPE damageType) {        
 
         if (currentHealth <= 0) {
             if (destroyOnDeathImmediate) {
@@ -131,16 +139,7 @@ public class HurtBox : MonoBehaviour {
             if (prefabHitEffect != null) {                
                 InstantiateEffect(prefabHitEffect, hitDirection.x, transform.position);
             }
-        }
-
-
-        if (damageType == HitBox.DAMAGE_TYPE.WATER && instakill && collider2d != null) {
-            float y = collider2d.bounds.center.y + collider2d.bounds.extents.y;
-            Vector3 effectPosition = new Vector3(transform.position.x, y, transform.position.z);
-            InstantiateEffect(prefabWaterSplash, hitDirection.x, effectPosition, collider2d.transform);
-        }
-
-
+        }        
 
         // Spawn Effect on hit
         if (currentHealth > 0 && lootController != null) {
