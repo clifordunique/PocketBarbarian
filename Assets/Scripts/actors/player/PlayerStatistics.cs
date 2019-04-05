@@ -51,7 +51,6 @@ public class PlayerStatistics : MonoBehaviour {
     public bool dashAllowed;
     public float dashDuration;
     public bool stompAllowed;
-    public bool comboAllowed;
     public float comboLevel;
 
     public float currentStamina; // stamina in percent 0-1F
@@ -256,7 +255,6 @@ public class PlayerStatistics : MonoBehaviour {
         dashAllowed = false;
         dashDuration = 0;
         stompAllowed = false;
-        comboAllowed = false;
         comboLevel = 0;
 
         PublishBaseData();
@@ -273,8 +271,6 @@ public class PlayerStatistics : MonoBehaviour {
         moveController.doubleJumpAllowed = doubleJumpAllowed;
         moveController.dashAllowed = dashAllowed;
         moveController.dashDuration = dashDuration;
-        moveController.stampingAllowed = stompAllowed;
-
-        PlayerController.GetInstance().comboAllowed = comboAllowed;
+        moveController.stampingAllowed = stompAllowed;        
     }
 }

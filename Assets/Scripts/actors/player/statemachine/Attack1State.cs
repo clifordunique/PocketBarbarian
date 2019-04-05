@@ -37,22 +37,19 @@ public class Attack1State : AbstractState {
         }
 
         // check if combo1 
-        if (!animCombo1 && playerController.input.IsAttack1KeyDown()) {
+        if (!animCombo1 && playerController.input.IsAttack1KeyDown() && playerController.statistics.comboLevel >= 1) {
             activateCombo1 = true;
         }
         // check if combo1 
-        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown()) {
+        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown() && playerController.statistics.comboLevel >= 2) {
             activateCombo2 = true;
         }
-
 
         if (hitSomething) {
             // small cam Shake
             CameraFollow.GetInstance().ShakeSmall();
             hitSomething = false;
         }
-
-
 
         // combo1 move
         if (activateCombo1 && animCombo1 && !animCombo2) {
@@ -102,6 +99,9 @@ public class Attack1State : AbstractState {
             animCombo2 = true;
             checkMoveStarted2 = Time.timeSinceLevelLoad + moveTime2;
             
+        }
+        if (parameter == "shake") {
+            CameraFollow.GetInstance().ShakeSmall();
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;

@@ -213,7 +213,6 @@ public class PlayerInventory : MonoBehaviour
                 statistics.stompAllowed = true;
             }
             if (effect.effectType == Item.EFFECT_TYPES.COMBO) {
-                statistics.comboAllowed = true;
                 statistics.comboLevel = effect.value;
             }
             if (effect.effectType == Item.EFFECT_TYPES.DAMAGE && item.itemType == Item.ITEM_TYPES.SWORD) {                

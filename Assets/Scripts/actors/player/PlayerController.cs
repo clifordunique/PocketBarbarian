@@ -11,7 +11,7 @@ public class PlayerController: MonoBehaviour, IActorController {
 
     [Header("Weapon Settings")]
     public bool hasWeapon = false;
-    public bool comboAllowed = false;
+    public float timeHitCooldown = 0.2F;
     public List<string> weaponUuid;
     public List<int> weaponLayerId;
     public HitBox[] weaponHitBoxList;
@@ -20,6 +20,7 @@ public class PlayerController: MonoBehaviour, IActorController {
 
     [Header("Projectile Settings")]
     public GameObject prefabProjectile;
+    public float timeThrowCooldown = 0.2F;
     public GameObject spawnPositionProjectile;
 
 
@@ -221,8 +222,15 @@ public class PlayerController: MonoBehaviour, IActorController {
         animator.SetLayerWeight(activeLayer, 1);
     }
 
-    public bool AttackAvailable() {
-        if ((Time.timeSinceLevelLoad - lastAttackTime) > 0.2f) {
+    public bool DoAttack() {
+        if (hasWeapon && input.IsAttack1KeyPressed() && ((Time.timeSinceLevelLoad - lastAttackTime) > timeHitCooldown)) { 
+            return true;
+        }
+        return false;
+    }
+
+    public bool DoThrow() {
+        if (hasWeapon && input.IsAttack2KeyPressed() && ((Time.timeSinceLevelLoad - lastThrowTime) > timeThrowCooldown)) { // check for ammo!
             return true;
         }
         return false;

@@ -47,11 +47,11 @@ public class FallingState : AbstractState {
             return new FastFallingState(playerController);
         }
 
-        if (playerController.hasWeapon && playerController.input.IsAttack1KeyPressed() && playerController.AttackAvailable()) {
+        if (playerController.DoAttack()) {
             return new JumpAttackState(playerController);
         }
 
-        if (playerController.hasWeapon && playerController.input.IsAttack2KeyPressed()) { // hat ammo! && playerController.statistics.ammo > 0) {
+        if (playerController.DoThrow()) {
             return new ThrowJumpState(playerController);
         }
 

@@ -32,11 +32,11 @@ public class Attack2State : AbstractState {
         }
 
         // check if combo1 
-        if (!animCombo1 && playerController.input.IsAttack1KeyDown()) {
+        if (!animCombo1 && playerController.input.IsAttack1KeyDown() && playerController.statistics.comboLevel >= 1) {
             activateCombo1 = true;
         }
-        // check if combo1 
-        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown()) {
+        // check if combo2 
+        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown() && playerController.statistics.comboLevel >= 2) {
             activateCombo2 = true;
         }
 
@@ -87,6 +87,9 @@ public class Attack2State : AbstractState {
         if (parameter == "combo2") {
             switchState = true;
             animCombo2 = true;
+        }
+        if (parameter == "shake") {
+            CameraFollow.GetInstance().ShakeSmall();
         }
     }
 }
