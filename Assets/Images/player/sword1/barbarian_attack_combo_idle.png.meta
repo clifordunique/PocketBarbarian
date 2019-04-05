@@ -20,6 +20,7 @@ TextureImporter:
     21300030: barbarian_attack_combo_idle_15
     21300032: barbarian_attack_combo_idle_16
     21300034: barbarian_attack_combo_idle_17
+    21300036: barbarian_attack_combo_idle_18
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -149,7 +150,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02452d8be0771944c8028518e41bf64d
+      spriteID: 6c62ea1f251acbe4f833ad60fc7ec4bf
       vertices: []
       indices: 
       edges: []
@@ -169,7 +170,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d66d8b18b07acd449873a6c514497490
+      spriteID: aee1a8ed301bb694f98154d34668925b
       vertices: []
       indices: 
       edges: []
@@ -189,7 +190,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83acd8628a1118041b88356c701b7d0e
+      spriteID: 5ccd2d6d2e3be6145badd8edb6291c02
       vertices: []
       indices: 
       edges: []
@@ -209,7 +210,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1164d524b91641947aed82910e3a646d
+      spriteID: 08b5ec9ff3d2f0f4e922a6100bad2d75
       vertices: []
       indices: 
       edges: []
@@ -229,7 +230,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 322fcb570df8c4e4c8d2c98a08a4ca26
+      spriteID: 6f34d195d42886e4bb4bd8936dfa3754
       vertices: []
       indices: 
       edges: []
@@ -249,7 +250,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c728e14e5e68cf489525dcbd5d3dfe2
+      spriteID: 34fceca99aca7d14c80f4886546f404f
       vertices: []
       indices: 
       edges: []
@@ -269,7 +270,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d8826205a4d4bd4e90d2f901b813f7b
+      spriteID: f54e4e84b51d10949b808b318577c7ca
       vertices: []
       indices: 
       edges: []
@@ -289,7 +290,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c20fa2d4f0cf8164abd41bd5819ef25c
+      spriteID: 8bdddc80681075a48a61709159602b6a
       vertices: []
       indices: 
       edges: []
@@ -309,7 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 806d12d21990aa047a887cf5886ce49d
+      spriteID: 51e43c9a071826f4e805fda7b7405d42
       vertices: []
       indices: 
       edges: []
@@ -329,7 +330,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 176735720ecb75f47808c5a49c261426
+      spriteID: 8817a0864830e464fbee264f6c44edb0
       vertices: []
       indices: 
       edges: []
@@ -349,7 +350,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1d61f01c6fa0f24b9891eadb30b5e27
+      spriteID: 7b7c1e8e45c4a95459a87ab6c161fa9a
       vertices: []
       indices: 
       edges: []
@@ -369,7 +370,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48b57a87721bb3147b6551984b795c1e
+      spriteID: 5c5e4764e3165744ca9873861a90c689
       vertices: []
       indices: 
       edges: []
@@ -389,7 +390,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cd6d1b317498bf4f96e504a94c2f0f2
+      spriteID: 1350d48ad45808c4484d3ef761a5ffba
       vertices: []
       indices: 
       edges: []
@@ -409,7 +410,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d380837384ffea4da03239f636da7ef
+      spriteID: 4ed217a85aedd5e42b80babe7cef8cfb
       vertices: []
       indices: 
       edges: []
@@ -429,7 +430,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c41d4ab74f9e3c4d85b62c290601c01
+      spriteID: 270a24bc9a0726d47a07c98b68c48b9e
       vertices: []
       indices: 
       edges: []
@@ -449,7 +450,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15d15a3b5d4b63643ac6429ee4e7b9d0
+      spriteID: 86f4f5d3390b44e429d95e003b3823b5
       vertices: []
       indices: 
       edges: []
@@ -469,7 +470,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9866c28b4c123fd48a179039cdfec191
+      spriteID: c5485f306e09b5242aa1949fff5d171f
       vertices: []
       indices: 
       edges: []
@@ -489,7 +490,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23f2c71ef9b5a214ebb253e1aa1921b0
+      spriteID: f048707fdaf2d8a4d9cca1d85694a1c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_attack_combo_idle_18
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 0
+        width: 70
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cecd536e00cb66438945a33722fd2b3
       vertices: []
       indices: 
       edges: []

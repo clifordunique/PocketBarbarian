@@ -66,6 +66,10 @@ public class PlayerController: MonoBehaviour, IActorController {
     public PlayerStatistics statistics;
     [HideInInspector]
     public InputController input;
+    [HideInInspector]
+    public float lastAttackTime;
+    [HideInInspector]
+    public float lastThrowTime;
 
     private AbstractState currentState;
     private static PlayerController _instance;
@@ -217,10 +221,19 @@ public class PlayerController: MonoBehaviour, IActorController {
         animator.SetLayerWeight(activeLayer, 1);
     }
 
+    public bool AttackAvailable() {
+        if ((Time.timeSinceLevelLoad - lastAttackTime) > 0.2f) {
+            return true;
+        }
+        return false;
+    }
+
     public struct LastHit {
         public Vector3 hitSource;
         public HitBox.DAMAGE_TYPE damageType;
         public bool push;
         public bool instakill;
     }
+
+
 }

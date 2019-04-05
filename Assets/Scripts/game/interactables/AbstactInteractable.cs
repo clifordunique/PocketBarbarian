@@ -9,7 +9,6 @@ public abstract class AbstactInteractable: MonoBehaviour {
     public LayerMask reactLayer;
     public bool permanentDisabled = false;
 
-    [HideInInspector]
     public bool actionFinished = true;
 
     public virtual void Start() {

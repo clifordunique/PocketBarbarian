@@ -26,6 +26,14 @@ public class LandingState : AbstractState {
             return interrupt;
         }
 
+        if (playerController.hasWeapon && playerController.input.IsAttack1KeyPressed() && playerController.AttackAvailable()) {
+            return new Attack1State(playerController);
+        }
+
+        if (playerController.hasWeapon && playerController.input.IsAttack2KeyPressed()) { // hat ammo && playerController.statistics.ammo > 0) {
+            return new ThrowIdleState(playerController);
+        }
+
         if (playerController.input.IsJumpKeyDown()) {
             return new JumpState(playerController);
         }

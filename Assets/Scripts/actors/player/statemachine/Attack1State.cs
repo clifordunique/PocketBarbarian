@@ -5,11 +5,15 @@ using UnityEngine;
 public class Attack1State : AbstractState {
 
     private bool attackFinished = false;
-    private bool comboAttack = false;
-    private bool exitCombo = false;
-    private bool combo2 = false;
+
+    private bool animCombo1 = false;
+    private bool animCombo2 = false;
+
+    private bool activateCombo1 = false;
+    private bool activateCombo2 = false;
+
     private bool hitSomething = false;
-    private float moveTime1 = 0.1F;
+    private float moveTime1 = 0.2F;
     private float moveTime2 = 0.25F;
     private float checkMoveStarted1;
     private float checkMoveStarted2;
@@ -32,9 +36,15 @@ public class Attack1State : AbstractState {
             return interrupt;
         }
 
-        if (playerController.comboAllowed && playerController.input.IsAttack1KeyDown()) {
-            comboAttack = true;
+        // check if combo1 
+        if (!animCombo1 && playerController.input.IsAttack1KeyDown()) {
+            activateCombo1 = true;
         }
+        // check if combo1 
+        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown()) {
+            activateCombo2 = true;
+        }
+
 
         if (hitSomething) {
             // small cam Shake
@@ -42,12 +52,10 @@ public class Attack1State : AbstractState {
             hitSomething = false;
         }
 
-        if (attackFinished || (!comboAttack && exitCombo)) {
-            
-            return new IdleState(playerController);
-        }
 
-        if (comboAttack && exitCombo) {
+
+        // combo1 move
+        if (activateCombo1 && animCombo1 && !animCombo2) {
             if (checkMoveStarted1 > Time.timeSinceLevelLoad) {
                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
@@ -55,7 +63,9 @@ public class Attack1State : AbstractState {
                 checkMoveStarted1 = 0;
             }
         }
-        if (comboAttack && combo2) {
+
+        // combo2 move
+        if (activateCombo2 && animCombo2) {
             if (checkMoveStarted2 > Time.timeSinceLevelLoad) {
                 Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
@@ -67,6 +77,16 @@ public class Attack1State : AbstractState {
                 }
             }
         }
+
+        if ((animCombo1 && !activateCombo1) || (animCombo2 && !activateCombo2)) {
+            attackFinished = true;
+        }
+
+        // End attack!
+        if (attackFinished) {
+            playerController.lastAttackTime = Time.timeSinceLevelLoad;
+            return new IdleState(playerController);
+        }
         return null;
     }
 
@@ -74,12 +94,12 @@ public class Attack1State : AbstractState {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             attackFinished = true;
         }
-        if (parameter == "exit_combo") {
-            exitCombo = true;
+        if (parameter == "combo1") {
+            animCombo1 = true;
             checkMoveStarted1 = Time.timeSinceLevelLoad + moveTime1;
         }
         if (parameter == "combo2") {
-            combo2 = true;
+            animCombo2 = true;
             checkMoveStarted2 = Time.timeSinceLevelLoad + moveTime2;
             
         }

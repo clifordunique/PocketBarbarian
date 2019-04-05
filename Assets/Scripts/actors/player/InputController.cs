@@ -37,9 +37,23 @@ public class InputController : MonoBehaviour {
         return false;
     }
 
+    public bool IsAttack1KeyPressed() {
+        if (moveInputEnabled) {
+            return (Input.GetKey(KeyCode.X));
+        }
+        return false;
+    }
+
     public bool IsAttack1KeyDown() {
         if (moveInputEnabled) {
             return (Input.GetKeyDown(KeyCode.X));
+        }
+        return false;
+    }
+
+    public bool IsAttack2KeyPressed() {
+        if (moveInputEnabled) {
+            return (Input.GetKey(KeyCode.C));
         }
         return false;
     }

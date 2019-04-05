@@ -40,11 +40,11 @@ public class IdleState : AbstractState {
             }
         }
 
-        if (playerController.hasWeapon && playerController.input.IsAttack1KeyDown()) {
+        if (playerController.hasWeapon && playerController.input.IsAttack1KeyPressed() && playerController.AttackAvailable()) {
             return new Attack1State(playerController);
         }
 
-        if (playerController.hasWeapon && playerController.input.IsAttack2KeyDown()) { // hat ammo && playerController.statistics.ammo > 0) {
+        if (playerController.hasWeapon && playerController.input.IsAttack2KeyPressed()) { // hat ammo && playerController.statistics.ammo > 0) {
             return new ThrowIdleState(playerController);
         }
 

@@ -24,12 +24,10 @@ public class JumpAttackState : AbstractState {
         if (interrupt != null) {
             return interrupt;
         }
+        
 
-        if (playerController.moveController.IsGrounded()) {
-            return new LandingState(playerController);
-        }
-
-        if (attackFinished) {
+        if (attackFinished || playerController.moveController.IsGrounded()) {
+            playerController.lastAttackTime = Time.timeSinceLevelLoad;
             if (playerController.moveController.IsGrounded()) {
                 return new LandingState(playerController);
             } else {

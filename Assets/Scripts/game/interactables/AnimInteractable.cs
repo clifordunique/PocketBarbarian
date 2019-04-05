@@ -61,6 +61,8 @@ public class AnimInteractable : AbstactInteractable {
     
 
     private void SetStopAnimation() {
+        Debug.Log("actionFinished:" + actionFinished);
+        Debug.Log("permanentDisabled:" + permanentDisabled);
         if (actionFinished && !permanentDisabled) {
             anim.SetBool("STOP", false);
             anim.SetBool("INTERACTABLE", true);

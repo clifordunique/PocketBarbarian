@@ -5,22 +5,20 @@ using UnityEngine;
 public class Attack2State : AbstractState {
 
     private bool attackFinished = false;
-    private bool comboAttach = false;
-    private bool exitCombo = false;
+    private bool animCombo1 = false;
+    private bool animCombo2 = false;
     private bool hitSomething = false;
-    private bool doJump = false;
-    private float moveTime1 = 0.4F;
-    private float jumpTime = 0.02F;
-    private float moveTime2 = 0.2F;
-    private float checkMoveStarted;
-    private float checkJumpStarted = -1F;
+    private bool switchState = false;
+
+    private bool activateCombo1 = false;
+    private bool activateCombo2 = false;
+
 
     public Attack2State(PlayerController playerController) : base(ACTION.ATTACK2, playerController) {
     }
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK2_PARAM, true);
-        //Move(0, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
@@ -33,9 +31,36 @@ public class Attack2State : AbstractState {
             return interrupt;
         }
 
-        if (playerController.comboAllowed && playerController.input.IsAttack1KeyDown()) {
-            comboAttach = true;
+        // check if combo1 
+        if (!animCombo1 && playerController.input.IsAttack1KeyDown()) {
+            activateCombo1 = true;
         }
+        // check if combo1 
+        if (animCombo1 && !animCombo2 && playerController.input.IsAttack1KeyDown()) {
+            activateCombo2 = true;
+        }
+
+        if ((animCombo1 && !activateCombo1) || (animCombo2 && !activateCombo2)) {            
+            attackFinished = true;
+        }
+
+        if (switchState) {
+            if (playerController.input.GetDirectionX() == 0) {
+                attackFinished = true;
+            }
+            switchState = false;
+        }
+
+
+        if (attackFinished) {
+            playerController.lastAttackTime = Time.timeSinceLevelLoad;
+            if (playerController.input.GetDirectionX() == 0) {
+                return new IdleState(playerController);
+            } else {
+                return new MoveState(playerController);
+            }                
+        }        
+
 
         if (hitSomething) {
             // small cam Shake
@@ -43,31 +68,8 @@ public class Attack2State : AbstractState {
             hitSomething = false;
         }
 
-        if (attackFinished || (!comboAttach && exitCombo)) {
-            return new MoveState(playerController);
-        }
+        Move(playerController.dirX, playerController.input.GetDirectionY());
 
-        if (doJump) {
-            if (checkJumpStarted == -1F) {
-                if (playerController.moveController.IsGrounded()) {
-                    playerController.moveController.OnJumpInputDown();
-                    checkJumpStarted = Time.timeSinceLevelLoad + jumpTime;
-                } else {
-                    return new MoveState(playerController);
-                }
-            } else {
-                if (checkJumpStarted < Time.timeSinceLevelLoad) {
-                    playerController.moveController.OnJumpInputUp();
-                }
-            }
-
-            if (checkMoveStarted > Time.timeSinceLevelLoad) {
-                Move(playerController.dirX, playerController.input.GetDirectionY());
-            } else {
-                Move(0, playerController.input.GetDirectionY());
-                //doJump = false;
-            }
-        }
         return null;
     }
 
@@ -78,21 +80,13 @@ public class Attack2State : AbstractState {
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;
         }
-        if (parameter == "exit_combo") {
-            exitCombo = true;
+        if (parameter == "combo1") {
+            switchState = true;
+            animCombo1 = true;
         }
-        if (parameter == "jump") {
-            doJump = true;
-            checkMoveStarted = Time.timeSinceLevelLoad + moveTime1;
-            playerController.InstantiateEffect(playerController.prefabEffectJump);
-        }
-        if (parameter == "move_forward2") {
-            doJump = true;
-            checkMoveStarted = Time.timeSinceLevelLoad + moveTime2;
-        }
-        if (parameter == "smash") {
-            playerController.InstantiateEffect(playerController.prefabEffectLanding);
-            CameraFollow.GetInstance().ShakeSmall();
+        if (parameter == "combo2") {
+            switchState = true;
+            animCombo2 = true;
         }
     }
 }
