@@ -32,6 +32,8 @@ public class GuiCharacterController : MonoBehaviour {
         Vector2 size = charDisplayer.DisplayString(text, transform, offsetPixelsX, offsetPixelsY);
         Vector3 newpos = new Vector3(transform.position.x - (size.x / 2), transform.position.y + (size.y / 2), transform.position.z);
         transform.position = Utils.MakePixelPerfect(newpos);
-        backgroundController.ResizeBackground(size);    
+        if (backgroundController != null) {
+            backgroundController.ResizeBackground(size);
+        }
     }
 }

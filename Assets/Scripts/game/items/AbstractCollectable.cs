@@ -7,6 +7,7 @@ public abstract class AbstractCollectable : MonoBehaviour {
     public LayerMask collectorLayer;
     public float delayTimeCollection = 0;
     public PrefabValue collectableEffect;
+    public GameObject collectableNumberEffect;
     public bool startRandom = true;
 
     private BoxCollider2D boxCollider;
@@ -75,9 +76,10 @@ public abstract class AbstractCollectable : MonoBehaviour {
         }
     }
 
-    private void InstantiateEffect(GameObject effectToInstanciate) {
+    public GameObject InstantiateEffect(GameObject effectToInstanciate) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = transform.position;
+        return effect;
     }
 }

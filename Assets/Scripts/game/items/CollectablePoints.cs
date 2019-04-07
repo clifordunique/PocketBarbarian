@@ -8,5 +8,14 @@ public class CollectablePoints: AbstractCollectable {
 
     public override void CollectItem() {
         PlayerStatistics.GetInstance().ModifyPoints(points.value);
+
+        if (collectableNumberEffect != null) {
+            GameObject effect = InstantiateEffect(collectableNumberEffect);
+            ShowSimpleText simpelText = effect.GetComponentInChildren<ShowSimpleText>();
+            if (simpelText != null) {
+                simpelText.text = "+" + points.value;
+                Debug.Log("SIMPLETEXT FOUND!");
+            }
+        }
     }
 }
