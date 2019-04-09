@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float waitTimeRestartOnDeath = 0F;
+    public float waitTimeLevelComplete = 0F;
 
     private LoadSaveGame loadSaveGame;
     private LoadSavePlayer loadSavePlayer;
@@ -90,17 +91,24 @@ public class GameManager : MonoBehaviour
         ReloadLevel();
     }
 
+    public void LevelComplete() {
+        GuiController.GetInstance().InstanciateLevelCompleteEffect();
+        StartCoroutine(LoadNextLevelCoroutine());
+    }
+
+    IEnumerator LoadNextLevelCoroutine() {
+        yield return new WaitForSeconds(waitTimeLevelComplete);
+        ReloadLevel();
+    }
+
 
     public void ReloadLevel() {
-      //  loadSaveGame.Delete();
-      //  loadSavePlayer.Delete();
         LevelManager.GetInstance().ReloadActiveLevel();
     }
 
     public void LoadMainMenue() {
         LevelManager.GetInstance().LoadMainMenue();
-    }
-    
+    }    
 
     public void ExitGame() {
         LevelManager.GetInstance().Quit();

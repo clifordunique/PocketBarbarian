@@ -8,6 +8,7 @@ public class GuiController : MonoBehaviour {
     public GameObject backgroundCenter;
     public GameObject backgroundRight;
     public GameObject prefabDiedEffect;
+    public GameObject prefabLevelCompleteEffect;
 
     private static GuiController _instance;
     private float lastScreenWidth = 0;
@@ -37,6 +38,11 @@ public class GuiController : MonoBehaviour {
 
     public void InstanciateDiedEffect() {
         GameObject effect = Instantiate(prefabDiedEffect);
+        effect.transform.parent = EffectCollection.GetInstance().transform;
+    }
+
+    public void InstanciateLevelCompleteEffect() {
+        GameObject effect = Instantiate(prefabLevelCompleteEffect);
         effect.transform.parent = EffectCollection.GetInstance().transform;
     }
 

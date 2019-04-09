@@ -18,7 +18,7 @@ public class Door: AbstactInteractable {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OpenDoor() {
+    public void OpenDoor() {
         spriteRenderer.sprite = openDoor;
     }
 

@@ -236,6 +236,25 @@ public class PlayerController: MonoBehaviour, IActorController {
         return false;
     }
 
+    public void EndLevel() {
+        StartCoroutine(FadeTo(0, 0.5F));
+    }
+
+    private IEnumerator FadeTo(float aValue, float aTime) {
+        yield return new WaitForSeconds(0.2F);
+
+        
+
+        Color color = spriteRenderer.color;
+
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime) {
+            Color newColor = new Color(color.r, color.g, color.b, Mathf.Lerp(color.a, aValue, t));
+            spriteRenderer.color = newColor;
+            yield return null;
+        }
+        GameManager.GetInstance().LevelComplete();
+    }
+
     public struct LastHit {
         public Vector3 hitSource;
         public HitBox.DAMAGE_TYPE damageType;

@@ -7,6 +7,7 @@ public class ActionState : AbstractState {
     private bool animationEnded = false;
     private bool actionTriggered = false;
     private AbstactInteractable interactable;
+    private bool levelEnded = false;
 
     public ActionState(PlayerController playerController) : base(ACTION.ACTION, playerController) {
     }
@@ -40,10 +41,17 @@ public class ActionState : AbstractState {
             }
         }
 
-        if (actionTriggered && interactable.actionFinished) {
+        if (actionTriggered && interactable.actionFinished && !levelEnded) {
             if (interactable is Door || interactable is DoorLocked) {
-                // nur bei aufgeschlossener Tuer durchgehen!
-                return new WalkOutState(playerController);
+
+                if (interactable is DoorExitLevel) {
+                    // exit level
+                    playerController.EndLevel();
+                    levelEnded = true;
+                } else {
+                    // nur bei aufgeschlossener Tuer durchgehen!
+                    return new WalkOutState(playerController);
+                }
             } else {
                 return new ActionOutState(playerController);
             }
@@ -52,6 +60,8 @@ public class ActionState : AbstractState {
         Move(0, 0);
         return null;
     }
+
+
 
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
