@@ -34,7 +34,7 @@ public class MoveState : AbstractState {
             return new FallingState(playerController);
         }
         if (playerController.DoAttack()) {
-            return new Attack2State(playerController);
+            return new Attack1State(playerController);
         }
         if (playerController.DoThrow()) {
             return new ThrowRunningState(playerController);

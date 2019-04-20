@@ -13,6 +13,7 @@ public class EnemyMoveState : AbstractEnemyState {
         if (enemyController.animator) {
             enemyController.animator.SetBool("MOVE", true);
         }
+        lastDirX = enemyController.facingDirectionX;
     }
 
     public override AbstractEnemyState UpdateState() {
@@ -44,6 +45,7 @@ public class EnemyMoveState : AbstractEnemyState {
             }
             float directionX = moveController.MoveTo(new Vector3(enemyController.transform.position.x + lastDirX, enemyController.transform.position.y, enemyController.transform.position.z));
             enemyController.SetDirection(directionX);
+
 
         }
         return null;

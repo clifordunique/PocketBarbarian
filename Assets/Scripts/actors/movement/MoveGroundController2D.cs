@@ -100,22 +100,24 @@ public class MoveGroundController2D: MoveController2D {
 		}
 	}
     
-    public void OnPush(float pushDirectionX, float pushForce, float pushDuration) {
+    public void OnPush(float pushDirectionX, float pushForce, float pushDuration, float pushDirectionY = 0) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
-        velocity.y = minJumpVelocity;
+        if (pushDirectionY > 0) {
+            velocity.y = minJumpVelocity;
+        }
         endTimePush = Time.timeSinceLevelLoad + pushDuration;
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY) {
-        OnPush(pushDirectionX, pushForce, pushDuration);
+        OnPush(pushDirectionX, pushForce, pushDuration, pushDirectionY);
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY, bool dash) {
         if (dash) {
-            OnPush(pushDirectionX, pushForce * 2, pushDuration);
+            OnPush(pushDirectionX, pushForce * 2, pushDuration, pushDirectionY);
         } else {
-            OnPush(pushDirectionX, pushForce, pushDuration);
+            OnPush(pushDirectionX, pushForce, pushDuration, pushDirectionY);
         }
     }
 

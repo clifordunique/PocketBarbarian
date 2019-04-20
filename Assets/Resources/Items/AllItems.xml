@@ -14,6 +14,10 @@
           <effectType>DAMAGE</effectType>
           <value>1</value>
         </Effect>
+        <Effect>
+          <effectType>COMBO</effectType>
+          <value>2</value>
+        </Effect>
       </Effects>
     </Item>
     <Item>

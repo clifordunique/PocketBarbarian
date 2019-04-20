@@ -24,6 +24,8 @@ public class EnemyHitState : AbstractEnemyState {
                 moveController.OnPush((hitDirection.x == 0F ? -1F : hitDirection.x), hitDirection.y, false);
             }
         }
+
+        enemyController.isInterruptAction = false;
         
     }
 
@@ -32,9 +34,15 @@ public class EnemyHitState : AbstractEnemyState {
         if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.HIT) {
             // Interrupt current Action
             return GetEnemyState(enemyController.currentAction.actionEvent);
+        } else {
+            if (enemyController.isInterruptAction) {
+                // erneuter Hit!
+                Debug.Log("erneuter HIT!");
+                return new EnemyHitState(enemyController);
+            }
         }
 
-        if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.hitTime) { 
+        if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.flashTime) { 
             moveController.StopMoving();
             enemyController.RequestNextAction();
             return GetEnemyState(enemyController.currentAction.actionEvent);

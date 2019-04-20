@@ -24,6 +24,7 @@ public class Attack1State : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK1_PARAM, true);
+        Move(0, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
@@ -54,6 +55,7 @@ public class Attack1State : AbstractState {
         // combo1 move
         if (activateCombo1 && animCombo1 && !animCombo2) {
             if (checkMoveStarted1 > Time.timeSinceLevelLoad) {
+                Debug.Log("Moveit");
                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());

@@ -19,6 +19,7 @@ public class Attack2State : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK2_PARAM, true);
+        Debug.Log("Enter MoveAttack");
     }
 
     public override void OnExit() {
@@ -66,6 +67,10 @@ public class Attack2State : AbstractState {
             // small cam Shake
             CameraFollow.GetInstance().ShakeSmall();
             hitSomething = false;
+        }
+
+        if (playerController.input.GetDirectionX() == 0) {
+            return new IdleState(playerController);
         }
 
         Move(playerController.dirX, playerController.input.GetDirectionY());
