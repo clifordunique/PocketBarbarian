@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 13f9680617cb13f41a75492cb7593e7c
+guid: 526934655d3f4784ea5c7d02ec3ba0e2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blood_explosion_0
-    21300002: blood_explosion_1
-    21300004: blood_explosion_2
-    21300006: blood_explosion_3
-    21300008: blood_explosion_4
-    21300010: blood_explosion_5
-    21300012: blood_explosion_6
-    21300014: blood_explosion_7
-    21300016: blood_explosion_8
+    21300000: torch_stand_0
+    21300002: torch_stand_1
+    21300004: torch_stand_2
+    21300006: torch_stand_3
+    21300008: torch_stand_4
+    21300010: torch_stand_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blood_explosion_0
+      name: torch_stand_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac3b0abf6ae15e49a92985c30080bcb
+      spriteID: 3f629842b5234e046b7b2ec837248779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_1
+      name: torch_stand_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 40
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,19 +157,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf3869146fd51045836476ab807e352
+      spriteID: 80659321d76d2f846871a301577a0d1f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_2
+      name: torch_stand_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,19 +177,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060667a9785ce9847baa26998ea7c448
+      spriteID: 85cbfdaa9d1fe984ba3e1b8706f308f0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_3
+      name: torch_stand_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 120
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,39 +197,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ad412f2295e8f54c84406b45ee91b1f
+      spriteID: 19f7190a75f95cf4aacddf2b8c496f4b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa5f70a04cbcb8241ba75994960acf00
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_5
+      name: torch_stand_4
       rect:
         serializedVersion: 2
         x: 160
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,19 +217,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ce6392ce416459fc7b0364499f2d
+      spriteID: d1c78fe01b91d984dbcaf4125f7fcab3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_6
+      name: torch_stand_5
       rect:
         serializedVersion: 2
-        x: 192
+        x: 200
         y: 0
-        width: 32
-        height: 32
+        width: 40
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,47 +237,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69d5ef9c1286f3c47bf25617bbb2d72e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a30143bf6f2a464db8fec5adf0860e5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f9fee6708896d947938cff7060a1e1a
+      spriteID: 3f79a9d1e748b1d4aa9a2d221b44a98b
       vertices: []
       indices: 
       edges: []
@@ -308,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6515786644fbf6f43871a64a034dd602
+    spriteID: 5f79e1b5358beeb439bbc21df1119880
     vertices: []
     indices: 
     edges: []

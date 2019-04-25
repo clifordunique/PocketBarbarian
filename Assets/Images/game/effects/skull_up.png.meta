@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: 13f9680617cb13f41a75492cb7593e7c
+guid: c6e7ef859262115439bfdc4bfa27fa9d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blood_explosion_0
-    21300002: blood_explosion_1
-    21300004: blood_explosion_2
-    21300006: blood_explosion_3
-    21300008: blood_explosion_4
-    21300010: blood_explosion_5
-    21300012: blood_explosion_6
-    21300014: blood_explosion_7
-    21300016: blood_explosion_8
+    21300000: skull_up_0
+    21300002: skull_up_1
+    21300004: skull_up_2
+    21300006: skull_up_3
+    21300008: skull_up_4
+    21300010: skull_up_5
+    21300012: skull_up_6
+    21300014: skull_up_7
+    21300016: skull_up_8
+    21300018: skull_up_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,181 +127,201 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blood_explosion_0
+      name: skull_up_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac3b0abf6ae15e49a92985c30080bcb
+      spriteID: 0bf2132bca9cc2c44ae040a2cee4ddb9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_1
+      name: skull_up_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf3869146fd51045836476ab807e352
+      spriteID: 618906c3330db584c9c24898e51bb8b2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_2
+      name: skull_up_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060667a9785ce9847baa26998ea7c448
+      spriteID: 9462dbbe3d77d7b49b806184c904143f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_3
+      name: skull_up_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ad412f2295e8f54c84406b45ee91b1f
+      spriteID: 5d1d7ffa4a7b150498e65586442d700c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_4
+      name: skull_up_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5f70a04cbcb8241ba75994960acf00
+      spriteID: 7131272b667a7be42aa23be08f7dcd09
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_5
+      name: skull_up_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ce6392ce416459fc7b0364499f2d
+      spriteID: ce3e131194fb2384895e4a3a675a3c29
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_6
+      name: skull_up_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69d5ef9c1286f3c47bf25617bbb2d72e
+      spriteID: a92ddd3248b41984cbf8da46ecfe4e38
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_7
+      name: skull_up_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a30143bf6f2a464db8fec5adf0860e5
+      spriteID: 09aefe40c9c5f6047a9925949aaddbb5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_8
+      name: skull_up_8
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f9fee6708896d947938cff7060a1e1a
+      spriteID: 075a98f5e5d61e849aae3b1e9ecee3d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skull_up_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e9c625eb97b71043b5e82e5100720aa
       vertices: []
       indices: 
       edges: []
@@ -308,7 +329,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6515786644fbf6f43871a64a034dd602
+    spriteID: b8a86958fa3e09a4eab3ba934f759bd7
     vertices: []
     indices: 
     edges: []

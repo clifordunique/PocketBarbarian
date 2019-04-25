@@ -12,9 +12,13 @@ public class HitBox : MonoBehaviour {
     public DAMAGE_TYPE damageType;
     public bool instakill = false;
 
+    [HideInInspector]
+    public BoxCollider2D boxCollider;
+
     private IActorController actorController;
 
     public void Start() {
+        boxCollider = GetComponent<BoxCollider2D>();
         actorController = GetComponent<IActorController>();
         if (actorController == null && transform.parent != null) {
             // search in parent

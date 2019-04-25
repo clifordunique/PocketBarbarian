@@ -10,12 +10,11 @@ public class CollectablePoints: AbstractCollectable {
         PlayerStatistics.GetInstance().ModifyPoints(points.value);
 
         if (collectableNumberEffect != null) {
-            /*GameObject effect = InstantiateEffect(collectableNumberEffect);
+            GameObject effect = InstantiateEffect(collectableNumberEffect);
             ShowSimpleText simpelText = effect.GetComponentInChildren<ShowSimpleText>();
             if (simpelText != null) {
                 simpelText.text = "+" + points.value;
-                Debug.Log("SIMPLETEXT FOUND!");
-            } */
+            } 
         }
     }
 }

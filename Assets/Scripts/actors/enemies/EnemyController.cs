@@ -36,6 +36,9 @@ public class EnemyController : MonoBehaviour, IActorController {
     public HitBox.DAMAGE_TYPE lastDamageType;
 
     [HideInInspector]
+    public HitBox hitBox;
+
+    [HideInInspector]
     public SpriteRenderer spriteRenderer;
 
     public void Start() {
@@ -44,7 +47,7 @@ public class EnemyController : MonoBehaviour, IActorController {
         aiBehaviour = GetComponent<AiBehaviour>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        hitBox = GetComponentInChildren<HitBox>();
         SetDirection(facingDirectionX);
 
         if (aiBehaviour) {
@@ -92,13 +95,13 @@ public class EnemyController : MonoBehaviour, IActorController {
             if (isInterruptAction) {
                 // interruptAction finished
                 currentAction = aiBehaviour.GetCurrentAction();
-                isInterruptAction = false;
             } else {
                 currentAction = aiBehaviour.GetNextAction();
             }
         } else {
             currentAction = defaultAction;
         }
+        isInterruptAction = false;
     }
 
     private void Update() {

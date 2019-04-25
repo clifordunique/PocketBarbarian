@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 13f9680617cb13f41a75492cb7593e7c
+guid: c33c2b7d53db3ce41a45eb8bfb21411a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blood_explosion_0
-    21300002: blood_explosion_1
-    21300004: blood_explosion_2
-    21300006: blood_explosion_3
-    21300008: blood_explosion_4
-    21300010: blood_explosion_5
-    21300012: blood_explosion_6
-    21300014: blood_explosion_7
-    21300016: blood_explosion_8
+    21300000: goldpile_0
+    21300002: goldpile_1
+    21300004: goldpile_2
+    21300006: goldpile_3
+    21300008: goldpile_4
+    21300010: goldpile_5
+    21300012: goldpile_6
+    21300014: goldpile_7
+    21300016: goldpile_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blood_explosion_0
+      name: goldpile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,13 +140,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac3b0abf6ae15e49a92985c30080bcb
+      spriteID: be9546988527d4d4bb531fd481416801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_1
+      name: goldpile_1
       rect:
         serializedVersion: 2
         x: 32
@@ -160,13 +160,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf3869146fd51045836476ab807e352
+      spriteID: 93d27df0920d6d142956f9fbfac22dce
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_2
+      name: goldpile_2
       rect:
         serializedVersion: 2
         x: 64
@@ -180,13 +180,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060667a9785ce9847baa26998ea7c448
+      spriteID: 7cddfde1cb211bb45b441e816af3e6e1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_3
+      name: goldpile_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,13 +200,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ad412f2295e8f54c84406b45ee91b1f
+      spriteID: ab51f1f4e15db424389b42dac17f9d84
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_4
+      name: goldpile_4
       rect:
         serializedVersion: 2
         x: 128
@@ -220,13 +220,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5f70a04cbcb8241ba75994960acf00
+      spriteID: 6174f2f27dc5d074bb51f01cbf8c9ab2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_5
+      name: goldpile_5
       rect:
         serializedVersion: 2
         x: 160
@@ -240,13 +240,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ce6392ce416459fc7b0364499f2d
+      spriteID: 9fba9f6edfdc2304291756f98146db6a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_6
+      name: goldpile_6
       rect:
         serializedVersion: 2
         x: 192
@@ -260,13 +260,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69d5ef9c1286f3c47bf25617bbb2d72e
+      spriteID: cb1c53bb507495c4591df4bb8fc36102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_7
+      name: goldpile_7
       rect:
         serializedVersion: 2
         x: 224
@@ -280,13 +280,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a30143bf6f2a464db8fec5adf0860e5
+      spriteID: 77a353dc106364943b25e632aca0600c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_8
+      name: goldpile_8
       rect:
         serializedVersion: 2
         x: 256
@@ -300,7 +300,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f9fee6708896d947938cff7060a1e1a
+      spriteID: 36ef62fd03dec7b46a141fa4812fd615
       vertices: []
       indices: 
       edges: []
@@ -308,7 +308,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6515786644fbf6f43871a64a034dd602
+    spriteID: 649cb992c8f37fd49a3bdab4959d9ffb
     vertices: []
     indices: 
     edges: []

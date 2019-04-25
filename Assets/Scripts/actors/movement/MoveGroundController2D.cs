@@ -29,6 +29,7 @@ public class MoveGroundController2D: MoveController2D {
     [Header("Push Settings")]
     public float pushForce = 25F;
     public float pushDuration = 0.15F;
+    public bool jumpOnPush = false;
 
     [HideInInspector]
     public Vector3 velocity;
@@ -100,24 +101,24 @@ public class MoveGroundController2D: MoveController2D {
 		}
 	}
     
-    public void OnPush(float pushDirectionX, float pushForce, float pushDuration, float pushDirectionY = 0) {
+    public void OnPush(float pushDirectionX, float pushForce, float pushDuration) {
         isPushed = true;
         targetVelocityX = pushDirectionX * pushForce;
-        if (pushDirectionY > 0) {
+        if (jumpOnPush) {
             velocity.y = minJumpVelocity;
         }
         endTimePush = Time.timeSinceLevelLoad + pushDuration;
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY) {
-        OnPush(pushDirectionX, pushForce, pushDuration, pushDirectionY);
+        OnPush(pushDirectionX, pushForce, pushDuration);
     }
 
     public void OnPush(float pushDirectionX, float pushDirectionY, bool dash) {
         if (dash) {
-            OnPush(pushDirectionX, pushForce * 2, pushDuration, pushDirectionY);
+            OnPush(pushDirectionX, pushForce * 2, pushDuration);
         } else {
-            OnPush(pushDirectionX, pushForce, pushDuration, pushDirectionY);
+            OnPush(pushDirectionX, pushForce, pushDuration);
         }
     }
 

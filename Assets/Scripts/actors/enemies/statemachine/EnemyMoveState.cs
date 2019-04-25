@@ -23,9 +23,10 @@ public class EnemyMoveState : AbstractEnemyState {
             return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
+        float directionX = lastDirX;
         if (enemyController.currentAction.HasMoveTarget()) {
 
-            float directionX = moveController.MoveTo(enemyController.currentAction.moveTarget);
+            directionX = moveController.MoveTo(enemyController.currentAction.moveTarget);
             if (directionX == 0) { // angekommen              
                 moveController.StopMoving();
                 enemyController.RequestNextAction();
@@ -43,11 +44,11 @@ public class EnemyMoveState : AbstractEnemyState {
                     lastDirX = 1;
                 }
             }
-            float directionX = moveController.MoveTo(new Vector3(enemyController.transform.position.x + lastDirX, enemyController.transform.position.y, enemyController.transform.position.z));
-            enemyController.SetDirection(directionX);
-
-
+            directionX = moveController.MoveTo(new Vector3(enemyController.transform.position.x + lastDirX, enemyController.transform.position.y, enemyController.transform.position.z));
+            
         }
+
+        enemyController.SetDirection(directionX);
         return null;
     }
 

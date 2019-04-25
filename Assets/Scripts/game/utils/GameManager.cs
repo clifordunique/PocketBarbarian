@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public float waitTimeRestartOnDeath = 0F;
     public float waitTimeLevelComplete = 0F;
+    public GameObject canvas;
 
     private LoadSaveGame loadSaveGame;
     private LoadSavePlayer loadSavePlayer;
@@ -27,6 +28,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Awake() {
+        canvas.SetActive(true);
+    }
+
     // called first
     void OnEnable() {
         _instance = this;
@@ -39,7 +44,7 @@ public class GameManager : MonoBehaviour
         FadeCanvasEffect.GetInstance().FadeInSceneCanvas();
     }
 
-    private void Start() {     
+    private void Start() {
         loadSaveGame = GetComponent<LoadSaveGame>();
         loadSavePlayer = GetComponent<LoadSavePlayer>();
         menueManager = GetComponent<InGameMenueManager>();

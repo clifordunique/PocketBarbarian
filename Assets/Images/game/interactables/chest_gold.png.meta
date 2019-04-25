@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: 13f9680617cb13f41a75492cb7593e7c
+guid: 927b3470193a3f34eae30813cb889704
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blood_explosion_0
-    21300002: blood_explosion_1
-    21300004: blood_explosion_2
-    21300006: blood_explosion_3
-    21300008: blood_explosion_4
-    21300010: blood_explosion_5
-    21300012: blood_explosion_6
-    21300014: blood_explosion_7
-    21300016: blood_explosion_8
+    21300000: chest_gold_0
+    21300002: chest_gold_1
+    21300004: chest_gold_2
+    21300006: chest_gold_3
+    21300008: chest_gold_4
+    21300010: chest_gold_5
+    21300012: chest_gold_6
+    21300014: chest_gold_7
+    21300016: chest_gold_8
+    21300018: chest_gold_9
+    21300020: chest_gold_10
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blood_explosion_0
+      name: chest_gold_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac3b0abf6ae15e49a92985c30080bcb
+      spriteID: 258294bf6a72bf64c8f7fdcc2486c291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_1
+      name: chest_gold_1
       rect:
         serializedVersion: 2
         x: 32
@@ -160,13 +162,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf3869146fd51045836476ab807e352
+      spriteID: f431c2cf9ceba774db30d4c52867668e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_2
+      name: chest_gold_2
       rect:
         serializedVersion: 2
         x: 64
@@ -180,13 +182,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060667a9785ce9847baa26998ea7c448
+      spriteID: 91e657c86b85ceb4885439688e7cc489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_3
+      name: chest_gold_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,13 +202,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ad412f2295e8f54c84406b45ee91b1f
+      spriteID: 34bb930349c9a8243b8fa634f448d942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_4
+      name: chest_gold_4
       rect:
         serializedVersion: 2
         x: 128
@@ -220,13 +222,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5f70a04cbcb8241ba75994960acf00
+      spriteID: eefef27f208a812459b297ecd82eafb0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_5
+      name: chest_gold_5
       rect:
         serializedVersion: 2
         x: 160
@@ -240,13 +242,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f48ce6392ce416459fc7b0364499f2d
+      spriteID: 2ab02a4fbd7b62849ac8986d44c862e3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_6
+      name: chest_gold_6
       rect:
         serializedVersion: 2
         x: 192
@@ -260,13 +262,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69d5ef9c1286f3c47bf25617bbb2d72e
+      spriteID: bec4bbf7ff976e84f9a738a8d65e9dac
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_7
+      name: chest_gold_7
       rect:
         serializedVersion: 2
         x: 224
@@ -280,13 +282,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a30143bf6f2a464db8fec5adf0860e5
+      spriteID: 4279c1a7d4622e8428b9fe8b9827d01e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_8
+      name: chest_gold_8
       rect:
         serializedVersion: 2
         x: 256
@@ -300,7 +302,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f9fee6708896d947938cff7060a1e1a
+      spriteID: 1ab337daf8440484987612fa288d3b98
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest_gold_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4fddac400191e4f9591a56f1d87cdf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest_gold_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9354b15f1cf904d93c5453b3748f70
       vertices: []
       indices: 
       edges: []
@@ -308,7 +350,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6515786644fbf6f43871a64a034dd602
+    spriteID: 512eb1abc47e3fc43b81cd0b04fd3b27
     vertices: []
     indices: 
     edges: []

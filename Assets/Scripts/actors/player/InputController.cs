@@ -144,7 +144,7 @@ public class InputController : MonoBehaviour {
             lastDirectionY = Input.GetAxisRaw("Vertical");
             timeLookAroundStart = Time.timeSinceLevelLoad;
         }
-        if (lastDirectionY != 0 && Input.GetAxisRaw("Vertical") == lastDirectionY) {
+        if (lastDirectionY != 0 && Input.GetAxisRaw("Vertical") == lastDirectionY && PlayerController.GetInstance().moveController.IsGrounded()) {
             if (timeLookAroundStart + timeLookAroundActivate < Time.timeSinceLevelLoad) {
                 lookAroundEnabled = true;
             }

@@ -1,16 +1,12 @@
 fileFormatVersion: 2
-guid: 13f9680617cb13f41a75492cb7593e7c
+guid: 4fdece08e2a5fcd4db8ffa4276f7c601
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blood_explosion_0
-    21300002: blood_explosion_1
-    21300004: blood_explosion_2
-    21300006: blood_explosion_3
-    21300008: blood_explosion_4
-    21300010: blood_explosion_5
-    21300012: blood_explosion_6
-    21300014: blood_explosion_7
-    21300016: blood_explosion_8
+    21300000: fountain_0
+    21300002: fountain_1
+    21300004: fountain_2
+    21300006: fountain_3
+    21300008: fountain_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blood_explosion_0
+      name: fountain_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,13 +136,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac3b0abf6ae15e49a92985c30080bcb
+      spriteID: 947f240799c594644a8869ecd762c79b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_1
+      name: fountain_1
       rect:
         serializedVersion: 2
         x: 32
@@ -160,13 +156,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf3869146fd51045836476ab807e352
+      spriteID: 04bf6f4ef436617479bde7b19467010e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_2
+      name: fountain_2
       rect:
         serializedVersion: 2
         x: 64
@@ -180,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060667a9785ce9847baa26998ea7c448
+      spriteID: a4937cc6fc4f8c04d8f4eb6108ce010b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_3
+      name: fountain_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,13 +196,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ad412f2295e8f54c84406b45ee91b1f
+      spriteID: 31dfc1cf175c3cd4faa8687f29b24906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood_explosion_4
+      name: fountain_4
       rect:
         serializedVersion: 2
         x: 128
@@ -220,87 +216,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5f70a04cbcb8241ba75994960acf00
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f48ce6392ce416459fc7b0364499f2d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69d5ef9c1286f3c47bf25617bbb2d72e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a30143bf6f2a464db8fec5adf0860e5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blood_explosion_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f9fee6708896d947938cff7060a1e1a
+      spriteID: 3e0ca619eba56604ca9cee3e88595b17
       vertices: []
       indices: 
       edges: []
@@ -308,7 +224,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6515786644fbf6f43871a64a034dd602
+    spriteID: 9a45677353f289c4d93abdba8b1675be
     vertices: []
     indices: 
     edges: []

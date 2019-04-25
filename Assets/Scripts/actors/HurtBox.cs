@@ -131,16 +131,13 @@ public class HurtBox : MonoBehaviour {
 
     private void ExecuteEffects(Collider2D collider2d, Vector3 hitDirection, bool instakill, int damage, HitBox.DAMAGE_TYPE damageType) {        
 
-        if (currentHealth <= 0) {
-            if (destroyOnDeathImmediate) {
-                DeathAction(hitDirection.x);
-            }            
-        } else {
-            if (prefabHitEffect != null) {                
-                InstantiateEffect(prefabHitEffect, hitDirection.x, transform.position);
-            }
-        }        
-
+        if (currentHealth <= 0 && destroyOnDeathImmediate) {
+            DeathAction(hitDirection.x);
+        }            
+        if (prefabHitEffect != null) {                
+            InstantiateEffect(prefabHitEffect, hitDirection.x, transform.position);
+        }
+        
         // Spawn Effect on hit
         if (currentHealth > 0 && lootController != null) {
             lootController.SpawnChildrenOnHit();

@@ -13,7 +13,7 @@ public class Attack1State : AbstractState {
     private bool activateCombo2 = false;
 
     private bool hitSomething = false;
-    private float moveTime1 = 0.2F;
+    private float moveTime1 = 0.25F;
     private float moveTime2 = 0.25F;
     private float checkMoveStarted1;
     private float checkMoveStarted2;
@@ -55,7 +55,6 @@ public class Attack1State : AbstractState {
         // combo1 move
         if (activateCombo1 && animCombo1 && !animCombo2) {
             if (checkMoveStarted1 > Time.timeSinceLevelLoad) {
-                Debug.Log("Moveit");
                Move(playerController.dirX, playerController.input.GetDirectionY());
             } else {
                 Move(0, playerController.input.GetDirectionY());
@@ -71,7 +70,7 @@ public class Attack1State : AbstractState {
                 Move(0, playerController.input.GetDirectionY());
                 checkMoveStarted2 = 0;
                 if (!effectPlayed) {
-                    playerController.InstantiateEffect(playerController.prefabEffectGroundHitOneSided, playerController.dirX * 0.75F);
+                    //playerController.InstantiateEffect(playerController.prefabEffectGroundHitOneSided, playerController.dirX * 0.75F);
                     effectPlayed = true;
                 }
             }
@@ -103,7 +102,7 @@ public class Attack1State : AbstractState {
             
         }
         if (parameter == "shake") {
-            CameraFollow.GetInstance().ShakeSmall();
+            //CameraFollow.GetInstance().ShakeSmall();
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;

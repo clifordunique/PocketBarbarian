@@ -5,11 +5,14 @@ using UnityEngine;
 public class EnemyHitState : AbstractEnemyState {
 
     private float startTime;
+    private EnemyAction.ACTION_EVENT nextAction;
 
     public EnemyHitState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
+        Debug.Log("IN ON HIT!");
+
         startTime = Time.timeSinceLevelLoad;
 
         if (enemyController.animator) {
@@ -18,6 +21,7 @@ public class EnemyHitState : AbstractEnemyState {
 
         if (enemyController.currentAction.HasHitTarget()) {
             Vector3 hitDirection = Utils.GetHitDirection(enemyController.currentAction.hitTarget, enemyController.transform);
+
             if (enemyController.lastDamageType == HitBox.DAMAGE_TYPE.DASH) {
                 moveController.OnPush((hitDirection.x == 0F ? -1F : hitDirection.x), hitDirection.y, true);
             } else {
@@ -25,14 +29,17 @@ public class EnemyHitState : AbstractEnemyState {
             }
         }
 
-        enemyController.isInterruptAction = false;
-        
+        enemyController.hitBox.boxCollider.enabled = false;
+
+        enemyController.RequestNextAction();
+        nextAction = enemyController.currentAction.actionEvent;        
     }
 
     public override AbstractEnemyState UpdateState() {
 
-        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.HIT) {
+        if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.HIT && enemyController.isInterruptAction) {
             // Interrupt current Action
+            Debug.Log("Interrupt action:" + enemyController.currentAction.actionEvent);
             return GetEnemyState(enemyController.currentAction.actionEvent);
         } else {
             if (enemyController.isInterruptAction) {
@@ -42,17 +49,22 @@ public class EnemyHitState : AbstractEnemyState {
             }
         }
 
-        if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.flashTime) { 
+        if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.flashTime) {
+            Debug.Log("Flashtime zu kurz");
             moveController.StopMoving();
-            enemyController.RequestNextAction();
-            return GetEnemyState(enemyController.currentAction.actionEvent);
+            return GetEnemyState(nextAction);
         }
         return null;
     }
 
     public override void OnExit() {
+        Debug.Log("Hit exit");
         if (enemyController.animator) {
             enemyController.animator.SetBool("HIT", false);
+        }
+
+        if (enemyController.hurtBox.currentHealth > 0) {
+            enemyController.hitBox.boxCollider.enabled = true;
         }
     }
 
