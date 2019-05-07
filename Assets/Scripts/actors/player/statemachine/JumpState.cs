@@ -37,6 +37,10 @@ public class JumpState : AbstractState {
             return new FallingState(playerController);
         }
 
+        if (playerController.input.IsJumpKeyDown()) {
+            playerController.moveController.OnJumpInputDown();
+        }
+
         if (playerController.input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
         }        

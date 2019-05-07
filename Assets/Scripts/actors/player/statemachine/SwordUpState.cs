@@ -7,6 +7,7 @@ public class SwordUpState : AbstractState {
     private bool animationEnded = false;
     private bool animStarted = false;
     private bool startFlash = false;
+    private bool flashExecuted = false;
 
     public SwordUpState(PlayerController playerController) : base(ACTION.SWORD_UP, playerController) {
     }
@@ -34,8 +35,9 @@ public class SwordUpState : AbstractState {
             animStarted = true;
         }
 
-        if (startFlash) {
+        if (startFlash && !flashExecuted) {
             playerController.FlashOutline();
+            flashExecuted = true;
             startFlash = false;
         }
 

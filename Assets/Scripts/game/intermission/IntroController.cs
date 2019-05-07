@@ -70,9 +70,7 @@ public class IntroController : MonoBehaviour {
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        startTime += Time.timeSinceLevelLoad;
-
-        
+        startTime += Time.timeSinceLevelLoad;        
     }
 
     // Update is called once per frame

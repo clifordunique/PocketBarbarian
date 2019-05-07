@@ -89,8 +89,6 @@ public class FallingPlatformController2D : AbstractPlatformController2D
         } else {
             float time = Time.timeSinceLevelLoad;
             if (waitUntil  <= time) {
-
-
                 lastWaitBuffer = (time - waitUntil);
                 
                 isMoving = true;

@@ -165,11 +165,11 @@ public class PlayerStatistics : MonoBehaviour {
             } else {
                 health += healthMod;
             }
-        }        
-        eventHealth.Invoke(maxHealth, health);
+        }
         if (healthMod > 0) {
             PlayerController.GetInstance().FlashOutline();
         }
+        PublishHealth();
     }
 
     public void ModifyPoints(int additionalPoints) {
@@ -186,6 +186,9 @@ public class PlayerStatistics : MonoBehaviour {
         }
         if (keytype == CollectableKeys.KEY_TYPE.TRIANGLE) {
             hasTriangleKey = equip;
+        }
+        if (equip) {
+            PlayerController.GetInstance().FlashOutline();
         }
         eventKey.Invoke(keytype, equip);
     }

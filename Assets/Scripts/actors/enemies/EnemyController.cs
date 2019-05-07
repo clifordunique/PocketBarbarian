@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IActorController {
+public class EnemyController: MonoBehaviour, IActorController {
 
     public EnemyAction defaultAction;
     public float facingDirectionX = 1;
@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour, IActorController {
     public float interval = 0.5F;
     private float lastShot;
 
-    private AbstractEnemyState currentState;    
+    private AbstractEnemyState currentState;
 
     [HideInInspector]
     public EnemyAction currentAction;
@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour, IActorController {
         }
         lastDamageType = damageType;
         currentAction = hitAction;
-        isInterruptAction = true;        
+        isInterruptAction = true;
     }
 
     public void ReactHit() {
@@ -150,5 +150,9 @@ public class EnemyController : MonoBehaviour, IActorController {
         } else {
             spriteRenderer.flipX = false;
         }
+    }
+
+    public void HandleAnimEvent(string parameter) {
+        currentState.HandleAnimEvent(parameter);
     }
 }

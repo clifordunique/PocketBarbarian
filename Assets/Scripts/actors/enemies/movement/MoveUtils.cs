@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveUtils {
 
     public static bool TargetReachedX(Transform transform, Vector3 target) {
-        if (Mathf.Abs(transform.position.x - target.x) <= Constants.WorldUnitsPerPixel()) {
+        if (Mathf.Abs(transform.position.x - target.x) <= Constants.WorldUnitsPerPixel() * 2) {
             return true;
         } else {
             return false;

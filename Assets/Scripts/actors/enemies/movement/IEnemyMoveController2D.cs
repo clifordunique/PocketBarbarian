@@ -9,6 +9,8 @@ public interface IEnemyMoveController2D {
 
     bool IsGrounded();
 
+    bool IsFalling();
+
     void OnJumpInputDown();
 
     void OnPush(float pushDirectionX, float pushDirectionY, bool dash);

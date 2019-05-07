@@ -179,7 +179,7 @@ public class PlayerController: MonoBehaviour, IActorController {
 
     public void FlashOutline() {
         SpriteOutlineEffect so = new SpriteOutlineEffect(spriteRenderer.material, outlineMaterial);
-        StartCoroutine(so.OutlineFlashing(spriteRenderer, 0.75F));
+        StartCoroutine(so.OutlineFlashing(spriteRenderer, 1F));
     }
 
     public void ShootProjectile() {

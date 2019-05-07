@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DyingState : AbstractState {
 
+    private float pitfallTime = 1F;
+    private float startTime = 0F;
     private HitBox.DAMAGE_TYPE damageType;
     private Vector3 hitDirection;
+    private bool die = false;
 
     public DyingState(HitBox.DAMAGE_TYPE damageType, PlayerController playerController) : base(ACTION.DEATH, playerController) {
         this.damageType = damageType;
@@ -13,7 +16,9 @@ public class DyingState : AbstractState {
 
     public override void OnEnter() {
 
-        if (damageType == HitBox.DAMAGE_TYPE.WATER) {
+        startTime = Time.timeSinceLevelLoad;
+
+        if (damageType == HitBox.DAMAGE_TYPE.WATER || damageType == HitBox.DAMAGE_TYPE.PIT) {
             CameraFollow.GetInstance().enabled = false;
         }
 
@@ -40,13 +45,16 @@ public class DyingState : AbstractState {
     }
 
     public override AbstractState UpdateState() {
+        if (die || (damageType == HitBox.DAMAGE_TYPE.PIT && (startTime + pitfallTime) < Time.timeSinceLevelLoad) ) {
+            GameManager.GetInstance().PlayerDied();
+        }
         // can not be interrupted
         return null;
     }
 
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
-            GameManager.GetInstance().PlayerDied();
+            die = true;
         }
     }
 
@@ -55,6 +63,8 @@ public class DyingState : AbstractState {
         switch (damageType) {
             case HitBox.DAMAGE_TYPE.WATER:
                 return DYING_DROWN_PARAM;
+            case HitBox.DAMAGE_TYPE.PIT:
+                return FAST_FALLING_PARAM;
             default:
                 return DYING_PARAM;
         }

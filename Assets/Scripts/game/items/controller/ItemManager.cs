@@ -57,15 +57,10 @@ public class ItemManager
     }
 
     public void LoadShopItems() {
-        Debug.Log("LOAD SHOP ITEMS 0");
         XmlSerializer serializer = new XmlSerializer(typeof(ItemCollection));
         TextAsset textAsset = Resources.Load("Items/AllItems") as TextAsset;
-        Debug.Log("LOAD SHOP ITEMS 1");
         Stream stream = new MemoryStream(textAsset.bytes);
-        Debug.Log("LOAD SHOP ITEMS 2");
         container = serializer.Deserialize(stream) as ItemCollection;
-        Debug.Log("LOAD SHOP ITEMS 3");
-        Debug.Log("ItemType:" + container.items[0].itemType);
         stream.Close();
     }
 }

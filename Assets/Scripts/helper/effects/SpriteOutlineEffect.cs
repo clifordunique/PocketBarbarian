@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SpriteOutlineEffect {
 
-    float flashInterval = 0.08f;
+    float flashInterval = 0.1F;//0.08f;
     Material defaultMaterial;
     Material outlineMaterial;
 
 
     public SpriteOutlineEffect(Material defaultMaterial, Material outlineMaterial) {
+        Debug.Log("Default Material:" + defaultMaterial.name);
+        Debug.Log("Outline Material:" + outlineMaterial.name);
         this.defaultMaterial = defaultMaterial; 
         this.outlineMaterial = outlineMaterial;
     }
@@ -27,6 +29,7 @@ public class SpriteOutlineEffect {
 
     public IEnumerator OutlineFlashing(SpriteRenderer spriteRenderer, float time) {
         float flashCount = Mathf.Round(time / flashInterval);
+        Debug.Log("FlashCount:" + flashCount);
         for (int i = 0; i < flashCount; i++) {
             // switch color
             if (i % 2 == 0) {

@@ -104,6 +104,10 @@ public class EnemyMoveAirController2D : MonoBehaviour, IEnemyMoveController2D {
         return false;
     }
 
+    public bool IsFalling() {
+        return false;
+    }
+
     public void OnJumpInputDown() {
         //no jump in flight
     }
