@@ -19,9 +19,7 @@ public class AxeProjectile : Projectile {
 
     public override void OnCollisionEnter2D(Collision2D collision) {
         // react to hit
-        if (reactLayers == (reactLayers | (1 << collision.gameObject.layer))) {
-
-            Debug.Log("Axe hit something!");
+        if (reactLayers == (reactLayers | (1 << collision.gameObject.layer))) {            
             // hit something. 
             Vector2 hitPosition = transform.position;
 

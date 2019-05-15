@@ -19,7 +19,6 @@ public class Attack2State : AbstractState {
 
     public override void OnEnter() {
         playerController.animator.SetBool(ATTACK2_PARAM, true);
-        Debug.Log("Enter MoveAttack");
     }
 
     public override void OnExit() {

@@ -173,7 +173,6 @@ public class SquishPlatformController2D : AbstractPlatformController2D
 
     private void ActionCompleteEffect() {
         CameraFollow.GetInstance().ShakeSmall();
-        Debug.Log("MoveVector:" + moveVector.x + " / " + moveVector.y);
         Vector3 effectPosition1 = BoundUtils.GetMinMaxFromBoundVector(moveVector, myCollider.bounds, true, +0.2F );
         Vector3 effectPosition2 = BoundUtils.GetMinMaxFromBoundVector(moveVector, myCollider.bounds, false, -0.2F );
         InstantiateEffect(dustEffect, effectPosition1, BoundUtils.GetEffectRotation(moveVector, false));

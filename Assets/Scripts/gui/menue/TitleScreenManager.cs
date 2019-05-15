@@ -74,7 +74,6 @@ public class TitleScreenManager : AbstractMenueManager {
 
         // Menue Items initialisieren
         //menueItems = FindObjectsOfType<MenueItem>();
-        Debug.Log("Found menue items: " + menueItems.Length);
         foreach (MenueItem menueItem in menueItems) {
             float width = menueItem.GetWidth();
             SetMenueItemsPosition(menueItem.gameObject, 0.0f, -(width / 2));
@@ -129,7 +128,6 @@ public class TitleScreenManager : AbstractMenueManager {
             yield return new WaitForEndOfFrame();
         }
         Destroy(footer.gameObject);
-        Debug.Log("Jetzt kommt das main menue!");
         StartCoroutine(ShowItems());
     }
 

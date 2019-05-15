@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
 
         // Pause / Ingame Manue handling
         if (Time.timeScale != 0 && !menueManager.showMenue && (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))) {
-            Debug.Log("Show Menue!" + Time.timeScale);
             StartCoroutine(ShowMenue());
         }
     }

@@ -49,7 +49,6 @@ public class MenueItemManager
             selectedIndex++;
         }
         DeselectAll();
-        Debug.Log("NextMenue " + selectedIndex);
         menueItemArray[selectedIndex].Select();
     }
 

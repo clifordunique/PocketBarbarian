@@ -5,6 +5,7 @@ TextureImporter:
     21300000: barbarian_landing_0
     21300002: barbarian_landing_1
     21300004: barbarian_landing_2
+    21300006: barbarian_landing_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -134,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7dee2fb59c8efd47ac39126b6ba6880
+      spriteID: ebafe459350daf045bd9168767b0339a
       vertices: []
       indices: 
       edges: []
@@ -154,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83bf70f85cae9eb438f7aa6092705830
+      spriteID: 1924675095c35544388c4953cd2170c5
       vertices: []
       indices: 
       edges: []
@@ -174,7 +175,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3c8fd2660f0141428dd5eb9ff131523
+      spriteID: 76a386d92e3612e409b82de0bc9c8701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_landing_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09fbf226b317cb408b936ec394c5fdd
       vertices: []
       indices: 
       edges: []

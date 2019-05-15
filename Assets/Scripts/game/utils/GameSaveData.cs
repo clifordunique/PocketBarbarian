@@ -1,22 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
+
+[System.Serializable]
+public class LevelDictionary: SerializableDictionaryBase<string, LevelSaveData> { }
 
 [System.Serializable]
 public class GameSaveData
 {
-    public string[] collectableIds;
-    public string[] activatedSavePoints;
-    public float spawnPosX;
-    public float spawnPosY;
+    public string currentLevel;
 
-    public Vector3 GetSpawnPosition() {
-        Vector3 v = new Vector3(spawnPosX, spawnPosY, 0);
-        return v;
+    [SerializeField]
+    public LevelDictionary levelDict = new LevelDictionary();
+
+    public LevelSaveData GetCurrentLevelData() {
+        return levelDict[currentLevel];
     }
 
-    public void SetSpawnPosition(Vector3 v) {
-        spawnPosX = v.x;
-        spawnPosY = v.y;
+    public LevelSaveData GetLevelDataFor(string level) {
+        if (levelDict.ContainsKey(level)) {
+            return levelDict[level];
+        } else {
+            return null;
+        }
+    }
+
+    public void SetCurrentLevelData(LevelSaveData levelData) {
+        levelDict[currentLevel] = levelData;
     }
 }

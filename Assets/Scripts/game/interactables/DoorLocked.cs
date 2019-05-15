@@ -9,8 +9,6 @@ public class DoorLocked : AbstactLockedInteractable {
     public Sprite closedDoor;
     public Sprite openDoor;    
     public DoorLocked otherDoor;
-    public Animator fadeAnimator;
-    public Image uiImage;
     public float waitOpenTime;
  
     [HideInInspector]
@@ -60,9 +58,9 @@ public class DoorLocked : AbstactLockedInteractable {
 
 
     IEnumerator FadeOut() {
-        fadeAnimator.SetBool("FADE_IN", false);
-        fadeAnimator.SetBool("FADE_OUT", true);
-        yield return new WaitUntil(()=> uiImage.color.a == 1);
+        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
+        fe.FadeOutCanvas();
+        yield return new WaitUntil(() => fe.fadeComplete);
         Teleport();
     }
 
@@ -82,9 +80,10 @@ public class DoorLocked : AbstactLockedInteractable {
     IEnumerator FadeIn(CameraFollow cf, float verticalSmoothTimeOrigin) {
         otherDoor.OpenDoor();
         cf.Init();
-        fadeAnimator.SetBool("FADE_OUT", false);
-        fadeAnimator.SetBool("FADE_IN", true);
-        yield return new WaitUntil(() => uiImage.color.a == 0);
+
+        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
+        fe.FadeInCanvas();
+        yield return new WaitUntil(() => fe.fadeComplete);
 
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
         inAnimation = false;

@@ -11,7 +11,6 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnEnter() {
-        Debug.Log("IN ON HIT!");
 
         startTime = Time.timeSinceLevelLoad;
 
@@ -39,18 +38,15 @@ public class EnemyHitState : AbstractEnemyState {
 
         if (enemyController.currentAction.actionEvent != EnemyAction.ACTION_EVENT.HIT && enemyController.isInterruptAction) {
             // Interrupt current Action
-            Debug.Log("Interrupt action:" + enemyController.currentAction.actionEvent);
             return GetEnemyState(enemyController.currentAction.actionEvent);
         } else {
             if (enemyController.isInterruptAction) {
                 // erneuter Hit!
-                Debug.Log("erneuter HIT!");
                 return new EnemyHitState(enemyController);
             }
         }
 
         if ((Time.timeSinceLevelLoad - startTime) > enemyController.hurtBox.flashTime) {
-            Debug.Log("Flashtime zu kurz");
             moveController.StopMoving();
             return GetEnemyState(nextAction);
         }
@@ -58,7 +54,6 @@ public class EnemyHitState : AbstractEnemyState {
     }
 
     public override void OnExit() {
-        Debug.Log("Hit exit");
         if (enemyController.animator) {
             enemyController.animator.SetBool("HIT", false);
         }

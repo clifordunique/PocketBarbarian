@@ -5,10 +5,12 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Threading;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LoadSaveGame: MonoBehaviour
 {
-    private GameSaveData lastSaveData;
+    private GameSaveData lastSaveData = new GameSaveData();
     private string path;
 
     public void Awake() {
@@ -16,33 +18,34 @@ public class LoadSaveGame: MonoBehaviour
     }
 
 
-    public void Delete() {
-        // Temporary
-        if (File.Exists(path)) {
-            File.Delete(path);
-        }
-    }
 
+    //--------------------------------------------------------------------------------------------------
+    //-- LOAD
+    //--------------------------------------------------------------------------------------------------
     public void Load() {
         if (File.Exists(path)) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(path, FileMode.Open);
-            GameSaveData saveData = (GameSaveData)bf.Deserialize(file);
+            lastSaveData = (GameSaveData)bf.Deserialize(file);
             file.Close();
-
-            
-            ActivateSavePoints(saveData);
-            DeleteCollectables(saveData);
-
-            SetSpawnPosition(saveData);
+            Debug.Log("Current Level:" + lastSaveData.currentLevel);
+            string level = SceneManager.GetActiveScene().name;
+            LevelSaveData levelData = lastSaveData.GetLevelDataFor(level);
+            if (levelData == null) {
+                Debug.Log("Level Data null");
+            } else {
+                Debug.Log("Level Data found!");
+                ActivateSavePoints(levelData);
+                DeleteCollectables(levelData);
+                SetSpawnPosition(levelData);
+                SkipCutScenes(levelData);
+            }
         }
     }
 
-    private void SetSpawnPosition(GameSaveData saveData) {
-        PlayerController.GetInstance().transform.position = saveData.GetSpawnPosition();
-    }
 
-    private void ActivateSavePoints(GameSaveData saveData) {
+
+    private void ActivateSavePoints(LevelSaveData saveData) {
         SavePoint[] currentSavePoints = FindObjectsOfType<SavePoint>();
         foreach (SavePoint currentSavePoint in currentSavePoints) {
             string uniqueId = GetUniqueId(currentSavePoint.gameObject);
@@ -55,7 +58,7 @@ public class LoadSaveGame: MonoBehaviour
         }
     }
 
-    private void DeleteCollectables(GameSaveData saveData) {
+    private void DeleteCollectables(LevelSaveData saveData) {
         AbstractCollectable[] currentCollectables = FindObjectsOfType<AbstractCollectable>(); 
         foreach(AbstractCollectable currentCollectable in currentCollectables) {
             string uniqueId = GetUniqueId(currentCollectable.gameObject);
@@ -67,7 +70,31 @@ public class LoadSaveGame: MonoBehaviour
             }
         }
     }
-    
+
+    private void SetSpawnPosition(LevelSaveData saveData) {
+        PlayerController.GetInstance().transform.position = saveData.GetSpawnPosition();
+    }
+
+
+    private void SkipCutScenes(LevelSaveData saveData) {
+        AbstractCutSceneController[] cutSceneController = FindObjectsOfType<AbstractCutSceneController>();
+        foreach (AbstractCutSceneController currentCutScene in cutSceneController) {
+            string uniqueId = GetUniqueId(currentCutScene.gameObject);
+            if (uniqueId != "") {
+                if (Array.IndexOf(saveData.finishedCutScenes, uniqueId) != -1) {
+                    // found, so skip this scene
+                    currentCutScene.SkipScene();
+                }
+            }
+        }
+    }
+
+
+
+
+    //--------------------------------------------------------------------------------------------------
+    //-- SAVE
+    //--------------------------------------------------------------------------------------------------
 
     public void Save(SavePoint savePoint) {
         lastSaveData = CreateSaveData(savePoint);
@@ -84,19 +111,23 @@ public class LoadSaveGame: MonoBehaviour
     }
 
     private GameSaveData CreateSaveData(SavePoint savePoint) {
-        GameSaveData saveData = new GameSaveData();
 
+        LevelSaveData levelData = new LevelSaveData();
         // save spawnPoint
-        saveData.SetSpawnPosition(savePoint.GetSpawnPosition());
+        levelData.SetSpawnPosition(savePoint.GetSpawnPosition());
 
         // save active SavePoints
-        saveData.activatedSavePoints = GetAllActiveSavePointsUniqueIds();
+        levelData.activatedSavePoints = GetAllActiveSavePointsUniqueIds();
 
         // get collectables
-        saveData.collectableIds = GetAllCollectablesUniqueIds();
+        levelData.collectableIds = GetAllCollectablesUniqueIds();
 
+        // get cutscenes
+        levelData.finishedCutScenes = GetAllFinishedCutScenesUniqueIds();
 
-        return saveData;
+        lastSaveData.currentLevel = SceneManager.GetActiveScene().name;
+        lastSaveData.SetCurrentLevelData(levelData);
+        return lastSaveData;
     }
 
 
@@ -129,6 +160,30 @@ public class LoadSaveGame: MonoBehaviour
         }
         return new string[0];
     }
+
+
+    private string[] GetAllFinishedCutScenesUniqueIds() {
+        AbstractCutSceneController[] cutScenes = FindObjectsOfType<AbstractCutSceneController>();
+        Debug.Log("Found " + cutScenes.Length + " cutscenes to save...");
+        if (cutScenes != null) {
+            List<string> result = new List<string>();
+            for (int i = 0; i < cutScenes.Length; i++) {
+                AbstractCutSceneController cutScene = cutScenes[i];
+                if (cutScene.finished) {
+                    result.Add(GetUniqueId(cutScene.gameObject));
+                }
+            }
+            return result.ToArray();
+        }
+        return new string[0];
+    }
+
+
+
+    //--------------------------------------------------------------------------------------------------
+    //-- UTILS
+    //--------------------------------------------------------------------------------------------------
+
 
     private string GetUniqueId(GameObject go) {
         UniqueId uid = go.GetComponent<UniqueId>();

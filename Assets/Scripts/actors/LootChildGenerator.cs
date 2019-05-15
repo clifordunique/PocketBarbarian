@@ -27,11 +27,20 @@ public class LootChildGenerator: MonoBehaviour, IChildGenerator  {
         if (lootPackage.random) {
             amount = Random.Range(lootPackage.amountMin, lootPackage.amountMax);
         }
+        StartCoroutine(SpawnTimed(amount, lootPackage));
+//        for (int i = 0; i < amount; i++) {
+//            int pos = Random.Range(0, lootPackage.prefabLootList.Length);
+//            InstantiateEffect(lootPackage.prefabLootList[pos]);
+//        }
+    }
 
+    IEnumerator SpawnTimed(int amount, LootPackage lootPackage) {
         for (int i = 0; i < amount; i++) {
             int pos = Random.Range(0, lootPackage.prefabLootList.Length);
             InstantiateEffect(lootPackage.prefabLootList[pos]);
+            yield return new WaitForSeconds(0.01F);
         }
+        
     }
 
 

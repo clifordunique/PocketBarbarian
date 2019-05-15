@@ -77,7 +77,7 @@ public class FallingPlatformController2D : AbstractPlatformController2D
 
     public override Vector3 CalculatePlatformMovement() {
         Vector3 result = Vector3.zero;
-
+        //Debug.Log("WaitUntil_" + waitUntil);
         if (isMoving) {
             if (isMovingPrewarm) {
                 result = Prewarm();
@@ -93,7 +93,7 @@ public class FallingPlatformController2D : AbstractPlatformController2D
                 
                 isMoving = true;
                 t = 0F;
-                waitUntil = 0F;
+                //waitUntil = 0F;
 
                 if (hitbox) {
                     // enable / disable hitbox
@@ -112,16 +112,16 @@ public class FallingPlatformController2D : AbstractPlatformController2D
     private Vector3 Prewarm() {
         if (prewarmTime <= 0) {
             // Prewarm Start
-            prewarmTime = Time.timeSinceLevelLoad + secondsPrewarm;
+            prewarmTime = waitUntil + secondsPrewarm;
         } else {
             if (prewarmTime <= Time.timeSinceLevelLoad) {
                 // Prewarm finished!
                 isMoving = false;
                 isMovingAction = true;
                 isMovingPrewarm = false;                
-                lastWaitBuffer = (Time.timeSinceLevelLoad - prewarmTime);
+                lastWaitBuffer = (Time.timeSinceLevelLoad - prewarmTime);                
+                waitUntil = prewarmTime + waitTimePrewarmPosition;
                 prewarmTime = 0F;
-                waitUntil = Time.timeSinceLevelLoad + waitTimePrewarmPosition - lastWaitBuffer;
                 // end of Prewarm, endpos immer = startPos!
                 Vector3 pixelPerfectMoveAmount = Utils.MakePixelPerfect(startPos);
                 return pixelPerfectMoveAmount - transform.position;
@@ -222,14 +222,14 @@ public class FallingPlatformController2D : AbstractPlatformController2D
         isMovingPrewarm = false;
 
         if (currentEndpos == endpos) {
-            waitUntil = Time.timeSinceLevelLoad + waitTimeActionPosition - lastWaitBuffer;
+            waitUntil = waitUntil + secondsAction + waitTimeActionPosition;
             currentStartPos = endpos;
             currentEndpos = startPos;
             actionCompleteEffectPlayed = false;
 
         } else {
             isMovingPrewarm = true;
-            waitUntil = Time.timeSinceLevelLoad + waitTimeBasePosition - lastWaitBuffer;
+            waitUntil = waitUntil + secondsBase + waitTimeBasePosition;
             currentStartPos = startPos;
             currentEndpos = endpos;
         }        

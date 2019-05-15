@@ -53,13 +53,13 @@ public class Door: AbstactInteractable {
     }
 
     IEnumerator FadeIn(CameraFollow cf, float verticalSmoothTimeOrigin) {
-        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
-        fe.FadeInCanvas();
-
         otherDoor.OpenDoor();
         cf.Init();
 
+        FadeCanvasEffect fe = FadeCanvasEffect.GetInstance();
+        fe.FadeInCanvas();
         yield return new WaitUntil(() => fe.fadeComplete);
+
         cf.verticalSmoothTime = verticalSmoothTimeOrigin;
         cf.Init();
         inAnimation = false;
