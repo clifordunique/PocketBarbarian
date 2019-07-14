@@ -41,7 +41,7 @@ public class ScrollingBackground : MonoBehaviour {
             if (constantSpeed <= 0) {
                 if (parallaxSpeed < 1) {
                     float diffX = (deltaX * parallaxSpeed);
-                    float diffY = (deltaY * (parallaxSpeed/2));
+                    float diffY = (deltaY * (parallaxSpeed));
                     transform.position += Vector3.right * diffX;
                     transform.position += Vector3.up * diffY;
                 } else {

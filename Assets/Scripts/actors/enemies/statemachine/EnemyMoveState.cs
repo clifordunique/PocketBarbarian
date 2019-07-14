@@ -13,7 +13,7 @@ public class EnemyMoveState : AbstractEnemyState {
         if (enemyController.animator) {
             enemyController.animator.SetBool("MOVE", true);
         }
-        lastDirX = enemyController.facingDirectionX;
+        lastDirX = enemyController.transform.localScale.x;
     }
 
     public override AbstractEnemyState UpdateState() {

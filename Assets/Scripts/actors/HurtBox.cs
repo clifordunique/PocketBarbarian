@@ -71,10 +71,8 @@ public class HurtBox : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
-        // react to hit
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
 
-            
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.transform.GetComponent<HitBox>();
             if (attackerActor) {
@@ -90,7 +88,7 @@ public class HurtBox : MonoBehaviour {
         ReceiveHit(instakill, damage, damageType, null, hitSourcePosition, null);
     }
 
-    public void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, HitBox attackerActor, Vector3 hitSourcePosition, Collider2D collider2d) {
+    public virtual void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, HitBox attackerActor, Vector3 hitSourcePosition, Collider2D collider2d) {
         Vector3 hitDirection = Utils.GetHitDirection(hitSourcePosition, transform);
 
         // water splash effect
@@ -203,7 +201,12 @@ public class HurtBox : MonoBehaviour {
 
     private void FlashSprite(float time) {
         SpriteFlashingEffect effect = new SpriteFlashingEffect();
-        StartCoroutine(effect.DamageFlashing(spriteRenderer, time));
+        if (time >= 1) {
+            StartCoroutine(effect.DamageFlashing(spriteRenderer, time));
+        } else {
+            StartCoroutine(effect.DamageFlashingOnce(spriteRenderer));
+        }
+        
     }
 
 }

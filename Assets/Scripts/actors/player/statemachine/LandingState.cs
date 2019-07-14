@@ -27,7 +27,7 @@ public class LandingState : AbstractState {
         }
 
         if (playerController.DoAttack()) {
-            return new Attack1State(playerController);
+            return new AttackLightState(playerController);
         }
 
         if (playerController.DoThrow()) {

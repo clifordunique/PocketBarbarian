@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyController: MonoBehaviour, IActorController {
 
     public EnemyAction defaultAction;
-    public float facingDirectionX = 1;
     public float randomDelaySeconds = 0;
     private float delayTime = 0;
 
@@ -48,7 +47,6 @@ public class EnemyController: MonoBehaviour, IActorController {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitBox = GetComponentInChildren<HitBox>();
-        SetDirection(facingDirectionX);
 
         if (aiBehaviour) {
             currentAction = aiBehaviour.GetCurrentAction();
@@ -144,11 +142,8 @@ public class EnemyController: MonoBehaviour, IActorController {
     }
 
     public void SetDirection(float dirX) {
-        facingDirectionX = dirX;
-        if (dirX < 0) {
-            spriteRenderer.flipX = true;
-        } else {
-            spriteRenderer.flipX = false;
+        if (transform.localScale.x != dirX && dirX != 0) {
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
     }
 

@@ -14,8 +14,13 @@ public abstract class AbstractState {
     public static string FAST_FALLING_PARAM = "FAST_FALLING";
     public static string JUMPING_ATTACK_PARAM = "JUMPING_ATTACK";
     public static string DASHING_PARAM = "DASHING";
-    public static string ATTACK1_PARAM = "ATTACK1";
-    public static string ATTACK2_PARAM = "ATTACK2";
+    public static string ATTACK_LIGHT_1_PARAM = "ATTACK_LIGHT_1";
+    public static string ATTACK_LIGHT_2_PARAM = "ATTACK_LIGHT_2";
+    public static string ATTACK_HEAVY_1_PARAM = "ATTACK_HEAVY_1";
+    public static string ATTACK_HEAVY_2_PARAM = "ATTACK_HEAVY_2";
+    public static string ATTACK_HEAVY_3_PARAM = "ATTACK_HEAVY_3";
+    public static string ATTACK_SMASH_1_PARAM = "ATTACK_SMASH_1";
+    public static string ATTACK_SMASH_2_PARAM = "ATTACK_SMASH_2";
     public static string ACTION_PARAM = "ACTION";
     public static string ACTION_OUT_PARAM = "ACTION_OUT";
     public static string WALK_OUT_PARAM = "WALK_OUT";
@@ -33,6 +38,7 @@ public abstract class AbstractState {
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
+    public static string EVENT_PARAM_ATTACK_END = "attack_end";
     public static string EVENT_PARAM_THROW = "throw";    
 
     public enum ACTION {NA, SWORD_UP, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING };

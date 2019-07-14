@@ -64,4 +64,10 @@ public class SpriteFlashingEffect {
         }
         normalSprite(spriteRenderer);
     }
+
+    public IEnumerator DamageFlashingOnce(SpriteRenderer spriteRenderer) {
+        whiteSprite(spriteRenderer);
+        yield return new WaitForSeconds(flashIntervalAction);
+        normalSprite(spriteRenderer);
+    }
 }
