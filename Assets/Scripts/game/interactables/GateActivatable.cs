@@ -9,6 +9,8 @@ public class GateActivatable : MonoBehaviour, ITriggerReactor {
     public Vector2 distance;
     public bool biDirectional = false;
     public bool easeInOut = false;
+    public bool onlyMoveOnActived = false;
+    public bool onlyMoveOnDeActived = false;
 
     private Vector3 endpos;
     private Vector3 startPos;
@@ -25,7 +27,9 @@ public class GateActivatable : MonoBehaviour, ITriggerReactor {
 
     public bool TriggerActivated() { 
         if (!isMoving) {
-            StartCoroutine(SmoothMove());
+            if (!onlyMoveOnDeActived) {
+                StartCoroutine(SmoothMove());
+            }
             return true;
         }
         return false;
@@ -33,7 +37,9 @@ public class GateActivatable : MonoBehaviour, ITriggerReactor {
 
     public bool TriggerDeactivated() {
         if (!isMoving) {
-            StartCoroutine(SmoothMove());
+            if (!onlyMoveOnActived) {
+                StartCoroutine(SmoothMove());
+            }
             return true;
         }
         return false;

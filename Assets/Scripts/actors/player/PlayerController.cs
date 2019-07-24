@@ -170,10 +170,7 @@ public class PlayerController: MonoBehaviour, IActorController {
             if (interactable != null && collider.gameObject == interactable) {
                 interactableInRange = false;
                 interactable = null;
-            } else {
-                Debug.Log("Different exit than last enter!");
-            }
-
+            } 
         }
     }
 

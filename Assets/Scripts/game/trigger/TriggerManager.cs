@@ -56,4 +56,11 @@ public class TriggerManager : MonoBehaviour
         }
         return false;
     }
+
+    public bool HasReactors() {
+        if (triggerReactors.Count > 0) {
+            return true;
+        }
+        return false;
+    }
 }

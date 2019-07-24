@@ -29,7 +29,10 @@ public class SimpleLever : AbstactInteractable {
     public override void Activate() {
         if (activated && !permanentDisabled) {
             // deactivate
-            bool startMoving = triggerManager.DeactivateReactors();
+            bool startMoving = true;
+            if (triggerManager.HasReactors()) {
+                startMoving = triggerManager.DeactivateReactors();
+            }
             if (startMoving) {
                 sr.sprite = leverSpriteOff;
                 activated = false;
@@ -37,7 +40,10 @@ public class SimpleLever : AbstactInteractable {
         } else {
             // activate
             if (!permanentDisabled) {
-                bool startMoving = triggerManager.ActivateReactors();
+                bool startMoving = true;
+                if (triggerManager.HasReactors()) {
+                    startMoving = triggerManager.ActivateReactors();
+                }
                 if (startMoving) {
                     sr.sprite = leverSpriteOn;
                     activated = true;
