@@ -7,6 +7,7 @@ public class AiBehaviour : MonoBehaviour {
     
     public bool circular = true;
 
+    public EnemyAction defaultAction;
     private EnemyAction[] actionQueue = null;
     private int currentQueuePosition = 0;
 
@@ -32,7 +33,7 @@ public class AiBehaviour : MonoBehaviour {
         if (currentQueuePosition >= 0 && currentQueuePosition < actionQueue.Length) {
             return actionQueue[currentQueuePosition];
         }
-        return null;
+        return defaultAction;
     }
 
     public virtual EnemyAction GetNextAction() {

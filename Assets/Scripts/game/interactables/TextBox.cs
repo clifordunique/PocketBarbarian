@@ -49,7 +49,7 @@ public class TextBox : MonoBehaviour {
 
         float distanceLeft = (minX - cameraLeft.x);
         float distanceRight = (cameraRight.x - maxX);
-
+        
         if (distanceLeft < 0) {
             // nach rechts verschieben
             favoritePosition = new Vector3(favoritePosition.x + Mathf.Abs(distanceLeft), favoritePosition.y, favoritePosition.z);
@@ -58,7 +58,7 @@ public class TextBox : MonoBehaviour {
         if (distanceRight < 0) {
             // nach rechts verschieben
             favoritePosition = new Vector3(favoritePosition.x - Mathf.Abs(distanceRight), favoritePosition.y, favoritePosition.z);
-            bgrController.MoveArrow(Mathf.Abs(distanceRight));
+            bgrController.MoveArrow(distanceRight);
         }
         transform.position = favoritePosition;
     }

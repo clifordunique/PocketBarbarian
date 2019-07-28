@@ -8,6 +8,12 @@ TextureImporter:
     21300006: goblin_run_fight_3
     21300008: goblin_run_fight_4
     21300010: goblin_run_fight_5
+    21300012: goblin_run_fight_6
+    21300014: goblin_run_fight_7
+    21300016: goblin_run_fight_8
+    21300018: goblin_run_fight_9
+    21300020: goblin_run_fight_10
+    21300022: goblin_run_fight_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -137,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d5344e042f160478a6514e93169397
+      spriteID: 02b376e1191e12a458e31bdf89ac70dc
       vertices: []
       indices: 
       edges: []
@@ -157,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a581eea37421f449ade2ff9d3bbed72
+      spriteID: 57752b0e2f53e6e4ba9fb9a6196f8f4a
       vertices: []
       indices: 
       edges: []
@@ -177,7 +183,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a9e0f96b86ea1845b6918cb51c1b492
+      spriteID: 2804f13f176bf69448a4a1076ee933ce
       vertices: []
       indices: 
       edges: []
@@ -197,7 +203,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b04cdc9b8053dd94e82ab024ecfd796a
+      spriteID: a8e97144a4a601c4e9a5e63e5aa42a7f
       vertices: []
       indices: 
       edges: []
@@ -217,7 +223,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61245f2df79cae443b2fb5bfca25e693
+      spriteID: ffbb6c86e55eae142943796d144c0154
       vertices: []
       indices: 
       edges: []
@@ -237,7 +243,127 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ae14316dbd18d543855f66e113c91a4
+      spriteID: 90556889944613a4eb86e5a6a49f652d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2a35a77f0f56b4ab9c76b9dbf4f710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df4233fe06384c45b7e5da7477d9fef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58605bdf7e6f3f44ca15f99f4a301253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ad31c621576a0458bb4c6b87f7be39
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a40bf03d0eae0646b2e4632d41a8d03
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin_run_fight_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febe5d83e62b11a43870b45937a65b9d
       vertices: []
       indices: 
       edges: []

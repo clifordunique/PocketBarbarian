@@ -12,8 +12,6 @@ public class AnimReactor : MonoBehaviour, ITriggerReactor
     public Vector2 focusPoint;
 
     private Dialogue dialogue;
-    private bool alreadyDone = false;
-    private bool inDialogue = false;
     private Vector3 startPos;
     private Vector3 endPos;
 

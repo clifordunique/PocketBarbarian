@@ -49,7 +49,10 @@ public class EnemyController: MonoBehaviour, IActorController {
         hitBox = GetComponentInChildren<HitBox>();
 
         if (aiBehaviour) {
+
+            aiBehaviour.defaultAction = defaultAction;
             currentAction = aiBehaviour.GetCurrentAction();
+            
         } else {
             currentAction = defaultAction;
         }

@@ -81,7 +81,7 @@ public class AiReactionBehaviour: AiBehaviour {
                 }
             }
         }
-        return null;
+        return defaultAction;
     }
 
     private EnemyAction CreateEnemyAction(EnemyAction.ACTION_EVENT actionEvent, Vector3 moveTarget) {
