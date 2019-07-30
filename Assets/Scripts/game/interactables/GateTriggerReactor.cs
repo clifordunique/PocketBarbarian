@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateActivatable : MonoBehaviour, ITriggerReactor {
+public class GateTriggerReactor: MonoBehaviour, ITriggerReactor {
     
 
     public float seconds;

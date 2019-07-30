@@ -20,12 +20,8 @@ public class CameraFollow : MonoBehaviour {
 	float lookAheadDirX;
 	float smoothLookVelocityX;
     
-    
-    
     float lookAheadDirY;
-
     float smoothVelocityY;
-
 	bool lookAheadStopped;
 
 
@@ -62,6 +58,16 @@ public class CameraFollow : MonoBehaviour {
 	}
 
     public void Init() {
+        currentLookAheadX = 0;
+        targetLookAheadX = 0;
+        lookAheadDirX = 0;
+        smoothLookVelocityX = 0;
+
+        lookAheadDirY = 0;
+        smoothVelocityY = 0;
+        lookAheadStopped = false;
+
+        //transform.position = target.transform.position;
         focusArea = new FocusArea(target.myCollider.bounds, focusAreaSize);
         verticalSmoothTimeTmp = verticalSmoothTime;
         scrollingBackgrounds = FindObjectsOfType<ScrollingBackground>();

@@ -12,10 +12,12 @@ public class TextBox : MonoBehaviour {
     private bool isInit = false;
     private float offsetX;
     private float offsetY;
+    private float scaleX;
 
     // Use this for initialization
     public virtual void Start () {
         Init();
+        scaleX = transform.parent.localScale.x;
     }
 
     public virtual void Init() {
@@ -53,12 +55,12 @@ public class TextBox : MonoBehaviour {
         if (distanceLeft < 0) {
             // nach rechts verschieben
             favoritePosition = new Vector3(favoritePosition.x + Mathf.Abs(distanceLeft), favoritePosition.y, favoritePosition.z);
-            bgrController.MoveArrow(distanceLeft);
+            bgrController.MoveArrowLeft(distanceLeft);
         }
         if (distanceRight < 0) {
             // nach rechts verschieben
             favoritePosition = new Vector3(favoritePosition.x - Mathf.Abs(distanceRight), favoritePosition.y, favoritePosition.z);
-            bgrController.MoveArrow(distanceRight);
+            bgrController.MoveArrowRight(distanceRight);
         }
         transform.position = favoritePosition;
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : AbstactInteractable {
+public class ChestInteractable: AbstactInteractable {
 
     private const string OPEN_PARAM = "OPEN";
     private Animator animator;

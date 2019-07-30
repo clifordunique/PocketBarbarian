@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleSwitch : MonoBehaviour, ITriggerReactor {
+public class PuzzleSwitchTriggerReactor: MonoBehaviour, ITriggerReactor {
 
-    public LeverInteractable[] switches;
+    public LeverAnimatedInteractable[] switches;
     public bool[] order;
 
     private TriggerManager triggerManager;
@@ -27,7 +27,7 @@ public class PuzzleSwitch : MonoBehaviour, ITriggerReactor {
         //Debug.Log("Checkstate");
         int i = 0;
         bool puzzleSolved = true;
-        foreach(LeverInteractable it in switches) {
+        foreach(LeverAnimatedInteractable it in switches) {
             bool switchStateExpected = order[i];
             //Debug.Log("Switch: " + it.name + " : " + it.activated);
             //Debug.Log("Order: " + i + " : " + switchStateExpected);
@@ -38,7 +38,7 @@ public class PuzzleSwitch : MonoBehaviour, ITriggerReactor {
         }
         if (puzzleSolved) {
             Debug.Log("PUZZLE SOLVED!");
-            foreach (LeverInteractable it in switches) {
+            foreach (LeverAnimatedInteractable it in switches) {
                 it.Disable();
             }
             triggerManager.ActivateReactors();

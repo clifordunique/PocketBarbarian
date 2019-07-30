@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LampReactor : MonoBehaviour, ITriggerReactor {
+public class LampTriggerReactor: MonoBehaviour, ITriggerReactor {
 
     public Sprite lampOnSprite;
     public Sprite lampOffSprite;

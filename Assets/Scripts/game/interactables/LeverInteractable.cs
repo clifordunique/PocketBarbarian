@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverInteractable: AbstactInteractable {
+public class LeverInteractable : AbstactInteractable {
 
 
     public bool oneTimeUse = false;
     public bool activated = false;
+    public Sprite leverSpriteOn;
 
-    private Animator anim;
+
+    private Sprite leverSpriteOff;
+
+    private SpriteRenderer sr;
     private TriggerManager triggerManager;
-
-    private string ON = "ON";
-    private string ON_ACTIVE = "ON_ACTIVE";
-    private string OFF = "OFF";
-    private string OFF_ACTIVE = "OFF_ACTIVE";
 
     public override void Start() {
         base.Start();
-        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        leverSpriteOff = sr.sprite;
 
         triggerManager = GetComponent<TriggerManager>();
         if (triggerManager == null) {
@@ -27,58 +27,34 @@ public class LeverInteractable: AbstactInteractable {
     }
 
     public override void Activate() {
-        if (!permanentDisabled) {
-            if (activated) {
-                // deactivate
-                bool changeState = true;
-                if (triggerManager.HasReactors()) {
-                    changeState = triggerManager.DeactivateReactors();
-                }
-                if (changeState) {
-                    ChangeState(OFF_ACTIVE);
-                    activated = false;
-                }
-            } else {
-                // activate
+        if (activated && !permanentDisabled) {
+            // deactivate
+            bool startMoving = true;
+            if (triggerManager.HasReactors()) {
+                startMoving = triggerManager.DeactivateReactors();
+            }
+            if (startMoving) {
+                sr.sprite = leverSpriteOff;
+                activated = false;
+            }
+        } else {
+            // activate
+            if (!permanentDisabled) {
                 bool startMoving = true;
                 if (triggerManager.HasReactors()) {
                     startMoving = triggerManager.ActivateReactors();
+                }
+                if (startMoving) {
+                    sr.sprite = leverSpriteOn;
+                    activated = true;
                 }
                 if (oneTimeUse) {
                     permanentDisabled = true;
                     actionArrow.SetActive(false);
                 }
-                if (startMoving) {
-                    
-                    if (!permanentDisabled) {
-                        ChangeState(ON_ACTIVE);
-                    } else {
-                        ChangeState(ON);
-                    }
-                    activated = true;
-                }
-
             }
         }
         actionFinished = true;
-    }
-
-    public void Disable() {
-        permanentDisabled = true;
-        actionArrow.SetActive(false);
-        if (activated) {
-            ChangeState(ON);
-        } else {
-            ChangeState(OFF);
-        }
-    }
-
-    private void ChangeState(string state) {
-        anim.SetBool(ON, false);
-        anim.SetBool(ON_ACTIVE, false);
-        anim.SetBool(OFF, false);
-        anim.SetBool(OFF_ACTIVE, false);
-        anim.SetBool(state, true);
     }
     
 }

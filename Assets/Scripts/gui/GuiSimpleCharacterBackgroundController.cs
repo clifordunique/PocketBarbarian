@@ -124,9 +124,19 @@ public class GuiSimpleCharacterBackgroundController : MonoBehaviour {
         return size;
     }
 
-    public void MoveArrow(float offsetX) {
+    public void MoveArrowLeft(float offsetX) {
         
-        //bgrArrowUpGo.transform.localPosition = new Vector2(offsetX, bgrArrowUpGo.transform.localPosition.y);
+        if (bgrArrowDownGo.transform.localScale.x < 0) {
+            offsetX = Mathf.Abs(offsetX);
+        }
+        bgrArrowDownGo.transform.localPosition = new Vector2(offsetX, bgrArrowDownGo.transform.localPosition.y);
+    }
+
+    public void MoveArrowRight(float offsetX) {
+        
+        if (bgrArrowDownGo.transform.localScale.x > 0) {
+            offsetX = Mathf.Abs(offsetX);
+        }
         bgrArrowDownGo.transform.localPosition = new Vector2(offsetX, bgrArrowDownGo.transform.localPosition.y);
     }
 

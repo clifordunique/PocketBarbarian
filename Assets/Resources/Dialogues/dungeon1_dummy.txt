@@ -1,0 +1,15 @@
+n1|Hey! Hey you!
+n2|What? Who said that?
+n1|Here over there!\Are you Ruff the barbarian?
+n2|Wha... Why can you speak\and why do you know my damn name?
+n1|Oh the great Dev made me\and told me about you.
+n2|Great Dev? What a stupid name!\Who is he?
+n1|You don't know the great Dev?\The creator and destroyer of all bits?
+n2|Na never heard of.\I am Ruff and there is no\greater destroyer than me, HA!
+n2|Now get out of my way!
+n1|But... I have no legs.
+n2|*sigh* Oh never mind.
+n1|Wait, wait!\The great Dev wanted me\to train you how to fight!
+n2|I already know how to wield\my mighty sword you dummy!
+n1|Yes, yes shure but maybe you are a bit rusty?\Come on give it a try. Hit me!
+n2|Oh well you asked for it. *hehe*

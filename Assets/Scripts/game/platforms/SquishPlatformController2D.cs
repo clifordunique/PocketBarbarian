@@ -24,6 +24,7 @@ public class SquishPlatformController2D : AbstractPlatformController2D
     public float waitTimePrewarmPosition;
 
     [Header("Effects")]
+    public bool shakeCam = true;
     public GameObject dustEffect;
     public GameObject dustDownEffect;
     public GameObject squishEffect;
@@ -172,7 +173,9 @@ public class SquishPlatformController2D : AbstractPlatformController2D
     }
 
     private void ActionCompleteEffect() {
-        CameraFollow.GetInstance().ShakeSmall();
+        if (shakeCam) {
+            CameraFollow.GetInstance().ShakeSmall();
+        }
         Vector3 effectPosition1 = BoundUtils.GetMinMaxFromBoundVector(moveVector, myCollider.bounds, true, +0.2F );
         Vector3 effectPosition2 = BoundUtils.GetMinMaxFromBoundVector(moveVector, myCollider.bounds, false, -0.2F );
         InstantiateEffect(dustEffect, effectPosition1, BoundUtils.GetEffectRotation(moveVector, false));
@@ -233,15 +236,17 @@ public class SquishPlatformController2D : AbstractPlatformController2D
 
 
     public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F, Transform parent = null) {
-        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
-        if (parent == null) {
-            effect.transform.parent = EffectCollection.GetInstance().transform;
-        } else {
-            effect.transform.parent = parent;
-        }
-        effect.transform.position = position;
-        if (rotateAngel != 0) {
-            effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
+        if (effectToInstanciate != null) {
+            GameObject effect = (GameObject)Instantiate(effectToInstanciate);
+            if (parent == null) {
+                effect.transform.parent = EffectCollection.GetInstance().transform;
+            } else {
+                effect.transform.parent = parent;
+            }
+            effect.transform.position = position;
+            if (rotateAngel != 0) {
+                effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
+            }
         }
     }
 }
