@@ -131,10 +131,12 @@ public class PlayerController: MonoBehaviour, IActorController {
     }
     public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
-        SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
-        if (effectSpriteRenderer) {
-            effectSpriteRenderer.flipX = (dirX < 0);
-        }
+        //SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
+        //if (effectSpriteRenderer) {
+        //    effectSpriteRenderer.flipX = (dirX < 0);
+        //}
+        float scaleX = (dirX < 0 ? -1 : 1);
+        effect.transform.localScale = new Vector3(scaleX, effect.transform.localScale.y, effect.transform.localScale.z);
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = position;
         if (rotateAngel != 0) {

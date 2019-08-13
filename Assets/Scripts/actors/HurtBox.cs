@@ -70,9 +70,10 @@ public class HurtBox : MonoBehaviour {
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) {        
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
-
+            Debug.Log("In Hurt Enter");
+            Debug.Log("In Hurt Enter");
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.transform.GetComponent<HitBox>();
             if (attackerActor) {

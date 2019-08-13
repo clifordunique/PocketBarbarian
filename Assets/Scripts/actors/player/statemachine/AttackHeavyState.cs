@@ -11,7 +11,7 @@ public class AttackHeavyState : AbstractState {
     private bool hitSomething = false;
     private bool nextCombo = false;
     private float move = 0F;
-    private float moveTime = 0.1F;
+    private float moveTime = 0.2F;
 
     private int MAX_COMBO = 1;
     private int currentCombo = 0;

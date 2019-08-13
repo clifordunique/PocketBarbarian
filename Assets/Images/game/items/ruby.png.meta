@@ -9,6 +9,8 @@ TextureImporter:
     21300008: ruby_4
     21300010: ruby_5
     21300012: ruby_6
+    21300014: ruby_7
+    21300016: ruby_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -138,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f117aaa40b93c944cb8ff8dc6c9fcf9c
+      spriteID: 7d2435eb299ae9245b22153a314dfe65
       vertices: []
       indices: 
       edges: []
@@ -158,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 959f8824b047c7044b66654bb3894b27
+      spriteID: 41de65921e554294f8649f98ff6df588
       vertices: []
       indices: 
       edges: []
@@ -178,7 +180,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de35012aefb0ea34d8f28316697b6441
+      spriteID: 16b2d905f37198248b675690fe00175b
       vertices: []
       indices: 
       edges: []
@@ -198,7 +200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ceb1284c8a661724bbada683a4882a40
+      spriteID: 839a97f8cfaf6a242a5f011ac9c870ff
       vertices: []
       indices: 
       edges: []
@@ -218,7 +220,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db160967a2eed4b40a78df61d2e8b157
+      spriteID: a76421fedb50b7d47b9b9ce2782fd1e3
       vertices: []
       indices: 
       edges: []
@@ -238,7 +240,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dadfb1d52f6c2834da2c43f8e66f1a22
+      spriteID: b31c8a5499993cd469a974111152f516
       vertices: []
       indices: 
       edges: []
@@ -258,7 +260,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b2f52f9d42d4ae41bfa4eeecc0a2583
+      spriteID: 77873e2db0977e14784acd0d1e490695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ruby_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cedde02e1f6cc8e488c6d0eae63c4ca3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ruby_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d270212c55d4e4599c4a7cb38c2d28
       vertices: []
       indices: 
       edges: []

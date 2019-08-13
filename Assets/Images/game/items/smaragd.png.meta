@@ -10,6 +10,7 @@ TextureImporter:
     21300010: smaragd_5
     21300012: smaragd_6
     21300014: smaragd_7
+    21300016: smaragd_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f72627caa2f5a443b2a7699ddd797fb
+      spriteID: 2502142add92f864284dd4181db19b55
       vertices: []
       indices: 
       edges: []
@@ -159,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db4f1e5075f901442bf6f6e789878124
+      spriteID: e9d7d64c97febab478a389a3fe4b70e5
       vertices: []
       indices: 
       edges: []
@@ -179,7 +180,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a66334f487ab742bb6ed3a63b01081
+      spriteID: 05bae3de23ab80f44bb7815fff78f16e
       vertices: []
       indices: 
       edges: []
@@ -199,7 +200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1dc8246fb4089b4294878575a1cc021
+      spriteID: ae6fc87cd18ac5049a95894eb0fc4d32
       vertices: []
       indices: 
       edges: []
@@ -219,7 +220,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04c6c1a0747d10e4c8684acff35e31f5
+      spriteID: 8243690c7d3f7c343900b0ed33e32c15
       vertices: []
       indices: 
       edges: []
@@ -239,7 +240,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fbf44e4366233e4f91305055d743aa6
+      spriteID: 82b9f31a4341a9340b700052ae4582dd
       vertices: []
       indices: 
       edges: []
@@ -259,7 +260,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdc74135e7ac29248a3c44f0bfdd6283
+      spriteID: 53fca5a24b3a7fc408923be007c38111
       vertices: []
       indices: 
       edges: []
@@ -279,7 +280,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e066fd2d5916eee40a9d2fe828b7b979
+      spriteID: c892f568811bd4f4cab64dfff72f7d6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: smaragd_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1140c82756f21094481b0d01b1c4e534
       vertices: []
       indices: 
       edges: []

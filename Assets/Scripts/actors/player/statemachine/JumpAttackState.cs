@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpAttackState : AbstractState {
 
     private bool attackFinished = false;
+    private bool hitSomething = false;
 
     public JumpAttackState(PlayerController playerController) : base(ACTION.JUMP, playerController) {
     }
@@ -38,7 +39,13 @@ public class JumpAttackState : AbstractState {
 
         if (!playerController.moveController.IsFalling() && playerController.input.IsJumpKeyUp()) {
             playerController.moveController.OnJumpInputUp();
-        }        
+        }
+
+        if (hitSomething) {
+            // small cam Shake
+            CameraFollow.GetInstance().ShakeSmall();
+            hitSomething = false;
+        }
 
         Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
         return null;
@@ -47,6 +54,9 @@ public class JumpAttackState : AbstractState {
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             attackFinished = true;
+        }
+        if (parameter == EVENT_PARAM_HIT) {
+            hitSomething = true;
         }
     }
 }

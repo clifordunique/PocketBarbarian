@@ -15,6 +15,7 @@ TextureImporter:
     21300020: skull_fade_10
     21300022: skull_fade_11
     21300024: skull_fade_12
+    21300026: skull_fade_13
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -144,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0faee118ab5ae824aad4d281cf3a9c36
+      spriteID: 093db68ef8bcdf0438e4c88cf813ff44
       vertices: []
       indices: 
       edges: []
@@ -164,7 +165,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a224061e4fa01524cb3a39eced13a7ca
+      spriteID: 4b8429cdb5ccef94b8fd811d0af84324
       vertices: []
       indices: 
       edges: []
@@ -184,7 +185,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c02f2dc8aa2688d468368b25470aeff1
+      spriteID: 6fe307e777bdd634c9aaeea3afa7ef27
       vertices: []
       indices: 
       edges: []
@@ -204,7 +205,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c998500c951cbf04cb73f76036de512b
+      spriteID: 7d9c871ac844ce44bac35aa595b98c64
       vertices: []
       indices: 
       edges: []
@@ -224,7 +225,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1a227ed19b3d554bb627288f1036a6c
+      spriteID: b464d4e14dca8264da8f301a20e68b7a
       vertices: []
       indices: 
       edges: []
@@ -244,7 +245,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 568cb3d658ff9f64fb0e3f51826647dd
+      spriteID: 70579f8b9283d61439bb7b75c22940f2
       vertices: []
       indices: 
       edges: []
@@ -264,7 +265,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42a1c865a8489f346a59fc03d71130ac
+      spriteID: 6630a21f0fe65964e81f1e3e85e3f512
       vertices: []
       indices: 
       edges: []
@@ -284,7 +285,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c027359bbc155c04daa932e57f1b54d1
+      spriteID: 37e8bb718f8534843aaab550cd1f3cee
       vertices: []
       indices: 
       edges: []
@@ -304,7 +305,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172d2c27b76d0c94886cf4a2f44db54f
+      spriteID: ed3d8be7231879a40b96b4d2c67233fb
       vertices: []
       indices: 
       edges: []
@@ -324,7 +325,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c109c5993811be748bead31cbc3ba068
+      spriteID: 3f26225a84f57554c86ba842311cd87a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skull_fade_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abfdef1545fe014b82f1c5a978cdbb9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skull_fade_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b308f4e986cf34c428f82dd0b122454f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skull_fade_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 632c5030a57981945bccc084cd3606e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skull_fade_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd67b3062590f824580f23924f2f28c4
       vertices: []
       indices: 
       edges: []

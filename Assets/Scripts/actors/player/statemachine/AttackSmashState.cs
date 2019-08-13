@@ -9,7 +9,7 @@ public class AttackSmashState : AbstractState {
 
     private bool hitSomething = false;
     private float move = 0F;
-    private float moveTime = 0.2F;
+    private float moveTime = 0.3F;
 
     private bool playEffect = false;
 

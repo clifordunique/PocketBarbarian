@@ -8,7 +8,7 @@ public class QuadraticCurveMovement : MonoBehaviour
     public LayerMask reactLayers;
 
     public float speed = 1F;
-
+    public float targetCheckInterval = 0.5F;
     private float lastDeltaTime;
     private float lastDistance = -1;
     private float f;
@@ -23,6 +23,7 @@ public class QuadraticCurveMovement : MonoBehaviour
     private Camera cam;
     private BoxCollider2D bCollider;
     private SpriteRenderer sRenderer;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +31,14 @@ public class QuadraticCurveMovement : MonoBehaviour
         cam = Camera.main;
         bCollider = GetComponent<BoxCollider2D>();
         sRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     public void OnTriggerEnter2D(Collider2D collider) {
         if (reactLayers == (reactLayers | (1 << collider.gameObject.layer))) {
+
+            anim.SetBool("START", true);
+
             target = collider.gameObject.transform;
 
             // check if moving to the right or left
@@ -64,16 +69,26 @@ public class QuadraticCurveMovement : MonoBehaviour
 
     IEnumerator RecalcTarget() {
         while (directionY == -1F) {
-            yield return new WaitForSeconds(0.3F);
+            yield return new WaitForSeconds(targetCheckInterval);
             Debug.Log("Recalc");
-            CalculateFormular();
+            CalculateFormular();            
         }
     }
 
     private void CalculateFormular() {
-        targetX = target.position.x;
-        targetY = target.position.y - 0.5f;
-        f = (transform.position.y - targetY) / (Mathf.Pow(transform.position.x - targetX, 2));
+        if (transform.position.y > target.position.y - 0.5f && !HasTargetPassed()) {
+            targetX = target.position.x;
+            targetY = target.position.y - 0.5f;
+            f = (transform.position.y - targetY) / (Mathf.Pow(transform.position.x - targetX, 2));
+        }
+    }
+
+    private bool HasTargetPassed() {
+        if ((directionX == 1 && target.position.x <= transform.position.x) ||
+            (directionX == -1 && target.position.x >= transform.position.x)) {
+            return true;
+        }
+        return false;
     }
 
 

@@ -10,7 +10,9 @@ public class AttackLightState : AbstractState {
     private bool hitSomething = false;
 
     private bool nextCombo = false;
-   
+    private float move = 0F;
+    private float moveTime = 0.1F;
+
     public AttackLightState(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
 
@@ -22,6 +24,9 @@ public class AttackLightState : AbstractState {
         }
         playerController.animator.SetBool(attackParam, true);
         Move(0, playerController.input.GetDirectionY());
+        if (playerController.input.GetDirectionX() != 0) {
+            move = Time.timeSinceLevelLoad + moveTime;
+        }
     }
 
     public override void OnExit() {
@@ -33,7 +38,13 @@ public class AttackLightState : AbstractState {
         if (interrupt != null) {
             return interrupt;
         }
-        
+
+        if (move > Time.timeSinceLevelLoad) {
+            Move(playerController.dirX, playerController.input.GetDirectionY());
+        } else {
+            Move(0, playerController.input.GetDirectionY());
+            move = 0;
+        }
 
         if (hitSomething) {
             // small cam Shake
