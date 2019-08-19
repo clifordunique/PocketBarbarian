@@ -10,10 +10,15 @@ public class EnemyController: MonoBehaviour, IActorController {
 
     public bool isShooter = false;
     [ConditionalHideAttribute("isShooter", true)]
+    public Transform spawnPosition;
+    [ConditionalHideAttribute("isShooter", true)]
     public GameObject projectile;
     [ConditionalHideAttribute("isShooter", true)]
     public float interval = 0.5F;
-    private float lastShot;
+    [HideInInspector]
+    public float lastShot;
+
+    public GameObject moveEffectPrefab;
 
     private AbstractEnemyState currentState;
 
@@ -40,7 +45,7 @@ public class EnemyController: MonoBehaviour, IActorController {
     [HideInInspector]
     public SpriteRenderer spriteRenderer;
 
-    public void Start() {
+    public virtual void Start() {
         defaultAction.moveTarget = Vector3.positiveInfinity;
         moveController = GetComponent<IEnemyMoveController2D>();
         aiBehaviour = GetComponent<AiBehaviour>();
@@ -48,7 +53,7 @@ public class EnemyController: MonoBehaviour, IActorController {
         spriteRenderer = GetComponent<SpriteRenderer>();
         hitBox = GetComponentInChildren<HitBox>();
 
-        if (aiBehaviour) {
+        if (aiBehaviour && aiBehaviour.enabled) {
 
             aiBehaviour.defaultAction = defaultAction;
             currentAction = aiBehaviour.GetCurrentAction();
@@ -92,7 +97,7 @@ public class EnemyController: MonoBehaviour, IActorController {
     }
 
     public void RequestNextAction() {
-        if (aiBehaviour) {
+        if (aiBehaviour && aiBehaviour.enabled) {
             if (isInterruptAction) {
                 // interruptAction finished
                 currentAction = aiBehaviour.GetCurrentAction();
@@ -115,7 +120,7 @@ public class EnemyController: MonoBehaviour, IActorController {
         } else {
 
             // refresh AiBehaviour if not an interruptAction is finished
-            if (aiBehaviour && !isInterruptAction) {
+            if (aiBehaviour && aiBehaviour.enabled && !isInterruptAction) {
                 currentAction = aiBehaviour.GetCurrentAction();
             }
 
@@ -129,16 +134,20 @@ public class EnemyController: MonoBehaviour, IActorController {
         }
     }
 
-    public void ShootProjectile(Vector3 target, bool targetIsVector) {
+    public virtual void ShootProjectile(Vector3 target, bool targetIsVector) {
         if (Time.timeSinceLevelLoad - lastShot > interval) {
-            Vector3 spawnPosition;
-            if (targetIsVector) {
-                spawnPosition = Utils.GetSpawnPositionProjectileVector(target, transform, boxCollider);
+            Vector3 currentSpawnPosition;
+            if (spawnPosition != null) {
+                currentSpawnPosition = spawnPosition.position;
             } else {
-                spawnPosition = Utils.GetSpawnPositionProjectileStaticTarget(target, transform, boxCollider);
+                if (targetIsVector) {
+                    currentSpawnPosition = Utils.GetSpawnPositionProjectileVector(target, transform, boxCollider);
+                } else {
+                    currentSpawnPosition = Utils.GetSpawnPositionProjectileStaticTarget(target, transform, boxCollider);
+                }
             }
 
-            GameObject projectileGo = Instantiate(projectile, spawnPosition, transform.rotation, EffectCollection.GetInstance().transform);
+            GameObject projectileGo = Instantiate(projectile, currentSpawnPosition, transform.rotation, EffectCollection.GetInstance().transform);
             projectileGo.GetComponent<Projectile>().InitProjectile(target, targetIsVector);
             lastShot = Time.timeSinceLevelLoad;
         }
@@ -152,5 +161,17 @@ public class EnemyController: MonoBehaviour, IActorController {
 
     public void HandleAnimEvent(string parameter) {
         currentState.HandleAnimEvent(parameter);
+    }
+
+    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F) {
+        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
+
+        float scaleX = transform.localScale.x;
+        effect.transform.localScale = new Vector3(scaleX, effect.transform.localScale.y, effect.transform.localScale.z);
+        effect.transform.parent = EffectCollection.GetInstance().transform;
+        effect.transform.position = position;
+        if (rotateAngel != 0) {
+            effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
+        }
     }
 }

@@ -24,11 +24,11 @@ public class Projectile : MonoBehaviour {
         rigidb = GetComponent<Rigidbody2D>();
     }
 
-    public void InitProjectile(Vector3 target, bool vector = false) {
+    public void InitProjectile(Vector3 target, bool vector = false, bool changeLocalScale = true) {
         this.target = target;
         this.startPosition = transform.position;
         this.vector = vector;
-        if ((!vector && target.x < transform.position.x) || (vector && target.x < 0)) {
+        if (((!vector && target.x < transform.position.x) || (vector && target.x < 0)) && changeLocalScale) {
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
 

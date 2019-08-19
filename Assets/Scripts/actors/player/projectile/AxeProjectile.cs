@@ -36,7 +36,9 @@ public class AxeProjectile : Projectile {
             transform.position = pixelPerfectMoveAmount;
             transform.parent = collision.gameObject.transform;
             boxCollider.enabled = false;
-            InstantiateEffect(prefabHitEffect);
+            if (prefabHitEffect != null) {
+                InstantiateEffect(prefabHitEffect);
+            }
             StartCoroutine(DeleteDelayed());
         }
     }

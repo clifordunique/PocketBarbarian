@@ -39,6 +39,7 @@ public abstract class AbstractEnemyState {
             return new EnemyMoveState(enemyController);
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.SHOOT) {
+            Debug.Log("Return Shoot State!");
             return new EnemyShootState(enemyController);
         }
         return null;

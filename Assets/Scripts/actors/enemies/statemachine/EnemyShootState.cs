@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShootState : AbstractEnemyState {
-    
+
+    private bool finished = false;
+    private bool shootNow = false;
+    private int shootCounter = 1;
 
     public EnemyShootState(EnemyController enemyController) : base(enemyController) {
     }
 
     public override void OnEnter() {
+        moveController.StopMoving();
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("SHOOT", true);
+        } 
     }
 
     public override AbstractEnemyState UpdateState() {
@@ -18,23 +25,42 @@ public class EnemyShootState : AbstractEnemyState {
             return GetEnemyState(enemyController.currentAction.actionEvent);
         }
 
-        if (enemyController.isShooter) {
-            enemyController.ShootProjectile(enemyController.currentAction.hitTarget, enemyController.currentAction.hitTargetIsVector);
-        }
+        if (enemyController.isShooter && shootNow) {
 
-        if (enemyController.currentAction.HasMoveTarget()) {
-            float directionX = moveController.MoveTo(enemyController.currentAction.moveTarget);
-            if (directionX == 0) { // angekommen              
-                moveController.StopMoving();
+            if (shootCounter <= enemyController.currentAction.amount) {
+                enemyController.ShootProjectile(enemyController.currentAction.hitTarget, enemyController.currentAction.hitTargetIsVector);
+                shootNow = false;
+                shootCounter++;
+            } 
+            
+        }
+        if (finished) {
+            if (shootCounter > enemyController.currentAction.amount) {
                 enemyController.RequestNextAction();
                 return GetEnemyState(enemyController.currentAction.actionEvent);
+            } else {
+                // next shoot iteration
+                finished = false;
             }
-        }        
+        }
+
         return null;
     }
 
+    public override void HandleAnimEvent(string parameter) {
+        if (parameter == "SHOOT") {
+            shootNow = true;
+        }
+        if (parameter == "ANIM_END") {
+            finished = true;
+        }
+    }
+
     public override void OnExit() {
-        // nothing to do
+        Debug.Log("Shoot State Exit");
+        if (enemyController.animator) {
+            enemyController.animator.SetBool("SHOOT", false);
+        }
     }
 
 }
