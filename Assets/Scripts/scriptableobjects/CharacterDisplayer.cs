@@ -65,7 +65,7 @@ public class CharacterDisplayer : ScriptableObject {
         }
     }
 
-    public Vector2 DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY) {
+    public Vector2 DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY, int additionalLineSpacePixel = 0) {
         if (text != null) {
             Vector2 position = new Vector2((myTransform.position.x + offsetPixelsX / Constants.PPU), (myTransform.position.y + offsetPixelsY / Constants.PPU));
             Vector2 originalPosition = position;
@@ -79,7 +79,7 @@ public class CharacterDisplayer : ScriptableObject {
                 
                 if (((int)text[i]) == LINEBREAK || text[i] == '\n') {
                     position.x = originalPosition.x;
-                    position.y -= (charPixelHeight + charSpacingPixel) / Constants.PPU;
+                    position.y -= (charPixelHeight + charSpacingPixel + additionalLineSpacePixel) / Constants.PPU;
                 } else {
                     DisplayCharacter(text[i], myTransform, ref position);
                 }
@@ -153,6 +153,18 @@ public class CharacterDisplayer : ScriptableObject {
         if (ascii == 39) {
             // '
             CreateNewChar(characterSpecialList[8], myTransform, ref position);
+        }
+        if (ascii == 37) {
+            // % --> Line-effect start/end
+            CreateNewChar(characterSpecialList[9], myTransform, ref position);
+        }
+        if (ascii == 95) {
+            // _ --> Line-effect 
+            CreateNewChar(characterSpecialList[10], myTransform, ref position);
+        }
+        if (ascii == 35) {
+            // # --> Return symbol 
+            CreateNewChar(characterSpecialList[11], myTransform, ref position);
         }
     }
 

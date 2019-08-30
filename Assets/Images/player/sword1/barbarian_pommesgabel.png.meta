@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: a628493d0c91bf94d8527172a6163abc
+guid: 5fa39cd95f0f7c544a456bd8e08fdc31
 TextureImporter:
   fileIDToRecycleName:
-    21300000: characters_special_0
-    21300002: characters_special_1
-    21300004: characters_special_2
-    21300006: characters_special_3
-    21300008: characters_special_4
-    21300010: characters_special_5
-    21300012: characters_special_6
-    21300014: characters_special_7
-    21300016: characters_special_8
-    21300018: characters_special_9
-    21300020: characters_special_10
-    21300022: characters_special_11
+    21300000: barbarian_pommesgabel_0
+    21300002: barbarian_pommesgabel_1
+    21300004: barbarian_pommesgabel_2
+    21300006: barbarian_pommesgabel_3
+    21300008: barbarian_pommesgabel_4
+    21300010: barbarian_pommesgabel_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -129,241 +123,121 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: characters_special_0
+      name: barbarian_pommesgabel_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f98d0741aa7d004b8589c1a5388dc60
+      spriteID: 4b6eda2d6c9ff28469356e4738c32ac9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters_special_1
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23c5d33fa147083428de8a3cb115a9ab
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_2
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 838dcaac56b365c4ab058b5456a9882d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_3
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a83591dcf71c4d34b9c13ac479451d9b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_4
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b04a5d130ad0c1d4980adab5cb9de2c4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_5
+      name: barbarian_pommesgabel_1
       rect:
         serializedVersion: 2
         x: 30
         y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006c24a2cc43d1f4ca4b1bfc1c8c74d5
+      spriteID: 4463329e712b4b9488fc089b80966e99
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters_special_6
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99e80a9bce915844e8fdb698977347b3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_7
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 804512f41e048614daccc94c9871ae96
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_8
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32c6a991768901c41bf0faba13a5403a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_9
-      rect:
-        serializedVersion: 2
-        x: 54
-        y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1b1bc0ca4f7ba64cbffabbeec264727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characters_special_10
+      name: barbarian_pommesgabel_2
       rect:
         serializedVersion: 2
         x: 60
         y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1606f077255aaf4a83e38c1798070c3
+      spriteID: 964388e2278cc1e45a2d65cf5920d3b9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters_special_11
+      name: barbarian_pommesgabel_3
       rect:
         serializedVersion: 2
-        x: 66
+        x: 90
         y: 0
-        width: 6
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a29b9321de1e2d942aa3ab07fa6c5a19
+      spriteID: c1029d3dfaeb93740a8fd3d14f75f062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_pommesgabel_4
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d0a4dafd462c76429a2b43c94df1866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbarian_pommesgabel_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f5f2fc30e8d8240a9911854d25480e
       vertices: []
       indices: 
       edges: []
@@ -371,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eb42afc67064d4a4ba384b4b84a8ea0a
+    spriteID: 26b636091d341f34bb43304eb7d6b798
     vertices: []
     indices: 
     edges: []

@@ -30,7 +30,7 @@ public class SwordUpState : AbstractState {
             return interrupt;
         }        
 
-        if (playerController.moveController.IsGrounded()) {
+        if (!animStarted && playerController.moveController.IsGrounded()) {
             playerController.animator.SetBool(SWORD_UP_PARAM, true);
             animStarted = true;
         }

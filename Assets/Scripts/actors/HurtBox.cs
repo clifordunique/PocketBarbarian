@@ -7,7 +7,7 @@ public class HurtBox : MonoBehaviour {
 
     // layers to react on contact and receive damage
     public LayerMask attackLayers;
-
+    public bool isBoss = false;
     public int maxHealth;
     public int currentHealth = 0;
     
@@ -117,10 +117,18 @@ public class HurtBox : MonoBehaviour {
                     attackerActor.ReactHit();
                 }
 
+                // Event when Boss died
+                if (currentHealth <= 0 && isBoss) {
+                    GameManager.GetInstance().BossKilled();
+                }
+
                 // Event for Victim
                 if (actorController != null) {
                     actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, instakill, hitSourcePosition, damageType);
                 }
+
+
+                
 
                 ExecuteEffects(collider2d, hitDirection, instakill, damage, damageType);
             }
@@ -156,11 +164,7 @@ public class HurtBox : MonoBehaviour {
             Invoke("HitInProgress", hitTime);
         }
     }
-
-    private void HitInProgress() {
-        hitInProgress = false;
-        StartCoroutine(RefreshCollisions());
-    }
+    
 
     // switch box collector on and of very shortly to get another collision
     public IEnumerator RefreshCollisions() {

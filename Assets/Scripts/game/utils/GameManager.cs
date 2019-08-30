@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public float waitTimeRestartOnBossKill = 0F;
     public float waitTimeRestartOnDeath = 0F;
     public float waitTimeLevelComplete = 0F;
     public GameObject canvas;
@@ -88,6 +89,15 @@ public class GameManager : MonoBehaviour
             GuiController.GetInstance().InstanciateDiedEffect();
             StartCoroutine(ReloadLevelOnDeathCoroutine());
         }
+    }
+
+    public void BossKilled() {
+        StartCoroutine(BossKilledCoroutine());
+    }
+
+    IEnumerator BossKilledCoroutine() {
+        yield return new WaitForSeconds(waitTimeRestartOnBossKill);
+        PlayerController.GetInstance().InterruptState(AbstractState.ACTION.POMMESGABEL);
     }
 
     IEnumerator ReloadLevelOnDeathCoroutine() {

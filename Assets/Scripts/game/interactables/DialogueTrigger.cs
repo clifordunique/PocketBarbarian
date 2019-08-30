@@ -17,9 +17,12 @@ public class DialogueTrigger : MonoBehaviour {
     [ConditionalHide("detachCamera", true)]
     public bool moveCameraY = true;
 
-    private Dialogue dialogue;
-    private bool alreadyDone = false;
-    private bool inDialogue = false;
+    [HideInInspector]
+    public Dialogue dialogue;
+    [HideInInspector]
+    public bool alreadyDone = false;
+    [HideInInspector]
+    public bool inDialogue = false;
     private Vector3 startPos;
     private Vector3 endPos;
 
@@ -40,23 +43,27 @@ public class DialogueTrigger : MonoBehaviour {
         }
     }
 
-    public void Update() {
+    public virtual void Update() {
         if (!alreadyDone && inDialogue) {
             // check if Dialogue finished
             if (!dialogue.inDialogue) {
-                // Dialogue finished, revert changes
-                Vector3 dummy = startPos;
-                startPos = endPos;
-                endPos = dummy;
-                if (detachCamera) {
-                    StartCoroutine(MoveCamera());
-                } else {
-                    InputController.GetInstance().moveInputEnabled = true;
-                }
-                inDialogue = false;
-                alreadyDone = true;
+                Finished();
             }
         }
+    }
+
+    public void Finished() {
+        // Dialogue finished, revert changes
+        Vector3 dummy = startPos;
+        startPos = endPos;
+        endPos = dummy;
+        if (detachCamera) {
+            StartCoroutine(MoveCamera());
+        } else {
+            InputController.GetInstance().moveInputEnabled = true;
+        }
+        inDialogue = false;
+        alreadyDone = true;
     }
 
     IEnumerator MoveCameraDelay() {

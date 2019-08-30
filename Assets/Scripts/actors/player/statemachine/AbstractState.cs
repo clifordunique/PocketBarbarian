@@ -6,6 +6,7 @@ public abstract class AbstractState {
 
     public PlayerController playerController;
 
+    public static string POMMESGABEL = "POMMESGABEL";
     public static string SWORD_UP_PARAM = "SWORD_UP";
     public static string IDLE_PARAM = "IDLE";
     public static string RUNNING_PARAM = "RUNNING";
@@ -41,7 +42,7 @@ public abstract class AbstractState {
     public static string EVENT_PARAM_ATTACK_END = "attack_end";
     public static string EVENT_PARAM_THROW = "throw";    
 
-    public enum ACTION {NA, SWORD_UP, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING };
+    public enum ACTION {NA, SWORD_UP, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING, POMMESGABEL };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
 
@@ -64,6 +65,9 @@ public abstract class AbstractState {
             }
             if (interruptAction == ACTION.SWORD_UP) {
                 return new SwordUpState(playerController);
+            }
+            if (interruptAction == ACTION.POMMESGABEL) {
+                return new PommesgabelState(playerController);
             }
         }
         return null;

@@ -47,13 +47,11 @@ public class FallingPlatformController2D : AbstractPlatformController2D
     private float lastWaitBuffer = 0F;
 
     private bool actionCompleteEffectPlayed = false;
-
-    private SpriteRenderer myRenderer;
+    
     private HitBox hitbox;
 
     public override void Start() {
         base.Start();
-        myRenderer = GetComponent<SpriteRenderer>();
         startPos = transform.position;
         endpos = new Vector3(transform.position.x + distance.x, transform.position.y + distance.y, transform.position.z);
         prewarmPos = startPos;
