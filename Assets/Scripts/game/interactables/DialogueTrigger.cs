@@ -20,11 +20,14 @@ public class DialogueTrigger : MonoBehaviour {
     [HideInInspector]
     public Dialogue dialogue;
     [HideInInspector]
-    public bool alreadyDone = false;
+    public bool dialogueFinished
+        = false;
     [HideInInspector]
     public bool inDialogue = false;
-    private Vector3 startPos;
-    private Vector3 endPos;
+    [HideInInspector]
+    public Vector3 startPos;
+    [HideInInspector]
+    public Vector3 endPos;
 
     private void Start() {
         dialogue = GetComponent<Dialogue>();
@@ -32,7 +35,7 @@ public class DialogueTrigger : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (layerMaskToAcitvate == (layerMaskToAcitvate | (1 << collision.gameObject.layer))) {
-            if (!alreadyDone) {
+            if (!dialogueFinished) {
                 inDialogue = true;
                 InputController.GetInstance().moveInputEnabled = false;
                 if (detachCamera) {
@@ -44,7 +47,7 @@ public class DialogueTrigger : MonoBehaviour {
     }
 
     public virtual void Update() {
-        if (!alreadyDone && inDialogue) {
+        if (!dialogueFinished && inDialogue) {
             // check if Dialogue finished
             if (!dialogue.inDialogue) {
                 Finished();
@@ -63,7 +66,7 @@ public class DialogueTrigger : MonoBehaviour {
             InputController.GetInstance().moveInputEnabled = true;
         }
         inDialogue = false;
-        alreadyDone = true;
+        dialogueFinished = true;
     }
 
     IEnumerator MoveCameraDelay() {

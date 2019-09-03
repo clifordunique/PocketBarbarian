@@ -19,7 +19,7 @@ public class GuiCharacterController : MonoBehaviour {
     }
 
     
-    public void Show (string text) {
+    public void Show (string text, bool xCentered = false, bool yCentered = true) {
         if (!isInit) {
             Init();
         }
@@ -27,8 +27,18 @@ public class GuiCharacterController : MonoBehaviour {
         DestroyCharacters();
 
         transform.localPosition = originalPosition;
-        Vector2 size = charDisplayer.DisplayString(text, transform, offsetPixelsX, offsetPixelsY, additionalLineSpacePixel);
-        Vector3 newpos = new Vector3(transform.position.x - (size.x / 2), transform.position.y + (size.y / 2), transform.position.z);
+        Vector2 size = charDisplayer.DisplayString(text, transform, offsetPixelsX, offsetPixelsY, additionalLineSpacePixel, xCentered);
+
+        float newY = transform.position.y;
+        float newX = transform.position.x - (size.x / 2);
+        if (yCentered) {
+            newY = transform.position.y + (size.y / 2);
+        } 
+        if (xCentered) {
+            newX = transform.position.x;
+        }
+        Vector3 newpos = new Vector3(newX, newY, transform.position.z);
+        
         transform.position = Utils.MakePixelPerfect(newpos);
         if (backgroundController != null) {
             backgroundController.ResizeBackground(size);

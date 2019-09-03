@@ -36,11 +36,13 @@ public class CharacterDisplayer : ScriptableObject {
     public int charSpacingPixel;
     public int charPixelHeight;
 
+
     public bool charsUseSpriteMask = false;
 
     private static int LINEBREAK = 92;
 
     private float maxLineWidth = float.MinValue;
+    
 
     public void OnEnable() {
         for(int i = 0; i < characterUppercaseList.Length; i++) {
@@ -65,11 +67,15 @@ public class CharacterDisplayer : ScriptableObject {
         }
     }
 
-    public Vector2 DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY, int additionalLineSpacePixel = 0) {
+    public Vector2 DisplayString(string text, Transform myTransform, int offsetPixelsX, int offsetPixelsY, int additionalLineSpacePixel = 0, bool alignCenter = false) {
         if (text != null) {
             Vector2 position = new Vector2((myTransform.position.x + offsetPixelsX / Constants.PPU), (myTransform.position.y + offsetPixelsY / Constants.PPU));
             Vector2 originalPosition = position;
             maxLineWidth = float.MinValue;
+
+            List<GameObject> lines = new List<GameObject>();
+            int linePos = linePos = AddNewLine(ref lines, myTransform);
+
             for (int i = 0; i < text.Length; i++ ) {
                 
                 if (position.x > maxLineWidth) {
@@ -78,15 +84,43 @@ public class CharacterDisplayer : ScriptableObject {
                 }
                 
                 if (((int)text[i]) == LINEBREAK || text[i] == '\n') {
+
+                    if (alignCenter) {
+                        // center line
+                        CenterLine(position.x, originalPosition.x, lines[linePos].transform);
+                    }
+
                     position.x = originalPosition.x;
                     position.y -= (charPixelHeight + charSpacingPixel + additionalLineSpacePixel) / Constants.PPU;
+                    linePos = AddNewLine(ref lines, myTransform);
+
                 } else {
-                    DisplayCharacter(text[i], myTransform, ref position);
+                    DisplayCharacter(text[i], lines[linePos].transform, ref position);
                 }
             }
+            if (alignCenter) {
+                // center last line
+                CenterLine(position.x, originalPosition.x, lines[linePos].transform);
+            }
+
             return new Vector2((maxLineWidth - originalPosition.x), (originalPosition.y - position.y));
         }
         return Vector2.zero;
+    }
+
+    private int AddNewLine(ref List<GameObject> lines, Transform myTransform) {
+        lines.Add(new GameObject());
+        int position = lines.Count - 1;
+        lines[position].transform.parent = myTransform;
+        lines[position].transform.localPosition = Vector3.zero;
+        return position;
+    }
+
+    private void CenterLine(float currentX, float originalX, Transform line) {
+        // center line
+        float correction = (currentX - originalX) / 2;
+        line.position = Utils.MakePixelPerfect(line.position + Vector3.left * correction);
+        //line.position = line.position + Vector3.left * correction;
     }
 
     private void DisplayCharacter(char character, Transform myTransform, ref Vector2 position) {

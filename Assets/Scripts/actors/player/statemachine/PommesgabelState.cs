@@ -28,7 +28,7 @@ public class PommesgabelState: AbstractState {
             return interrupt;
         }     
         
-        if (animStarted) {
+        if (animStarted) {            
             playerController.animator.SetBool(POMMESGABEL, false);
         }
 

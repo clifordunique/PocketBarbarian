@@ -72,17 +72,21 @@ public class GuiController: MonoBehaviour {
 
     public void ShowFantasyText(string text, float removeTime) {
         fantasyMoveInText.Init(text);
+        Debug.Log("In Show Fantasy Text");
         StartCoroutine(RemoveFantasyTextEffect(removeTime, fantasyMoveInText));
     }
 
 
     public void ShowRandomFightText(float time) {
-        GameObject effect1 = Instantiate(prefabCanvasFlashEffect);
+        CanvasFlash();
         string text = listFightTexts[ Random.Range(0, listFightTexts.Length) ];
         fantasyPopInText.Init(text);
         StartCoroutine(RemoveFantasyTextEffect(time, fantasyPopInText));
     }
 
+    public void CanvasFlash() {
+        GameObject effect1 = Instantiate(prefabCanvasFlashEffect);
+    }
 
     private IEnumerator RemoveFantasyTextEffect(float waitTime, GuiTextMoveOnScreen textMove) {
         yield return new WaitForSeconds(waitTime);

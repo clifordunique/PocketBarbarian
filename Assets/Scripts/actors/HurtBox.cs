@@ -7,7 +7,6 @@ public class HurtBox : MonoBehaviour {
 
     // layers to react on contact and receive damage
     public LayerMask attackLayers;
-    public bool isBoss = false;
     public int maxHealth;
     public int currentHealth = 0;
     
@@ -115,11 +114,6 @@ public class HurtBox : MonoBehaviour {
                 // Event for Attacker
                 if (attackerActor) {
                     attackerActor.ReactHit();
-                }
-
-                // Event when Boss died
-                if (currentHealth <= 0 && isBoss) {
-                    GameManager.GetInstance().BossKilled();
                 }
 
                 // Event for Victim

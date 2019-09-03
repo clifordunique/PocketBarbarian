@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour {
     public float lookSmoothTimeY;
     public float verticalSmoothTime;
 	public Vector2 focusAreaSize;
+    public Vector2 postInitOffsets;
 
 	FocusArea focusArea;
 
@@ -71,6 +72,10 @@ public class CameraFollow : MonoBehaviour {
         focusArea = new FocusArea(target.myCollider.bounds, focusAreaSize);
         verticalSmoothTimeTmp = verticalSmoothTime;
         scrollingBackgrounds = FindObjectsOfType<ScrollingBackground>();
+        // Save x/y offsets for later camera movements
+        Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
+        postInitOffsets.x = focusPosition.x - target.transform.position.x;
+        postInitOffsets.y = focusPosition.y - target.transform.position.y;
     }
 
     public static CameraFollow GetInstance() {
@@ -108,12 +113,13 @@ public class CameraFollow : MonoBehaviour {
             verticalSmoothTime = 0;
         }
     }
+    
 
 	void LateUpdate() {
-		focusArea.Update (target, lookAheadDstY);
+
+        focusArea.Update (target, lookAheadDstY);
 
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset + Vector2.right * horizontalOffset;
-               
 
 
         if (focusArea.velocity.x != 0) {
@@ -174,11 +180,33 @@ public class CameraFollow : MonoBehaviour {
 		Gizmos.DrawCube (focusArea.centre, focusAreaSize);
 	}
 
-	struct FocusArea {
+
+
+    public IEnumerator MoveCameraBack(float cameraMoveSeconds, Vector2 startPos) {
+        float t = 0.0f;
+        Vector2 endPos = target.transform.position + Vector3.right * postInitOffsets.x + Vector3.up * postInitOffsets.y;
+
+        while (t <= 1.0) {
+            t += Time.deltaTime / cameraMoveSeconds;
+            float v = t;
+            v = EasingFunction.EaseInOutQuad(0.0f, 1.0f, t);
+            Vector3 newPosition = Vector3.Lerp(startPos, endPos, v);
+
+            Vector2 pixelPerfectMoveAmount = Utils.MakePixelPerfect(newPosition);
+            Vector3 newPos = new Vector3(pixelPerfectMoveAmount.x, pixelPerfectMoveAmount.y, Camera.main.transform.position.z);
+            Camera.main.transform.position = newPos;
+
+            yield return new WaitForEndOfFrame();
+        }
+        enabled = true;
+        Init();
+    }
+
+    struct FocusArea {
 		public Vector2 centre;
 		public Vector2 velocity;
-		float left,right;
-		float top,bottom;
+		public float left,right;
+		public float top,bottom;
 
 
 		public FocusArea(Bounds targetBounds, Vector2 size) {

@@ -10,8 +10,8 @@ public class TextBox : MonoBehaviour {
     private GuiCharacterController charController;
     private GuiSimpleCharacterBackgroundController bgrController;
     private bool isInit = false;
-    private float offsetX;
-    private float offsetY;
+    private float offsetX = 0F;
+    private float offsetY = 0F;
     private float scaleX;
 
     // Use this for initialization
@@ -25,9 +25,7 @@ public class TextBox : MonoBehaviour {
         SpriteRenderer sr = transform.parent.GetComponent<SpriteRenderer>();
         if (sr) {
             offsetY = sr.bounds.extents.y + (offsetPixelsY / Constants.PPU);
-        } else {
-            Debug.LogError("TextBox: SpriteRenderer in Parent not found!");
-        }
+        } 
         isInit = true;
     }
 	

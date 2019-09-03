@@ -43,6 +43,7 @@ public class Dialogue: MonoBehaviour {
 
     public void StartDialogue() {
         inDialogue = true;
+        lastDialogueReady = false;
         Invoke("NextDialogueStep", timeOffsetToBeginDialogue);
         if (useTrigger && activateOnStart && triggerManager && triggerManager.HasReactors()) {
             StartCoroutine(ActivateTriggerManager());
