@@ -59,16 +59,11 @@ public class GuiController: MonoBehaviour {
     }
 
     public void RefreshPositions() {
-        SetGUIPosition(backgroundLeft, 0f, 1.0f, 0, 0);
-        SetGUIPosition(backgroundCenter, 0.5f, 1.0f, (5F / Constants.PPU), 0);
-        SetGUIPosition(backgroundRight, 1f, 1.0f, 0, 0);
+        Utils.SetGUIPosition(backgroundLeft, 0f, 1.0f, 0, 0);
+        Utils.SetGUIPosition(backgroundCenter, 0.5f, 1.0f, (5F / Constants.PPU), 0);
+        Utils.SetGUIPosition(backgroundRight, 1f, 1.0f, 0, 0);
     }
 
-    private void SetGUIPosition(GameObject go, float x, float y, float offsetX, float offsetY) {
-        float z = go.transform.position.z;
-        go.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
-        go.transform.position = new Vector3(go.transform.position.x + offsetX, go.transform.position.y + offsetY, z);
-    }
 
     public void ShowFantasyText(string text, float removeTime) {
         fantasyMoveInText.Init(text);

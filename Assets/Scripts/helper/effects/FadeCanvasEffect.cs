@@ -22,6 +22,7 @@ public class FadeCanvasEffect : MonoBehaviour
     }
 
     void Awake() {
+        Debug.Log("Canvas awakend");
         _instance = this;
         fadeAnimator = GetComponent<Animator>();
         uiImage = GetComponent<Image>();

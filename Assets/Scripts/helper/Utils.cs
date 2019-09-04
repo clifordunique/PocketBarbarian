@@ -101,4 +101,18 @@ public class Utils {
         }
         return 0;
     }
+
+    public static float GetHeightFromSpriteGO(GameObject go) {
+        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+        if (sr) {
+            return (sr.sprite.bounds.extents.y * 2);
+        }
+        return 0;
+    }
+
+    public static void SetGUIPosition(GameObject go, float x, float y, float offsetX, float offsetY) {
+        float z = go.transform.position.z;
+        go.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
+        go.transform.position = new Vector3(go.transform.position.x + offsetX, go.transform.position.y + offsetY, z);
+    }
 }

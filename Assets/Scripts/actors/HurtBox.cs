@@ -155,7 +155,7 @@ public class HurtBox : MonoBehaviour {
         }
         if (hitTime > 0 && currentHealth > 0) {
             // enable next hit
-            Invoke("HitInProgress", hitTime);
+            StartCoroutine(HitInProgress(hitTime));
         }
     }
     
@@ -172,6 +172,11 @@ public class HurtBox : MonoBehaviour {
         DeathAction(hitDirectionX);
     }
 
+    IEnumerator HitInProgress(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        hitInProgress = false;
+        StartCoroutine(RefreshCollisions());
+    }
     private void DeathAction(float hitDirectionX) {
         if (prefabDeathEffect != null) {
             InstantiateEffect(prefabDeathEffect, hitDirectionX, transform.position);

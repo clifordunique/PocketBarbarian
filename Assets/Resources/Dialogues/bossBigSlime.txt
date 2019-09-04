@@ -1,6 +1,6 @@
-n1|Damn!\You are the biggest booger I have ever seen!
+n1|Damn!\You are the biggest booger\I have ever seen!
 n2|Blubb
-n1|YES you!\Ha, you want a piece of me?
-n2|Blobbl
-n1|You will be minzed pudding when I am ready with you!
+n1|What did you say to ME?
+n2|Blobblblubb
+n1|Oh, you will be minzed pudding\when I am through with you!
 n2|Glub glub!

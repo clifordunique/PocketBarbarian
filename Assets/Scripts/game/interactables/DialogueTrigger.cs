@@ -36,14 +36,18 @@ public class DialogueTrigger : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D collision) {
         if (layerMaskToAcitvate == (layerMaskToAcitvate | (1 << collision.gameObject.layer))) {
             if (!dialogueFinished) {
-                inDialogue = true;
-                InputController.GetInstance().moveInputEnabled = false;
-                if (detachCamera) {
-                    StartCoroutine(MoveCameraDelay());
-                }
-                dialogue.StartDialogue();                
+                StartDialogue();
             }
         }
+    }
+
+    public virtual void StartDialogue() {
+        inDialogue = true;
+        InputController.GetInstance().moveInputEnabled = false;
+        if (detachCamera) {
+            StartCoroutine(MoveCameraDelay());
+        }
+        dialogue.StartDialogue();
     }
 
     public virtual void Update() {
