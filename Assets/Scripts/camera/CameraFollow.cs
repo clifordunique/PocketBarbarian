@@ -32,13 +32,13 @@ public class CameraFollow : MonoBehaviour {
     public float stompIntensity = 0.5F;
 
     public float shakeSmallTime = 0.1F;
-    public float shakeSmallIntensity = 0.2F;
+    public static float shakeSmallIntensity = 0.2F;
 
     public float shakeMediumTime = 0.3F;
-    public float shakeMediumIntensity = 0.5F;
+    public static float shakeMediumIntensity = 0.5F;
 
     public float shakeBigTime = 0.4F;
-    public float shakeBigIntensity = 1F;
+    public static float shakeBigIntensity = 1F;
 
     bool shake = false;
     float shakeTime;

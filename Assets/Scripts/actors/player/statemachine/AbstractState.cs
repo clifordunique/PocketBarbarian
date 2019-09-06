@@ -6,6 +6,8 @@ public abstract class AbstractState {
 
     public PlayerController playerController;
 
+    public static string WARCRY = "WARCRY";
+    public static string WARCRY_OUT = "WARCRY_OUT";
     public static string POMMESGABEL = "POMMESGABEL";
     public static string SWORD_UP_PARAM = "SWORD_UP";
     public static string IDLE_PARAM = "IDLE";
@@ -39,10 +41,11 @@ public abstract class AbstractState {
 
     public static string EVENT_PARAM_HIT = "HIT";
     public static string EVENT_PARAM_ANIMATION_END = "animation_end";
+    public static string EVENT_PARAM_ANIMATION_START = "animation_start";
     public static string EVENT_PARAM_ATTACK_END = "attack_end";
     public static string EVENT_PARAM_THROW = "throw";    
 
-    public enum ACTION {NA, SWORD_UP, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING, POMMESGABEL };
+    public enum ACTION {NA, SWORD_UP, IDLE, MOVE, JUMP, LANDING, SHOOT, DASH, ACTION, ATTACK1, ATTACK2, HIT, DEATH, DROWNING, POMMESGABEL, WARCRY };
     public ACTION myAction = ACTION.NA;
     public ACTION interruptAction = ACTION.NA;
 

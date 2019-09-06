@@ -48,6 +48,9 @@ public class IdleState : AbstractState {
             return new ThrowIdleState(playerController);
         }
 
+        if (playerController.input.IsWarcry()) {
+            return new WarcryStat(playerController);
+        }
         Move(0, playerController.input.GetDirectionY());
         return null;
     }

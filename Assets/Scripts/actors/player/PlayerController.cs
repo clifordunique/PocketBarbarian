@@ -40,6 +40,8 @@ public class PlayerController: MonoBehaviour, IActorController {
     public GameObject prefabEffectBloodSplatt;
     public GameObject prefabEffectSquish;
     public GameObject prefabEffectSquishBarbarian;
+    public GameObject prefabEffectRaaa;
+    public GameObject prefabEffectWarcrySoundWave;
     public ParticleSystem sparkParticle;
 
     [Header("Outline Effect Material")]
@@ -125,18 +127,20 @@ public class PlayerController: MonoBehaviour, IActorController {
         currentState.HandleEvent(AbstractState.EVENT_PARAM_HIT);
     }
 
-    public void InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F) {
-        Vector2 position = new Vector2(transform.position.x + offsetX, transform.position.y);
-        InstantiateEffect(effectToInstanciate, position);
+    public void InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F, float offsetY = 0F, bool autoFlip = true) {
+        Vector2 position = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
+        InstantiateEffect(effectToInstanciate, position, 0, autoFlip);
     }
-    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F) {
+    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F, bool autoFlip = true) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         //SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
         //if (effectSpriteRenderer) {
         //    effectSpriteRenderer.flipX = (dirX < 0);
         //}
-        float scaleX = (dirX < 0 ? -1 : 1);
-        effect.transform.localScale = new Vector3(scaleX, effect.transform.localScale.y, effect.transform.localScale.z);
+        if (autoFlip) {
+            float scaleX = (dirX < 0 ? -1 : 1);
+            effect.transform.localScale = new Vector3(scaleX, effect.transform.localScale.y, effect.transform.localScale.z);
+        }
         effect.transform.parent = EffectCollection.GetInstance().transform;
         effect.transform.position = position;
         if (rotateAngel != 0) {

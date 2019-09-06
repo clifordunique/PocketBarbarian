@@ -12,6 +12,9 @@ public class InputController : MonoBehaviour {
     private float lastDirectionX;
     private bool isDashing;
 
+    private float timeLastUp = -1;
+    private bool isWarcry;
+
     private float timeLookAroundStart = -1;
     private float lastDirectionY;
     private bool lookAroundEnabled = false;
@@ -115,6 +118,14 @@ public class InputController : MonoBehaviour {
         return false;
     }
 
+    public bool IsWarcry() {
+        if (moveInputEnabled) {
+            return isWarcry;
+        }
+        return false;
+    }
+
+
     public bool AnyKeyDown() {
         return Input.anyKeyDown;
     }
@@ -136,6 +147,8 @@ public class InputController : MonoBehaviour {
         }
 
         CheckLookAhead();
+
+        CheckWarcry();
     }
 
     private void CheckLookAhead() {
@@ -152,5 +165,18 @@ public class InputController : MonoBehaviour {
             lastDirectionY = 0F;
             lookAroundEnabled = false;
         }
+    }
+
+    private void CheckWarcry() {
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            if (timeLastUp + timeDoubleDash > Time.timeSinceLevelLoad) {
+                // vor kurzem up betätigt, also Warcry
+                Debug.Log("Is Warcry!!!");
+                isWarcry = true;
+                return;
+            }
+            timeLastUp = Time.timeSinceLevelLoad;
+        }
+        isWarcry = false;
     }
 }
