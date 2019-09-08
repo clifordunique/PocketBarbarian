@@ -9,6 +9,7 @@ public abstract class AbstractCollectable : MonoBehaviour {
     public PrefabValue collectableEffect;
     public GameObject collectableNumberEffect;
     public bool startRandom = true;
+    public AudioClip sound;
 
     private BoxCollider2D boxCollider;
     private GameObject activeGameObject;
@@ -69,6 +70,9 @@ public abstract class AbstractCollectable : MonoBehaviour {
                 collected = true;
                 if (collectableEffect) {
                     InstantiateEffect(collectableEffect.value);
+                }
+                if (sound) {
+                    SoundManager.PlaySFX(sound);
                 }
                 CollectItem();
                 Destroy(activeGameObject);

@@ -135,7 +135,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,7 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c0965fa47bf70542abb88d2ce496153
+      spriteID: fc342848efc393644bb93343b36eaa84
       vertices: []
       indices: 
       edges: []
@@ -153,9 +153,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 28
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,7 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6c64c5836777124ebeccc0fb170f023
+      spriteID: e792a0a98228bcb4ba1adf2e3a5f6115
       vertices: []
       indices: 
       edges: []
@@ -173,9 +173,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 56
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3306b4f84e6216e4181c979ed35771d5
+      spriteID: ea6c643568e91594e932307be7b40c83
       vertices: []
       indices: 
       edges: []
@@ -193,9 +193,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 84
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -204,7 +204,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8da2233117f10024f9e3f7bc9d965e0e
+      spriteID: 7a2c3a20dac41ab4b9118edf018c20f4
       vertices: []
       indices: 
       edges: []
@@ -213,9 +213,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_4
       rect:
         serializedVersion: 2
-        x: 80
+        x: 112
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -224,7 +224,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91ef7bd9180c3dd4a984c91a9379a76e
+      spriteID: 4cbde2fe4df0e964f989797f54245ff9
       vertices: []
       indices: 
       edges: []
@@ -233,9 +233,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_5
       rect:
         serializedVersion: 2
-        x: 100
+        x: 140
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -244,7 +244,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79a3b2d8982628c48919d770ea610dee
+      spriteID: f42289179c73c8e42905ac045c18fedb
       vertices: []
       indices: 
       edges: []
@@ -253,9 +253,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_6
       rect:
         serializedVersion: 2
-        x: 120
+        x: 168
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -264,7 +264,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67c59bc4e03619e43ae12038dee0bfab
+      spriteID: c5c493fc07e4b774095647e5e028eb6d
       vertices: []
       indices: 
       edges: []
@@ -273,9 +273,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_7
       rect:
         serializedVersion: 2
-        x: 140
+        x: 196
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -284,7 +284,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b2638c7dc560ab4c885ab336ea0f7ce
+      spriteID: 7f734539e70bce149b0b3dbc5ec5ad73
       vertices: []
       indices: 
       edges: []
@@ -293,9 +293,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_8
       rect:
         serializedVersion: 2
-        x: 160
+        x: 224
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -304,7 +304,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 148e9e14e88a8a448b4d87c1e086e03e
+      spriteID: 35fd20a7aedcdfa47a369b14b2f572cc
       vertices: []
       indices: 
       edges: []
@@ -313,9 +313,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_9
       rect:
         serializedVersion: 2
-        x: 180
+        x: 252
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -324,7 +324,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4b540d3de5c65a43adba30fd15be728
+      spriteID: e9366345897810f4886dcd5b363e2122
       vertices: []
       indices: 
       edges: []
@@ -333,9 +333,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_10
       rect:
         serializedVersion: 2
-        x: 200
+        x: 280
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -344,7 +344,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 276e0c61c156ea14396d0ce9e0bcddd8
+      spriteID: d2e88e2ceda64c04ea11b24958239b22
       vertices: []
       indices: 
       edges: []
@@ -353,9 +353,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_11
       rect:
         serializedVersion: 2
-        x: 220
+        x: 308
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -364,7 +364,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd52cf372d72e054492c4d5224c09b49
+      spriteID: 43579bb290836aa45854668311673ad5
       vertices: []
       indices: 
       edges: []
@@ -373,9 +373,9 @@ TextureImporter:
       name: barbarian_idle_sword_back_12
       rect:
         serializedVersion: 2
-        x: 240
+        x: 336
         y: 0
-        width: 20
+        width: 28
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -384,7 +384,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 039ee906b2ab78147a3033c4dbf92f15
+      spriteID: cb151af3d45afec458f78911f2543d04
       vertices: []
       indices: 
       edges: []

@@ -22,6 +22,7 @@ public class AttackLightState : AbstractState {
         } else {
             attackParam = ATTACK_LIGHT_2_PARAM;
         }
+        SoundManager.PlaySFX(playerController.soundController.attack1);
         playerController.animator.SetBool(attackParam, true);
         Move(0, playerController.input.GetDirectionY());
         if (playerController.input.GetDirectionX() != 0) {

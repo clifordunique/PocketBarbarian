@@ -50,6 +50,8 @@ public class PlayerController: MonoBehaviour, IActorController {
     [HideInInspector]
     public PlayerMoveController2D moveController;
     [HideInInspector]
+    public PlayerSounds soundController;
+    [HideInInspector]
     public SpriteRenderer spriteRenderer;
     [HideInInspector]
     public BoxCollider2D boxCollider2D;
@@ -80,6 +82,7 @@ public class PlayerController: MonoBehaviour, IActorController {
     // Use this for initialization
     void Awake() {
         moveController = GetComponent<PlayerMoveController2D>();
+        soundController = GetComponent<PlayerSounds>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();

@@ -11,6 +11,7 @@ public class JumpState : AbstractState {
         playerController.animator.SetBool(JUMPING_PARAM, true);
         playerController.InstantiateEffect(playerController.prefabEffectJump);
         playerController.moveController.OnJumpInputDown();
+        SoundManager.PlaySFX(playerController.soundController.jump);
         Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 
