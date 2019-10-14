@@ -39,7 +39,11 @@ public class WarcryStat: AbstractState {
             cryStartTime = Time.timeSinceLevelLoad;
             CameraFollow.GetInstance().ShakeCamera(CRY_DURATION, 0.1F, 0.1F);
             playerController.InstantiateEffect(playerController.prefabEffectRaaa, raaaEffectOffsetX, raaaEffectOffsetY, false);
-            playerController.InstantiateEffect(playerController.prefabEffectWarcrySoundWave);
+            GameObject warcry = playerController.InstantiateEffect(playerController.prefabEffectWarcrySoundWave);
+            HitBox hitbox = warcry.GetComponentInChildren<HitBox>();
+            if (hitbox) {                
+                hitbox.damage = playerController.statistics.warcryEffectMillis;
+            }
             Debug.Log("Start crying");
             startCry = false;
         }

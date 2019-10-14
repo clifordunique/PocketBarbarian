@@ -11,6 +11,7 @@ public class HitState : AbstractState {
 
     public override void OnEnter() {
         startTime = Time.timeSinceLevelLoad;
+        Debug.Log("Start hit: " + startTime);
         if (playerController.lastHit.push && !playerController.lastHit.instakill) {
             playerController.animator.SetBool(JUMPING_PARAM, true);
             Vector3 hitDirection = Utils.GetHitDirection(playerController.lastHit.hitSource, playerController.transform);
@@ -24,13 +25,15 @@ public class HitState : AbstractState {
     }
 
     public override AbstractState UpdateState() {
+
         AbstractState interrupt = base.UpdateState();
         if (interrupt != null) {
             return interrupt;
         }
 
         if (playerController.lastHit.push && !playerController.lastHit.instakill) {
-            if ((Time.timeSinceLevelLoad - startTime) > (playerController.hurtBox.hitTime / 2)) {
+            if ((Time.timeSinceLevelLoad - startTime) > (playerController.hurtBox.flashTime)) {
+                Debug.Log("Stop hit: " + Time.timeSinceLevelLoad) ;
                 if (playerController.statistics.health <= 0) {
                     return new DyingState(playerController.lastHit.damageType, playerController);
                 } else {

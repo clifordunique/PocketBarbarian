@@ -21,7 +21,6 @@ public class CameraFollow : MonoBehaviour {
 	float lookAheadDirX;
 	float smoothLookVelocityX;
     
-    float lookAheadDirY;
     float smoothVelocityY;
 	bool lookAheadStopped;
 
@@ -63,8 +62,7 @@ public class CameraFollow : MonoBehaviour {
         targetLookAheadX = 0;
         lookAheadDirX = 0;
         smoothLookVelocityX = 0;
-
-        lookAheadDirY = 0;
+        
         smoothVelocityY = 0;
         lookAheadStopped = false;
 

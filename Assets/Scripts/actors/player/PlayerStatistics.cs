@@ -52,6 +52,7 @@ public class PlayerStatistics : MonoBehaviour {
     public float dashDuration;
     public bool stompAllowed;
     public float comboLevel;
+    public int warcryEffectMillis;
 
     public float currentStamina; // stamina in percent 0-1F
 

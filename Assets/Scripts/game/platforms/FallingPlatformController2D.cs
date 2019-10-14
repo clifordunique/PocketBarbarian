@@ -44,7 +44,6 @@ public class FallingPlatformController2D : AbstractPlatformController2D
 
     private float prewarmTime = 0;
     private float waitUntil = 0;
-    private float lastWaitBuffer = 0F;
 
     private bool actionCompleteEffectPlayed = false;
     
@@ -87,7 +86,6 @@ public class FallingPlatformController2D : AbstractPlatformController2D
         } else {
             float time = Time.timeSinceLevelLoad;
             if (waitUntil  <= time) {
-                lastWaitBuffer = (time - waitUntil);
                 
                 isMoving = true;
                 t = 0F;
@@ -116,8 +114,7 @@ public class FallingPlatformController2D : AbstractPlatformController2D
                 // Prewarm finished!
                 isMoving = false;
                 isMovingAction = true;
-                isMovingPrewarm = false;                
-                lastWaitBuffer = (Time.timeSinceLevelLoad - prewarmTime);                
+                isMovingPrewarm = false;                         
                 waitUntil = prewarmTime + waitTimePrewarmPosition;
                 prewarmTime = 0F;
                 // end of Prewarm, endpos immer = startPos!

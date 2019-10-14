@@ -74,7 +74,7 @@ public class CharacterDisplayer : ScriptableObject {
             maxLineWidth = float.MinValue;
 
             List<GameObject> lines = new List<GameObject>();
-            int linePos = linePos = AddNewLine(ref lines, myTransform);
+            int linePos = AddNewLine(ref lines, myTransform);
 
             for (int i = 0; i < text.Length; i++ ) {
                 

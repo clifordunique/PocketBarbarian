@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyAction {
 
-    public enum ACTION_EVENT {NA, IDLE, MOVE, JUMP, SHOOT, ACTION, HIT };
+    public enum ACTION_EVENT {NA, IDLE, MOVE, JUMP, SHOOT, ACTION, HIT, DIZZY };
     public ACTION_EVENT actionEvent = ACTION_EVENT.NA;
 
     public float amount = 0; // duration to stay in state --> only for Idle, Move and Hit

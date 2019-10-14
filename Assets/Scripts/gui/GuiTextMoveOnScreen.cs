@@ -36,6 +36,7 @@ public class GuiTextMoveOnScreen : MonoBehaviour {
     
     public void Init(string text) {
         // InitPosition
+        remove = false;
         characterController = GetComponentInChildren<GuiCharacterController>();
         transform.position = GetPosition(startScreenX, startScreenY, startOffsetX, startOffsetY);
         startPos = transform.position;
@@ -77,7 +78,6 @@ public class GuiTextMoveOnScreen : MonoBehaviour {
     private void SmoothMove() {
 
         if ((t <= 1.0) || (seconds == 0)) {
-
             t += Time.deltaTime / seconds;
             float newTime = t;
             if (newTime > 1) {

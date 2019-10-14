@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDied() {
         if (!playerDead) {
             playerDead = true;
-            GuiController.GetInstance().InstanciateDiedEffect();
+            GuiController.GetInstance().ShowFantasyBounceInText("You Died!", waitTimeRestartOnDeath + 1);
             StartCoroutine(ReloadLevelOnDeathCoroutine());
         }
     }

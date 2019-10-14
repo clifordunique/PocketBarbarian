@@ -6,13 +6,13 @@ public class GuiController: MonoBehaviour {
 
     public GuiTextMoveOnScreen fantasyMoveInText;
     public GuiTextMoveOnScreen fantasyPopInText;
+    public GuiTextMoveOnScreen fantasyBounceInText;
 
     public TextAsset randomFightTextAsset;
 
     public GameObject backgroundLeft;
     public GameObject backgroundCenter;
     public GameObject backgroundRight;
-    public GameObject prefabDiedEffect;
     public GameObject prefabLevelCompleteEffect;
     public GameObject prefabCanvasFlashEffect;
 
@@ -42,16 +42,8 @@ public class GuiController: MonoBehaviour {
             RefreshPositions();
             lastScreenWidth = Screen.width;
         }
-
-        if (Input.GetKeyDown(KeyCode.R)) {
-            ShowRandomFightText(0.5F);
-        }
     }
-
-    public void InstanciateDiedEffect() {
-        GameObject effect = Instantiate(prefabDiedEffect);
-        effect.transform.parent = EffectCollection.GetInstance().transform;
-    }
+    
 
     public void InstanciateLevelCompleteEffect() {
         GameObject effect = Instantiate(prefabLevelCompleteEffect);
@@ -71,6 +63,11 @@ public class GuiController: MonoBehaviour {
         StartCoroutine(RemoveFantasyTextEffect(removeTime, fantasyMoveInText));
     }
 
+    public void ShowFantasyBounceInText(string text, float removeTime) {
+        fantasyBounceInText.Init(text);
+        StartCoroutine(RemoveFantasyTextEffect(removeTime, fantasyBounceInText));
+    }
+
 
     public void ShowRandomFightText(float time) {
         CanvasFlash();
@@ -80,7 +77,7 @@ public class GuiController: MonoBehaviour {
     }
 
     public void CanvasFlash() {
-        GameObject effect1 = Instantiate(prefabCanvasFlashEffect);
+        Instantiate(prefabCanvasFlashEffect);
     }
 
     private IEnumerator RemoveFantasyTextEffect(float waitTime, GuiTextMoveOnScreen textMove) {

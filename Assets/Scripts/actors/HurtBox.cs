@@ -11,22 +11,36 @@ public class HurtBox : MonoBehaviour {
     public int currentHealth = 0;
     
     public bool pushedOnHit;
+
+    [Header("Flash Settings")]
     public bool flashOnHit;
+    [ConditionalHideAttribute("flashOnHit", true)]
+    public bool flashMultiple;
+    [ConditionalHideAttribute("flashMultiple", true)]
     public float flashTime;
-    public bool destroyParent = false;
+
+    [Header("Destroy Settings")]
     public bool destroyOnDeath = true;
+    [ConditionalHideAttribute("destroyOnDeath", true)]
+    public bool destroyParent = false;
+    [ConditionalHideAttribute("destroyOnDeath", true)]
     public bool destroyOnDeathImmediate = true;
 
+    [Header("Effects Settings")]
     public GameObject prefabHitEffect;
     public GameObject prefabDeathEffect;
     public GameObject prefabWaterSplash;
 
+    [Header("Hit Immune Settings")]
     public float hitTime;
+
+    [Header("Actor Settings")]
     [HideInInspector]
     public IActorController actorController;
     private GameObject actorGameObject;
     [HideInInspector]
     public BoxCollider2D boxCollider;
+
     private SpriteRenderer spriteRenderer;
     private IChildGenerator lootController;
     
@@ -71,8 +85,6 @@ public class HurtBox : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision) {        
         if (attackLayers == (attackLayers | (1 << collision.gameObject.layer))) {
-            Debug.Log("In Hurt Enter");
-            Debug.Log("In Hurt Enter");
             // get GameActor from collision gameobject
             HitBox attackerActor = collision.transform.GetComponent<HitBox>();
             if (attackerActor) {
@@ -90,6 +102,15 @@ public class HurtBox : MonoBehaviour {
 
     public virtual void ReceiveHit(bool instakill, int damage, HitBox.DAMAGE_TYPE damageType, HitBox attackerActor, Vector3 hitSourcePosition, Collider2D collider2d) {
         Vector3 hitDirection = Utils.GetHitDirection(hitSourcePosition, transform);
+
+        // stun effect
+        if (damageType == HitBox.DAMAGE_TYPE.STUN) {
+            // Event for Victim
+            if (actorController != null) {
+                actorController.ReactDizzy(damage/1000); // damage = stun time in milliseconds
+            }
+            return;
+        }
 
         // water splash effect
         if (damageType == HitBox.DAMAGE_TYPE.WATER && instakill && collider2d != null) {
@@ -120,8 +141,6 @@ public class HurtBox : MonoBehaviour {
                 if (actorController != null) {
                     actorController.ReactHurt(currentHealth <= 0, this.pushedOnHit, instakill, hitSourcePosition, damageType);
                 }
-
-
                 
 
                 ExecuteEffects(collider2d, hitDirection, instakill, damage, damageType);
@@ -205,7 +224,7 @@ public class HurtBox : MonoBehaviour {
 
     private void FlashSprite(float time) {
         SpriteFlashingEffect effect = new SpriteFlashingEffect();
-        if (time >= 1) {
+        if (flashMultiple) {
             StartCoroutine(effect.DamageFlashing(spriteRenderer, time));
         } else {
             StartCoroutine(effect.DamageFlashingOnce(spriteRenderer));

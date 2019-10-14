@@ -141,7 +141,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,7 +150,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5c28aca60278f942baab5cbb75dd163
+      spriteID: 554a762926801f2448a311941b8b66a9
       vertices: []
       indices: 
       edges: []
@@ -159,9 +159,9 @@ TextureImporter:
       name: barbarian_dying_1
       rect:
         serializedVersion: 2
-        x: 42
+        x: 30
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -170,7 +170,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a60b8b897dfc52145bceae2d9847689c
+      spriteID: 8088e1874314f104aaa59525d7424ca5
       vertices: []
       indices: 
       edges: []
@@ -179,9 +179,9 @@ TextureImporter:
       name: barbarian_dying_2
       rect:
         serializedVersion: 2
-        x: 84
+        x: 60
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -190,7 +190,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdce90e3ff94abc4289dad6c17864842
+      spriteID: 513e917c02ad80b49b8a0bfb3c9777cf
       vertices: []
       indices: 
       edges: []
@@ -199,9 +199,9 @@ TextureImporter:
       name: barbarian_dying_3
       rect:
         serializedVersion: 2
-        x: 126
+        x: 90
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -210,7 +210,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 205eff44aab99d14188e3a5a773cbb64
+      spriteID: 337fb3cd8091ff34199997d681b79248
       vertices: []
       indices: 
       edges: []
@@ -219,9 +219,9 @@ TextureImporter:
       name: barbarian_dying_4
       rect:
         serializedVersion: 2
-        x: 168
+        x: 120
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -230,7 +230,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c735d10eaebf4974a8885c115d9462cb
+      spriteID: eaa120968f8c0eb47b56e5dcaad322ea
       vertices: []
       indices: 
       edges: []
@@ -239,9 +239,9 @@ TextureImporter:
       name: barbarian_dying_5
       rect:
         serializedVersion: 2
-        x: 210
+        x: 150
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,7 +250,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69fde2bbdf1bf37458facd22e9c92c6c
+      spriteID: 07ae38455dbfd7449bb1a9a1564e64ac
       vertices: []
       indices: 
       edges: []
@@ -259,9 +259,9 @@ TextureImporter:
       name: barbarian_dying_6
       rect:
         serializedVersion: 2
-        x: 252
+        x: 180
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -270,7 +270,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ffa0dcd4acc7154ba8181e9df7096de
+      spriteID: b1e36ce5317996446aca205a6bc11e76
       vertices: []
       indices: 
       edges: []
@@ -279,9 +279,9 @@ TextureImporter:
       name: barbarian_dying_7
       rect:
         serializedVersion: 2
-        x: 294
+        x: 210
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -290,7 +290,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f6694864d21054e885990f0747f1cb
+      spriteID: f31a477e36200fd4f80da71f2fd1da94
       vertices: []
       indices: 
       edges: []
@@ -299,9 +299,9 @@ TextureImporter:
       name: barbarian_dying_8
       rect:
         serializedVersion: 2
-        x: 336
+        x: 240
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -310,7 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3bf98c7dd8586c46b3290b2cb76cd2f
+      spriteID: b9fac19e6bb64d44db3b867888dd0563
       vertices: []
       indices: 
       edges: []
@@ -319,9 +319,9 @@ TextureImporter:
       name: barbarian_dying_9
       rect:
         serializedVersion: 2
-        x: 378
+        x: 270
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -330,7 +330,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5adacd2d05cb23c4c85cd83f7f5a2528
+      spriteID: c5d9f4537e2b191429920f1e62c30d7a
       vertices: []
       indices: 
       edges: []
@@ -339,9 +339,9 @@ TextureImporter:
       name: barbarian_dying_10
       rect:
         serializedVersion: 2
-        x: 420
+        x: 300
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -350,7 +350,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99da9b7487f89db45b40a5d7aa3ebee9
+      spriteID: 8d1e892ebd94df447a7ac89152f62be2
       vertices: []
       indices: 
       edges: []
@@ -359,9 +359,9 @@ TextureImporter:
       name: barbarian_dying_11
       rect:
         serializedVersion: 2
-        x: 462
+        x: 330
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -370,7 +370,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53716eac02c53b043abe98f5a06a480c
+      spriteID: 43bd4d4f8c187f64a9c40b5461b33fe9
       vertices: []
       indices: 
       edges: []
@@ -379,9 +379,9 @@ TextureImporter:
       name: barbarian_dying_12
       rect:
         serializedVersion: 2
-        x: 504
+        x: 360
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -390,7 +390,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a1a0359d4979874aa9e1bd27426c66c
+      spriteID: 69107d241541264439dece98837b3873
       vertices: []
       indices: 
       edges: []
@@ -399,9 +399,9 @@ TextureImporter:
       name: barbarian_dying_13
       rect:
         serializedVersion: 2
-        x: 546
+        x: 390
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -410,7 +410,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42348346955cded48a2cb81e9e5cbeda
+      spriteID: 8db17e57eb88caa48b6e69fa7825e3a4
       vertices: []
       indices: 
       edges: []
@@ -419,9 +419,9 @@ TextureImporter:
       name: barbarian_dying_14
       rect:
         serializedVersion: 2
-        x: 588
+        x: 420
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -430,7 +430,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78eda7a6f5c5f3947828c4c550f1d1fd
+      spriteID: 3460d60bb73a85e43ad0299d6ea7531e
       vertices: []
       indices: 
       edges: []
@@ -439,9 +439,9 @@ TextureImporter:
       name: barbarian_dying_15
       rect:
         serializedVersion: 2
-        x: 630
+        x: 450
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -450,7 +450,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dd94b26f7dacbc4cb286ec1b05059e8
+      spriteID: 4d079af8fa2d67d4195c7de2bd6bbfd7
       vertices: []
       indices: 
       edges: []
@@ -459,9 +459,9 @@ TextureImporter:
       name: barbarian_dying_16
       rect:
         serializedVersion: 2
-        x: 672
+        x: 480
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -470,7 +470,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c8c8c89d5c873a4abbfe22e698392f2
+      spriteID: c436e3f225720e0468d996fe500b21b5
       vertices: []
       indices: 
       edges: []
@@ -479,9 +479,9 @@ TextureImporter:
       name: barbarian_dying_17
       rect:
         serializedVersion: 2
-        x: 714
+        x: 510
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -490,7 +490,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0218b2b60beddf48aa7569f9ed30720
+      spriteID: ea3fc612b0416a0448a48d916ee6394b
       vertices: []
       indices: 
       edges: []
@@ -499,9 +499,9 @@ TextureImporter:
       name: barbarian_dying_18
       rect:
         serializedVersion: 2
-        x: 756
+        x: 540
         y: 0
-        width: 42
+        width: 30
         height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -510,7 +510,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2816c02c44a4e343a40af92b611cdd8
+      spriteID: 4452cbedd927f78488c0463828c6de78
       vertices: []
       indices: 
       edges: []

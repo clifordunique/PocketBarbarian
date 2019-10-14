@@ -8,6 +8,7 @@ public class EnemyController: MonoBehaviour, IActorController {
     public float randomDelaySeconds = 0;
     private float delayTime = 0;
 
+
     public bool isShooter = false;
     [ConditionalHideAttribute("isShooter", true)]
     public Transform spawnPosition;
@@ -18,6 +19,7 @@ public class EnemyController: MonoBehaviour, IActorController {
     [HideInInspector]
     public float lastShot;
 
+    public GameObject dizzyEffect;
     public GameObject moveEffectPrefab;
 
     private AbstractEnemyState currentState;
@@ -90,6 +92,14 @@ public class EnemyController: MonoBehaviour, IActorController {
         }
         lastDamageType = damageType;
         currentAction = hitAction;
+        isInterruptAction = true;
+    }
+
+    public void ReactDizzy(float seconds) {
+        Debug.Log("IS DIZZY!:" + seconds);
+        EnemyAction dizzyAction = new EnemyAction(EnemyAction.ACTION_EVENT.DIZZY);
+        dizzyAction.amount = seconds;
+        currentAction = dizzyAction;
         isInterruptAction = true;
     }
 

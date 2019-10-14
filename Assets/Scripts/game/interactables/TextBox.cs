@@ -12,12 +12,10 @@ public class TextBox : MonoBehaviour {
     private bool isInit = false;
     private float offsetX = 0F;
     private float offsetY = 0F;
-    private float scaleX;
 
     // Use this for initialization
     public virtual void Start () {
         Init();
-        scaleX = transform.parent.localScale.x;
     }
 
     public virtual void Init() {

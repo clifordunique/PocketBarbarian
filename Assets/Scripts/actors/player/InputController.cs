@@ -132,7 +132,15 @@ public class InputController : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
-		if (((Input.GetKeyDown(KeyCode.LeftArrow) && lastDirectionX == -1) || (Input.GetKeyDown(KeyCode.RightArrow) && lastDirectionX == 1))) {
+        if (Input.GetKeyDown(KeyCode.O)) {
+            GameManager.GetInstance().LevelComplete();
+        }
+        if (Input.GetKeyDown(KeyCode.I)) {
+            GuiController.GetInstance().ShowFantasyBounceInText("You Died!", 3F);
+        }
+            
+
+        if (((Input.GetKeyDown(KeyCode.LeftArrow) && lastDirectionX == -1) || (Input.GetKeyDown(KeyCode.RightArrow) && lastDirectionX == 1))) {
             // double direction, check for time between
             if (timeLastDirectionX != -1 && Time.timeSinceLevelLoad - timeLastDirectionX <= timeDoubleDash) {
                 isDashing = true;

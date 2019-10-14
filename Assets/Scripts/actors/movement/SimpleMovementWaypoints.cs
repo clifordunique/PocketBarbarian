@@ -18,9 +18,6 @@ public class SimpleMovementWaypoints: MonoBehaviour{
 	float percentBetweenWaypoints;
     [HideInInspector]
 	public float nextMoveTime;
-
-    private Vector3 startWaypoint;
-    
 	
 	public void Start () {
 
@@ -28,8 +25,6 @@ public class SimpleMovementWaypoints: MonoBehaviour{
 		for (int i =0; i < localWaypoints.Length; i++) {
 			globalWaypoints[i] = localWaypoints[i].position;
 		}
-        startWaypoint = globalWaypoints[0];
-
     }
     
 

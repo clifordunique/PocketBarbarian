@@ -32,6 +32,8 @@ public abstract class AbstractState {
     public static string STOMPING_PARAM = "STOMPING";
     public static string STOMPING_LANDING_PARAM = "STOMPING_LANDING";
     public static string DYING_PARAM = "DYING";
+    public static string DYING_2_PARAM = "DYING_2";
+    public static string DYING_BURN_PARAM = "DYING_BURN";
     public static string DYING_DROWN_PARAM = "DYING_DROWN";
     public static string THROW_IDLE_PARAM = "THROW_IDLE";
     public static string THROW_JUMP_PARAM = "THROW_JUMP";

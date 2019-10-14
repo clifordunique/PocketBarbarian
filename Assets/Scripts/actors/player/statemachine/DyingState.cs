@@ -10,6 +10,8 @@ public class DyingState : AbstractState {
     private Vector3 hitDirection;
     private bool die = false;
 
+    private string animParam;
+
     public DyingState(HitBox.DAMAGE_TYPE damageType, PlayerController playerController) : base(ACTION.DEATH, playerController) {
         this.damageType = damageType;
     }
@@ -32,15 +34,15 @@ public class DyingState : AbstractState {
             
             playerController.spriteRenderer.enabled = false;
             playerController.boxCollider2D.enabled = false;
-           // CameraFollow.GetInstance().enabled = false;
         }
 
-        playerController.animator.SetBool(GetAnimParam(), true);
+        animParam = GetAnimParam();
+        playerController.animator.SetBool(animParam, true);
         Move(0F, playerController.input.GetDirectionY());
     }
 
     public override void OnExit() {
-        playerController.animator.SetBool(GetAnimParam(), false);
+        playerController.animator.SetBool(animParam, false);
         Move(0F, playerController.input.GetDirectionY());
     }
 
@@ -65,8 +67,15 @@ public class DyingState : AbstractState {
                 return DYING_DROWN_PARAM;
             case HitBox.DAMAGE_TYPE.PIT:
                 return FAST_FALLING_PARAM;
-            default:
-                return DYING_PARAM;
+            case HitBox.DAMAGE_TYPE.FIRE:
+                return DYING_BURN_PARAM;
+            default: {
+                    if (Random.Range(0,2) == 0) {
+                        return DYING_PARAM;
+                    } else {
+                        return DYING_2_PARAM;
+                    }                    
+                }                
         }
     }
 

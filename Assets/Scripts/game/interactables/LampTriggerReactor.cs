@@ -8,8 +8,6 @@ public class LampTriggerReactor: MonoBehaviour, ITriggerReactor {
     public Sprite lampOffSprite;
     public bool defaultOn = true;
     public bool onActiveLightsOn = true;
-
-    private bool lightOn = false;
     
     private SpriteRenderer sr;
 
@@ -25,12 +23,10 @@ public class LampTriggerReactor: MonoBehaviour, ITriggerReactor {
     }
 
     private void LightOn() {
-        lightOn = true;
         sr.sprite = lampOnSprite;
     }
 
     private void LightOff() {
-        lightOn = false;
         sr.sprite = lampOffSprite;
     }
 

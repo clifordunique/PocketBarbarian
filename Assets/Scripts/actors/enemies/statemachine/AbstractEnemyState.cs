@@ -38,10 +38,12 @@ public abstract class AbstractEnemyState {
         if (requestedAction == EnemyAction.ACTION_EVENT.MOVE) {
             return new EnemyMoveState(enemyController);
         }
-        if (requestedAction == EnemyAction.ACTION_EVENT.SHOOT) {
-            Debug.Log("Return Shoot State!");
+        if (requestedAction == EnemyAction.ACTION_EVENT.SHOOT) {         
             return new EnemyShootState(enemyController);
         }
+        if (requestedAction == EnemyAction.ACTION_EVENT.DIZZY) {
+            return new EnemyDizzyState(enemyController);
+        }        
         return null;
     }
     

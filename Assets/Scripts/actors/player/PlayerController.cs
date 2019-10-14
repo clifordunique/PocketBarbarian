@@ -130,11 +130,11 @@ public class PlayerController: MonoBehaviour, IActorController {
         currentState.HandleEvent(AbstractState.EVENT_PARAM_HIT);
     }
 
-    public void InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F, float offsetY = 0F, bool autoFlip = true) {
+    public GameObject InstantiateEffect(GameObject effectToInstanciate, float offsetX = 0F, float offsetY = 0F, bool autoFlip = true) {
         Vector2 position = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
-        InstantiateEffect(effectToInstanciate, position, 0, autoFlip);
+        return InstantiateEffect(effectToInstanciate, position, 0, autoFlip);
     }
-    public void InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F, bool autoFlip = true) {
+    public GameObject InstantiateEffect(GameObject effectToInstanciate, Vector2 position, float rotateAngel = 0F, bool autoFlip = true) {
         GameObject effect = (GameObject)Instantiate(effectToInstanciate);
         //SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
         //if (effectSpriteRenderer) {
@@ -149,6 +149,7 @@ public class PlayerController: MonoBehaviour, IActorController {
         if (rotateAngel != 0) {
             effect.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, rotateAngel));
         }
+        return effect;
     }
 
     // Update is called once per frame
@@ -259,6 +260,10 @@ public class PlayerController: MonoBehaviour, IActorController {
             yield return null;
         }
         GameManager.GetInstance().LevelComplete();
+    }
+
+    public void ReactDizzy(float seconds) {
+        throw new System.NotImplementedException();
     }
 
     public struct LastHit {
