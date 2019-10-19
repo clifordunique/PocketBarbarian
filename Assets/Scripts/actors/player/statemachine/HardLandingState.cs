@@ -13,6 +13,7 @@ public class HardLandingState : AbstractState {
         CameraFollow.GetInstance().ShakeSmall();
         playerController.InstantiateEffect(playerController.prefabEffectHardLanding);
         playerController.animator.SetBool(HARD_LANDING_PARAM, true);
+        SoundManager.PlaySFX(playerController.soundController.land_hard);
         Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 

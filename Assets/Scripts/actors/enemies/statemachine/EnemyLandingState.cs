@@ -33,7 +33,8 @@ public class EnemyLandingState : AbstractEnemyState {
                     return GetEnemyState(enemyController.currentAction.actionEvent);
                 }
             }
-            return new EnemyIdleState(enemyController);
+            enemyController.RequestNextAction();
+            return GetEnemyState(enemyController.currentAction.actionEvent);
         }
         return null;
     }

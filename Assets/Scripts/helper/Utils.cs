@@ -115,4 +115,12 @@ public class Utils {
         go.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
         go.transform.position = new Vector3(go.transform.position.x + offsetX, go.transform.position.y + offsetY, z);
     }
+
+    public static bool HasParameter(string paramName, Animator animator) {
+        foreach (AnimatorControllerParameter param in animator.parameters) {
+            if (param.name == paramName)
+                return true;
+        }
+        return false;
+    }
 }

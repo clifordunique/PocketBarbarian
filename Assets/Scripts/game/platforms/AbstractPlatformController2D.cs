@@ -64,13 +64,16 @@ public abstract class AbstractPlatformController2D: RaycastController2D, ITrigge
 
 
                     if (passenger.velocity.y < 0 && !passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsBelow()) {
+                        Debug.Log("Move Passenger1");
                         passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                     } else {
                         if (passenger.velocity.y > 0 && passenger.standingOnPlatform && passengerDictionary[passenger.transform].IsAbove()) {
                         } else {
+                            Debug.Log("Move Passenger2");
                             passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
                         }
                     }
+                    Debug.Log("Move Passenger3");
 
                     ReactToPassenger(velocity, passenger);
                 }

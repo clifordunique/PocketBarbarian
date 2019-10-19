@@ -84,19 +84,21 @@ public class EnemyController: MonoBehaviour, IActorController {
 
     public void ReactHurt(bool dead, bool push, bool instakill, Vector3 hitSource, HitBox.DAMAGE_TYPE damageType) {
 
-        EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
-        if (push && !instakill) {
-            hitAction.hitTarget = hitSource;
-        } else {
-            hitAction.hitTarget = Vector3.positiveInfinity;
+        // look up if hit animation present
+        if (Utils.HasParameter("HIT", animator)) {
+            EnemyAction hitAction = new EnemyAction(EnemyAction.ACTION_EVENT.HIT);
+            if (push && !instakill) {
+                hitAction.hitTarget = hitSource;
+            } else {
+                hitAction.hitTarget = Vector3.positiveInfinity;
+            }
+            lastDamageType = damageType;
+            currentAction = hitAction;
+            isInterruptAction = true;
         }
-        lastDamageType = damageType;
-        currentAction = hitAction;
-        isInterruptAction = true;
     }
 
     public void ReactDizzy(float seconds) {
-        Debug.Log("IS DIZZY!:" + seconds);
         EnemyAction dizzyAction = new EnemyAction(EnemyAction.ACTION_EVENT.DIZZY);
         dizzyAction.amount = seconds;
         currentAction = dizzyAction;
@@ -134,6 +136,8 @@ public class EnemyController: MonoBehaviour, IActorController {
                 currentAction = aiBehaviour.GetCurrentAction();
             }
 
+            CheckForFalling();
+
             // handle StateMachine
             AbstractEnemyState newState = currentState.UpdateState();
             if (newState != null) {
@@ -141,6 +145,15 @@ public class EnemyController: MonoBehaviour, IActorController {
                 currentState = newState;
                 currentState.OnEnter();
             }
+        }
+    }
+
+    private void CheckForFalling() {
+        // if falling and current action is no interruptAction
+        if (moveController.IsFalling() && !isInterruptAction) {
+            Debug.Log("EnemyIsFalling");
+            EnemyAction fallingAction = new EnemyAction(EnemyAction.ACTION_EVENT.FALLING);
+            currentAction = fallingAction;
         }
     }
 

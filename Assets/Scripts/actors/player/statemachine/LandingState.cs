@@ -12,6 +12,7 @@ public class LandingState : AbstractState {
     public override void OnEnter() {
         playerController.InstantiateEffect(playerController.prefabEffectLanding);
         playerController.animator.SetBool(LANDING_PARAM, true);
+        SoundManager.PlaySFX(playerController.soundController.land_soft);
         Move(playerController.input.GetDirectionX(), playerController.input.GetDirectionY());
     }
 

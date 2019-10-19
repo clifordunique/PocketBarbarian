@@ -13,6 +13,7 @@ public class DialogueBossFightTrigger: DialogueTrigger {
     public SkillTextBox newStatsTextbox;
 
     public TriggerManager triggerManagerActivateOnStart;
+    public TriggerManager triggerManagerActivateOnFight;
     public TriggerManager triggerManagerActivateOnEnd;
 
     private bool inFight = false;
@@ -65,6 +66,7 @@ public class DialogueBossFightTrigger: DialogueTrigger {
         InputController.GetInstance().moveInputEnabled = false;
         GuiController.GetInstance().ShowFantasyText("Berserk!", showNewTitleTime);
         PlayerController.GetInstance().InterruptState(AbstractState.ACTION.POMMESGABEL);
+        triggerManagerActivateOnFight.DeactivateReactors();
         StartCoroutine(ShowNewStatsCoroutine(showNewTitleTime + 1));
     }
 
@@ -80,6 +82,7 @@ public class DialogueBossFightTrigger: DialogueTrigger {
     IEnumerator StartEffect() {
         yield return new WaitForSeconds(delayTextEffect);
         GuiController.GetInstance().ShowRandomFightText(durationTextEffect);
+        triggerManagerActivateOnFight.ActivateReactors();
         StartCoroutine(EnableControlls());
     }
 

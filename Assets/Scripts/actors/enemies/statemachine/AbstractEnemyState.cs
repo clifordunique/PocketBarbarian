@@ -43,7 +43,10 @@ public abstract class AbstractEnemyState {
         }
         if (requestedAction == EnemyAction.ACTION_EVENT.DIZZY) {
             return new EnemyDizzyState(enemyController);
-        }        
+        }
+        if (requestedAction == EnemyAction.ACTION_EVENT.FALLING) {
+            return new EnemyFallingState(enemyController);
+        }
         return null;
     }
     

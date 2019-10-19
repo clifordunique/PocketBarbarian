@@ -1,4 +1,18 @@
-n1|Who the hell are you?
+n1|Hu? Who the hell are you?
 n2|HIC!\Who? I? What? HIC!
 n1|YES! You!
 n2|HIC!\Me mighty goblin warrior Tooborg!\HIC!
+n1|What do you do in here?
+n2|HIC!\How doos it look, eh?\HIC  
+n1|Who locked you up?
+n2|HIC!\Oooh, dumb war boss did.\Just drunk some barrels of his booze.\HIC  
+n2|Dumb war boss want's all\his booze just fo himself.\Tooborg likes booze too! HIC  
+n1|Hmmm. Listen,\do you know where my sword is?
+n2|HIC!\Sword, hmmm. Sure, sure.\Tooborg knows everything!\HIC  
+n2|Weapons are upstairs.\But you need key. *Hehehe*.\HIC  
+n1|*sigh* Ok, and where is the key?
+n2|HIC!\Hmmm, Tooborg might have a key.\But barbarian has to do favour. *Hehehe*\HIC  
+n1|Yes, yes just give me the damn key!
+n2|HIC!\OK listen, Barbarian has to promise\Tooborg to clobber war boss!\Clobber him goood! HIC  
+n1|Oh! You can be sure of that! HA!
+n2|HIC! Here yuu go! HIC  

@@ -11,7 +11,7 @@ public class HitState : AbstractState {
 
     public override void OnEnter() {
         startTime = Time.timeSinceLevelLoad;
-        Debug.Log("Start hit: " + startTime);
+        SoundManager.PlaySFX(playerController.soundController.hit);
         if (playerController.lastHit.push && !playerController.lastHit.instakill) {
             playerController.animator.SetBool(JUMPING_PARAM, true);
             Vector3 hitDirection = Utils.GetHitDirection(playerController.lastHit.hitSource, playerController.transform);

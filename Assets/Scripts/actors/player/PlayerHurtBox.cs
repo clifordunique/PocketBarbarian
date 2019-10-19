@@ -12,8 +12,10 @@ public class PlayerHurtBox : HurtBox {
 
     private LayerMask attackLayersOrigin;
     private bool dashLayerActive = false;
+    
 
     private static PlayerHurtBox _instance;
+    
 
     public void Awake() {
         _instance = this;    

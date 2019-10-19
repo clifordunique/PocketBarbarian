@@ -17,10 +17,16 @@ public class ActionState : AbstractState {
         if (playerController.interactable) {
             interactable = playerController.interactable.GetComponent<AbstactInteractable>();
         }
+        if (interactable is Door || interactable is DoorLocked) {
+            playerController.hurtBox.EnableCollider(false);
+        }
     }
 
     public override void OnExit() {
         playerController.animator.SetBool(ACTION_PARAM, false);
+        if (interactable is Door || interactable is DoorLocked) {
+            playerController.hurtBox.EnableCollider(true);
+        }
     }
 
     public override AbstractState UpdateState() {

@@ -47,7 +47,7 @@ public class FallingPlatformController2D : AbstractPlatformController2D
 
     private bool actionCompleteEffectPlayed = false;
     
-    private HitBox hitbox;
+    //private HitBox hitbox;
 
     public override void Start() {
         base.Start();
@@ -62,14 +62,14 @@ public class FallingPlatformController2D : AbstractPlatformController2D
 
         waitUntil = Time.timeSinceLevelLoad + delay;
 
-        hitbox = GetComponent<HitBox>();
+        /*hitbox = GetComponent<HitBox>();
         if (!hitbox) {
             // search in childs
             hitbox = transform.GetComponentInChildren<HitBox>();
         }
         if (hitbox) {
             hitbox.gameObject.SetActive(false);
-        }
+        }*/
     }
 
     public override Vector3 CalculatePlatformMovement() {
@@ -91,14 +91,14 @@ public class FallingPlatformController2D : AbstractPlatformController2D
                 t = 0F;
                 //waitUntil = 0F;
 
-                if (hitbox) {
+              /*  if (hitbox) {
                     // enable / disable hitbox
                     if (isMovingAction) {
                         hitbox.gameObject.SetActive(true);
                     } else {
                         hitbox.gameObject.SetActive(false);
                     }
-                }
+                }*/
             }
         }
         return result;

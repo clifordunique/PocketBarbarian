@@ -232,4 +232,8 @@ public class HurtBox : MonoBehaviour {
         
     }
 
+    public void EnableCollider(bool enable) {
+        boxCollider.enabled = enable;
+    }
+
 }
