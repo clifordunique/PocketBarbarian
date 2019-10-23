@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 844ce457122499945b0a642e920b9368
+guid: 78fe3b437beb755419223b58f3534dd5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_0
-    21300002: arrow_1
-    21300004: arrow_2
-    21300006: arrow_3
+    21300000: blade_stop_0
+    21300002: blade_stop_1
+    21300004: blade_stop_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +120,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_0
+      name: blade_stop_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +134,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a13298d5b129b5049ae978b9b7e5b9a4
+      spriteID: d08f89807df406e4b800cfca1a4210e7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_1
+      name: blade_stop_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 36
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,39 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8cb0f239a35d0245a5daca2d7d6d9dd
+      spriteID: 295dbf8627c285b47ab44b429a354316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_2
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 24
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12b83f1450d2b4b43999579c57def713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_3
+      name: blade_stop_2
       rect:
         serializedVersion: 2
         x: 72
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5bb98c8470f674cbfced27fb9406c5
+      spriteID: 41dc6177109fe684e9d237089df199c8
       vertices: []
       indices: 
       edges: []
@@ -203,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e472b0dc040c42240a46c0c0a9efed6c
+    spriteID: 6009eab35d2d0ca4295ee4277ac45b45
     vertices: []
     indices: 
     edges: []

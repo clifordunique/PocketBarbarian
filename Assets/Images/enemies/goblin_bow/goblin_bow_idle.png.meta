@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 844ce457122499945b0a642e920b9368
+guid: 25519dbaa4826504aba530a7925e1260
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_0
-    21300002: arrow_1
-    21300004: arrow_2
-    21300006: arrow_3
+    21300000: goblin_bow_idle_0
+    21300002: goblin_bow_idle_1
+    21300004: goblin_bow_idle_2
+    21300006: goblin_bow_idle_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_0
+      name: goblin_bow_idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 10
+        width: 32
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a13298d5b129b5049ae978b9b7e5b9a4
+      spriteID: 3c3cdd273a9505546893210c0e7c37c2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_1
+      name: goblin_bow_idle_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 10
+        width: 32
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8cb0f239a35d0245a5daca2d7d6d9dd
+      spriteID: 759ab81a6b008d94f88d745d7163a7ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_2
+      name: goblin_bow_idle_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 10
+        width: 32
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12b83f1450d2b4b43999579c57def713
+      spriteID: fb7e2d4b2d5de0748972d1980ce18b11
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_3
+      name: goblin_bow_idle_3
       rect:
         serializedVersion: 2
-        x: 72
+        x: 96
         y: 0
-        width: 24
-        height: 10
+        width: 32
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5bb98c8470f674cbfced27fb9406c5
+      spriteID: ddf34e5681ffd5845b920c620b1c81fa
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e472b0dc040c42240a46c0c0a9efed6c
+    spriteID: 4f789552b5638a24480cb0dbf589540f
     vertices: []
     indices: 
     edges: []

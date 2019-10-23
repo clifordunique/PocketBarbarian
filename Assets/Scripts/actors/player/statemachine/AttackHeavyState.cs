@@ -16,6 +16,8 @@ public class AttackHeavyState : AbstractState {
     private int MAX_COMBO = 1;
     private int currentCombo = 0;
 
+    private bool releaseState = false;
+
     public AttackHeavyState(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
 
@@ -68,7 +70,13 @@ public class AttackHeavyState : AbstractState {
                 move = Time.timeSinceLevelLoad + moveTime;
             }
         }
-        
+
+        if (releaseState) {
+            // ab release ist springen wieder erlaubt!
+            if (playerController.input.IsJumpKeyDown()) {
+                return new JumpState(playerController);
+            }
+        }
 
         // End attack!
         if (animationFinished) {
@@ -121,6 +129,7 @@ public class AttackHeavyState : AbstractState {
         }
         if (parameter == EVENT_PARAM_ATTACK_END) {
             attackFinished = true;
+            releaseState = true;
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;

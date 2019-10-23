@@ -3,19 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner: MonoBehaviour, ITriggerReactor {
+
+    [Header("Spawn Settings")]
     public GameObject enemyPrefab;
-    public GameObject spawnEffectPrefab;
-    public int pixelOffsetX;
-    public int pixelOffsetY;
-    public float timeOffsetSpawnEffect;
+
     public float timer;
     public float randomOffsetTimer;
     public bool randomDirection;
     public int maxEnemies;
     public int maxEnemiesAtOnce;
 
+    [Header("TriggerSettings")]
     public bool reactAsTriggerReactor = false;
-    public bool killOnDeactivate = true;
+    [ConditionalHideAttribute("reactAsTriggerReactor", true)]
+    public bool killOnDeactivate = false;
+
+
+    [Header("Spawn Effect")]
+    public bool showSpawnEffect = false;
+    [ConditionalHideAttribute("showSpawnEffect", true)]
+    public GameObject spawnEffectPrefab;
+    [ConditionalHideAttribute("showSpawnEffect", true)]
+    public int pixelOffsetX;
+    [ConditionalHideAttribute("showSpawnEffect", true)]
+    public int pixelOffsetY;
+    [ConditionalHideAttribute("showSpawnEffect", true)]
+    public float timeOffsetSpawnEffect;
+
 
     private float timeLastSpawn = 0;
     private float nextTimer;
@@ -32,10 +46,11 @@ public class EnemySpawner: MonoBehaviour, ITriggerReactor {
         }
         updateNextTimer();
 
-        float offsetX = Utils.PixelToWorldunits(pixelOffsetX);
-        float offsetY = Utils.PixelToWorldunits(pixelOffsetY);
-        positionSpawnEffect = new Vector3(transform.position.x + offsetX, transform.position.y + offsetY, transform.position.z);
-
+        if (showSpawnEffect) {
+            float offsetX = Utils.PixelToWorldunits(pixelOffsetX);
+            float offsetY = Utils.PixelToWorldunits(pixelOffsetY);
+            positionSpawnEffect = new Vector3(transform.position.x + offsetX, transform.position.y + offsetY, transform.position.z);
+        }
     }
 
     private void updateNextTimer() {
@@ -51,11 +66,15 @@ public class EnemySpawner: MonoBehaviour, ITriggerReactor {
                 if (timeLastSpawn + nextTimer < Time.timeSinceLevelLoad) {
                     //spawn
 
-                    GameObject effect = Instantiate(spawnEffectPrefab, positionSpawnEffect, transform.rotation);
-                    effect.transform.parent = EffectCollection.GetInstance().transform;
+                    if (showSpawnEffect) {
+                        // spawn Effect
+                        GameObject effect = Instantiate(spawnEffectPrefab, positionSpawnEffect, transform.rotation);
+                        effect.transform.parent = EffectCollection.GetInstance().transform;
 
-                    StartCoroutine(SpawnEnemy(timeOffsetSpawnEffect));
-
+                        StartCoroutine(SpawnEnemy(timeOffsetSpawnEffect));
+                    } else {
+                        SpawnEnemy(timeOffsetSpawnEffect);
+                    }
 
                     updateNextTimer();
                     timeLastSpawn = Time.timeSinceLevelLoad;
@@ -67,11 +86,13 @@ public class EnemySpawner: MonoBehaviour, ITriggerReactor {
 
     private IEnumerator SpawnEnemy(float waitTime) {
         yield return new WaitForSeconds(waitTime);
-        GameObject go = Instantiate(enemyPrefab, transform.position, transform.rotation);
-        go.transform.parent = transform;
-        if (randomDirection) {
-            if (Random.value > 0.5f) {
-                go.transform.localScale = new Vector3(-1 * go.transform.localScale.x, go.transform.localScale.y, go.transform.localScale.z);
+        if (spawnAllowed) {
+            GameObject go = Instantiate(enemyPrefab, transform.position, transform.rotation);
+            go.transform.parent = transform;
+            if (randomDirection) {
+                if (Random.value > 0.5f) {
+                    go.transform.localScale = new Vector3(-1 * go.transform.localScale.x, go.transform.localScale.y, go.transform.localScale.z);
+                }
             }
         }
     }

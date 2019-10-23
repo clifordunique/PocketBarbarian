@@ -26,8 +26,9 @@ public class EnemyShootState : AbstractEnemyState {
         }
 
         if (enemyController.isShooter && shootNow) {
-
+            Debug.Log("Shoot now!");
             if (shootCounter <= enemyController.currentAction.amount) {
+                Debug.Log("ShootProj");
                 enemyController.ShootProjectile(enemyController.currentAction.hitTarget, enemyController.currentAction.hitTargetIsVector);
                 shootNow = false;
                 shootCounter++;

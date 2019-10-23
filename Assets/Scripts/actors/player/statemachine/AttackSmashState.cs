@@ -12,6 +12,7 @@ public class AttackSmashState : AbstractState {
     private float moveTime = 0.3F;
 
     private bool playEffect = false;
+    private bool releaseState = false;
 
     public AttackSmashState(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
@@ -54,6 +55,12 @@ public class AttackSmashState : AbstractState {
             hitSomething = false;
         }
         
+        if (releaseState) {
+            // ab release ist springen wieder erlaubt!
+            if (playerController.input.IsJumpKeyDown()) {
+                return new JumpState(playerController);
+            }
+        }
 
         // End attack!
         if (animationFinished) {
@@ -88,8 +95,9 @@ public class AttackSmashState : AbstractState {
             hitSomething = true;
         }
 
-        if (parameter == "smash") {
+        if (parameter == EVENT_PARAM_ATTACK_END) {
             playEffect = true;
+            releaseState = true;
         }
     }
 }

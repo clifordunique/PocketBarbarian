@@ -13,6 +13,8 @@ public class AttackLightState : AbstractState {
     private float move = 0F;
     private float moveTime = 0.1F;
 
+    private bool releaseState = false;
+
     public AttackLightState(PlayerController playerController) : base(ACTION.ATTACK1, playerController) {
     }
 
@@ -58,6 +60,13 @@ public class AttackLightState : AbstractState {
             Debug.Log("COMBO!");
         }
 
+        if (releaseState) {
+            // ab release ist springen wieder erlaubt!
+            if (playerController.input.IsJumpKeyDown()) {
+                return new JumpState(playerController);
+            }
+        }
+
         // End attack!
         if (attackFinished) {
             playerController.lastAttackTime = Time.timeSinceLevelLoad;
@@ -74,6 +83,9 @@ public class AttackLightState : AbstractState {
     public override void HandleEvent(string parameter) {
         if (parameter == EVENT_PARAM_ANIMATION_END) {
             attackFinished = true;
+        }
+        if (parameter == EVENT_PARAM_ATTACK_END) {
+            releaseState = true;
         }
         if (parameter == EVENT_PARAM_HIT) {
             hitSomething = true;

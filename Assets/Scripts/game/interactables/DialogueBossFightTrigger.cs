@@ -62,11 +62,13 @@ public class DialogueBossFightTrigger: DialogueTrigger {
 
     IEnumerator BossKilledCoroutine() {
         GuiController.GetInstance().CanvasFlash();
+        triggerManagerActivateOnFight.DeactivateReactors();
+
         yield return new WaitForSeconds(waitTimePommesgabelAfterBossDead);
         InputController.GetInstance().moveInputEnabled = false;
         GuiController.GetInstance().ShowFantasyText("Berserk!", showNewTitleTime);
         PlayerController.GetInstance().InterruptState(AbstractState.ACTION.POMMESGABEL);
-        triggerManagerActivateOnFight.DeactivateReactors();
+        
         StartCoroutine(ShowNewStatsCoroutine(showNewTitleTime + 1));
     }
 

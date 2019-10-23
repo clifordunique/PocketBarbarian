@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 844ce457122499945b0a642e920b9368
+guid: d84c6393e2151d34583f9455afb9b6a2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_0
-    21300002: arrow_1
-    21300004: arrow_2
-    21300006: arrow_3
+    21300000: blade_rotating_0
+    21300002: blade_rotating_1
+    21300004: blade_rotating_2
+    21300006: blade_rotating_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_0
+      name: blade_rotating_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,19 +135,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a13298d5b129b5049ae978b9b7e5b9a4
+      spriteID: 817398e0c6c54b44db1c0d1a0a9098ef
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_1
+      name: blade_rotating_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 36
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,39 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8cb0f239a35d0245a5daca2d7d6d9dd
+      spriteID: 73cb52bc60377d241a7f0bc9786d06c1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_2
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 24
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12b83f1450d2b4b43999579c57def713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_3
+      name: blade_rotating_2
       rect:
         serializedVersion: 2
         x: 72
         y: 0
-        width: 24
-        height: 10
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,7 +175,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa5bb98c8470f674cbfced27fb9406c5
+      spriteID: 71598e1c17d26214ab9d293b5fd04a51
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blade_rotating_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b433f8ea52fb619448576259917a19e0
       vertices: []
       indices: 
       edges: []
@@ -203,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e472b0dc040c42240a46c0c0a9efed6c
+    spriteID: 962eadcb6a94e0c4e8027bf9d6c4b4b8
     vertices: []
     indices: 
     edges: []

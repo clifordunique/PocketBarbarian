@@ -153,7 +153,8 @@ public class HurtBox : MonoBehaviour {
 
         if (currentHealth <= 0 && destroyOnDeathImmediate) {
             DeathAction(hitDirection.x);
-        }            
+        }
+        Debug.Log("ExecuteHurtEffect!");
         if (prefabHitEffect != null) {                
             InstantiateEffect(prefabHitEffect, hitDirection.x, transform.position);
         }

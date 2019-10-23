@@ -151,7 +151,6 @@ public class EnemyController: MonoBehaviour, IActorController {
     private void CheckForFalling() {
         // if falling and current action is no interruptAction
         if (moveController.IsFalling() && !isInterruptAction) {
-            Debug.Log("EnemyIsFalling");
             EnemyAction fallingAction = new EnemyAction(EnemyAction.ACTION_EVENT.FALLING);
             currentAction = fallingAction;
         }
