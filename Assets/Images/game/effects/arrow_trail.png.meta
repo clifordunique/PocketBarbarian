@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: 844ce457122499945b0a642e920b9368
+guid: 63567eb89d1c25c4e8ddb972d56b7e4b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_0
-    21300002: arrow_1
-    21300004: arrow_2
-    21300006: arrow_3
+    21300000: arrow_trail_0
+    21300002: arrow_trail_1
+    21300004: arrow_trail_2
+    21300006: arrow_trail_3
+    21300008: arrow_trail_4
+    21300010: arrow_trail_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_0
+      name: arrow_trail_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 28
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -135,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d7e9fcae1108a84aa31b4c4b0265515
+      spriteID: 9e1e7fc9dbb11424f8e3c26666aba73c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_1
+      name: arrow_trail_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 28
         y: 0
-        width: 32
+        width: 28
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -155,18 +157,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aef434e6f00e0fb42ae51c6c3642f26a
+      spriteID: 4f15d3feab26c0e45b7cb492f12f0637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_2
+      name: arrow_trail_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 56
         y: 0
-        width: 32
+        width: 28
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,18 +177,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ee167791b430774ba23571b3e5fb759
+      spriteID: e3640ede876915a45baf9902f3e47db0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_3
+      name: arrow_trail_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 84
         y: 0
-        width: 32
+        width: 28
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -195,7 +197,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c233f44effaa70e479d9fc6c4bd43d5b
+      spriteID: edfddb2a06a96294285cbf369adbadb6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_trail_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f2edc717ee48840ac0a75e4f34df76
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_trail_5
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ebd579b95e60fa49ba18b0120e72749
       vertices: []
       indices: 
       edges: []
@@ -203,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e472b0dc040c42240a46c0c0a9efed6c
+    spriteID: b26058aaa83a29e4d83f53c5233a7b38
     vertices: []
     indices: 
     edges: []

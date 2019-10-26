@@ -7,6 +7,7 @@ public class AxeProjectile : Projectile {
     public float delayDestroy;
     public GameObject prefabHitEffect;
 
+
     private Animator animator;
     private BoxCollider2D boxCollider;
 
@@ -37,7 +38,7 @@ public class AxeProjectile : Projectile {
             transform.parent = collision.gameObject.transform;
             boxCollider.enabled = false;
             if (prefabHitEffect != null) {
-                InstantiateEffect(prefabHitEffect);
+                InstantiateEffect(prefabHitEffect, true);
             }
             StartCoroutine(DeleteDelayed());
         }
@@ -48,13 +49,5 @@ public class AxeProjectile : Projectile {
         Destroy(gameObject);
     }
 
-    private void InstantiateEffect(GameObject effectToInstanciate) {
-        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
-        SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
-        if (effectSpriteRenderer) {
-            effectSpriteRenderer.flipX = (transform.localScale.x > 0);
-        }
-        effect.transform.parent = EffectCollection.GetInstance().transform;
-        effect.transform.position = transform.position;
-    }
+
 }

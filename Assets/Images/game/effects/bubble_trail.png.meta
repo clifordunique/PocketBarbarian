@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: 844ce457122499945b0a642e920b9368
+guid: 450b210e9692cf240b50662953921984
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_0
-    21300002: arrow_1
-    21300004: arrow_2
-    21300006: arrow_3
+    21300000: bubble_trail_0
+    21300002: bubble_trail_1
+    21300004: bubble_trail_2
+    21300006: bubble_trail_3
+    21300008: bubble_trail_4
+    21300010: bubble_trail_5
+    21300012: bubble_trail_6
+    21300014: bubble_trail_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -121,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_0
+      name: bubble_trail_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,19 +133,19 @@ TextureImporter:
         width: 32
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d7e9fcae1108a84aa31b4c4b0265515
+      spriteID: 92dff4b8f348a3742b621f512c4d61e8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_1
+      name: bubble_trail_1
       rect:
         serializedVersion: 2
         x: 32
@@ -149,19 +153,19 @@ TextureImporter:
         width: 32
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aef434e6f00e0fb42ae51c6c3642f26a
+      spriteID: 1e5a7bffaccca2a41af655ceb4b93609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_2
+      name: bubble_trail_2
       rect:
         serializedVersion: 2
         x: 64
@@ -169,19 +173,19 @@ TextureImporter:
         width: 32
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ee167791b430774ba23571b3e5fb759
+      spriteID: ca0cb3cb959cd1b45b72324b399afb1e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_3
+      name: bubble_trail_3
       rect:
         serializedVersion: 2
         x: 96
@@ -189,13 +193,93 @@ TextureImporter:
         width: 32
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c233f44effaa70e479d9fc6c4bd43d5b
+      spriteID: 292cbb4d9cc737b4ea85daeeebe15e35
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubble_trail_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5647fe63da0aa4146b265fbb0afdf563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubble_trail_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf385a93955fbb47a81312e22ab9870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubble_trail_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab852e17f66f08b4ca71d556575a1acc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubble_trail_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97493dd0aa1e845488535ac3a6230517
       vertices: []
       indices: 
       edges: []
@@ -203,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e472b0dc040c42240a46c0c0a9efed6c
+    spriteID: c22eb9cf776473e4b9614709dd411cd6
     vertices: []
     indices: 
     edges: []

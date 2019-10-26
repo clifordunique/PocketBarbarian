@@ -11,6 +11,11 @@ public class Projectile : MonoBehaviour {
     public float arcHeight;
 
     public Vector3 target;
+    public bool useTrail = false;
+    [ConditionalHideAttribute("useTrail", true)]
+    public GameObject trailPrefab;
+    public float trailInterval;
+    private float lastInterval;
     private Rigidbody2D rigidb;
     [HideInInspector]
     public Vector3 startPosition;
@@ -33,6 +38,7 @@ public class Projectile : MonoBehaviour {
         }
 
         targetPosition = target;
+        lastInterval = Time.timeSinceLevelLoad;
     }
 
 
@@ -50,6 +56,13 @@ public class Projectile : MonoBehaviour {
             if (!vector && MoveUtils.TargetReachedXY(transform, target, speed, 0)) {
                 // if target reached but nothing hit, destroy object
                 Destroy(gameObject);
+            }
+
+            if (useTrail) {
+                if (Time.timeSinceLevelLoad >= lastInterval + trailInterval) {
+                    InstantiateEffect(trailPrefab, false);
+                    lastInterval = Time.timeSinceLevelLoad;
+                }
             }
 
             if (vector) {
@@ -75,5 +88,19 @@ public class Projectile : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void InstantiateEffect(GameObject effectToInstanciate, bool flipSprite) {
+        GameObject effect = (GameObject)Instantiate(effectToInstanciate);
+        SpriteRenderer effectSpriteRenderer = effect.GetComponent<SpriteRenderer>();
+        if (effectSpriteRenderer) {
+            if (flipSprite) {
+                effectSpriteRenderer.flipX = (transform.localScale.x > 0);
+            } else {
+                effectSpriteRenderer.flipX = (transform.localScale.x < 0);
+            }
+        }
+        effect.transform.parent = EffectCollection.GetInstance().transform;
+        effect.transform.position = transform.position;
     }
 }

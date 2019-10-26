@@ -15,6 +15,7 @@ TextureImporter:
     21300020: arrow_hit_10
     21300022: arrow_hit_11
     21300024: arrow_hit_12
+    21300026: arrow_hit_13
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -135,7 +136,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -144,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19051b419ffee194bb108d7727fb1b04
+      spriteID: ca9b74b210f0d664784173853296856e
       vertices: []
       indices: 
       edges: []
@@ -153,9 +154,9 @@ TextureImporter:
       name: arrow_hit_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 32
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -164,7 +165,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b816b2460ccf4f4a9ca95c6e3100751
+      spriteID: e42753cb773a6974c989b55c2323b248
       vertices: []
       indices: 
       edges: []
@@ -173,9 +174,9 @@ TextureImporter:
       name: arrow_hit_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 64
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -184,7 +185,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79992ee2b2acdcc469828d9bad95ba76
+      spriteID: 04e7b0b497235984383a46c1e6a28097
       vertices: []
       indices: 
       edges: []
@@ -193,9 +194,9 @@ TextureImporter:
       name: arrow_hit_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 96
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -204,7 +205,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 320001d7105aa8e4ebc79cfdfb8f605f
+      spriteID: f9406cbd031820940a7c4fa7d4fc3267
       vertices: []
       indices: 
       edges: []
@@ -213,9 +214,9 @@ TextureImporter:
       name: arrow_hit_4
       rect:
         serializedVersion: 2
-        x: 80
+        x: 128
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -224,7 +225,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d16f3c18a40378e4684040d527214339
+      spriteID: 7754be34fde5d2f4c81f75441dd87946
       vertices: []
       indices: 
       edges: []
@@ -233,9 +234,9 @@ TextureImporter:
       name: arrow_hit_5
       rect:
         serializedVersion: 2
-        x: 100
+        x: 160
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -244,7 +245,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55739407843bbd04e85ea2032bef7d31
+      spriteID: 50b8b67fba1f23b4c95f761338cb5c46
       vertices: []
       indices: 
       edges: []
@@ -253,9 +254,9 @@ TextureImporter:
       name: arrow_hit_6
       rect:
         serializedVersion: 2
-        x: 120
+        x: 192
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -264,7 +265,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ba6ec7598f90db439674af1edcca244
+      spriteID: 53ae09d0974cb4440845c5c174c28c06
       vertices: []
       indices: 
       edges: []
@@ -273,9 +274,9 @@ TextureImporter:
       name: arrow_hit_7
       rect:
         serializedVersion: 2
-        x: 140
+        x: 224
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -284,7 +285,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ce82c750ddceab40b8c9eec008feba2
+      spriteID: 212d8a291dca1ac48956f359d1a199e5
       vertices: []
       indices: 
       edges: []
@@ -293,9 +294,9 @@ TextureImporter:
       name: arrow_hit_8
       rect:
         serializedVersion: 2
-        x: 160
+        x: 256
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -304,7 +305,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2a72b6fc756916419a16a930d6500c1
+      spriteID: 97f37008d9b243f4d8dec7e180b38c1c
       vertices: []
       indices: 
       edges: []
@@ -313,9 +314,9 @@ TextureImporter:
       name: arrow_hit_9
       rect:
         serializedVersion: 2
-        x: 180
+        x: 288
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -324,7 +325,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df60811b014d1f4fad31c8c99982b8b
+      spriteID: f9e335e3fea44644e9741b7925037e85
       vertices: []
       indices: 
       edges: []
@@ -333,9 +334,9 @@ TextureImporter:
       name: arrow_hit_10
       rect:
         serializedVersion: 2
-        x: 200
+        x: 320
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -344,7 +345,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42b1e508274a6314988ba46e06c55261
+      spriteID: 37cef91df3153ea4bac08bcb979c94d5
       vertices: []
       indices: 
       edges: []
@@ -353,9 +354,9 @@ TextureImporter:
       name: arrow_hit_11
       rect:
         serializedVersion: 2
-        x: 220
+        x: 352
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -364,7 +365,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a53aa54b93df0340a85d34064be580e
+      spriteID: 7f1a4b02518f995449d7e74d47f202a9
       vertices: []
       indices: 
       edges: []
@@ -373,9 +374,9 @@ TextureImporter:
       name: arrow_hit_12
       rect:
         serializedVersion: 2
-        x: 240
+        x: 384
         y: 0
-        width: 20
+        width: 32
         height: 10
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -384,7 +385,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c458a070163df42a23d8c4b2e9e310
+      spriteID: 2272cd9617c035d4fa1d87b5f0fbe9b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arrow_hit_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 10
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4cdf53fa5f72b46ba8f7f76e77fef9
       vertices: []
       indices: 
       edges: []
